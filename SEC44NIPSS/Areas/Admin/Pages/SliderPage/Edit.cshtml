@@ -1,0 +1,48 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.SliderPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Slider</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Slider.Id" />
+            <input type="hidden" asp-for="Slider.ImagePath" />
+            <input type="hidden" asp-for="Slider.SliderCategoryId" />
+            
+            <div class="form-group">
+                <label asp-for="Slider.Show" class="control-label"></label>
+                <input asp-for="Slider.Show" class="form-control" />
+                <span asp-validation-for="Slider.Show" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slider.Sort" class="control-label"></label>
+                <input asp-for="Slider.Sort" class="form-control" />
+                <span asp-validation-for="Slider.Sort" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slider.Title" class="control-label"></label>
+                <input asp-for="Slider.Title" class="form-control" />
+                <span asp-validation-for="Slider.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

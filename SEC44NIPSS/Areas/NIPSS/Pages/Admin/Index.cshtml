@@ -1,0 +1,661 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .info-box-content {
+        padding: 2px 10px;
+        margin-left: 0px;
+    }
+
+    .info-box-text {
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .info-box-number {
+        display: block;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .info-box-text {
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 19px;
+    }
+
+    h4 {
+        font-weight: 900;
+    }
+
+    h3 {
+        font-weight: 900;
+    }
+
+    hr {
+        border-top: 2px dashed #0094ff;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>
+            MANAGEMENT
+        </h3>
+    </div>
+    <hr />
+    <div class="col-md-12">
+        <hr /> <h4>
+            STAFF
+        </h4>
+    </div>
+  
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-red">
+                <div class="info-box-content">
+                    <span class="info-box-text">STAFF</span>
+                    <span class="info-box-number">@Model.TotalStaff</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-success">
+                <div class="info-box-content">
+                    <span class="info-box-text">MALE STAFF</span>
+                    <span class="info-box-number">@Model.StaffMale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-primary">
+                <div class="info-box-content">
+                    <span class="info-box-text">FEMALE STAFF</span>
+                    <span class="info-box-number">@Model.StaffFemale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <hr />
+    <div class="col-md-12">
+        <hr />
+        <h4>
+            MANAGEMENT STAFF
+        </h4>
+    </div>
+   
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-orange">
+                <div class="info-box-content">
+                    <span class="info-box-text">TOTAL STAFF</span>
+                    <span class="info-box-number">@Model.TotalMStaff</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-black">
+                <div class="info-box-content">
+                    <span class="info-box-text">MALE STAFF</span>
+                    <span class="info-box-number">@Model.MStaffMale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-gray">
+                <div class="info-box-content">
+                    <span class="info-box-text">FEMALE STAFF</span>
+                    <span class="info-box-number">@Model.MStaffFemale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+
+
+   
+    <div class="col-md-12">
+        <hr />
+        <h4>
+            DIRECTING STAFF
+        </h4>
+    </div>
+   
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-purple">
+                <div class="info-box-content">
+                    <span class="info-box-text">TOTAL STAFF</span>
+                    <span class="info-box-number">@Model.TotalDStaff</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-maroon">
+                <div class="info-box-content">
+                    <span class="info-box-text">MALE STAFF</span>
+                    <span class="info-box-number">@Model.DStaffMale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+    <a asp-page="/IApplicant/UnProcessed">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box bg-navy">
+                <div class="info-box-content">
+                    <span class="info-box-text">FEMALE STAFF</span>
+                    <span class="info-box-number">@Model.DStaffFemale</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </a>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            STUDY GROUPS
+        </h4>
+    </div>
+
+    @foreach (var i in Model.StudyGroup.Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-yellow">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+
+    @foreach (var i in Model.StudyGroup.Skip(1).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.StudyGroup.Skip(2).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-aqua">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.StudyGroup.Skip(3).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.StudyGroup.Skip(4).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-black">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.StudyGroup.Skip(5).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.StudyGroup.Skip(6).Take(1))
+    {
+
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-maroon-gradient">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.StudyGroupMemebers.Where(x => x.DS == false).Count() PARTICIPANTS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        @foreach (var x in i.StudyGroupMemebers.Where(x => x.DS == true))
+                        {
+                            <p>DS: @x.Profile.FullName</p>
+                        }
+
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+
+
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            LIBRARY
+        </h4>
+    </div>
+
+
+    @foreach (var i in Model.DocumentCategory.Take(1))
+    {
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.DocumentCategory.Skip(1).Take(1))
+    {
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-yellow">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.DocumentCategory.Skip(2).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.DocumentCategory.Skip(3).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-teal">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.DocumentCategory.Skip(4).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.DocumentCategory.Skip(5).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box bg-blue-gradient">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.Documents.Count()</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+
+
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            TOURS
+        </h4>
+    </div>
+
+    
+    @foreach (var i in Model.TourCategories.Take(1))
+    {
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="info-box bg-black">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.TourSubCategories.Count() LOCATIONS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.TourCategories.Skip(1).Take(1))
+    {
+        <a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="info-box bg-green">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.TourSubCategories.Count() LOCATIONS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.TourCategories.Skip(2).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="info-box bg-yellow">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.TourSubCategories.Count() LOCATIONS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+    @foreach (var i in Model.TourCategories.Skip(3).Take(1))
+    {<a asp-page="/IApplicant/UnProcessed">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                    <div class="info-box-content">
+                        <span class="info-box-text">@i.Title.ToUpper()</span>
+                        <span class="info-box-number">@i.TourSubCategories.Count() LOCATIONS</span>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </a>}
+
+
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            ALUMNI
+        </h4>
+    </div>
+
+
+    @foreach (var i in Model.Alumni)
+    {
+        <hr />
+        <div style="border:1px thin #0094ff;">
+            <div class="col-md-12">
+                <h4>
+                    @i.Title.ToUpper() @i.Year
+                </h4>
+                <h4>
+                    TOPIC: @i.GeneralTopic.ToUpper()
+                </h4>
+            </div>
+            <hr />
+
+            <a asp-page="/IApplicant/UnProcessed">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-black">
+                        <div class="info-box-content">
+                            <span class="info-box-text">PARTICIPANTS</span>
+                            <span class="info-box-number">@i.Profiles.Where(x => x.AccountRole == "Participant").Count()</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </a>
+
+            <a asp-page="/IApplicant/UnProcessed">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-green">
+                        <div class="info-box-content">
+                            <span class="info-box-text">TOURS</span>
+                            <span class="info-box-number">@i.TourCategories.Count() </span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </a>
+            <a asp-page="/IApplicant/UnProcessed">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-yellow">
+                        <div class="info-box-content">
+                            <span class="info-box-text">STUDY GROUP</span>
+                            <span class="info-box-number">@i.StudyGroup.Count()</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </a>
+
+            <a asp-page="/IApplicant/UnProcessed">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-maroon">
+                        <div class="info-box-content">
+                            <span class="info-box-text">EXECUTIVES</span>
+                            <span class="info-box-number">@i.Executives.Count()</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </a>
+        </div>
+    }
+</div>
+

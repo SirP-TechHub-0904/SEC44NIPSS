@@ -1,0 +1,51 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Users.IndexModel
+@{
+}
+<h1>All Users (@Model.Profile.Count())</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>S/N</th>
+            <th>
+                Email
+            </th>
+           
+
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].PhoneNumber)
+            </th>
+
+        </tr>
+    </thead>
+    @{
+        int sno = 0;
+    }
+
+    <tbody>
+        @foreach (var item in Model.Profile)
+        {
+            <tr>
+                <td>
+                    @{ sno++; }
+                    @sno
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

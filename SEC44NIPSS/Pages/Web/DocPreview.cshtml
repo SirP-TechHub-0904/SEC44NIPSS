@@ -1,0 +1,95 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.DocPreviewModel
+
+@{
+    ViewData["Title"] = "DocPreview";
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                @Model.Document.DocumentCategory.Title
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0;">
+                    <div class="row">
+
+
+                        <div class="col-md-9">
+                            
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                                                            @*@if (!String.IsNullOrEmpty(Model.Document.CoverImage))
+                                                            {
+
+                                                                <div class="" style="height: 600px; background: url('@Model.Document.CoverImage'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+
+                                                                </div>
+                                                            }*@
+                                                            <img src="@Model.Document.CoverImage" style="max-height:600px;margin:0 auto; text-align:center;" class="img-fluid" />
+                                                            <div class="card-body" style="padding: 5px;">
+
+                                                                <h6 class="card-title text-center uppercase" style="font-weight:900;margin:0;">Resource Preson: @Model.Document.Profile.FullName</h6>
+                                                                <h6 class="card-title text-center uppercase" style="margin:0;">
+                                                                    @Model.Document.DocumentCategory.Title
+                                                                </h6>
+                                                                <div>
+                                                                    @Html.Raw(Model.Document.Description)
+                                                                </div>
+                                                                @if (User.Identity.IsAuthenticated)
+                                                                {
+
+                                                                    <a href="@Model.Document.FileName" class="btn btn-danger" style="color:#ffffff;width:100%;font-weight:900;" download>DOWNLOAD</a>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a class="btn btn-danger" style="color:#ffffff;width:100%;font-weight:900;" asp-page="/Account/Login" asp-area="Identity">DOWNLOAD</a>
+
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                     
+                        </div>
+                        <div class="col-md-3">
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        <h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;">NAVIGATION</h4>
+                                    </th>
+                                </tr>
+                                @foreach (var item in Model.DocumentCategoryList)
+                                {
+                                    <tr>
+                                        <th>
+                                            <a asp-page="/Web/DocList" asp-route-id="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;font-size:14px;line-height:18px;margin:0 5px;"> @Html.DisplayFor(modelItem => item.Title)</h6></a>
+                                        </th>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

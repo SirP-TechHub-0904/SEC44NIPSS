@@ -1,0 +1,422 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ProjectPage.ResultModel
+@{
+    ViewData["disablex"] = "disable";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SEC 44 - THE NATIONAL INSTITUTE</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="">
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/skins/_all-skins.min.css">
+    <link rel="shortcut icon" href="~/img/download.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CM3VESSW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X0CM3VESSW');
+    </script>
+
+    <meta property="og:site_name" content="NIPSS SEC44 PORTAL">
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta property="og:image" itemprop="image" content="@ViewData["Image"]">
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="@DateTime.UtcNow.AddHours(1)" />
+
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12" style="font-weight:700;font-size:16px;">
+            
+            <!-- Traffic sources -->
+            <div class="box" style="margin:5px;">
+                <div class="box">
+                    <div class="box-header">
+                        <a asp-page="/Dashboard/Voting" class="btn btn-danger pull-right">Go Back</a>                    </div>
+                    <div class="box-header">
+                        <h1>THE NATIONAL INSTITUTE (SEC 44)</h1>
+                        <h2 class="box-title">LEGACY PROJECT VOTING RESULT </h2>
+
+
+                        @*<h3>Summary of Voters (@Model.LegacyProjectAnswers.Count()) (Statistic and Graph)</h3>*@
+
+                        @if (TempData["alert"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                <strong>Note!</strong> @TempData["alert"]
+                            </div>
+                        }
+                    </div>
+
+                    <div class=" table-responsive">
+                        <table class="table table-bordered" style="margin:10px;width:100%;">
+                            <tr>
+                                <th style="width:5%">S/N</th>
+                                <th style="width:80%">Project</th>
+                                <th style="width:15%">Number of Vote</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>@Model.LegacyProject.P1</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>@Model.LegacyProject.P2</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>@Model.LegacyProject.P3</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P3</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>@Model.LegacyProject.P4</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P4</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>@Model.LegacyProject.P5</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P5</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>@Model.LegacyProject.P6</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P6</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>@Model.LegacyProject.P7</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P7</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>@Model.LegacyProject.P8</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P8</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>@Model.LegacyProject.P9</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P9</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>@Model.LegacyProject.P10</td>
+                                <td style="font-size:30px;text-align:center;">@Model.P10</td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+
+                    <style>
+
+                        /* Vertical */
+
+                        .vertical .progress-bar {
+                            float: left;
+                            height: 300px;
+                            width: 40px;
+                            margin-right: 25px;
+                        }
+
+                        .vertical .progress-track {
+                            position: relative;
+                            width: 40px;
+                            height: 100%;
+                            background: #ff0000;
+                        }
+
+                        .vertical .progress-fill {
+                            position: relative;
+                            background: #825;
+                            height: 50%;
+                            width: 40px;
+                            color: #fff;
+                            text-align: center;
+                            font-family: "Lato","Verdana",sans-serif;
+                            font-size: 12px;
+                            line-height: 20px;
+                        }
+
+                        .rounded .progress-track,
+                        .rounded .progress-fill {
+                            box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+                            border-radius: 3px;
+                        }
+
+                        .vertical {
+                            animation-name: vertical;
+                            animation-duration: 0 !important;
+                            animation-timing-function: linear;
+                            animation-iteration-count: inherit;
+                        }
+
+                        #barChart {
+                            background-color: aliceblue;
+                            border-radius: 6px;
+                        }
+
+
+                        body, table, input, select, textarea {
+                        }
+
+
+                        .graph {
+                            margin-bottom: 1em;
+                            font: normal 100%/150% arial,helvetica,sans-serif;
+                        }
+
+                            .graph caption {
+                                font: bold 150%/120% arial,helvetica,sans-serif;
+                                padding-bottom: 0.33em;
+                            }
+
+                            .graph tbody th {
+                                text-align: right;
+                            }
+
+                        @@supports (display:grid) {
+
+                            @@media (min-width:32em) {
+
+                                .graph {
+                                    display: block;
+                                    width: 600px;
+                                    height: 300px;
+                                }
+
+                                    .graph caption {
+                                        display: block;
+                                    }
+
+                                    .graph thead {
+                                        display: none;
+                                    }
+
+                                    .graph tbody {
+                                        position: relative;
+                                        display: grid;
+                                        grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
+                                        column-gap: 2.5%;
+                                        align-items: end;
+                                        height: 230px;
+                                        margin: 3em 0 1em 2.8em;
+                                        padding: 0 1em;
+                                        border-bottom: 2px solid rgba(0,0,0,0.5);
+                                        background: repeating-linear-gradient( 180deg, rgba(170,170,170,0.7) 0, rgba(170,170,170,0.7) 1px, transparent 1px, transparent 20% );
+                                    }
+
+                                        .graph tbody:before,
+                                        .graph tbody:after {
+                                            position: absolute;
+                                            left: -3.2em;
+                                            width: 2.8em;
+                                            text-align: right;
+                                            font: bold 80%/120% arial,helvetica,sans-serif;
+                                        }
+
+                                        .graph tbody:before {
+                                            content: "100%";
+                                            top: -0.6em;
+                                        }
+
+                                        .graph tbody:after {
+                                            content: "0%";
+                                            bottom: -0.6em;
+                                        }
+
+                                    .graph tr {
+                                        position: relative;
+                                        display: block;
+                                    }
+
+                                        .graph tr:hover {
+                                            z-index: 999;
+                                        }
+
+                                    .graph th,
+                                    .graph td {
+                                        display: block;
+                                        text-align: center;
+                                    }
+
+                                    .graph tbody th {
+                                        position: absolute;
+                                        top: -3em;
+                                        left: 0;
+                                        width: 100%;
+                                        font-weight: normal;
+                                        text-align: center;
+                                        white-space: nowrap;
+                                        text-indent: 0;
+                                        transform: rotate(-45deg);
+                                    }
+
+                                        .graph tbody th:after {
+                                            content: "";
+                                        }
+
+                                    .graph td {
+                                        width: 100%;
+                                        height: 100%;
+                                        background: #F63;
+                                        border-radius: 0.5em 0.5em 0 0;
+                                        transition: background 0.5s;
+                                    }
+
+                                    .graph tr:hover td {
+                                        opacity: 0.7;
+                                    }
+
+                                    .graph td span {
+                                        overflow: hidden;
+                                        position: absolute;
+                                        left: 50%;
+                                        top: 50%;
+                                        width: 0;
+                                        padding: 0.5em 0;
+                                        margin: -1em 0 0;
+                                        font: normal 85%/120% arial,helvetica,sans-serif;
+                                        /* 			background:white; */
+                                        /* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+                                        font-weight: bold;
+                                        opacity: 0;
+                                        transition: opacity 0.5s;
+                                        color: white;
+                                    }
+
+                                    .toggleGraph:checked + table td span,
+                                    .graph tr:hover td span {
+                                        width: 4em;
+                                        margin-left: -2em; /* 1/2 the declared width */
+                                        opacity: 1;
+                                    }
+                            }
+                            /* min-width:32em */
+                        }
+                        /* grid only */
+
+                        .graph td span {
+                            overflow: visible;
+                            position: absolute;
+                            left: 50%;
+                            top: -120px;
+                            width: 0;
+                            padding: 0.5em 0;
+                            margin: -1em 0 0;
+                            font: normal 85%/120% arial,helvetica,sans-serif;
+                            /* background: white; */
+                            /* box-shadow: 0 0 0.25em rgb(0 0 0 / 60%); */
+                            font-weight: bold;
+                            opacity: 100;
+                            transition: opacity 0.5s;
+                            color: #080000;
+                        }
+                    </style>
+                    <div class="box-body">
+                        <div class="sec-title">
+                            <table class="graph">
+                                <caption>GRAPH RESULT</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Percent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP1)%">
+                                        <th scope="row">Project 1</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP1)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP2)%">
+                                        <th scope="row">Project 2</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP2)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP3)%">
+                                        <th scope="row">Project 3</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP3)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP4)%">
+                                        <th scope="row">Project 4</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP4)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP5)%">
+                                        <th scope="row">Project 5</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP5)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP6)%">
+                                        <th scope="row">Project 6</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP6)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP7)%">
+                                        <th scope="row">Project 7</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP7)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP8)%">
+                                        <th scope="row">Project 8</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP8)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP9)%">
+                                        <th scope="row">Project 9</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP9)%</span></td>
+                                    </tr>
+                                    <tr style="height:@String.Format(" {0:0.00}", Model.xP10)%">
+                                        <th scope="row">Project 10</th>
+                                        <td><span>@String.Format(" {0:0.00}", Model.xP10)%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                    <div style="padding:5px 10px;font-weight:700;font-size:17px;">
+                        <h4>Total Number in Class(90)</h4>
+                        <h4>Total Votes (@Model.LegacyProjectAnswers.Count())</h4>
+                        @{
+                            var xi = 90 - Model.LegacyProjectAnswers.Count();
+                        }
+                        <h4>Yet to Votes (@xi)</h4>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>

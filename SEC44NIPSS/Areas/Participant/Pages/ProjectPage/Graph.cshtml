@@ -1,0 +1,301 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ProjectPage.GraphModel
+@{
+}
+<style>
+
+    /* Vertical */
+
+    .vertical .progress-bar {
+        float: left;
+        height: 300px;
+        width: 40px;
+        margin-right: 25px;
+    }
+
+    .vertical .progress-track {
+        position: relative;
+        width: 40px;
+        height: 100%;
+        background: #ff0000;
+    }
+
+    .vertical .progress-fill {
+        position: relative;
+        background: #825;
+        height: 50%;
+        width: 40px;
+        color: #fff;
+        text-align: center;
+        font-family: "Lato","Verdana",sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .rounded .progress-track,
+    .rounded .progress-fill {
+        box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+        border-radius: 3px;
+    }
+
+    .vertical {
+        animation-name: vertical;
+        animation-duration: 0 !important;
+        animation-timing-function: linear;
+        animation-iteration-count: inherit;
+    }
+
+    #barChart {
+        background-color: aliceblue;
+        border-radius: 6px;
+    }
+
+
+    body, table, input, select, textarea {
+    }
+
+
+    .graph {
+        margin-bottom: 1em;
+        font: normal 100%/150% arial,helvetica,sans-serif;
+    }
+
+        .graph caption {
+            font: bold 150%/120% arial,helvetica,sans-serif;
+            padding-bottom: 0.33em;
+        }
+
+        .graph tbody th {
+            text-align: right;
+        }
+
+    @@supports (display:grid) {
+
+        @@media (min-width:32em) {
+
+            .graph {
+                display: block;
+                width: 600px;
+                height: 300px;
+            }
+
+                .graph caption {
+                    display: block;
+                }
+
+                .graph thead {
+                    display: none;
+                }
+
+                .graph tbody {
+                    position: relative;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
+                    column-gap: 2.5%;
+                    align-items: end;
+                    height: 230px;
+                    margin: 3em 0 1em 2.8em;
+                    padding: 0 1em;
+                    border-bottom: 2px solid rgba(0,0,0,0.5);
+                    background: repeating-linear-gradient( 180deg, rgba(170,170,170,0.7) 0, rgba(170,170,170,0.7) 1px, transparent 1px, transparent 20% );
+                }
+
+                    .graph tbody:before,
+                    .graph tbody:after {
+                        position: absolute;
+                        left: -3.2em;
+                        width: 2.8em;
+                        text-align: right;
+                        font: bold 80%/120% arial,helvetica,sans-serif;
+                    }
+
+                    .graph tbody:before {
+                        content: "100%";
+                        top: -0.6em;
+                    }
+
+                    .graph tbody:after {
+                        content: "0%";
+                        bottom: -0.6em;
+                    }
+
+                .graph tr {
+                    position: relative;
+                    display: block;
+                }
+
+                    .graph tr:hover {
+                        z-index: 999;
+                    }
+
+                .graph th,
+                .graph td {
+                    display: block;
+                    text-align: center;
+                }
+
+                .graph tbody th {
+                    position: absolute;
+                    top: -3em;
+                    left: 0;
+                    width: 100%;
+                    font-weight: normal;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-indent: 0;
+                    transform: rotate(-45deg);
+                }
+
+                    .graph tbody th:after {
+                        content: "";
+                    }
+
+                .graph td {
+                    width: 100%;
+                    height: 100%;
+                    background: #F63;
+                    border-radius: 0.5em 0.5em 0 0;
+                    transition: background 0.5s;
+                }
+
+                .graph tr:hover td {
+                    opacity: 0.7;
+                }
+
+                .graph td span {
+                    overflow: hidden;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 0;
+                    padding: 0.5em 0;
+                    margin: -1em 0 0;
+                    font: normal 85%/120% arial,helvetica,sans-serif;
+                    /* 			background:white; */
+                    /* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+                    font-weight: bold;
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                    color: white;
+                }
+
+                .toggleGraph:checked + table td span,
+                .graph tr:hover td span {
+                    width: 4em;
+                    margin-left: -2em; /* 1/2 the declared width */
+                    opacity: 1;
+                }
+        }
+        /* min-width:32em */
+    }
+    /* grid only */
+
+    .graph td span {
+        overflow: visible;
+        position: absolute;
+        left: 50%;
+        top: -120px;
+        width: 0;
+        padding: 0.5em 0;
+        margin: -1em 0 0;
+        font: normal 85%/120% arial,helvetica,sans-serif;
+        /* background: white; */
+        /* box-shadow: 0 0 0.25em rgb(0 0 0 / 60%); */
+        font-weight: bold;
+         opacity: 100; 
+        transition: opacity 0.5s;
+        color: #080000;
+    }
+</style>
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-xl-12">
+
+            <!-- Traffic sources -->
+            <div class="box" style="margin:5px;">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">LEGACY PROJECT VOTING RESULT GRAPH </h3>
+                    </div>
+
+                </div>
+                <div class="box" style="margin:5px;">
+                    <div class="box-body">
+                        <div class="row">
+                            <div>
+                                <div class="col-lg-12" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                                    <div class="sec-title">
+                                        <table class="graph">
+                                            <caption>LEGACY PROJECT VOTING RESULT</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Item</th>
+                                                    <th scope="col">Percent</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="height:@Model.P1%">
+                                                    <th scope="row">Project 1</th>
+                                                    <td><span>@Model.P1%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P2%">
+                                                    <th scope="row">Project 2</th>
+                                                    <td><span>@Model.P2%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P3%">
+                                                    <th scope="row">Project 3</th>
+                                                    <td><span>@Model.P3%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P4%">
+                                                    <th scope="row">Project 4</th>
+                                                    <td><span>@Model.P4%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P5%">
+                                                    <th scope="row">Project 5</th>
+                                                    <td><span>@Model.P5%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P6%">
+                                                    <th scope="row">Project 6</th>
+                                                    <td><span>@Model.P6%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P7%">
+                                                    <th scope="row">Project 7</th>
+                                                    <td><span>@Model.P7%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P8%">
+                                                    <th scope="row">Project 8</th>
+                                                    <td><span>@Model.P8%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P9%">
+                                                    <th scope="row">Project 9</th>
+                                                    <td><span>@Model.P9%</span></td>
+                                                </tr>
+                                                <tr style="height:@Model.P10%">
+                                                    <th scope="row">Project 10</th>
+                                                    <td><span>@Model.P10%</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+
+
+                                    <div>
+                                        <div class="sec-title">
+                                            <a asp-page="/ProjectPage/Result" asp-area="Participant" class="readon consultant discover orange-more text-center" style="margin:10px;">View Further Analysis</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

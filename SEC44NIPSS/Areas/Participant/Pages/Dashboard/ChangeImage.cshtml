@@ -1,0 +1,57 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.ChangeImageModel
+@{
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <!-- Traffic sources -->
+        
+        <!-- /traffic sources -->
+        <div class="box">
+            @if (TempData["alert"] != null)
+{
+            <div class="alert alert-danger alert-styled-left alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                <span class="font-weight-semibold">Info:</span> @TempData["alert"]
+            </div>
+}
+            <div class="box-header">
+                <h6 class="card-title">Change Profile Picture</h6>
+            </div>
+            <div class="card-body">
+
+                <img src="@Model.Profile.AboutProfile" style="max-height:500px;" class="img-fluid" />
+            </div>
+            <div class="box-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="Profile.Id" hidden="hidden">
+                    <input asp-for="Profile.AboutProfile" hidden="hidden">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>New Picture</label>
+                                <input class="form-control" type="file" accept="image/*" name="filesPhoto" id="gallery-photo-add" />
+                                <div class="gallery"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <a asp-page="/Dashboard/Index" asp-area="Participant" class="btn btn-primary"> <span>Proceed to Dashboard</span></a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        </div>
+
+
+</div>

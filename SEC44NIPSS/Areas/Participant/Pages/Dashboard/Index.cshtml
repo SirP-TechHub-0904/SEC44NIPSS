@@ -1,0 +1,202 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.IndexModel
+@{
+    ViewData["Title"] = "";
+    ViewData["Description"] = "";
+    ViewData["Image"] = "";
+}
+
+@if (TempData["alert"] != null)
+{
+    <div class="alert alert-success alert-styled-left alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+        <span class="font-weight-semibold">Info:</span> @TempData["alert"]
+    </div>
+}
+<style>
+    .table > :not(caption) > * > * {
+        padding: 0rem 0.5rem;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .container-fluid {
+            padding-left: 100px !important;
+            padding-right: 100px !important;
+        }
+    }
+
+    .container-fluid {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+</style>
+<style>
+    .table .table {
+        background-color: none !important;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 0px 8px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="box">
+            <div class="box-header">
+                <h2 class="box-title" style="text-align:center;font-weight:900;text-transform:uppercase;">
+                    MY DASHBOARD
+                </h2>
+            </div>
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-black">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>90</h3>
+                                </a>
+
+                                <p>Participant</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipantList" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>72</h3>
+                                </a>
+
+                                <p>MALE</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipantList" asp-route-gender="male" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>18</h3>
+                                </a>
+
+                                <p>FEMALE</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipantList" asp-route-gender="female" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.ProjectAssigned_Submitted / @Model.ProjectAssigned</h3>
+                                </a>
+
+                                <p>INDIVIDUAL RESEARCH PROJECTS(UPLOADED/TOTAL)</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipantMList" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-primary">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.LecturesDocuments</h3>
+                                </a>
+
+                                <p>LECTURE NOTES</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipMantList" asp-route-gender="male" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.RESOURCEMATERIALS</h3>
+                                </a>
+
+                                <p>RESOURCE MATERIALS ON LOCAL GOVERNMENT</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipaLntList" asp-route-gender="female" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-black">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.GroupResearch</h3>
+                                </a>
+
+                                <p>GROUP RESEARCH POLICY PAPERS</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipantMList" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.INDIVIDUALESSAYS_Submitted/@Model.INDIVIDUALESSAYS</h3>
+                                </a>
+
+                                <p>INDIVIDUAL ESSAYS (UPLOADED/TOTAL)</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipMantList" asp-route-gender="male" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <a asp-page="">
+                                    <h3>@Model.OTHERRESOURCEMATERIALS</h3>
+                                </a>
+
+                                <p>OTHER RESOURCE MATERIALS</p>
+                            </div>
+
+                            <a asp-page="/Dashboard/ParticipaLntList" asp-route-gender="female" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

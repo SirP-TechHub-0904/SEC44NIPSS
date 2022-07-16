@@ -1,0 +1,33 @@
+﻿@page
+@model SEC44NIPSS.Pages.QuestionnerModel
+@{
+    Layout = "_LayoutBlank";
+
+}
+
+
+
+@*<div class="login-box-body">
+    <h2 class="login-box-msg text-center">WELCOME NIPPS QUESTIONNER</h2>
+    <h4 class="text-center">@Model.Questionner.Title</h4>
+
+    <p>
+        @Model.Questionner.Instruction
+    </p>
+    <form method="post">
+        <input asp-for="QuestionnerId" value="@Model.Questionner.Id" hidden="hidden"/>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input asp-for="Email" class="form-control" required="required" placeholder="Email..." type="email" />
+        </div>
+        <div class="form-group">
+            <input asp-for="Phone" class="form-control" required="required" placeholder="Phone number..." />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Make sure that the Email and Phone Number are Correct. Thank you</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Start" class="btn btn-primary" />
+        </div>
+    </form>
+</div>*@

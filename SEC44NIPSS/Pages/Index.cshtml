@@ -1,0 +1,1126 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@await Component.InvokeAsync("Slider")
+
+
+<!-- Slider Start -->
+<!--<div id="rs-slider" class="rs-slider slider3 rs-slider-style4 relative">
+    <div class="bend niceties">
+        <div id="nivoSlider" class="nivoSlider">
+            <img src="~/gpic/g1.jpg" alt="" title="#slide-1" />
+            <img src="~/gpic/g2.jpg" alt="" title="#slide-2" />
+            <img src="~/gpic/g3.jpg" alt="" title="#slide-3" />
+            <img src="~/gpic/g4.jpg" alt="" title="#slide-4" />
+            <img src="~/gpic/g5.jpg" alt="" title="#slide-5" />
+            <img src="~/gpic/g6.jpg" alt="" title="#slide-6" />
+            <img src="~/gpic/g7.jpg" alt="" title="#slide-7" />
+        </div>-->
+<!-- Slide 1 -->
+<!--<div id="slide-1" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP ONE</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-2" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP TWO</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-3" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP THREE</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-4" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP FOUR</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-5" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP FIVE</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-6" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP SIX</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="slide-7" class="slider-direction">
+            <div class="content-part text-center">
+                <div class="container">
+                    <div class="slider-des">
+                        <div class="sl-subtitle" style="line-height:1.0;"> STUDY GROUP SEVEN</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Slider End -->
+<!-- Services Section Start -->
+<div id="rs-services" class="rs-services style6">
+    <div class="container custom">
+        <div class="services-box-area bg20">
+            <div class="row margin-0">
+                <div class="col-lg-3 col-md-6 col-sm-6 padding-0">
+                    <div class="services-item">
+                        <div class="services-icon">
+                            <img class="dance_hover" src="~/assets/images/services/style6/icon-box/2.png" alt="Services">
+                        </div>
+                        <div class="services-content">
+                            <h3 class="title"><a href="#">Reflection</a></h3>
+                            <p class="margin-0">Reflection aims at understanding the forms of intelligibility by which the world is made meaningful</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 padding-0">
+                    <div class="services-item">
+                        <div class="services-icon">
+                            <img class="dance_hover" src="~/assets/images/services/style6/icon-box/1.png" alt="Services">
+                        </div>
+                        <div class="services-content">
+                            <h3 class="title"><a href="#">Research</a></h3>
+                            <p class="margin-0">Research may be very broadly defined as systematic gathering of data and information in any subject.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 padding-0">
+                    <div class="services-item">
+                        <div class="services-icon">
+                            <img class="dance_hover" src="~/assets/images/services/style6/icon-box/3.png" alt="Services">
+                        </div>
+                        <div class="services-content">
+                            <h3 class="title"><a href="#">Learning</a></h3>
+                            <p class="margin-0">Research-based learning is a teaching and learning concept that encourages students to assume the role of researchers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 padding-0">
+                    <div class="services-item no-border">
+                        <div class="services-icon">
+                            <img class="dance_hover" src="~/assets/images/services/style6/icon-box/4.png" alt="Services">
+                        </div>
+                        <div class="services-content">
+                            <h3 class="title"><a href="#">Implemetation</a></h3>
+                            <p class="margin-0">Implementation research is an integrated concept that links research and practice.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services Section End -->
+
+<style>
+
+    /* Vertical */
+
+    .vertical .progress-bar {
+        float: left;
+        height: 300px;
+        width: 40px;
+        margin-right: 25px;
+    }
+
+    .vertical .progress-track {
+        position: relative;
+        width: 40px;
+        height: 100%;
+        background: #ff0000;
+    }
+
+    .vertical .progress-fill {
+        position: relative;
+        background: #825;
+        height: 50%;
+        width: 40px;
+        color: #fff;
+        text-align: center;
+        font-family: "Lato","Verdana",sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .rounded .progress-track,
+    .rounded .progress-fill {
+        box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+        border-radius: 3px;
+    }
+
+    .vertical {
+        animation-name: vertical;
+        animation-duration: 0 !important;
+        animation-timing-function: linear;
+        animation-iteration-count: inherit;
+    }
+
+    #barChart {
+        background-color: aliceblue;
+        border-radius: 6px;
+    }
+
+
+    body, table, input, select, textarea {
+    }
+
+
+    .graph {
+        margin-bottom: 1em;
+        font: normal 100%/150% arial,helvetica,sans-serif;
+    }
+
+        .graph caption {
+            font: bold 150%/120% arial,helvetica,sans-serif;
+            padding-bottom: 0.33em;
+        }
+
+        .graph tbody th {
+            text-align: right;
+        }
+
+    @@supports (display:grid) {
+
+        @@media (min-width:32em) {
+
+            .graph {
+                display: block;
+                width: 600px;
+                height: 300px;
+            }
+
+                .graph caption {
+                    display: block;
+                }
+
+                .graph thead {
+                    display: none;
+                }
+
+                .graph tbody {
+                    position: relative;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(2em, 1fr));
+                    column-gap: 2.5%;
+                    align-items: end;
+                    height: 230px;
+                    margin: 3em 0 1em 2.8em;
+                    padding: 0 1em;
+                    border-bottom: 2px solid rgba(0,0,0,0.5);
+                    background: repeating-linear-gradient( 180deg, rgba(170,170,170,0.7) 0, rgba(170,170,170,0.7) 1px, transparent 1px, transparent 20% );
+                }
+
+                    .graph tbody:before,
+                    .graph tbody:after {
+                        position: absolute;
+                        left: -3.2em;
+                        width: 2.8em;
+                        text-align: right;
+                        font: bold 80%/120% arial,helvetica,sans-serif;
+                    }
+
+                    .graph tbody:before {
+                        content: "100%";
+                        top: -0.6em;
+                    }
+
+                    .graph tbody:after {
+                        content: "0%";
+                        bottom: -0.6em;
+                    }
+
+                .graph tr {
+                    position: relative;
+                    display: block;
+                }
+
+                    .graph tr:hover {
+                        z-index: 999;
+                    }
+
+                .graph th,
+                .graph td {
+                    display: block;
+                    text-align: center;
+                }
+
+                .graph tbody th {
+                    position: absolute;
+                    top: -3em;
+                    left: 0;
+                    width: 100%;
+                    font-weight: normal;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-indent: 0;
+                    transform: rotate(-45deg);
+                }
+
+                    .graph tbody th:after {
+                        content: "";
+                    }
+
+                .graph td {
+                    width: 100%;
+                    height: 100%;
+                    background: #F63;
+                    border-radius: 0.5em 0.5em 0 0;
+                    transition: background 0.5s;
+                }
+
+                .graph tr:hover td {
+                    opacity: 0.7;
+                }
+
+                .graph td span {
+                    overflow: hidden;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    width: 0;
+                    padding: 0.5em 0;
+                    margin: -1em 0 0;
+                    font: normal 85%/120% arial,helvetica,sans-serif;
+                    /* 			background:white; */
+                    /* 			box-shadow:0 0 0.25em rgba(0,0,0,0.6); */
+                    font-weight: bold;
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                    color: white;
+                }
+
+                .toggleGraph:checked + table td span,
+                .graph tr:hover td span {
+                    width: 4em;
+                    margin-left: -2em; /* 1/2 the declared width */
+                    opacity: 1;
+                }
+        }
+        /* min-width:32em */
+    }
+    /* grid only */
+
+
+</style>
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="sec-title3 text-center md-mb-45" style="">
+            <div class="title pb-25" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); margin: 30px 5px 5px 5px; ">
+                <h2 style="color:#36b43d;margin:0 4px;text-transform:uppercase;">Our Legacy Project<span style="font-size:17px;"><i> ...Nursery, Primary & Secondary School</i></span></h2>
+                <h4 style="color: #ff0000; margin: 0 4px;">SEC 44 strengthening Local Governance via Education</h4>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    <img src="~/img/sec-44.jpg" class="img-responsive" />
+
+                </div>
+            </div>
+
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    <img src="~/img/sec-44-2.jpg" class="img-responsive" />
+
+                </div>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    <img src="~/img/sec-44-3.jpg" class="img-responsive" />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:40px 0 10px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 pr-33 md-pr-15 md-mb-50">
+                <div class="images-part" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);">
+                    <img src="~/img/abt-1.jpeg" alt="Images">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    <h4 class="title" style="padding:0px;">
+                        The Senior Executive Course [SEC 44]
+                    </h4>
+                    <div class="desc pb-17" style="text-align:justify !important;">
+                        The National Institute for Policy and Strategic Studies, Kuru was established by Decree No. 20,  1979 and CAP  Laws of the Federation of Nigeria, 2004.
+                        <br />
+
+                        The Institute is a high- level center for reflection, research, and learning, with the primary objective of serving as the nation’s foremost policy ‘think- tank’, developing a crop of top-class technocrats of high intellectual capacity, conceptualize and anchor the implementation of innovative and dynamic policy initiatives and strategies critical for national development.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- About Section End -->
+<!-- Services Section Start -->
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="sec-title3 text-center md-mb-45" style="">
+            <h2 class="title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); margin: 30px 5px 5px 5px; ">
+                <span style="color:#36b43d;">STRENGTHENING LOCAL GOVERNANCE IN NIGERIA:</span>
+                <br />
+                Challenges, Options and Opportunities
+            </h2>
+
+            <span class="sub-title" style="font-size: 33px; font-weight: 800; border-radius: 4px;padding-top:20px">SUB-THEMES</span>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+
+                    Conceptual and Theoretical Perspectives of Local Governance in
+                    Nigeria
+                </div>
+            </div>
+
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    Historical Perspectives and Trends in Local Governance in
+                    Nigeria
+
+                </div>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    Frameworks for Local Governance in Nigeria
+
+                </div>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+
+                    Stakeholders/Actors in Local Governance in Nigeria
+                </div>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    Issues and Challenges of Local Governance in Nigeria
+
+                </div>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    A Comparative Analysis of Global Best Practices in Local
+                    Governance
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:40px 0 10px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 pr-33 md-pr-15 md-mb-50">
+                <div class="images-part" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%);">
+                    <img src="~/img/portfolio.jpg" alt="Images">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 16px; background-color: #f3f0f0;">
+                    <div class="sec-title3 md-mb-25" style="">
+
+                        <h2 class="title" style="color:#36b43d;">
+                            VISION
+                        </h2>
+                        <div class="desc" style="">
+                            To be the apex centre of policy, research and reflection for a better Nigerian and human society
+                        </div>
+
+                        <h2 class="title" style="color: #36b43d;">
+                            MISSION
+                        </h2>
+                        <div class="desc" style="">
+
+                            To serve as the centre for policy, advocacy, advice and training for Nigeria and Africa in the context of a dynamic and changing world.
+
+                        </div>
+
+                        <h2 class="title" style="color: #36b43d;">
+                            MOTTO: <span style="font-style:italic;font-size:21px;font-weight:900;color:#ff0000;"> …towards a better society</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<style>
+    /* .rs-team.style2 .team-item .team-content {
+        height: 100px;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+        padding: 5px 10px;
+        color: #444;
+        text-align: center;
+        overflow: hidden;
+        background: #fff;
+        transition: .3s all ease;
+    }*/
+
+    .card {
+        box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        border: none;
+        margin-bottom: 30px;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            transition: all 1s ease;
+            z-index: 999;
+        }
+
+    .card-01 .card-body {
+        position: relative;
+        padding-top: 40px;
+    }
+
+    .card-01 .badge-box {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        text-align: center;
+    }
+
+        .card-01 .badge-box i {
+            background: #006EFF;
+            color: #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+    .card-01 .height-fix {
+        height: 455px;
+        overflow: hidden;
+    }
+
+        .card-01 .height-fix .card-img-top {
+            width: auto !imporat;
+        }
+
+    .profile-box {
+        background-size: cover;
+        float: left;
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .profile-box:before {
+            filter: blur(10px);
+            background: url("https://images.pexels.com/photos/195825/pexels-photo-195825.jpeg?h=350&auto=compress&cs=tinysrgb") no-repeat;
+            background-size: cover;
+            width: 120%;
+            position: absolute;
+            content: "";
+            height: 120%;
+            left: -10%;
+            top: 0;
+            z-index: 0;
+        }
+
+        .profile-box img {
+            width: 170px;
+            height: 170px;
+            position: relative;
+            border: 5px solid #fff;
+        }
+
+    .social-box i {
+        border: 1px solid #006EFF;
+        color: #006EFF;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        line-height: 30px;
+    }
+
+        .social-box i:hover {
+            background: #DFC717;
+            color: #fff;
+        }
+
+    .social-box a {
+        margin: 0 5px;
+    }
+
+    .video-foreground {
+        float: left;
+        width: 100%;
+        height: 500px;
+    }
+
+    .card-01.height-fix .card-img-overlay {
+        top: unset;
+        color: #fff;
+        background: -moz-linear-gradient(top, rgba(26,96,111,0) 0%, rgba(26,96,111,0) 1%, rgba(24,87,104,0.91) 31%, rgba(21,65,89,0.91) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(26,96,111,0) 0%,rgba(26,96,111,0) 1%,rgba(24,87,104,0.91) 31%,rgba(21,65,89,0.91) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(26,96,111,0) 0%,rgba(26,96,111,0) 1%,rgba(24,87,104,0.91) 31%,rgba(21,65,89,0.91) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001a606f', endColorstr='#e8154159',GradientType=0 );
+    }
+
+    .card-01.height-fix .fa {
+        color: #fff;
+        font-size: 22px;
+        margin-right: 18px;
+    }
+
+    ;
+    /*flipper-card*/
+    .card-flipper {
+        position: relative;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    .card__front,
+    .card__back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+        .card__back .card {
+            width: 100%;
+            height: 65vh;
+        }
+
+    .card__front,
+    .card__back {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
+    }
+
+    .card__front {
+        background-color: #ff5078;
+    }
+
+    .card__back {
+        background-color: #1e1e1e;
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+
+    .card-flipper.effect__hover {
+        position: relative;
+    }
+
+        .card-flipper.effect__hover:hover .card__front {
+            -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+        }
+
+        .card-flipper.effect__hover:hover .card__back {
+            -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+        }
+
+    .card-flipper.effect__random.flipped .card__front {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+
+    .card-flipper.effect__random.flipped .card__back {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    h6 {
+        font-size: 20px;
+        line-height: 16px;
+        font-weight: 500;
+    }
+
+    .card-title {
+        margin-bottom: 0;
+    }
+    .padding-0 {
+        padding: 0;
+        box-shadow: 0px 2px 1px 1px #52ac78;
+    }
+</style>
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="sec-title3 text-center mb-35">
+            <h2 class="title pb-25">
+                NIPSS MANAGEMENT/STAFF
+            </h2>
+            <div class="heading-border-line"></div>
+        </div>
+        <div class="row">
+            @foreach (var x in Model.NipssStaffList)
+            {
+                <div class="col-md-4">
+                    <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                        @if (!String.IsNullOrEmpty(x.AboutProfile))
+                        {
+
+                            <div class="" style="height: 500px; background: url('@x.AboutProfile'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
+
+                            </div>
+                        }
+                        <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
+
+                            <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Title @x.FullName</h6>
+                            <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
+                                @x.Position
+                            </h6>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="row y-middle">
+
+            <div class="col-lg-12">
+                <div class="btn-part text-right md-left">
+                    <a asp-page="/Web/NipssStaff" class="readon consultant discover orange-more" asp-page="">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose Section Start -->
+<!-- Team Section Start -->
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="sec-title3 text-center mb-35">
+            <h2 class="title pb-25">
+                SEC 44 EXCOS
+            </h2>
+            <div class="heading-border-line"></div>
+        </div>
+        <div class="row">
+            @foreach (var x in Model.Executive)
+            {
+                <div class="col-md-4">
+                    <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                        @if (!String.IsNullOrEmpty(x.Profile.AboutProfile))
+                        {
+
+                            <div class="" style="height: 500px; background: url('@x.Profile.AboutProfile'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
+
+                            </div>
+                        }
+                        <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
+
+                            <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Profile.Title @x.Profile.FullName</h6>
+                            <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
+                                @x.Position
+                            </h6>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="row y-middle">
+
+            <div class="col-lg-12">
+                <div class="btn-part text-right md-left">
+                    <a class="readon consultant discover orange-more" asp-page="/Profiles">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="row y-middle">
+            <div class="col-lg-6" style="padding-top:20px;">
+                <div class="sec-title3">
+                    <span class="sub-title">Latest News</span>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="btn-part text-right md-left">
+                    <a class="readon consultant discover orange-more" asp-page="/NewsPage/List">View Updates</a>
+                </div>
+            </div>
+        </div>
+        <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="true" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="3" data-md-device-nav="false" data-md-device-dots="true">
+
+            @foreach (var i in Model.News)
+            {
+                <div class="blog-item" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 15px; background-color: #f3f0f0;">
+                    <div class="image-wrap text-justify">
+                        <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                            <img src="@i.Image" alt="@i.Title">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <ul class="blog-meta mb-10" style="margin-bottom:3px;">
+
+                            <li class="date"> <i class="fa fa-calendar-check-o"></i> @i.Date.ToString("dd MMM yyyy")</li>
+                        </ul>
+                        <h6 class="blog-title text-justify" style="margin-bottom:9px;">
+                            <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                                @i.Title
+                            </a>
+                        </h6>
+                        <p style="margin-bottom:9px;" class=" text-justify">
+                            @i.ShortDescription ... <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title" style="font-size:10px;font-style:italic;color:#ff0000;">Continue Reading</a>
+                        </p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+<div class="rs-contact contact-style2 md-pt-70 md-pb-70">
+    <div class="container custom">
+        <div class="row y-middle">
+
+            <div class="col-lg-12 pl-40 md-pl-15">
+                <div class="contact-wrap">
+                    <div class="sec-title3 mb-35">
+                        @*<span class="sub-title">Contact Us</span>*@
+                        <h2 class="title pb-25">
+                            Contact Us/Contributions
+                        </h2>
+                        <h6>We will appreciate your Kind Contributions to make SEC 44 better. Thank you.</h6>
+                        <div class="heading-border-line left-style"></div>
+                    </div>
+                    <div id="form-messages"></div>
+                    <form method="post" style="margin-bottom:20px;">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                    <input class="from-control" type="text" asp-for="Contact.Name" placeholder="Name" required="required">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                    <input class="from-control" type="email" asp-for="Contact.Email" placeholder="E-Mail" required="required">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                    <input class="from-control" type="text" asp-for="Contact.Phone" placeholder="Phone Number" required="">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                    <select class="from-control" type="text" asp-for="Contact.Title" required="required">
+                                        <option>Choose Title</option>
+                                        <option value="Complain">Complain</option>
+                                        <option value="Inquiry">Inquiry</option>
+                                        <option value="Recommendation">Recommendation</option>
+                                        <option value="Suggestion">Suggestion</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-12 mb-10">
+                                    <textarea class="from-control" asp-for="Contact.Message" placeholder="Your message Here" required="required"></textarea>
+                                </div>
+                            </div>
+                            <div class="btn-part">
+                                <div class="form-group mb-0">
+                                    <input class="readon submit orange-submit" type="submit" value="Submit Now">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+    <script>
+        var canvas = document.getElementById("barChart");
+        var ctx = canvas.getContext('2d');
+        var xp1 = 10;
+
+        // Global Options:
+        Chart.defaults.global.defaultFontColor = 'dodgerblue';
+        Chart.defaults.global.defaultFontSize = 16;
+
+
+        // Data with datasets options
+        var data = {
+            labels: ["Vanilla", "Chocolate", "Strawberry"],
+            datasets: [
+                {
+                    label: "Ice Cream Sales ",
+                    fill: true,
+                    backgroundColor: [
+                        'moccasin',
+                        'saddlebrown',
+                        'lightpink'],
+                    data: [xp1, 9, 4]
+                }
+            ]
+        };
+
+        // Notice how nested the beginAtZero is
+        var options = {
+            title: {
+                display: true,
+                text: 'Ice Cream Truck Report',
+                position: 'bottom'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        // Chart declaration:
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+
+    </script>
+
+
+
+
+    <script src='https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js' type="text/javascript"></script>
+
+    <script src='https://www.gstatic.com/firebasejs/6.4.2/firebase-messaging.js' type="text/javascript"></script>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <input type="hidden" id="usernamex" value="@User.Identity.Name.Replace("@", "").Replace(".", "")" />
+    }
+    else
+    {
+        string ix = new Guid().ToString();
+        <input type="hidden" id="usernamex" value="@ix" />
+    }
+    <script>
+
+        $(function () {
+
+            var token = null;
+            var config = {
+                apiKey: "AIzaSyCzbS6ZWXOro3hD0GFxVfJvyPQHzRwHCng",
+                authDomain: "nipss-8d40c.firebaseapp.com",
+                databaseURL: "https://nipss-8d40c-default-rtdb.firebaseio.com",
+                projectId: "nipss-8d40c",
+                storageBucket: "nipss-8d40c.appspot.com",
+                messagingSenderId: "461039397969",
+                appId: "1:461039397969:web:7887d9f62e790abe531c70",
+                measurementId: "G-4JWJ3B13LQ"
+            };
+            firebase.initializeApp(config);
+
+            const messaging = firebase.messaging();
+
+            messaging.requestPermission()
+                .then(function () {
+                    console.log("granted");
+                    if (isTokenSentToServer()) {
+                        console.log("already granted");
+                    } else {
+                        getRegtoken();
+                    }
+                });
+
+
+            function getRegtoken() {
+                messaging.getToken().then((currentToken) => {
+                    if (currentToken) {
+                        console.log(currentToken);
+                        var c = document.getElementById("usernamex").value;
+                        window.localStorage.setItem(c, currentToken);
+
+
+                        document.getElementById('tkon').value = currentToken;
+                        document.getElementById('tkonn').value = "lolv";
+                        setTokenSentToServer(true);
+                        saveToken(currentToken)
+                        //   updateUIForPushEnabled(currentToken);
+                    } else {
+                        console.log('No Instance ID token available. Request permission to generate one.');
+                        setTokenSentToServer(false);
+                    }
+                }).catch((err) => {
+                    console.log('An error occurred while retrieving token. ', err);
+                    setTokenSentToServer(false);
+                });
+
+            }
+            function setTokenSentToServer(sent) {
+                window.localStorage.setItem('sentToServer', sent ? 1 : 0);
+            }
+            function isTokenSentToServer() {
+                return window.localStorage.getItem('sentToServer') === '1';
+            }
+            messaging.onMessage(function (payload) {
+                console.log('Message received. ', payload);
+
+                notificationTitle = payload.notification.title;
+                notificationOptions = {
+                    body: payload.notification.body,
+                    icon: payload.notification.icon
+                };
+
+                var notification = new Notification(notificationTitle, notificationOptions);
+
+            });
+
+        });
+
+
+    </script>
+    <input type="hidden" id="tkon" />
+    <input type="hidden" id="tkonn" value="jdjdjjdjdjdjd" />
+    <script>
+        console.log("sssss");
+        var c = document.getElementById("tkon").value;
+        console.log(c);
+        console.log(document.getElementById("tkonn").value);
+        console.log("pppp");
+        var timex = document.getElementById("tkon").value;
+
+
+
+    </script>
+    <script>
+        // $(isIOSDevice);
+        $(optionone);
+
+        function isIOSDevice() {
+            return !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+        }
+        if (isIOSDevice()) {
+
+            window.localStorage.setItem("deviceid", "true");
+        }
+        function optionone() {
+            var w = document.getElementById("usernamex").value;
+            var ios = window.localStorage.getItem("deviceid");
+            console.log("ios");
+            console.log(ios);
+            var tkon = window.localStorage.getItem(w);
+            console.log("tkonnn");
+            console.log(tkon);
+            $.ajax({
+                type: 'GET',
+                url: 'Index?handler=RunAccount',
+                dataType: "json",
+                data: {
+                    devicex: ios,
+                    tokenid: tkon,
+
+                },
+                contentType: "application/json; charset=utf-8",
+                error: function () {
+                    console.log("error");
+                },
+                success: function (data) {
+
+
+                }
+            });
+        }
+
+    </script>
+
+}

@@ -1,0 +1,78 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.VotingModel
+@{
+}
+<!-- Display the countdown timer in an element -->
+<div class="col-md-12">
+    <div class="box box-solid">
+        <div class="box-header with-border">
+
+            <h3 class="box-title">PARTICIPANT VOTING</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="small-box bg-primary" style="height:100px;">
+                        <div class="">
+                            <a data-toggle="modal" data-target="#myModal">
+                                <h3 style="color: #ffffff; font-weight: 900; padding: 10px; vertical-align: middle; margin: 5px; white-space: normal; text-align: center;">LEGACY PROJECT VOTING</h3>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="small-box bg-danger" style="height:100px;">
+                        <div class="">
+                            <a asp-page="/ProjectPage/IndexContribution">
+                                <h3 style="color:#ffffff;font-weight:900;padding:10px;vertical-align:middle;margin:5px;white-space:normal;text-align:center;">VOTE AMOUNT TO CONTRIBUTE FOR COLLEAGUE EVENT</h3>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="small-box bg-success" style="height:100px;">
+                        <div class="">
+                            <a asp-page="/ProjectPage/IndexDue">
+                                <h3 style="color: #ffffff; font-weight: 900; padding: 10px; vertical-align: middle; margin: 5px; white-space: normal; text-align: center;">VOTE FOR MONTHLY DUES CONTRIBUTION</h3>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">LEGACY PROJECT VOTING</h4>
+            </div>
+            <div class="modal-body">
+                <p>DISABLED</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

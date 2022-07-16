@@ -1,0 +1,63 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.DocumentListModel
+@{
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            @Model.Document.Count() DOCUMENTS
+        </h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+
+                    <th>S/N</th>
+                    <th>Document</th>
+                    <th>
+                        
+                            @if (Model.DocumentCategory.Title.ToUpper().Contains("MOST CHALLENGING CAREER"))
+                            {
+                                <span>Owner</span>
+                            }
+                            else
+                            {
+                                <span>Resource Person</span>
+                            }
+
+
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            @{
+                int sno = 0;
+            }
+
+            <tbody>
+                @foreach (var item in Model.Document)
+                {
+                <tr>
+                    <td>
+                        @{ sno++; }
+                        @sno
+                    </td>
+                    <td>
+                        <a asp-page="/Web/DocPreview" asp-route-id="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;line-height:24px;margin:0 5px;">@Html.DisplayFor(modelItem => item.Title)</h6></a>
+                        @if (item.Event != null)
+                        {
+                            <p style="margin:0 0 0 4px;padding:0;">@item.Event.EventDate @item.Event.EventTime</p>
+                        }
+                    </td>
+                    <td><a><p style="font-weight:800;">@item.Profile.Title @item.Profile.FullName</p></a></td>
+                    <td><a asp-page="/Web/DocPreview" asp-route-id="@item.Id" class="btn btn-danger btn-xs" style="color:white;">Preview</a></td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,803 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.ProfileModel
+@{
+    var profilelink = Url.Page(
+                   "/sec/index",
+                   pageHandler: null,
+                   values: new { area = "participant", id = Model.Profile.ProfileHandler },
+                   protocol: Request.Scheme);
+}
+
+<style>
+    /* The parent has the "display: grid;" property and it defines the template areas */
+    .profile-card {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 110px 1fr;
+        grid-template-areas:
+            "pc-project-1 pc-project-2 pc-project-3 pc-project-4"
+            "pc-user pc-user pc-user pc-user-buttons";
+        max-width: 100%;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 50px rgba(63,57,71,.15);
+    }
+
+    .pc-project {
+        overflow: hidden;
+        position: relative;
+        height: 110px;
+    }
+
+    /* We define "grid-area" names for the direct child of the grid parent */
+    .pc-project-1 {
+        grid-area: pc-project-1;
+        border-radius: 6px 0 0 0;
+    }
+
+    .pc-project-2 {
+        grid-area: pc-project-2;
+    }
+
+    .pc-project-3 {
+        grid-area: pc-project-3;
+    }
+
+    .pc-project-4 {
+        grid-area: pc-project-4;
+        border-radius: 0 6px 0 0;
+    }
+
+    /* Project thumbnails styling */
+    .pc-project-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center center;
+        transition: all .4s ease-in-out;
+    }
+
+    .pc-project:hover .pc-project-link {
+        transform: scale(1.14);
+    }
+
+    .pc-project:hover .pc-project-overlay {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0%);
+    }
+
+    .pc-project-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(40,27,64,0.6);
+        /*opacity: 0;
+    visibility: hidden;*/
+        transform: translateY(-100%);
+        transition: transform .3s cubic-bezier(.8,0,.5,1.05);
+    }
+
+    .pc-project-overlay-link {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 40px;
+        height: 40px;
+        background: #E5DFEF;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(259,253,239,0.15);
+        transition: background .2s ease-in-out;
+    }
+
+        .pc-project-overlay-link:hover {
+            background: #fff;
+        }
+
+        .pc-project-overlay-link svg {
+            width: 18px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+
+    /* Direct child of the grid parent. Again we define the name of the "grid-area" porperty */
+    .pc-user {
+        display: grid;
+        grid-template-columns: 0.6fr 2fr;
+        grid-area: pc-user;
+    }
+
+    .pc-user-image {
+        padding: 18px 26px 18px 18px;
+        position: relative;
+    }
+
+        .pc-user-image:before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 76px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3fc6a8;
+            border: 4px solid #fff;
+        }
+
+        .pc-user-image svg {
+            border-radius: 50%;
+            width: 100%;
+        }
+
+    .pc-user-info {
+        padding: 20px 20px 20px 0;
+    }
+
+        .pc-user-info > h3 {
+            font-size: 24px;
+            line-height: 1.3em;
+            margin-bottom: 6px;
+        }
+
+            .pc-user-info > h3 a {
+                color: #241943;
+                text-decoration: none;
+                transition: color .3s ease-in-out;
+            }
+
+                .pc-user-info > h3 a:hover {
+                    color: #432F7A;
+                }
+
+    .pc-user-title {
+        margin-bottom: 3px;
+    }
+
+    .pc-user-location {
+        margin-bottom: 20px;
+    }
+
+        .pc-user-location svg {
+            width: 9px;
+            margin-right: 5px;
+            opacity: 0.4;
+        }
+
+    .pc-social {
+        list-style-type: none;
+        display: flex;
+    }
+
+        .pc-social li + li {
+            margin-left: 15px;
+        }
+
+        .pc-social li svg {
+            max-width: 22px;
+            position: relative;
+            opacity: 0.5;
+            transition: opacity .2s ease-in-out;
+        }
+
+        .pc-social li a:hover svg {
+            opacity: 1;
+        }
+
+    /* Again >> direct child of the grid parent. We define the "grid-area" name */
+    .pc-user-buttons {
+        grid-area: pc-user-buttons;
+        padding: 18px;
+    }
+
+        .pc-user-buttons .pc-btn {
+            display: block;
+            padding: 6px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 1px solid #E5DFEF;
+            color: #231A3B;
+            transition: background .2s ease-in-out;
+        }
+
+            .pc-user-buttons .pc-btn:hover {
+                background: #E5DFEF;
+            }
+
+            .pc-user-buttons .pc-btn.accent {
+                border-color: #4F3FF1;
+                background: #4F3FF1;
+                color: #fff;
+                box-shadow: 0 4px 10px rgba(80,60,240,0.2);
+            }
+
+                .pc-user-buttons .pc-btn.accent:hover {
+                    background: #483AD7;
+                }
+
+            .pc-user-buttons .pc-btn + .pc-btn {
+                margin-top: 12px;
+            }
+
+    /* Responsive styling */
+    @@media only screen and (max-width: 1024px) {
+        .site {
+            padding: 60px;
+        }
+    }
+
+
+    @@media only screen and (max-width: 767px) {
+        .site {
+            padding: 25px;
+        }
+        /* Here we define new columns and rows template. Then we rearrange the "grid-area" to match our needs. */
+        .profile-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(auto, 4);
+            grid-template-areas:
+                "pc-project-1 pc-project-2"
+                "pc-project-3 pc-project-4"
+                "pc-user pc-user"
+                "pc-user-buttons pc-user-buttons"
+        }
+
+        .pc-project-2 {
+            border-radius: 0 6px 0 0;
+        }
+
+        .pc-project-4 {
+            border-radius: 0;
+        }
+
+        .pc-user-image {
+            padding: 18px
+        }
+
+        .pc-user-info {
+            padding: 18px 18px 18px 0;
+        }
+
+        .pc-user-buttons {
+            padding: 0 18px 18px 18px;
+        }
+    }
+
+    @@media only screen and (max-width: 425px) {
+
+        .h4, h4 {
+            font-size: 13px;
+        }
+
+        p {
+            margin: 0 0 10px;
+            font-size: 12px;
+        }
+    }
+</style>
+@if (TempData["alert"] != null)
+{
+    <div class="alert alert-danger alert-styled-left alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+        <span class="font-weight-semibold">Info:</span> @TempData["alert"]
+    </div>
+}
+
+<!-- Horizontal Form -->
+<div class="box box-info">
+
+    <div class="box-body">
+
+        <div class="row">
+            <div class="col-md-4" style="margin-bottom:12px;">
+
+                <div class="profile-card">
+                    @if (Model.Profile.MyGallery.Where(x => x.UseAsActivity == true).Count() > 0)
+                    {
+                        <div class="pc-project pc-project-1">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@Model.Profile.MyGallery.FirstOrDefault().FilePath'); "></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pc-project pc-project-1">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/900134111-Gallery.jpeg'); "></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.Profile.MyGallery.Where(x => x.UseAsActivity == true).Count() > 1)
+                    {
+                        <div class="pc-project pc-project-2">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@Model.Profile.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(1).Take(1).FirstOrDefault().FilePath');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pc-project pc-project-2">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/71193014-Gallery.jpeg');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+
+                    @if (Model.Profile.MyGallery.Where(x => x.UseAsActivity == true).Count() > 2)
+                    {
+                        <div class="pc-project pc-project-3">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@Model.Profile.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(2).Take(1).FirstOrDefault().FilePath');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pc-project pc-project-3">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/1796423-Gallery.jpeg');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.Profile.MyGallery.Where(x => x.UseAsActivity == true).Count() > 3)
+                    {
+                        <div class="pc-project pc-project-4">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@Model.Profile.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(3).Take(1).FirstOrDefault().FilePath');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="pc-project pc-project-4">
+                            <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/772191114-Gallery.jpeg');"></div>
+                            <div class="pc-project-overlay">
+                                <a href="#" class="pc-project-overlay-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
+                                        <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="pc-user">
+                        <div class="pc-user-image">
+                            <a href="@profilelink" target="_blank">
+                                <img src="https://sec44nipss.com/@Model.Profile.AboutProfile" class="img-fluid" height="100" style="max-width:100px;" />
+                            </a>
+                        </div>
+                        <div class="pc-user-info">
+                            <h4 style="margin-top:0;"><a href="@profilelink" target="_blank">@Model.Profile.Title @Model.Profile.FullName</a></h4>
+                            
+                            <div class="pc-user-location" style="margin-bottom:0;">
+                                <p style="margin-bottom:0;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.932 23.909">
+                                        <path id="map-marker-alt" d="M8.044,23.427C1.259,13.59,0,12.581,0,8.966a8.966,8.966,0,0,1,17.932,0c0,3.615-1.259,4.624-8.044,14.461a1.121,1.121,0,0,1-1.843,0ZM8.966,12.7A3.736,3.736,0,1,0,5.23,8.966,3.736,3.736,0,0,0,8.966,12.7Z" fill="#6c6577" />
+                                    </svg>
+                                    @Model.Profile.OfficeAddress
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pc-user-buttons">
+                        <a href="mailto:@Model.Profile.User.Email" class="pc-btn accent">Send Email</a>
+                        <a href="whatsapp://send?text=@profilelink" data-action="share/whatsapp/share"
+                           target="_blank" class="pc-btn"> Share to <i class="fa fa-whatsapp"></i></a>
+
+                    </div>
+                </div>
+                <h3 class="text-center" style="font-weight:900;">How others sees your profile</h3>
+                <br />
+                <a asp-page="./ChangeImage" class="btn btn-block btn-danger btn-flat">Change Profile Picture</a>
+                <a asp-page="./MyGallery" class="btn btn-block btn-primary btn-flat">Select Activity Images from my Gallery</a>
+
+            </div>
+
+            <div class="col-md-8">
+
+                <!-- Traffic sources -->
+                <div class="">
+                    <div class="profile-cover">
+                        <div class="profile-cover-img" style="background-image: url(http://sec4pss.com/picture/cover2.jpg)"></div>
+                        <div class="media align-items-center text-center text-lg-left flex-column flex-lg-row m-0">
+                            <div class="mr-lg-3 mb-2 mb-lg-0">
+                                <a href="#" class="profile-thumb">
+                                    @if (!String.IsNullOrEmpty(Model.Profile.AboutProfile))
+                                    {
+                                        <img src="@Model.Profile.AboutProfile" class="border-white rounded-circle" width="48" height="48" alt="">
+
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/piop.png" class="border-white rounded-circle" width="48" height="48" alt="">
+
+                                    }
+
+                                </a>
+
+                            </div>
+
+                            <div class="media-body">
+                                <h1 class="mb-0">@Model.Profile.Title @Model.Profile.FullName</h1>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <span>NIPSS ADMIN</span>
+                                }
+                                else
+                                {
+                                    @if (Model.StudyGroup != null)
+                                    {
+                                        <span class="d-block">@Model.StudyGroup.StudyGroup.Title [ @Model.StudyGroup.Position ]</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="d-block"> STUDY GROUP [NOT ASSIGNED]</span>
+                                    }
+                                    <span class="d-block">Sponsor [@Model.Profile.Sponsor]</span>
+                                }
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /traffic sources -->
+                <div class="">
+                    <div class="box-header">
+                        <h6 class="box-title">Profile information</h6>
+                        <p>Kindly input the correct information and update.</p>
+                    </div>
+
+                    <div class="box-body">
+                        <form method="post">
+                            <input asp-for="Profile.Id" hidden="hidden">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Title</label>
+                                        <select asp-for="Profile.Title" class="form-control" required="required">
+
+                                            <option value="Mr">Mr</option>
+                                            <option value="Mrs">Mrs</option>
+                                            <option value="Col.">Col.</option>
+                                            <option value="Capt Navy.">Capt Navy.</option>
+                                            <option value="Brig Gen.">Brig Gen.</option>
+                                            <option value="Air Comdr.">Air Comdr.</option>
+                                            <option value="AVM">AVM</option>
+                                            <option value="Gp Capt.">Gp Capt.</option>
+                                            <option value="Dr">Dr</option>
+                                            <option value="Engr.">Engr.</option>
+                                            <option value="Pharm.">Pharm.</option>
+                                            <option value="CP">CP</option>
+                                            <option value="AIG">AIG</option>
+                                            <option value="DIG">DIG</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Full Name</label>
+                                        <input asp-for="Profile.FullName" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>Office Address</label>
+                                        <textarea asp-for="Profile.OfficeAddress" class="form-control" required="required">
+                                            
+                                        </textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>Gender</label>
+                                        <select asp-for="Profile.Gender" class="form-control" required="required">
+                                            <option>None</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>DOB</label>
+                                        <input asp-for="Profile.DOB" class="form-control" type="date">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Residence Address</label>
+                                        <input asp-for="Profile.ResidenceAddress" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>State of Origin <span class="d-block bg-green" style="padding:3px;">(@Model.Profile.StateOfOrigin)</span></label>
+                                        <select asp-for="Profile.StateOfOrigin" asp-items="ViewBag.StateId" required="required" id="State" class="form-control">
+                                            <option>Select State</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>L G A <span class="d-block bg-green" style="padding:3px;">(@Model.Profile.LGA)</span></label>
+                                        <select asp-for="Profile.LGA" id="LGA" class="form-control"></select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>
+                                            Study Group @if (Model.StudyGroup != null)
+                                            {
+                                            <span class="d-block bg-green" style="padding:3px;">@Model.StudyGroup.StudyGroup.Title.Replace("STUDY GROUP ", "")</span>
+                                            }
+                                            else
+                                            {
+                                            <span class="d-block bg-green" style="padding:3px;"> STUDY GROUP [NOT ASSIGNED]</span>
+                                            }
+                                        </label>
+
+                                        <select asp-for="GroupMemberId" class="form-control" asp-items="ViewBag.StudyGroupId">
+                                            <option>Select</option>
+                                        </select>
+
+                                    </div>
+                                    @*<input asp-for="GroupMemberId" hidden="hidden">*@
+
+                                    <div class="col-lg-6">
+                                        <label>Group Position</label>
+                                        <input asp-for="GroupPosition" class="form-control">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label>Sponsor</label>
+                                        <input asp-for="Profile.Sponsor" class="form-control">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>PS Number</label>
+                                        <select asp-for="Profile.PsNumber" class="form-control" required="required">
+                                            <option>None</option>
+                                            <option value="Lake Side 1">Lake Side 1</option>
+                                            <option value="Lake Side 2">Lake Side 2</option>
+                                            <option value="Lake Side 3">Lake Side 3</option>
+                                            <option value="Lake Side 4">Lake Side 4</option>
+                                            <option value="Lake Side 5">Lake Side 5</option>
+                                            <option value="Lake Side 6">Lake Side 6</option>
+                                            <option value="Lake Side 7">Lake Side 7</option>
+                                            <option value="Lake Side 8">Lake Side 8</option>
+                                            <option value="Lake Side 9">Lake Side 9</option>
+                                            <option value="Lake Side 10">Lake Side 10</option>
+                                            <option value="Lake Side 11">Lake Side 11</option>
+                                            <option value="Lake Side 12">Lake Side 12</option>
+                                            <option value="Lake Side 13">Lake Side 13</option>
+                                            <option value="Lake Side 14">Lake Side 14</option>
+                                            <option value="Lake Side 15">Lake Side 15</option>
+                                            <option value="Lake Side 16">Lake Side 16</option>
+                                            <option value="Lake Side 17">Lake Side 17</option>
+                                            <option value="Lake Side 18">Lake Side 18</option>
+                                            <option value="Lake Side 19">Lake Side 19</option>
+                                            <option value="Lake Side 20">Lake Side 20</option>
+                                            <option value="Lake Side 21">Lake Side 21</option>
+                                            <option value="Lake Side 22">Lake Side 22</option>
+                                            <option value="Lake Side 23">Lake Side 23</option>
+                                            <option value="Lake Side 24">Lake Side 24</option>
+                                            <option value="Lake Side 25">Lake Side 25</option>
+                                            <option value="Lake Side 26">Lake Side 26</option>
+                                            <option value="PS Number 1">PS Number 1</option>
+                                            <option value="PS Number 2">PS Number 2</option>
+                                            <option value="PS Number 3">PS Number 3</option>
+                                            <option value="PS Number 4">PS Number 4</option>
+                                            <option value="PS Number 5">PS Number 5</option>
+                                            <option value="PS Number 6">PS Number 6</option>
+                                            <option value="PS Number 7">PS Number 7</option>
+                                            <option value="PS Number 8">PS Number 8</option>
+                                            <option value="PS Number 9">PS Number 9</option>
+                                            <option value="PS Number 10">PS Number 10</option>
+                                            <option value="PS Number 11">PS Number 11</option>
+                                            <option value="PS Number 12">PS Number 12</option>
+                                            <option value="PS Number 13">PS Number 13</option>
+                                            <option value="PS Number 14">PS Number 14</option>
+                                            <option value="PS Number 15">PS Number 15</option>
+                                            <option value="PS Number 16">PS Number 16</option>
+                                            <option value="PS Number 17">PS Number 17</option>
+                                            <option value="PS Number 18">PS Number 18</option>
+                                            <option value="PS Number 19">PS Number 19</option>
+                                            <option value="PS Number 20">PS Number 20</option>
+                                            <option value="PS Number 21">PS Number 21</option>
+                                            <option value="PS Number 22">PS Number 22</option>
+                                            <option value="PS Number 23">PS Number 23</option>
+                                            <option value="PS Number 24">PS Number 24</option>
+                                            <option value="PS Number 25">PS Number 25</option>
+                                            <option value="PS Number 26">PS Number 26</option>
+                                            <option value="PS Number 27">PS Number 27</option>
+                                            <option value="PS Number 28">PS Number 28</option>
+                                            <option value="PS Number 29">PS Number 29</option>
+                                            <option value="PS Number 30">PS Number 30</option>
+                                            <option value="PS Number 31">PS Number 31</option>
+                                            <option value="PS Number 32">PS Number 32</option>
+                                            <option value="PS Number 33">PS Number 33</option>
+                                            <option value="PS Number 34">PS Number 34</option>
+                                            <option value="PS Number 35">PS Number 35</option>
+                                            <option value="PS Number 36">PS Number 36</option>
+                                            <option value="PS Number 37">PS Number 37</option>
+                                            <option value="PS Number 38">PS Number 38</option>
+                                            <option value="PS Number 39">PS Number 39</option>
+                                            <option value="PS Number 40">PS Number 40</option>
+                                            <option value="PS Number 41">PS Number 41</option>
+                                            <option value="PS Number 42">PS Number 42</option>
+                                            <option value="PS Number 43">PS Number 43</option>
+                                            <option value="PS Number 44">PS Number 44</option>
+                                            <option value="PS Number 45">PS Number 45</option>
+                                            <option value="PS Number 46">PS Number 46</option>
+                                            <option value="PS Number 47">PS Number 47</option>
+                                            <option value="PS Number 48">PS Number 48</option>
+                                            <option value="PS Number 49">PS Number 49</option>
+                                            <option value="PS Number 50">PS Number 50</option>
+                                            <option value="PS Number 51">PS Number 51</option>
+                                            <option value="PS Number 52">PS Number 52</option>
+                                            <option value="PS Number 53">PS Number 53</option>
+                                            <option value="PS Number 54">PS Number 54</option>
+                                            <option value="PS Number 55">PS Number 55</option>
+                                            <option value="PS Number 56">PS Number 56</option>
+                                            <option value="PS Number 57">PS Number 57</option>
+                                            <option value="PS Number 58">PS Number 58</option>
+                                            <option value="PS Number 59">PS Number 59</option>
+                                            <option value="PS Number 60">PS Number 60</option>
+                                            <option value="PS Number 61">PS Number 61</option>
+                                            <option value="PS Number 62">PS Number 62</option>
+                                            <option value="PS Number 63">PS Number 63</option>
+                                            <option value="PS Number 64">PS Number 64</option>
+                                            <option value="PS Number 65">PS Number 65</option>
+                                            <option value="PS Number 66">PS Number 66</option>
+                                            <option value="PS Number 67">PS Number 67</option>
+                                            <option value="PS Number 68">PS Number 68</option>
+                                            <option value="PS Number 69">PS Number 69</option>
+                                            <option value="PS Number 70">PS Number 70</option>
+                                            <option value="PS Number 71">PS Number 71</option>
+                                            <option value="PS Number 72">PS Number 72</option>
+                                            <option value="PS Number 73">PS Number 73</option>
+                                            <option value="PS Number 74">PS Number 74</option>
+                                            <option value="PS Number 75">PS Number 75</option>
+                                            <option value="PS Number 76">PS Number 76</option>
+                                            <option value="PS Number 77">PS Number 77</option>
+                                            <option value="PS Number 78">PS Number 78</option>
+                                            <option value="PS Number 79">PS Number 79</option>
+                                            <option value="PS Number 80">PS Number 80</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/jscript">
+        $(function () {
+            $('#State').change(function () {
+                console.log("enter")
+
+                //$.getJSON('/Profile?handler=LGA' + $('#State').val(), function (data) {
+                //    console.log("in")
+                //    var items = '<option>Choose LGA</option>';
+                //    $.each(jQuery.map(data, function (i, local) {
+                //        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+                //        console.log("vin")
+                //    }));
+
+                //    $('#LGA').html(items);
+                //});
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'Profile?handler=LGA',
+                    dataType: "json",
+                    data: {
+                        id: $('#State').val()
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    error: function () {
+                        console.log("error");
+                    },
+                    success: function (data) {
+                        console.log("yes");
+
+                        console.log(data);
+                        var items = '<option>Choose LGA</option>';
+                        $.each(jQuery.map(data, function (i, local) {
+                            items += "<option value='" + i.value + "'>" + i.text + "</option>";
+                            console.log("vin")
+                        }));
+
+                        $('#LGA').html(items);
+
+                    }
+                });
+                console.log("pass")
+            });
+        });
+    </script>
+
+}

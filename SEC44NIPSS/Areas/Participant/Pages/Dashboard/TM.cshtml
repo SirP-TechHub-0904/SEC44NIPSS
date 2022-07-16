@@ -1,0 +1,98 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.TMModel
+@{
+Layout=null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SEC 44 - THE NATIONAL INSTITUTE - TimeTable for"+ @TempData["date"]</title>
+    <meta property="og:site_name" content="SEC 44 TimeTable for" + @TempData["date"] ">
+    <meta property="og:title" content="SEC 44 TimeTable for" + @TempData["date"] "  />
+    <meta property="og:description" content="TimeTable Schedule" />
+    <meta property="og:image" itemprop="image" content="https://sec44nipss.com/assets/images/logo-short.png">
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="@DateTime.UtcNow.AddHours(1)" />
+
+
+    <!-- Tell the browser to be responsive to screen width -->
+    @if (ViewData["disablex"] != "disable")
+    {
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    }
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/skins/_all-skins.min.css">
+    <link rel="shortcut icon" href="~/img/download.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        .bg-primary {
+            background-color: #007bff !important;
+            color: #ffffff;
+        }
+
+        .bg-success {
+            background-color: #28a745 !important;
+            color: #ffffff;
+        }
+
+        .bg-info {
+            background-color: #17a2b8 !important;
+            color: #ffffff;
+        }
+
+        .bg-warning {
+            background-color: #ffc107 !important;
+            color: #ffffff;
+        }
+
+        .bg-danger {
+            background-color: #dc3545 !important;
+            color: #ffffff;
+        }
+
+        .bg-secondary {
+            background-color: #6c757d !important;
+            color: #ffffff;
+        }
+
+        .bg-dark {
+            background-color: #343a40 !important;
+            color: #ffffff;
+        }
+
+
+        .small-box h3 {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CM3VESSW"></script>
+
+
+
+
+</head>
+<body class="">
+
+
+</body>
+</html>

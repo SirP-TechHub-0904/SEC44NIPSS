@@ -1,0 +1,22 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.ProfileAccount.IsParticipantModel
+
+@{
+    ViewData["Title"] = "IsParticipant";
+}
+
+
+
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.IsParticipant" /> @Html.DisplayNameFor(model => model.Profile.IsParticipant)
+                    </label>
+                </div>
+            </div>
+           
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

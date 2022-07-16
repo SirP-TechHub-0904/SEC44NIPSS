@@ -1,0 +1,129 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Forms.ResponseModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>THE NATIONAL INSTITUTE (SEC 44) - @Model.Questionner.Title - RESPONSE</title>
+    <meta property="og:site_name" content="@Model.Questionner.Title">
+    <meta property="og:title" content="@Model.Questionner.Title" />
+    <meta property="og:description" content="@Model.Questionner.Description" />
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="@DateTime.UtcNow.AddHours(1)" />
+
+    @if (String.IsNullOrEmpty(Model.Questionner.PreviewImage))
+    {
+        <meta property="og:image" itemprop="image" content="https://sec44nipss.com/bgdefault.jpg">
+        <link rel="shortcut icon" href="https://sec44nipss.com/img/icon-sec44.png">
+    }
+    else
+    {
+        <meta property="og:image" itemprop="image" content="https://sec44nipss.com/@Model.Questionner.PreviewImage">
+        <link rel="shortcut icon" href="https://sec44nipss.com/@Model.Questionner.PreviewImage">
+    }
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/skins/_all-skins.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CM3VESSW"></script>
+
+
+
+
+</head>
+<body class="">
+    <style>
+        .btn-h {
+            display: inline-block;
+            padding: 3px 5px;
+            margin-bottom: 0;
+            font-size: 10px;
+            margin-right: 5px;
+        }
+
+        .nav-tabs-custom {
+            margin-bottom: 20px;
+            background: #f0ebf8;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+            border-radius: 3px;
+        }
+
+            .nav-tabs-custom > .tab-content {
+                background: #f0ebf8;
+                padding: 10px;
+            }
+
+        .dropdown-menu {
+            box-shadow: none;
+            border-color: #eee0;
+        }
+    </style>
+    <div class="row">
+        <div class="box-body" style="background-color: #f0ebf8;" id="test">
+
+            <div class="col-md-12">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    @if (String.IsNullOrEmpty(Model.Questionner.PreviewImage))
+                    {
+
+
+                        <div class="box-header" style="background-color: #f3f2f0; background-image: url('https://sec44nipss.com/bgdefault.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;height:120px;">
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box-header" style="background-color: #f3f2f0; background-image: url('https://sec44nipss.com/@Model.Questionner.PreviewImage'); background-repeat: no-repeat; background-size: cover; background-position: center;height:120px;">
+
+                        </div>
+                    }
+
+                    <div class="box-body" style="background-color: #ffffff;">
+                        <h3 style="font-weight:900;">@Model.Questionner.Title</h3>
+                        @if (!String.IsNullOrEmpty(Model.Questionner.Response))
+                        {
+                            <hr style="margin-top: 3px; margin-bottom: 3px;" />
+                            @Html.Raw(Model.Questionner.Response)
+                        }
+                        <br /><br />
+                        <a asp-page="./Preview" asp-route-id="@Model.Questionner.Id" class="btn btn-primary">Resubmit again</a>
+                    </div>
+                    <div class="box-header">
+
+                        <p style="text-align:center;">Never submit passwords through NIPSS Forms.</p>
+                        <p style="text-align:center;"> This content is neither created nor endorsed by NIPSS. <a asp-page="/ReportAbuse" target="_blank">Report Abuse</a> - <a asp-page="/Terms" target="_blank">Terms of Service</a> </p>
+
+                        <br />
+                        <h4 class="text-center">© 2022 <a href="https://sec44nipss.com/" target="_blank">THE NATIONAL INSTITUTE</a> - (SEC 44) FORMS</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

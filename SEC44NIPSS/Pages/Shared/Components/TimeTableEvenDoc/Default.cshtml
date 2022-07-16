@@ -1,0 +1,12 @@
+﻿
+@if (TempData["empty"] != null)
+{
+
+    <a class="btn btn-danger" style="color:#ffffff;width:100%;font-weight:900;">EMPTY</a>
+
+}
+else if (TempData["found"] != null)
+{
+    <a href="@TempData["found"]" class="btn btn-success" style="color:#ffffff;width:100%;font-weight:900;" download>DOWNLOAD</a>
+
+}

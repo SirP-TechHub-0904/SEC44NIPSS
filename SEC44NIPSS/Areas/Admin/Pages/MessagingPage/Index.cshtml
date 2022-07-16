@@ -1,0 +1,92 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.MessagingPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container">
+    <h3>Message (@Model.xMessage)</h3>
+    <form method="get">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="number" class="form-control" name="number" placeholder="start number" />
+            </div>
+            <div class="col-md-4">
+                <input type="number" class="form-control" name="number2" placeholder="end number" />
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+
+    <h6>Current Total (@Model.Message.Count())</h6>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].Recipient)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].Retries)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].NotificationStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message[0].NotificationType)
+                </th>
+                <th>Sender</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Message)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Recipient)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Retries)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificationStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificationType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SentVia)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+
+                    <a asp-page="./Delete" asp-route-id="@item.Id" target="_blank">Delete</a>
+                    <a asp-page="./Resend" asp-route-id="@item.Id" target="_blank">Resend</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

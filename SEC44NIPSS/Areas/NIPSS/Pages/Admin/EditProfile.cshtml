@@ -1,0 +1,222 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.EditProfileModel
+
+@{
+    ViewData["Title"] = "EditProfile";
+}
+
+<h2>EditProfile</h2>
+
+<h4>Profile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Profile.Id" />
+            <input type="hidden" asp-for="Profile.UserId" />
+            <input type="hidden" asp-for="Profile.AlumniId" />
+            <input type="hidden" asp-for="Profile.AboutProfile" />
+            <input type="hidden" asp-for="Profile.ProfileUpdateLevel" />
+
+            <div class="form-group">
+                <label asp-for="Profile.Title" class="control-label"></label>
+                <input asp-for="Profile.Title" class="form-control" />
+                <span asp-validation-for="Profile.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.FullName" class="control-label"></label>
+                <input asp-for="Profile.FullName" class="form-control" />
+                <span asp-validation-for="Profile.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Gender" class="control-label"></label>
+
+                <select asp-for="Profile.Gender" class="form-control" required="required">
+                    <option>None</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="Profile.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.DOB" class="control-label"></label>
+                <input asp-for="Profile.DOB" class="form-control" />
+                <span asp-validation-for="Profile.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.AccountRole" class="control-label"></label>
+                <select asp-for="Profile.AccountRole" class="form-control">
+                    <option value="Participant">Participant</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Admin">Admin</option>
+                    <option value="DirectingStaff">Directing Staff</option>
+                    <option value="ManagingStaff">Managing Staff</option>
+                </select>
+                <span asp-validation-for="Profile.AccountRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.OfficialRole" class="control-label"></label>
+                <input asp-for="Profile.OfficialRole" class="form-control" />
+                <span asp-validation-for="Profile.OfficialRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Sponsor" class="control-label"></label>
+                <input asp-for="Profile.Sponsor" class="form-control" />
+                <span asp-validation-for="Profile.Sponsor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Position" class="control-label"></label>
+                <input asp-for="Profile.Position" class="form-control" />
+                <span asp-validation-for="Profile.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.SortOrder" class="control-label"></label>
+                <input asp-for="Profile.SortOrder" class="form-control" />
+                <span asp-validation-for="Profile.SortOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.PhoneNumber" class="control-label"></label>
+                <input asp-for="Profile.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Profile.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.AltPhoneNumber" class="control-label"></label>
+                <input asp-for="Profile.AltPhoneNumber" class="form-control" />
+                <span asp-validation-for="Profile.AltPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.PsNumber" class="control-label"></label>
+                <input asp-for="Profile.PsNumber" class="form-control" />
+                <span asp-validation-for="Profile.PsNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.PsChange" /> @Html.DisplayNameFor(model => model.Profile.PsChange)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.ChangeDate" class="control-label"></label>
+                <input asp-for="Profile.ChangeDate" class="form-control" />
+                <span asp-validation-for="Profile.ChangeDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.DateRegistered" class="control-label"></label>
+                <input asp-for="Profile.DateRegistered" class="form-control" />
+                <span asp-validation-for="Profile.DateRegistered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.PXI" class="control-label"></label>
+                <input asp-for="Profile.PXI" class="form-control" />
+                <span asp-validation-for="Profile.PXI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.ParticipanPicture" class="control-label"></label>
+                <input asp-for="Profile.ParticipanPicture" class="form-control" />
+                <span asp-validation-for="Profile.ParticipanPicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.ProfilePhoto" class="control-label"></label>
+                <input asp-for="Profile.ProfilePhoto" class="form-control" />
+                <span asp-validation-for="Profile.ProfilePhoto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Profile.ParticipantPhoto" class="control-label"></label>
+                <input asp-for="Profile.ParticipantPhoto" class="form-control" />
+                <span asp-validation-for="Profile.ParticipantPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.StudyGroupRole" class="control-label"></label>
+                <input asp-for="Profile.StudyGroupRole" class="form-control" />
+                <span asp-validation-for="Profile.StudyGroupRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.ResidenceAddress" class="control-label"></label>
+                <input asp-for="Profile.ResidenceAddress" class="form-control" />
+                <span asp-validation-for="Profile.ResidenceAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.StateOfOrigin" class="control-label"></label>
+                <input asp-for="Profile.StateOfOrigin" class="form-control" />
+                <span asp-validation-for="Profile.StateOfOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.LGA" class="control-label"></label>
+                <input asp-for="Profile.LGA" class="form-control" />
+                <span asp-validation-for="Profile.LGA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.OfficeAddress" class="control-label"></label>
+                <input asp-for="Profile.OfficeAddress" class="form-control" />
+                <span asp-validation-for="Profile.OfficeAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.ShortProfile" class="control-label"></label>
+                <input asp-for="Profile.ShortProfile" class="form-control" />
+                <span asp-validation-for="Profile.ShortProfile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.ProfileUpdateFirstTime" /> @Html.DisplayNameFor(model => model.Profile.ProfileUpdateFirstTime)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.ProfileUpdatePictureFirstTime" /> @Html.DisplayNameFor(model => model.Profile.ProfileUpdatePictureFirstTime)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.DontShow" /> @Html.DisplayNameFor(model => model.Profile.DontShow)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <img src="/Profile.AboutProfile" height="200" />
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>New Picture</label>
+                        <input class="form-control" type="file" accept="image/*" name="filesPhoto" id="gallery-photo-add" />
+                        <div class="gallery"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Profile.Sent" /> @Html.DisplayNameFor(model => model.Profile.Sent)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Roles" class="control-label"></label>
+                <input asp-for="Profile.Roles" class="form-control" />
+                <span asp-validation-for="Profile.Roles" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

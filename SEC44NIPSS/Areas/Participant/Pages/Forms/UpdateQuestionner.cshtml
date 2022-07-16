@@ -1,0 +1,215 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Forms.UpdateQuestionnerModel
+@{
+    ViewData["Title"] = "Responsive";
+
+}
+
+<style>
+    .btn-h {
+        display: inline-block;
+        padding: 3px 5px;
+        margin-bottom: 0;
+        font-size: 10px;
+        margin-right: 5px;
+    }
+
+    .nav-tabs-custom {
+        margin-bottom: 20px;
+        background: #f0ebf8;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        border-radius: 3px;
+    }
+
+        .nav-tabs-custom > .tab-content {
+            background: #f0ebf8;
+            padding: 10px;
+        }
+
+    .dropdown-menu {
+        box-shadow: none;
+        border-color: #eee0;
+    }
+</style>
+<div class="row">
+    <div class="box-body" style="background-color: #f0ebf8;">
+
+        <div class="col-md-12">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+
+
+
+                <!-- Modal content-->
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="modal-title">QUESTIONNER UPDATE</h4>
+
+                    </div>
+
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> @TempData["Updated"]
+                        </div>
+                    }
+                    @if (TempData["Updated"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> @TempData["Updated"]
+                        </div>
+                    }
+
+                    <div class="modal-body">
+                        <div class="box">
+
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                                <div class="box-header">
+                                    <h4 class="modal-title">Short Link</h4>
+                                    <p>
+                                        <textarea asp-for="Questionner.ShortLink" class="form-control" disabled="disabled"></textarea>
+
+                                    </p>
+                                    <h4 class="modal-title">Long Link</h4>
+                                    <p>
+                                        <textarea asp-for="Questionner.LongLink" class="form-control" disabled="disabled"></textarea>
+
+                                    </p>
+
+                                </div>
+                                <input type="hidden" asp-for="Questionner.Id" />
+
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        @if (!String.IsNullOrEmpty(Model.Questionner.PreviewImage))
+                                        {
+                                            <img src="https://sec44nipss.com/@Model.Questionner.PreviewImage" class="img-fluid" style="max-height:200px;" />
+                                        }
+                                        <br />
+
+                                        <label for="inputEmail3" class="control-label">Update or Change Preview Image</label>
+
+
+                                        <div class="">
+                                            <input type="file" class="form-control" name="FileQuestion">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Question Title</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Questionner.Title" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Question Description</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Questionner.Description" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Question Instruction</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Questionner.Instruction" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Response Note</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Questionner.Response" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Email Status</label>
+
+                                        <div class="">
+
+                                            @Html.DropDownListFor(model => model.Questionner.Email, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.EmailPhoneStatus))), new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Phone Number Status</label>
+
+                                        <div class="">
+
+                                            @Html.DropDownListFor(model => model.Questionner.PhoneNumber, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.EmailPhoneStatus))), new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="checkbox" asp-for="Questionner.SendRespondantEmailAfterAttempt" />  Send Respondant Email After Attempt
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="checkbox" asp-for="Questionner.SendResponse" />  Send each Response to my Email
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="checkbox" asp-for="Questionner.AddTimeFrame" />  Add Time Frame
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Start Date/Time</label>
+
+                                        <div class="">
+
+                                            <input type="date" asp-for="Questionner.StartTime" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">End Date/Time</label>
+
+                                        <div class="">
+
+                                            <input type="date" asp-for="Questionner.CloseTime" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="checkbox" asp-for="Questionner.Closed" />  Closed
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <input type="checkbox" asp-for="Questionner.ShowReSubmitBotton" />  Show ReSubmit Botton
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Update</button>
+                                    <a asp-page="./FormMaker" asp-route-o="@Model.Questionner.ShortLink" asp-route-q="@Model.Questionner.LongLink" class="btn btn-primary">Back to Question List</a>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}
+

@@ -1,0 +1,50 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Setting.CreateModel
+@{
+}
+
+
+<h2>Create</h2>
+
+<h4>EmailSetting</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="EmailSetting.SenderEmail" class="control-label"></label>
+                <input asp-for="EmailSetting.SenderEmail" class="form-control" />
+                <span asp-validation-for="EmailSetting.SenderEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailSetting.PX" class="control-label"></label>
+                <input asp-for="EmailSetting.PX" class="form-control" />
+                <span asp-validation-for="EmailSetting.PX" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailSetting.Count" class="control-label"></label>
+                <input asp-for="EmailSetting.Count" class="form-control" />
+                <span asp-validation-for="EmailSetting.Count" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailSetting.DateStart" class="control-label"></label>
+                <input asp-for="EmailSetting.DateStart" class="form-control" />
+                <span asp-validation-for="EmailSetting.DateStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="EmailSetting.Active" /> Active
+                <span asp-validation-for="EmailSetting.Active" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

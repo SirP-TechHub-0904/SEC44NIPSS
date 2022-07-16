@@ -1,0 +1,68 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.AlumniPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            @Html.DisplayFor(model => model.Alumni.Title) ALUMMI
+        </h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div>
+            
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Alumni.DateRange)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Alumni.DateRange)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Alumni.Year)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Alumni.Year)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Alumni.GeneralTopic)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Alumni.GeneralTopic)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Alumni.Active)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Alumni.Active)
+                </dd>
+
+                <dt>
+                    LEGACY PROJECT TITLE
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Alumni.SecProject.Title)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <div class="btn-group">
+                <a asp-page="./Edit" class="btn btn-default" asp-route-id="@Model.Alumni.Id">Edit</a>
+                <a asp-page="/AlumniPage/ExecutivePage/ExecutiveList" asp-route-id="@Model.Alumni.Id" class="btn btn-danger">Executive</a>
+                <a asp-page="/AlumniPage/CommutteePage/CommutteeList" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Commuttee</a>
+                <a asp-page="/AlumniPage/StudyGroupPage/StudyGroupList" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">StudyGroup</a>
+                <a asp-page="/AlumniPage/ToursPage/ToursCategoryList" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Tours</a>
+                <a asp-page="/AlumniPage/Legacy/Details" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Legacy Project</a>
+
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>

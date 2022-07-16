@@ -1,0 +1,17 @@
+﻿
+<div class="pull-left image">
+    @if (TempData["img"] != null)
+    {
+        <img src="@TempData["img"]" class="img-circle" alt="" style="max-width: 48px; height: 50px;">
+
+    }
+    else
+    {
+        <img src="~/img/piop.png" class="img-circle" alt="" style="max-width: 48px; height: 50px;">
+
+    }
+</div>
+<div class="pull-left info">
+    <p>@TempData["data"]</p>
+    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+</div>

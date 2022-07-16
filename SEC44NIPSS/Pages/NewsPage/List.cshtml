@@ -1,0 +1,58 @@
+﻿@page
+@model SEC44NIPSS.Pages.NewsPage.ListModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                News
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+       
+        <div class="row">
+            @foreach (var i in Model.News)
+            {
+                <div class="col-md-4">
+                    <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                        <div class="blog-item" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 15px; background-color: #f3f0f0;">
+                            <div class="image-wrap text-justify">
+                                <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                                    <img src="@i.Image" alt="@i.Title">
+                                </a>
+                            </div>
+                            <div class="blog-content">
+                                <ul class="blog-meta mb-10" style="margin-bottom:3px;">
+
+                                    <li class="date"> <i class="fa fa-calendar-check-o"></i> @i.Date.ToString("dd MMM yyyy")</li>
+                                </ul>
+                                <h6 class="blog-title text-justify" style="margin-bottom:9px;">
+                                    <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                                        @i.Title
+                                    </a>
+                                </h6>
+                                <p style="margin-bottom:9px;" class=" text-justify">
+                                    @i.ShortDescription
+                                </p>
+                                <p style="font-size:10px;font-style:italic;color:#ff0000;"><span style="font-weight:900;">Source:</span> @i.Source</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+       
+    </div>
+</div>

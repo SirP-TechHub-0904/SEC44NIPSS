@@ -1,0 +1,151 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.TimeTableModel
+
+@{
+    ViewData["Title"] = "TimeTable";
+}
+<style>
+    .table > :not(caption) > * > * {
+        padding: 0rem 0.5rem;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .container-fluid {
+            padding-left: 100px !important;
+            padding-right: 100px !important;
+        }
+    }
+
+    .container-fluid {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+</style>
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                TIMETABLE
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0;">
+                    <div class="row">
+
+
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4" style="text-align:center;margin:0 auto !important">
+                                            <h4>
+                                                <span style="font-weight:800;"> @Model.Title</span>
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-4" style="text-align:center;margin:0 auto !important">
+                                            <form method="get">
+                                                <div class="input-group input-group-sm" style="margin-bottom:7px;">
+                                                    <input type="date" name="searchdate" class="form-control" placeholder="@TempData["date"]">
+                                                    <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-success btn-flat">Search</button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                            <form method="get">
+                                                <input type="hidden" name="searchdatecancel" value="cancel">
+                                                @if (TempData["date"] != null)
+                                                {
+                                                    <p>
+                                                        Search result for <span style="font-weight:900;color:#b62626;"><i>@TempData["date"]</i></span>
+
+                                                        @*<a class="btn btn-primary" asp-page="/sharet" asp-route-id="@TempData["sharedate"]" asp-route-k="single" style="color:white;font-weight:700;">Share <i class="fa fa-whatsapp" style="color:white;font-weight:700;"></i></a>*@
+                                                        <a href="whatsapp://send?text=@TempData["link"]" data-action="share/whatsapp/share"
+                                                           target="_blank" class="btn btn-primary" style="color:white;font-weight:700;"> Share to WhatsApp </a>
+                                                        <button type="submit" class="btn btn-danger btn-flat">Cancel</button>
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                            <p>
+                                                <a href="whatsapp://send?text=@TempData["link"]" data-action="share/whatsapp/share"
+                                                   target="_blank" class="btn btn-primary" style="color:white;font-weight:700;"> Share to WhatsApp </a>
+                                            </p>
+
+                                                }
+                                            </form>
+
+                                        </div>
+                                        <div class="col-md-4" style="text-align:center;margin:0 auto !important">
+                                            <a asp-page="/Web/TimeTable" asp-route-date="@Model.NextWeek" class="btn btn-success float-right" style="float:right;color:white;">@Model.NextWeekTitle</a>
+                                            <a asp-page="/Web/TimeTable" asp-route-date="@Model.PreviousWeek" class="btn btn-success float-right" style="float:right;color:white;margin-right:9px;">@Model.PreviousWeekTitle</a>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="table-responsive" style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                                        <table class="table table-bordered" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 16.9%; word-break: break-word;">DAY/DATE</th>
+                                                    <th style="width:12.1%;">TIME</th>
+                                                    <th style="width: 32.2%; word-break: break-word;">LECTURE/ACTIVITY</th>
+                                                    <th style="width: 20%; word-break: break-word;">MODERATOR</th>
+                                                    <th style="width: 20%; word-break: break-word;">LECTURER</th>
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+                                                @foreach (var x in Model.Events)
+                                                {
+                                                    <tr>
+
+                                                        <td colspan="5" style="width:100%;">
+                                                            <table class="table" style="width:100%;">
+                                                                @await Component.InvokeAsync("TimeTable", new { date = x })
+                                                            </table>
+                                                        </td>
+
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @if (Model.Desc != null)
+                                    {
+                                        <h4 style="padding-left:8px;">NOTE:</h4>
+                                        <div class="text-justify" style="text-align: justify !important; padding-left: 8px;">
+                                            @Html.Raw(Model.Desc)
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

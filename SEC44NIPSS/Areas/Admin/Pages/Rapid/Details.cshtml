@@ -1,0 +1,69 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+
+<div class="col-md-12">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="RapidQuestion.Id" hidden="hidden" />
+
+        <div class="form-group">
+            <h4>Update Questions</h4>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidQuestion.Question" class="control-label"></label>
+            <input asp-for="RapidQuestion.Question" class="form-control" />
+            <span asp-validation-for="RapidQuestion.Question" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <h4>Update Answers</h4>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidOption.Option1" class="control-label"></label>
+            <input asp-for="RapidOption.Option1" class="form-control" />
+            <span asp-validation-for="RapidOption.Option1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidOption.Option2" class="control-label"></label>
+            <input asp-for="RapidOption.Option2" class="form-control" />
+            <span asp-validation-for="RapidOption.Option2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidOption.Option3" class="control-label"></label>
+            <input asp-for="RapidOption.Option3" class="form-control" />
+            <span asp-validation-for="RapidOption.Option3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidOption.Option4" class="control-label"></label>
+            <input asp-for="RapidOption.Option4" class="form-control" />
+            <span asp-validation-for="RapidOption.Option4" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RapidOption.Answer" class="control-label"></label>
+
+            <select asp-for="RapidOption.Answer" class="form-control">
+                <option value="Option1">Option1</option>
+                <option value="Option2">Option2</option>
+                <option value="Option3">Option3</option>
+                <option value="Option4">Option4</option>
+            </select>
+            <span asp-validation-for="RapidOption.Answer" class="text-danger"></span>
+        </div>
+        <input asp-for="RapidOption.RapidQuestionId" value="@Model.RapidQuestion.Id" hidden="hidden" />
+        <input asp-for="RapidOption.Id" hidden="hidden" />
+
+        <div class="form-group">
+            <input type="submit" value="Update Option" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.RapidQuestion.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

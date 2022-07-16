@@ -1,0 +1,78 @@
+﻿@page
+@model SEC44NIPSS.Pages.TourPage.PostInfoModel
+@{
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                @Model.Title TOURS
+                <span class="watermark">NIPSS SEC 44</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div id="rs-iconbox-area" class="rs-iconbox-area rs-inner-blog pt-100 pb-100 md-pt-70 md-pb-70">
+    <div class="container-fluid custom">
+        <div class="row y-middle">
+            <div class="col-lg-3 col-md-12 order-last">
+                <div class="widget-area">
+                    <div class="categories">
+                        <div class="widget-title">
+                            <h3 class="title">VARIOUS TOURS</h3>
+                        </div>
+                        <ul>
+
+                            @foreach (var i in Model.TourSubCategories)
+                            {
+                                <li>
+                                    <a asp-page="/TourPage/Post" asp-route-id="@i.Id">  <span style="font-weight:800;"> @i.Title</span></a> BY <span style="font-style:italic;font-weight:800;"> @await Component.InvokeAsync("StudyGroup", new { id = i.Id })</span>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 pr-35 md-pr-15 md-mt-50">
+                <div class="row">
+                    @foreach (var i in Model.TourPost)
+                    {
+
+                        <div class="col-lg-4 col-md-6 mb-30">
+                            <div class="box-inner">
+                                <div class="box-item">
+                                    <div class="icon-box" style="min-height: 400px; min-height: 401px;">
+                                        <a asp-page="/TourPage/Details" asp-route-id="@i.Id">
+                                            @if (i.PostFileType == Data.Model.PostFileType.IMG)
+                                            {
+                                                <img class="dance_hover img-fluid" src="@i.Photo" alt="Partner">
+
+                                            }
+                                            else if (i.PostFileType == Data.Model.PostFileType.VIDEO)
+                                            {
+                                                <video width="" style="width:100%;height:380px" controls="controls">
+                                                    <source src="@i.Photo" type="video/mp4">
+                                                    Your browser does not support HTML5 video.
+                                                </video>
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="text-area" style="min-height:70px;">
+                                        <p class="services-txt"> @i.ShortDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

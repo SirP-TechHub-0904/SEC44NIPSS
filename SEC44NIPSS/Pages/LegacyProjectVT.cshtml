@@ -1,0 +1,36 @@
+﻿@page
+@model SEC44NIPSS.Pages.LegacyProjectVTModel
+@{
+}
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "/Pages/Shared/_Login.cshtml";
+}
+
+
+
+
+
+<h2 class="nm-tc nm-mb-1">Sign In</h2>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if(TempData["alert"] != null){
+    <div class="alert alert-danger">
+        <strong>Note!</strong> @TempData["alert"]
+    </div>
+                    }
+    <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input id="inputEmail" asp-for="Input.Email" class="form-control" type="email" tabindex="1" placeholder="" required="required">
+    </div>
+
+
+
+    <button type="submit" class="btn btn-block btn-primary text-uppercase nm-btn">Continue</button>
+
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

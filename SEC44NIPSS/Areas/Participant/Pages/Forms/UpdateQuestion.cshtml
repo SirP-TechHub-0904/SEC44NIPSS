@@ -1,0 +1,527 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Forms.UpdateQuestionModel
+@{
+    ViewData["Title"] = "Responsive";
+
+}
+
+<style>
+    .btn-h {
+        display: inline-block;
+        padding: 3px 5px;
+        margin-bottom: 0;
+        font-size: 10px;
+        margin-right: 5px;
+    }
+
+    .nav-tabs-custom {
+        margin-bottom: 20px;
+        background: #f0ebf8;
+        box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+        border-radius: 3px;
+    }
+
+        .nav-tabs-custom > .tab-content {
+            background: #f0ebf8;
+            padding: 10px;
+        }
+
+    .dropdown-menu {
+        box-shadow: none;
+        border-color: #eee0;
+    }
+</style>
+<div class="row">
+    <div class="box-body" style="background-color: #f0ebf8;">
+
+        <div class="col-md-12">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+
+
+
+                <!-- Modal content-->
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="modal-title">Question number (@Model.Question.Number) Question Update</h4>
+                    </div>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> @TempData["Updated"]
+                        </div>
+                    }
+                    @if (TempData["Updated"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> @TempData["Updated"]
+                        </div>
+                    }
+
+                    <div class="modal-body">
+                        <div class="box">
+
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="Question.Id" />
+                                <input type="hidden" asp-for="Question.Questionner" />
+                                <input type="hidden" asp-for="Question.ImageUrl" />
+                                <input type="hidden" asp-for="Question.SortOrder" />
+                                <input type="hidden" asp-for="Question.Number" />
+                                <input type="hidden" asp-for="Question.QuestionnerId" />
+                                <input type="hidden" asp-for="Option.QuestionId" />
+                                <input type="hidden" asp-for="Option.Id" />
+                                <input type="hidden" asp-for="Option.OptionType" />
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        @if (!String.IsNullOrEmpty(Model.Question.ImageUrl))
+                                        {
+                                            <img src="@Model.Question.ImageUrl" class="img-fluid" style="max-height:200px;" />
+                                        }
+                                        <br />
+                                        @if (!String.IsNullOrEmpty(Model.Question.ImageUrl))
+                                        {
+
+
+                                            <label for="inputEmail3" class="control-label">Update or Change Image</label>
+                                        }
+                                        else
+                                        {
+                                            <label for="inputEmail3" class="control-label">Upload Image</label>
+
+                                        }
+
+                                        <div class="">
+                                            <input type="file" class="form-control" name="FileQuestion">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="control-label">Question</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Question.Title" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    @if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.YesNo)
+                                    {
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="control-label">Select @Model.Option.Yes or @Model.Option.No</label>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <input type="text" asp-for="Option.Yes">
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <input type="text" asp-for="Option.No">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="control-label">you can change the yes/no to true/false or anyother text.</label>
+
+                                        </div>
+                                    }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.LongNote)
+                                    {
+                                        <div class="form-group">
+                                            <div class="">
+                                                <textarea class="form-control" id="inputEmail3" placeholder="Your Answer" maxlength="@Model.Option.LongNoteMaximumLength"></textarea>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.ShortNote)
+                                    {
+                                        <div class="form-group">
+                                            <div class="">
+                                                <input class="form-control" id="inputEmail3" placeholder="Your Answer" />
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.FiveOption)
+                                    {
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="control-label">Five Options</label>
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList1" placeholder="Option One">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList2" placeholder="Option Two">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList3" placeholder="Option Three">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList4" placeholder="Option Four">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList5" placeholder="Option Five">
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.FourOption)
+                                    {
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="control-label">Four Options</label>
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList1" placeholder="Option One">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList2" placeholder="Option Two">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList3" placeholder="Option Three">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList4" placeholder="Option Four">
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.MultipleOption)
+                                    {
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="control-label">Select Multiple Options</label>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption1" placeholder="Checkbox One">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption2" placeholder="Checkbox Two">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption3" placeholder="Checkbox Three">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption4" placeholder="Checkbox Four">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption5" placeholder="Checkbox Five">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption6" placeholder="Checkbox Six">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div>
+                                    <div class="box-body">
+                                        <h4>Select to change option type below.</h4>
+                                        <div class="form-group">
+                                            <select id="OptionChange" asp-for="OptionsChoose" class="form-control">
+                                                <option value="">-- Select an Option --</option>
+
+                                                <option value="YesNoOption">Yes No Option</option>
+                                                <option value="LongNoteOption">Long Note Option</option>
+                                                <option value="ShortNoteOption">Short Note Option</option>
+                                                <option value="FiveOption">Five Option</option>
+                                                <option value="FourOption">Four Option</option>
+                                                <option value="MultipleOption">Multiple Option Selection</option>
+
+                                            </select>
+                                        </div>
+                                        <div id="YesNoOption">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        <input type="text" asp-for="Option.Yes">
+
+                                                    </label>
+
+                                                    <br />
+                                                    <br />
+                                                    <label>
+                                                        <input type="checkbox" asp-for="Option.No">
+                                                        <input type="text" asp-for="Option.Yes">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="LongNoteOption">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Long Note</label>
+
+                                                <div class="">
+                                                    <textarea type="text" class="form-control" id="inputEmail3"  placeholder="Your Answer"></textarea>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div id="ShortNoteOption">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Short Note</label>
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" placeholder="Your Answer">
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div id="FiveOption">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Five Options</label>
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList1" placeholder="Option One">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList2" placeholder="Option Two">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList3" placeholder="Option Three">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList4" placeholder="Option Four">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList5" placeholder="Option Five">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="FourOption">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Five Options</label>
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList1" placeholder="Option One">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList2" placeholder="Option Two">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList3" placeholder="Option Three">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList4" placeholder="Option Four">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="MultipleOption">
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption1" placeholder="Checkbox One">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption2" placeholder="Checkbox Two">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption3" placeholder="Checkbox Three">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption4" placeholder="Checkbox Four">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption5" placeholder="Checkbox Five">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox">
+                                                            <input type="text" class="form-control" id="inputEmail3" asp-for="Option.MultipleOption6" placeholder="Checkbox Six">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button onclick="form_submit()" class="btn btn-primary">Update</button>
+                                    <a asp-page="./FormMaker" asp-route-o="@Model.siq" asp-route-q="@Model.liq" class="btn btn-primary">Back to Question List</a>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+        <script>
+
+            document.getElementById('YesNoOption').style.display = "none";
+            document.getElementById('LongNoteOption').style.display = "none";
+            document.getElementById('ShortNoteOption').style.display = "none";
+            document.getElementById('FiveOption').style.display = "none";
+            document.getElementById('FourOption').style.display = "none";
+            document.getElementById('MultipleOption').style.display = "none";
+
+
+
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "YesNoOption" ? 'block' : 'none';
+                document.getElementById('YesNoOption').style.display = style;
+            });
+
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "LongNoteOption" ? 'block' : 'none';
+                document.getElementById('LongNoteOption').style.display = style;
+            });
+
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "ShortNoteOption" ? 'block' : 'none';
+                document.getElementById('ShortNoteOption').style.display = style;
+            });
+
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "FiveOption" ? 'block' : 'none';
+                document.getElementById('FiveOption').style.display = style;
+            });
+
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "FourOption" ? 'block' : 'none';
+                document.getElementById('FourOption').style.display = style;
+            });
+            document.getElementById('OptionChange').addEventListener('change', function () {
+                var style = this.value == "MultipleOption" ? 'block' : 'none';
+                document.getElementById('MultipleOption').style.display = style;
+            });
+
+
+        </script>
+
+    }
+

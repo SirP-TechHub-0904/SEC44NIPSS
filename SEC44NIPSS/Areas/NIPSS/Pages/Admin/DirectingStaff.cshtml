@@ -1,0 +1,76 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.DirectingStaffModel
+
+@{
+    ViewData["Title"] = "DirectingStaff";
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            @Model.DS.Count() DIRECTING STAFF
+        </h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+
+                    <th>S/N</th>
+
+                    <th>
+                        Fullname
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        PhoneNumber
+                    </th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            @{
+                int sno = 0;
+            }
+
+            <tbody>
+                @foreach (var item in Model.DS)
+                {
+                <tr>
+                    <td>
+                        @{ sno++; }
+                        @sno
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        <img src="@item.AboutProfile" height="30" />
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

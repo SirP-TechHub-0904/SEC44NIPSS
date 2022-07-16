@@ -1,0 +1,90 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.LP.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LegacyProject[0].P10)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LegacyProject) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.P1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P9)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P10)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

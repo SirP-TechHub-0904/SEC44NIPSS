@@ -1,0 +1,41 @@
+﻿
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    @if (TempData["img"] != null)
+    {
+        <img src="@TempData["img"]" class="user-image" height="34" alt="">
+
+    }
+    else
+    {
+        <img src="~/img/piop.png" class="user-image" height="34" alt="">
+
+    }
+<span class="hidden-xs">@TempData["data"]</span>
+</a>
+<ul class="dropdown-menu">
+    <!-- User image -->
+    <li class="user-header">
+        @if (TempData["img"] != null)
+        {
+            <img src="@TempData["img"]" class="img-circle" height="34" alt="">
+
+        }
+        else
+        {
+            <img src="~/img/piop.png" class="img-circle" height="34" alt="">
+
+        }
+    <p>
+        @TempData["data"]
+    </p>
+    </li>
+    <!-- Menu Body -->
+    <!-- Menu Footer-->
+    <li class="user-footer">
+
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="btn btn-default btn-flat">Logout</button>
+        </form>
+        
+    </li>
+</ul>

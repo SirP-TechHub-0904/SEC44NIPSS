@@ -1,0 +1,49 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.CurrentAffairsPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CurrentAffair</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CurrentAffair.Question" class="control-label"></label>
+                <input asp-for="CurrentAffair.Question" class="form-control" />
+                <span asp-validation-for="CurrentAffair.Question" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentAffair.Answer" class="control-label"></label>
+                <input asp-for="CurrentAffair.Answer" class="form-control" />
+                <span asp-validation-for="CurrentAffair.Answer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentAffair.FullContent" class="control-label"></label>
+                <input asp-for="CurrentAffair.FullContent" class="form-control" />
+                <span asp-validation-for="CurrentAffair.FullContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentAffair.Date" class="control-label"></label>
+                <input asp-for="CurrentAffair.Date" class="form-control" />
+                <span asp-validation-for="CurrentAffair.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

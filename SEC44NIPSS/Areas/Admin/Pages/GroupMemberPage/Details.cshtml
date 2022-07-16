@@ -1,0 +1,37 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.GroupMemberPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>StudyGroupMemeber</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.Profile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.Profile.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.SortNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.SortNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.StudyGroup)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.StudyGroup.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.StudyGroupMemeber.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

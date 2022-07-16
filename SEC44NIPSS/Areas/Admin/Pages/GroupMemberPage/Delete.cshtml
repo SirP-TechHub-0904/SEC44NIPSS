@@ -1,0 +1,40 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.GroupMemberPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudyGroupMemeber</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.Profile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.Profile.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.SortNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.SortNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroupMemeber.StudyGroup)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroupMemeber.StudyGroup.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="StudyGroupMemeber.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

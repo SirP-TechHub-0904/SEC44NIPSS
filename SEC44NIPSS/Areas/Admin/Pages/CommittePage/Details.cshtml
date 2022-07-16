@@ -1,0 +1,49 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.CommittePage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CommitteeCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeCategory.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeCategory.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeCategory.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeCategory.ShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeCategory.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeCategory.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeCategory.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeCategory.Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommitteeCategory.Alumni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommitteeCategory.Alumni.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.CommitteeCategory.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

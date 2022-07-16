@@ -1,0 +1,36 @@
+﻿@page
+@model SEC44NIPSS.Pages.TourPage.NipssTourModel
+
+@{
+    ViewData["Title"] = "NippsTour";
+}
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                TOURS
+                <span class="watermark">NIPSS SEC 44</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.TourCategory)
+            {
+                <div class="col-md-6" style="margin:10px 0">
+                    <a asp-page="/TourPage/TourSection" asp-route-id="@item.Id">
+                        <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 120px;">
+                            <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;">@Html.DisplayFor(modelItem => item.Title)</h3>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

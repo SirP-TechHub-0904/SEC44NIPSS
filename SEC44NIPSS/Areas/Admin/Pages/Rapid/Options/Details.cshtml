@@ -1,0 +1,55 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.Options.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RapidOption</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.Option1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.Option1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.Option2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.Option2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.Option3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.Option3)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.Option4)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.Option4)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.Answer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.Answer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RapidOption.RapidQuestion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RapidOption.RapidQuestion.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.RapidOption.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

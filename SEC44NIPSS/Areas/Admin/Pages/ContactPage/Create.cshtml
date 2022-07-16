@@ -1,0 +1,64 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.ContactPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Contact</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contact.Name" class="control-label"></label>
+                <input asp-for="Contact.Name" class="form-control" />
+                <span asp-validation-for="Contact.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Email" class="control-label"></label>
+                <input asp-for="Contact.Email" class="form-control" />
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Title" class="control-label"></label>
+                <input asp-for="Contact.Title" class="form-control" />
+                <span asp-validation-for="Contact.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Message" class="control-label"></label>
+                <input asp-for="Contact.Message" class="form-control" />
+                <span asp-validation-for="Contact.Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Date" class="control-label"></label>
+                <input asp-for="Contact.Date" class="form-control" />
+                <span asp-validation-for="Contact.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Contact.Replied" /> @Html.DisplayNameFor(model => model.Contact.Replied)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Replie" class="control-label"></label>
+                <input asp-for="Contact.Replie" class="form-control" />
+                <span asp-validation-for="Contact.Replie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

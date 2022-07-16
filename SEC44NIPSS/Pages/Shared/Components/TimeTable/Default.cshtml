@@ -1,0 +1,63 @@
+﻿@model ICollection<SEC44NIPSS.Data.Model.Event>
+
+
+
+<tr>
+    <td rowspan="@Model.Count()" style="width: 15%; word-break: break-word;vertical-align:middle;">@ViewBag.datete</td>
+    <td style="width:85%;">
+        <table class="table table-bordered" style="width:100%;">
+            @foreach (var i in Model)
+            {
+                <tr>
+                    @if (i.ContentType == Data.Model.ContentType.IsSingle)
+                    {
+                        <td style="width:100%;text-align:center;" colspan="3">
+                            @if (i.ContentStatus == Data.Model.ContentStatus.IsBold)
+                            {
+                                <span style="font-weight:900;">@Html.Raw(i.Content)</span>
+                            }
+                            else if (i.ContentStatus == Data.Model.ContentStatus.IsRed)
+                            {
+                                <span class="text-danger">@Html.Raw(i.Content)</span>
+                            }
+                            else
+                            {
+                                <span>@Html.Raw(i.Content)</span>
+                            }
+
+                            @if (i.IsLecture == true)
+                            {
+                                <span>
+                                    @await Component.InvokeAsync("TimeTableEvenDoc", new { id = i.Id })
+                                </span>
+                            }
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="width: 15%;">@i.EventTime</td>
+                        <td style="width: 40%; word-break: break-word;">
+                            @if (i.ContentStatus == Data.Model.ContentStatus.IsBold)
+                            {
+                                <span style="font-weight:900;">@Html.Raw(i.Content)</span>
+                            }
+                            else if (i.ContentStatus == Data.Model.ContentStatus.IsRed)
+                            {
+                                <span class="text-danger">@Html.Raw(i.Content)</span>
+                            }
+                            else
+                            {
+                                <span>@Html.Raw(i.Content)</span>
+                            }
+
+
+                        </td>
+                        <td style="width: 23%; word-break: break-word;">@i.Moderator</td>
+                        <td style="width: 22%; word-break: break-word;">@i.Lecturer</td>
+                    }
+                </tr>
+            }
+        </table>
+    </td>
+</tr>
+

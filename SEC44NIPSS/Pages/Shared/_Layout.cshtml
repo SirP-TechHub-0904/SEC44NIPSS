@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- meta tag -->
+    <meta charset="utf-8">
+    <title>SEC 44 NIPSS </title>
+    <meta name="description" content="">
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" href="~/img/icon-sec44.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/icon-sec44.png">
+    <!-- Bootstrap v4.4.1 css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <!-- flaticon css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/fonts/flaticon.css">
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owl.carousel.css">
+    <!-- off canvas css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/off-canvas.css">
+    <!-- magnific popup css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/magnific-popup.css">
+    <!-- Main Menu css -->
+    <link rel="stylesheet" href="~/assets/css/rsmenu-main.css">
+    <!-- nivo slider CSS -->
+    <link rel="stylesheet" type="text/css" href="~/assets/inc/custom-slider/css/nivo-slider.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/inc/custom-slider/css/preview.css">
+    <!-- spacing css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/rs-spacing.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/style.css"> <!-- This stylesheet dynamically changed from style.less -->
+    <!-- responsive css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
+
+    <link rel="stylesheet" href="~/nivo/themes/default/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/nivo/themes/light/light.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/nivo/themes/dark/dark.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/nivo/themes/bar/bar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/nivo/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/nivo/demo/style.css" type="text/css" media="screen" />
+    <style>
+        .rs-slider.rs-slider-style4.slider3 .content-part .sl-subtitle {
+            font-size: 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #65e95c;
+            margin-bottom: 6px;
+        }
+
+        .rs-slider.rs-slider-style4.slider3 .content-part .sl-title {
+            font-size: 40px;
+            line-height: 1.3;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 38px;
+        }
+
+        .rs-services.main-home.services-style1 .services-item .services-text .serial-number {
+            position: absolute;
+            left: -1px;
+            top: 19px;
+            color: #00000026;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        .rs-services.main-home .services-item .services-icon img {
+            height: 20px;
+            width: 20px;
+            max-width: unset;
+        }
+
+        .rs-services.main-home.services-style1.home-4-style .services-item:after {
+            background: none;
+        }
+
+        .rs-blog.style2.home3-blog-style .blog-item {
+            box-shadow: 0 6px 25px rgb(12 89 219 / 9%);
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff;
+            min-height: 400px;
+        }
+
+        .rs-blog.style2 .owl-stage-outer {
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .rs-breadcrumbs .breadcrumbs-inner {
+            padding: 0px 0 0px;
+        }
+
+        .full-width-header .rs-header.style2 .menu-area .main-menu .rs-menu ul.nav-menu li a {
+            color: #0a0a0a;
+            text-transform: uppercase;
+        }
+
+        .rs-breadcrumbs .breadcrumbs-inner .page-title {
+            text-transform: uppercase;
+        }
+
+        .rs-iconbox-area .box-inner .box-item {
+            background: none;
+            padding: 10px 12px 10px 12px;
+            text-align: left;
+            margin: 0 3px 0 3px;
+        }
+
+        .full-width-header .rs-header .menu-area .rs-menu-area {
+            display: flex;
+            align-items: center;
+            margin-right: 2px;
+            margin-left: 30px;
+        }
+
+        .rs-services.style6 .services-box-area .services-item .services-content .title {
+            font-size: 27px !important;
+            line-height: 1.5;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .rs-services.style6 .services-box-area .services-item .services-content p {
+            font-size: 15px;
+            text-align: justify;
+            font-weight: 500;
+        }
+
+        .features-content {
+            padding: 28px 50px 7px 30px;
+        }
+
+        .rs-why-choose.style1 .choose-content {
+            padding: 50px 130px 20px;
+        }
+
+        .sec-title .title:after {
+            content: "";
+            position: absolute;
+            border: 0;
+            width: 0;
+            height: 0;
+            background: none;
+            z-index: 1;
+            margin-left: 0;
+            left: 0;
+            top: 0;
+        }
+
+        .sec-title .title {
+            padding-top: 22px;
+        }
+
+        .readon.consultant.discover {
+            padding: 5px 20px 5px 20px;
+        }
+
+        .rs-carousel .owl-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .readon.submit {
+            padding: 4px 6px 4px 6px;
+        }
+
+        .rs-breadcrumbs .breadcrumbs-inner .page-title {
+            font-size: 42px;
+            line-height: 56px;
+            font-weight: 700;
+            margin-bottom: 0px;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+            padding-top: 15px;
+        }
+
+        .rs-breadcrumbs .breadcrumbs-inner {
+            padding: 0px 0 0px;
+            text-align: center;
+        }
+
+        .rs-services.style6 {
+            margin-top: 0px;
+        }
+
+
+
+        .nivo-caption {
+            text-shadow: 1px 1px 1px #36b43d;
+            color: #ff0000;
+            width: 100%;
+            text-align: center;
+            margin: 0 auto !important;
+            z-index: 8;
+            padding: 300px 10px;
+            opacity: 0.8;
+            font-size: 4vw;
+            font-weight: 900;
+            overflow: hidden;
+            display: none;
+            background-color: rgb(3 3 3 / 0.63);
+            font-family: Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+            -moz-opacity: 0.8;
+            filter: alpha(opacity=8);
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CM3VESSW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X0CM3VESSW');
+    </script>
+    <meta name="google-site-verification" content="acxwjfRMmuNWboU78oWL24rYnzThONbaMvsiwGdp1gs" />
+</head>
+<body class="home-6">
+    <div class="offwrap"></div>
+
+    <!--Preloader start here-->
+    <div id="pre-load">
+        <div id="loader" class="loader">
+            <div class="loader-container">
+                <div class='loader-icon'><img src="~/img/icon-sec44.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+    <!--Preloader area end here-->
+    <!-- Main content Start -->
+    <div class="main-content">
+
+        <!--Full width header Start-->
+        <div class="full-width-header">
+            <!--Header Start-->
+            <header id="rs-header" class="rs-header style2 header-transparent">
+                <!-- Topbar Area Start -->
+                <!-- Topbar Area End -->
+                <!-- Menu Start -->
+                <div class="menu-area menu-sticky">
+                    <div class="container-fluid custom">
+                        <div class="row-table">
+                            <div class="col-cell header-logo">
+                                <div class="logo-area">
+                                    <a asp-page="/Index">
+                                        <img src="~/assets/images/logo-sec.png" alt="logo">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-cell">
+                                <div class="rs-menu-area">
+                                    <div class="main-menu">
+                                        <nav class="rs-menu hidden-md">
+                                            <ul class="nav-menu">
+                                                <li>
+                                                    <a asp-page="/Index">Home</a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-page="/TourPage/NipssTour">Tours</a>
+                                                </li>
+                                                <li>
+                                                    <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                                                </li>
+                                                <li>
+                                                    <a asp-page="/Web/LibraryPage">Library</a>
+                                                </li>
+                                                <li>
+                                                    <a asp-page="/Web/Alumni">Alumni</a>
+                                                </li>
+
+                                                <li class="menu-item-has-children">
+                                                    <a href="#">About</a>
+                                                    <ul class="sub-menu">
+                                                        <li><a asp-page="/Profiles">Profiles</a></li>
+                                                        <li><a asp-page="/Syndicate">Syndicate</a></li>
+                                                        <li><a asp-page="/Web/Commuttee">Committee</a></li>
+                                                        <li><a asp-page="/About">About SEC 44</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {<a asp-page="/Dashboard/Index" asp-area="Participant">VLE DASHBOARD</a>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-page="/Account/Login" asp-area="Identity">VLE</a>
+                                                    }
+
+                                                </li>
+                                            </ul> <!-- //.nav-menu -->
+                                        </nav>
+                                    </div> <!-- //.main-menu -->
+                                </div>
+                            </div>
+                            <div class="col-cell">
+                                <div class="expand-btn-inner">
+                                    <ul>
+
+                                        <li class="humburger">
+                                            <a id="nav-expander" class="nav-expander bar" href="#">
+                                                <div class="bar">
+                                                    <span class="dot1"></span>
+                                                    <span class="dot2"></span>
+                                                    <span class="dot3"></span>
+                                                    <span class="dot4"></span>
+                                                    <span class="dot5"></span>
+                                                    <span class="dot6"></span>
+                                                    <span class="dot7"></span>
+                                                    <span class="dot8"></span>
+                                                    <span class="dot9"></span>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu End -->
+                <!-- Canvas Mobile Menu start -->
+                <nav class="right_menu_togle mobile-navbar-menu" id="mobile-navbar-menu">
+                    <div class="close-btn">
+                        <a id="nav-close2" class="nav-close">
+                            <div class="line">
+                                <span class="line1"></span>
+                                <span class="line2"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <ul class="nav-menu">
+                        <li>
+                            <a asp-page="/Index">Home</a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/TourPage/NipssTour">Tours</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Web/LibraryPage">Library</a>
+                        </li>
+                        <li>
+                            <a asp-page="/Web/Alumni">Alumni</a>
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">About</a>
+                            <ul class="sub-menu">
+                                <li><a asp-page="/Profiles">Profiles</a></li>
+                                <li><a asp-page="/Syndicate">Syndicate</a></li>
+                                <li><a asp-page="/Web/Commuttee">Committee</a></li>
+                                <li><a asp-page="/About">About SEC 44</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-page="/Account/Login" asp-area="Identity">VLE</a>
+                        </li>
+                    </ul> <!-- //.nav-menu -->
+
+                </nav>
+                <!-- Canvas Menu end -->
+            </header>
+            <!--Header End-->
+        </div>
+        @RenderBody()
+
+    </div>
+    <!-- Footer Start -->
+    <footer id="rs-footer" class="rs-footer style1 footer-home4-style" style="margin-top:200px;">
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row y-middle">
+
+                    <div class="col-lg-12">
+                        <div class="copyright text-lg-start text-center ">
+                            <h6 style="color:red;text-align:center;">
+                                © 2022 SEC 44 - Powered By Study Group Seven (7). All Rights Reserved.
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <!-- start scrollUp  -->
+    <div id="scrollUp" class="orange-color">
+        <i class="fa fa-angle-up"></i>
+    </div>
+    <!-- End scrollUp  -->
+    <!-- modernizr js -->
+    <script src="~/assets/js/modernizr-2.8.3.min.js"></script>
+    <!-- jquery latest version -->
+    <script type="text/javascript" src="~/nivo/demo/scripts/jquery-1.9.0.min.js"></script>
+
+    @*<script src="~/assets/js/jquery.min.js"></script>*@
+    <!-- Bootstrap v4.4.1 js -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!-- op nav js -->
+    <script src="~/assets/js/jquery.nav.js"></script>
+    <!-- isotope.pkgd.min js -->
+    <script src="~/assets/js/isotope.pkgd.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <!-- wow js -->
+    <script src="~/assets/js/wow.min.js"></script>
+    <!-- Skill bar js -->
+    <script src="~/assets/js/skill.bars.jquery.js"></script>
+    <!-- imagesloaded js -->
+    <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+    <!-- waypoints.min js -->
+    <script src="~/assets/js/waypoints.min.js"></script>
+    <!-- counterup.min js -->
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <!-- magnific popup js -->
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Nivo slider js -->
+    <script src="~/assets/inc/custom-slider/js/jquery.nivo.slider.js"></script>
+    <!-- contact form js -->
+    <script src="~/assets/js/contact.form.js"></script>
+    <!-- main js -->
+    <script src="~/assets/js/main.js"></script>
+
+
+    @*<script src="~/nivoslider/jquery.nivo.slider.js"></script>
+        <script src="~/nivoslider/jquery.scrollbox.js"></script>*@
+
+
+
+    @RenderSection("Scripts", required: false)
+
+
+    <script>
+        $('.horizontal .progress-fill span').each(function () {
+            var percent = $(this).html();
+            $(this).parent().css('width', percent);
+        });
+
+
+        $('.vertical .progress-fill span').each(function () {
+            var percent = $(this).html();
+            var pTop = 100 - (percent.slice(0, percent.length - 1)) + "%";
+            $(this).parent().css({
+                'height': percent,
+                'top': pTop
+            });
+        });
+    </script>
+    @*<script type="text/javascript">
+            $(window).load(function () {
+                //$('#slider').nivoSlider({
+                //    effect: 'random',
+                //    slices: 15,
+                //    boxCols: 8,
+                //    boxRows: 4,
+                //    animSpeed: 30000,
+                //    pauseTime: 50000000
+
+                //});
+
+            });
+        </script>*@
+
+    @*<script type="text/javascript" src="scripts/jquery-1.9.0.min.js"></script>*@
+    <script type="text/javascript" src="~/nivo/jquery.nivo.slider.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
+                animSpeed: 500, // Slide transition speed
+                pauseTime: 4000, // How long each slide will show
+                startSlide: 0, // Set starting Slide (0 index)
+                directionNav: true, // Next & Prev navigation
+                directionNavHide: false, // Only show on hover
+                controlNav: false, // 1,2,3... navigation
+                controlNavThumbs: false, // Use thumbnails for Control Nav
+                controlNavThumbsFromRel: false, // Use image rel for thumbs
+                controlNavThumbsSearch: '.jpg', // Replace this with...
+                controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+                keyboardNav: true, // Use left & right arrows
+                pauseOnHover: true, // Stop animation while hovering
+                manualAdvance: false, // Force manual transitions
+                captionOpacity: 0.8, // Universal caption opacity
+                prevText: 'Prev', // Prev directionNav text
+                nextText: 'Next', // Next directionNav text
+                randomStart: false, // Start on a random slide
+                beforeChange: function () { }, // Triggers before a slide transition
+                afterChange: function () { }, // Triggers after a slide transition
+                slideshowEnd: function () { }, // Triggers after all slides have been shown
+                lastSlide: function () { }, // Triggers when last slide is shown
+                afterLoad: function () { } // Triggers when slider has loaded
+            });
+        });
+    </script>
+
+</body>
+</html>

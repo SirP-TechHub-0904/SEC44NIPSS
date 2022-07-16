@@ -1,0 +1,18 @@
+﻿
+@model ICollection<SEC44NIPSS.Data.Model.Slider>
+
+
+
+
+<div id="wrapper">
+
+    <div class="slider-wrapper theme-default">
+        <div id="slider" class="nivoSlider">
+            @foreach (var x in Model)
+            {
+            <img src="@x.ImagePath" data-thumb="@x.ImagePath" alt="" title="@x.Title" />
+            }
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.ProfileAccount.UpdateRoleModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].AccountRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].OfficialRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].Sponsor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].AltPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profile[0].PsNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Profile) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficialRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sponsor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AltPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PsNumber)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./SendMail" asp-route-id="@item.Id" target="_blank">Send Activation Mail</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

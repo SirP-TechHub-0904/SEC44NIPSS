@@ -1,0 +1,169 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.AlumniSectionModel
+
+@{
+    ViewData["Title"] = "AlumniPage";
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                @Model.Alumni.Title
+                <span class="watermark">ALUMNI</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumbs End -->
+<!-- Team Section Start -->
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+
+        <div class="row">
+
+
+            <div class="col-md-4" style="margin:10px 0">
+                <a href="#demo-theme">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">THEME</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <a asp-page="/Web/Syndicate" asp-route-id="@Model.Alumni.Id">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">SYNDICATE</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <a asp-page="/Web/Toursx" asp-route-id="@Model.Alumni.Id">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">TOURS</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <a href="#demo-population">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">POPULATION</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" style="margin:10px 0">
+                <a asp-page="/Web/Profilex" asp-route-id="@Model.Alumni.Id">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">PROFILES</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4" style="margin:10px 0">
+                <a asp-page="/Web/projectx" asp-route-id="@Model.Alumni.Id">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">LEGACY PROJECTS</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4" style="margin:10px 0">
+                <a asp-page="/Web/Executivex" asp-route-id="@Model.Alumni.Id">
+                    <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 100px;">
+
+                        <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">EXECUTIVE</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+
+    .modal {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(77, 77, 77, 0.7);
+        transition: all 0.4s;
+    }
+
+        .modal:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    .modal__content {
+        border-radius: 4px;
+        position: relative;
+        /*width: 500px;*/
+        max-width: 90%;
+        background: #fff;
+        padding: 1em 2em;
+    }
+
+    .modal__footer {
+        text-align: right;
+    }
+
+    a {
+        color: #585858;
+    }
+
+    i {
+        color: #d02d2c;
+    }
+
+
+
+    .modal__close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #585858;
+        text-decoration: none;
+    }
+</style>
+
+<div id="demo-population" class="modal">
+    <div class="modal__content">
+        <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 185px;">
+
+            <h2 style="text-align: center; color: #000000; text-shadow: 1px 1px 1px #ff6a00; margin: 4px;">POPULATION</h2>
+            <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;margin:0px;">MALE (@Model.Male)</h3>
+            <h3 style="text-align: center; color: #000000; text-shadow: 1px 1px 1px #ff6a00; margin: 0px;">FEMALE (@Model.Female)</h3>
+        </div>
+
+        <a href="#" class="modal__close btn btn-danger" style="color:white;">close</a>
+    </div>
+</div>
+
+<div id="demo-theme" class="modal">
+    <div class="modal__content">
+        <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 185px;">
+
+            <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">THEME</h3>
+            <h3 style="text-align: center; color: #000000;text-shadow: 1px 1px 1px #ff6a00;">@Model.Alumni.GeneralTopic</h3>
+        </div>
+
+        <a href="#" class="modal__close btn btn-danger" style="color:white;">close</a>
+    </div>
+</div>
+

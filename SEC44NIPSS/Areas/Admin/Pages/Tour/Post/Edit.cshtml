@@ -1,0 +1,93 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Tour.Post.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TourPost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TourPost.Id" />
+            <input type="hidden" asp-for="TourPost.Photo" />
+            <div class="form-group">
+                <label asp-for="TourPost.Title" class="control-label"></label>
+                <input asp-for="TourPost.Title" class="form-control" />
+                <span asp-validation-for="TourPost.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.ShortDescription" class="control-label"></label>
+                <textarea id="" asp-for="TourPost.ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="TourPost.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.Description" class="control-label"></label>
+                <textarea id="mytextarea" asp-for="TourPost.Description" class="form-control"></textarea>
+                <span asp-validation-for="TourPost.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.TourSubCategoryId" class="control-label"></label>
+                <select asp-for="TourPost.TourSubCategoryId" class="form-control" asp-items="ViewBag.TourSubCategoryId"></select>
+                <span asp-validation-for="TourPost.TourSubCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.TourPostTypeId" class="control-label"></label>
+                <select asp-for="TourPost.TourPostTypeId" class="form-control" asp-items="ViewBag.TourPostTypeId"></select>
+                <span asp-validation-for="TourPost.TourPostTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.PostFileType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.TourPost.PostFileType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.PostFileType))), new { @class = "form-control" })
+                <span asp-validation-for="TourPost.PostFileType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TourPost.Photo" class="control-label">File</label>
+                <input name="file" type="file" class="form-control" />
+                <span asp-validation-for="TourPost.Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+</script>
+}

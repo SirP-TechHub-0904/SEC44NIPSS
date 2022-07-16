@@ -1,0 +1,83 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.QuestionnerPage.Opage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Option</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Option.OptionType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Option.OptionType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.OptionType))), new { @class = "form-control" })
+                <span asp-validation-for="Option.OptionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.ShortNote" class="control-label"></label>
+                <input asp-for="Option.ShortNote" class="form-control" />
+                <span asp-validation-for="Option.ShortNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.LongNote" class="control-label"></label>
+                <input asp-for="Option.LongNote" class="form-control" />
+                <span asp-validation-for="Option.LongNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.Yes" class="control-label"></label>
+                <input asp-for="Option.Yes" class="form-control" />
+                <span asp-validation-for="Option.Yes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.No" class="control-label"></label>
+                <input asp-for="Option.No" class="form-control" />
+                <span asp-validation-for="Option.No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.OptionList1" class="control-label"></label>
+                <input asp-for="Option.OptionList1" class="form-control" />
+                <span asp-validation-for="Option.OptionList1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.OptionList2" class="control-label"></label>
+                <input asp-for="Option.OptionList2" class="form-control" />
+                <span asp-validation-for="Option.OptionList2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.OptionList3" class="control-label"></label>
+                <input asp-for="Option.OptionList3" class="form-control" />
+                <span asp-validation-for="Option.OptionList3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.OptionList4" class="control-label"></label>
+                <input asp-for="Option.OptionList4" class="form-control" />
+                <span asp-validation-for="Option.OptionList4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.OptionList5" class="control-label"></label>
+                <input asp-for="Option.OptionList5" class="form-control" />
+                <span asp-validation-for="Option.OptionList5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Option.QuestionId" class="control-label"></label>
+                <select asp-for="Option.QuestionId" class ="form-control" asp-items="ViewBag.QuestionId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

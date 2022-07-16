@@ -1,0 +1,63 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.TourPage.InstitutionModel
+@{
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h6 class="card-title">Upload Tour Pictures and videos for @Model.SubCat.Title</h6>
+
+            </div>
+
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input asp-for="UserId" hidden="hidden" />
+                    <div class="form-group">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <label>File</label>
+                                <input type="file" name="filesPhoto" class="form-control" id="customFile">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <label>File Type</label>
+                                <select asp-for="TourFileId" class="form-control" asp-items="ViewBag.TourPostTypeId"></select>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <input type="submit" value="Upload" class="btn btn-indigo" style="margin-top:10px;" />
+                </form>
+                <span class="form-text text-muted">Accepted formats: gif, png, jpg</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var i in Model.TourPostList)
+    {
+        <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-img-actions mx-1 mt-1" style="height:400px;width:300px;">
+                        <img class="card-img img-fluid" src="@i.Photo" alt="">
+
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap justify-content-between mb-2">
+                            <span class="font-size-xs line-height-xs text-uppercase text-muted font-weight-semibold">@i.Title</span>
+                            <span class="font-size-xs line-height-xs text-uppercase text-success font-weight-semibold">@i.ShortDescription</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            }
+
+        </div>

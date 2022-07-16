@@ -1,0 +1,120 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.LoadingModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="~/img/icon-sec44.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <title> WELCOME TO THE NATIONAL INSTITUTE </title>
+</head>
+<body>
+
+
+    <section class="bg">
+        <div class="bg1" style="background-color: #fff; box-shadow: 1px 1px 1px 1px #0ba433; font-weight: 900;padding:5px 4px 40px 4px;">
+            <h1 style="text-align: center;">
+                <img src="~/img/download.png" style="margin:0 auto !important;text-align:center !important;min-height:150px;" class="img-fluid" />
+
+            </h1>
+            <h1 style="text-align: center; margin-top: 20px; font-weight: 900; color: #0ba433; ">DASHBOARD COMPLETED</h1>
+            <h6 style="text-align: center; margin-top: 10px 30px; font-weight: 900; color: #0ba433; ">
+                <a style="background-color: #0ba433; color: #fff; border: 2px solid #fff; text-align: center; padding: 10px; font-weight: 800;text-decoration:none;">Redirecting in 5 Sec..</a>
+
+            </h6>
+
+        </div>
+    </section>
+
+
+    <div class="loading-text">Loading 0% </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+<style>
+    @@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Ubuntu", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .bg {
+        background-color: #fff;
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        width: calc(100vw + 60px);
+        height: calc(100vh + 60px);
+        z-index: -1;
+        filter: blur(0px);
+    }
+
+    .loading-text {
+        color: #0ba433;
+        font-size: 50px;
+    }
+
+    .bg1 {
+        margin: 100px 100px;
+    }
+
+    @@media (max-width:575.98px) {
+        .bg1 {
+            margin: 50px 10px;
+        }
+    }
+</style>
+<script>
+    const bg = document.querySelector(".bg");
+    const loadText = document.querySelector(".loading-text");
+
+    let load = 0;
+    let int = setInterval(blurring, 70);
+
+    function blurring() {
+        load++
+        if (load > 99) {
+            clearInterval(int);
+        }
+        loadText.innerText = `${load}%`
+        loadText.style.opacity = scale(load, 0, 100, 1, 0)
+        bg.style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
+    }
+    const scale = (num, in_min, in_max, out_min, out_max) => {
+        return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    }
+
+</script>
+@*<script language=javascript>
+    setTimeout(function () {
+        window.location.href = 'https://localhost:44356/Participant/Dashboard/Index';
+    }, 10000);
+
+</script>*@
+<script language=javascript>
+    setTimeout(function () {
+        window.location.href = 'https://sec44nipss.com/Participant/Dashboard/Index';
+    }, 10000);
+
+</script>
+
+

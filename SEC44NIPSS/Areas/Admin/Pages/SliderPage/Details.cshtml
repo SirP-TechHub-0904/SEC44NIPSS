@@ -1,0 +1,43 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.SliderPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Slider</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider.ImagePath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slider.ImagePath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider.SliderType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slider.SliderType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider.Sort)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slider.Sort)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slider.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slider.Title)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Slider.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,80 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.LP.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>LegacyProject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LegacyProject.Id" />
+            <div class="form-group">
+                <label asp-for="LegacyProject.P1" class="control-label"></label>
+                <input asp-for="LegacyProject.P1" class="form-control" />
+                <span asp-validation-for="LegacyProject.P1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P2" class="control-label"></label>
+                <input asp-for="LegacyProject.P2" class="form-control" />
+                <span asp-validation-for="LegacyProject.P2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P3" class="control-label"></label>
+                <input asp-for="LegacyProject.P3" class="form-control" />
+                <span asp-validation-for="LegacyProject.P3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P4" class="control-label"></label>
+                <input asp-for="LegacyProject.P4" class="form-control" />
+                <span asp-validation-for="LegacyProject.P4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P5" class="control-label"></label>
+                <input asp-for="LegacyProject.P5" class="form-control" />
+                <span asp-validation-for="LegacyProject.P5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P6" class="control-label"></label>
+                <input asp-for="LegacyProject.P6" class="form-control" />
+                <span asp-validation-for="LegacyProject.P6" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P7" class="control-label"></label>
+                <input asp-for="LegacyProject.P7" class="form-control" />
+                <span asp-validation-for="LegacyProject.P7" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P8" class="control-label"></label>
+                <input asp-for="LegacyProject.P8" class="form-control" />
+                <span asp-validation-for="LegacyProject.P8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P9" class="control-label"></label>
+                <input asp-for="LegacyProject.P9" class="form-control" />
+                <span asp-validation-for="LegacyProject.P9" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LegacyProject.P10" class="control-label"></label>
+                <input asp-for="LegacyProject.P10" class="form-control" />
+                <span asp-validation-for="LegacyProject.P10" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

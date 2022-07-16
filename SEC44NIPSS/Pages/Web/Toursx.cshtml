@@ -1,0 +1,39 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.ToursxModel
+@{
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                Tours for @Model.Alumni.Title
+                <span class="watermark">Syndicate</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumbs End -->
+<!-- Team Section Start -->
+<div class="rs-team style1 team-style1 pt-100 pb-100 md-pt-70 md-pb-70">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.TourCategory)
+            {
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="team-wrap">
+                        
+                        <div class="team-content">
+                            <h3 class="team-name"><a asp-page="/Web/" asp-route-id="@item.Id" asp-route-xgroup="@item.Title">@item.Title</a></h3>
+                           
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

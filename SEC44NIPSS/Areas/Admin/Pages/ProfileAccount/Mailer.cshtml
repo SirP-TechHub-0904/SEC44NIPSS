@@ -1,0 +1,65 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.ProfileAccount.MailerModel
+@{
+}
+
+
+
+
+<link href="~/summernote/summernote-bs4.css" rel="stylesheet" />
+<div class="box">
+    <div class="box-body">
+
+        <div class="container">
+            <h4>Compose and send mail</h4>
+            <hr />
+            <div class="row">
+
+                @TempData["success"]
+                @TempData["error"]
+                <div class="col-md-12">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input asp-for="ms.Recipient" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Title/Subject</label>
+                            <input asp-for="ms.Title" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Message</label>
+                            @* <textarea name="message" class="form-control"></textarea>*@
+                            <textarea id="mytextarea" asp-for="Messagex" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EmailId" class="control-label"></label>
+                            <select asp-for="EmailId" class="form-control" asp-items="ViewBag.EmailId"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Send" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/summernote/summernote-bs4.min.js"></script>
+    <script>
+        $(function () {
+            // Summernote
+            $('#mytextarea').summernote({ height: 300, minHeight: null, maxHeight: null, focus: !0 })
+        })
+    </script>
+}

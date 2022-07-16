@@ -1,0 +1,85 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.QuestionnerPage.Opage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Option</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.ShortNote)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.ShortNote)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.LongNote)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.LongNote)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.Yes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.Yes)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.No)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.No)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionList1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionList1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionList2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionList2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionList3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionList3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionList4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionList4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.OptionList5)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.OptionList5)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Option.Question)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Option.Question.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Option.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

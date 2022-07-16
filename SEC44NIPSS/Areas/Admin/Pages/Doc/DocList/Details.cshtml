@@ -1,0 +1,67 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Doc.DocList.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.ShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocumentCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocumentCategory.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.Profile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.Profile.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.FileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.FileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocType)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Document.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

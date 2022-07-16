@@ -1,0 +1,46 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.StudyGroupPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudyGroup</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroup.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroup.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroup.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroup.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroup.AKA)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroup.AKA)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudyGroup.SortNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudyGroup.SortNumber)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="StudyGroup.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,60 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.MessagingPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Message.Id" />
+            <div class="form-group">
+                <label asp-for="Message.Recipient" class="control-label"></label>
+                <input asp-for="Message.Recipient" class="form-control" />
+                <span asp-validation-for="Message.Recipient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.Mail" class="control-label"></label>
+                <input asp-for="Message.Mail" class="form-control" />
+                <span asp-validation-for="Message.Mail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.Title" class="control-label"></label>
+                <input asp-for="Message.Title" class="form-control" />
+                <span asp-validation-for="Message.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.Retries" class="control-label"></label>
+                <input asp-for="Message.Retries" class="form-control" />
+                <span asp-validation-for="Message.Retries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.NotificationStatus" class="control-label"></label>
+                <select asp-for="Message.NotificationStatus" class="form-control"></select>
+                <span asp-validation-for="Message.NotificationStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.NotificationType" class="control-label"></label>
+                <select asp-for="Message.NotificationType" class="form-control"></select>
+                <span asp-validation-for="Message.NotificationType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

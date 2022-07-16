@@ -1,0 +1,65 @@
+﻿@page
+@model SEC44NIPSS.Areas.Identity.Pages.Account.RequestEmailModel
+@{
+    ViewData["Title"] = "Request";
+    Layout = "/Pages/Shared/_Login.cshtml";
+}
+
+@if (TempData["sendt"] != null)
+{
+    <h2 class="nm-tc nm-mb-1">Kindly Check your Email for your Login Information. Thanks</h2>
+}
+else if (TempData["request"] != null)
+{
+    <h2 class="nm-tc nm-mb-1">Information Received. You will be emailed shortly.</h2>
+
+}
+else if (TempData["error"] != null)
+{
+    <h2 class="nm-tc nm-mb-1">Unable to Find Your Account.</h2>
+    <p style="text-align:center;">Possible Errors: submition of wrong email previously.</p>
+    <p style="text-align:center;">Kindly fill the form below for account recovery.</p>
+    <form method="post" asp-page-handler="SendForm">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @TempData["alert"]
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input id="inputEmail" asp-for="Input.Email" class="form-control" type="email" tabindex="1" placeholder="" required="required">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Fullname</label>
+            <input id="inputEmail" asp-for="Fullname" class="form-control" type="text" tabindex="1" placeholder="" required="required">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Phone Number</label>
+            <input id="inputEmail" asp-for="Phone" class="form-control" type="text" tabindex="1" placeholder="" required="required">
+        </div>
+
+        <button type="submit" class="btn btn-block btn-primary text-uppercase nm-btn">Send Me My Login Details</button>
+
+
+    </form>
+}
+else
+{
+
+
+    <h2 class="nm-tc nm-mb-1">Kindly Type Your Email Address</h2>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @TempData["alert"]
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input id="inputEmail" asp-for="Input.Email" class="form-control" type="email" tabindex="1" placeholder="" required="required">
+        </div>
+
+
+        <button type="submit" class="btn btn-block btn-primary text-uppercase nm-btn">Send Me My Login Details</button>
+
+
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

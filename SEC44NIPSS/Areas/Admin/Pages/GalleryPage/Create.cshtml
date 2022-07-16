@@ -1,0 +1,75 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.GalleryPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Gallery</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Gallery.Title" class="control-label"></label>
+                <input asp-for="Gallery.Title" class="form-control" />
+                <span asp-validation-for="Gallery.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gallery.ProfileId" class="control-label">Profile</label>
+                <select asp-for="Gallery.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                <span asp-validation-for="Gallery.ProfileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Image</label>
+                <input class="form-control" type="file" name="Gallery" id="gallery-photo-add" />
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Gallery.UseAsActivity" /> @Html.DisplayNameFor(model => model.Gallery.UseAsActivity)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Gallery.DontShow" /> @Html.DisplayNameFor(model => model.Gallery.DontShow)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="myHouse">Choose your magical house:</label>
+                <input list="magicHouses" id="myHouse" name="myHouse" placeholder="type here..." />
+                <datalist id="magicHouses" asp-items="Model.StateSuggestions">
+                    @*<option value="Gryfindor" />
+                    <option value="Hufflepuff" />
+                    <option value="Slytherin" />
+                    <option value="Ravenclaw" />
+                    <option value="Horned Serpent" />
+                    <option value="Thunderbird" />
+                    <option value="Pukwudgie" />
+                    <option value="Wampus" />*@
+
+                </datalist>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

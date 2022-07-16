@@ -1,0 +1,89 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Doc.DocList.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Document</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Document.Id" />
+            <input type="hidden" asp-for="Document.FileName" />
+            <input type="hidden" asp-for="Document.CoverImage" />
+            <div class="form-group">
+                <label asp-for="Document.Title" class="control-label"></label>
+                <input asp-for="Document.Title" class="form-control" />
+                <span asp-validation-for="Document.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.ShortDescription" class="control-label"></label>
+                <textarea asp-for="Document.ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="Document.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.Description" class="control-label"></label>
+                <textarea id="summernote" asp-for="Document.Description" class="form-control"></textarea>
+                <span asp-validation-for="Document.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input asp-for="Document.DontShow" /> Dont Show
+                <span asp-validation-for="Document.DontShow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.Date" class="control-label"></label>
+                <input asp-for="Document.Date" class="form-control" />
+                <span asp-validation-for="Document.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.DocumentCategoryId" class="control-label"></label>
+                <select asp-for="Document.DocumentCategoryId" class="form-control" asp-items="ViewBag.DocumentCategoryId"></select>
+                <span asp-validation-for="Document.DocumentCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.ProfileId" class="control-label"></label>
+                <select asp-for="Document.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                <span asp-validation-for="Document.ProfileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.EventId" class="control-label"></label>
+                <select asp-for="Document.EventId" class="form-control" asp-items="ViewBag.EventId">
+                    <option>None</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.CoverImage" class="control-label"></label>
+                <input class="form-control" type="file" name="CoverImage" id="gallery-photo-add" />
+                <span asp-validation-for="Document.CoverImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.FileName" class="control-label"></label>
+                <input class="form-control" type="file" name="filesPhoto" id="gallery-photo-add" />
+                <span asp-validation-for="Document.FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document.DocType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Document.DocType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.DocType))), new { @class = "form-control" })
+                <span asp-validation-for="Document.DocType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

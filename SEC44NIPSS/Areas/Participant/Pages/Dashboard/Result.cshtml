@@ -1,0 +1,59 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.ResultModel
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            RAPID TEST RESULT
+
+        </h3>
+        <h6><a asp-page="RapidTestPage" style="" class="btn btn-primary">Back to List</a></h6>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>TITLE</th>
+                    <th>
+                        @Model.UserAnswer.Title
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>TOTAL QUESTION</th>
+                    <th>
+                        @Model.UserAnswer.QuestionNumber
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>START TIME</th>
+                    <th>
+                        @Model.UserAnswer.StartTime
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>DURATION</th>
+                    <th>
+                        5 MINUTES
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>SCORE</th>
+                    <th>
+                        @Model.UserAnswer.Score
+                    </th>
+
+                </tr>
+            </thead>
+         
+        </table>
+    </div>
+</div>

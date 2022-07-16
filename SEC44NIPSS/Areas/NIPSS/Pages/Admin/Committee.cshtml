@@ -1,0 +1,59 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.CommitteeModel
+
+@{
+    ViewData["Title"] = "Committee";
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            @Model.CommitteeCategory.Count() Committee
+        </h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+
+                    <th>S/N</th>
+
+                    <th>
+                        Committe
+                    </th>
+                    <th>
+                        Members
+                    </th>
+                  
+                </tr>
+            </thead>
+            @{
+                int sno = 0;
+            }
+
+            <tbody>
+                @foreach (var item in Model.CommitteeCategory)
+                {
+                    <tr>
+                        <td>
+                            @{ sno++; }
+                            @sno
+                        </td>
+
+                        <td>
+                            <a asp-page="/Admin/CommitteeMembers" asp-area="NIPSS" asp-route-id="@item.Id">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </a>
+                        </td>
+                        <td>
+                            @item.Committees.Count()
+                        </td>
+                       
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

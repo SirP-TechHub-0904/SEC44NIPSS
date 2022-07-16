@@ -1,0 +1,94 @@
+﻿@page
+@model SEC44NIPSS.Pages.TourPage.PostModel
+
+@{
+    ViewData["Title"] = "Post";
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                @Model.Title TOURS
+                <span class="watermark">NIPSS SEC 44</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0;">
+                    <div class="row">
+
+
+                        <div class="col-md-9">
+
+                            <div class="row">
+                                @foreach (var i in Model.TourPost)
+                                {
+                                    <div class="col-md-12">
+                                        <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                                            @if (i.PostFileType == Data.Model.PostFileType.IMG)
+                                            {
+                                                <img src="@i.Photo" style="max-height:600px;margin:0 auto; text-align:center;" class="img-fluid" />
+
+                                            }
+                                            else if (i.PostFileType == Data.Model.PostFileType.VIDEO)
+                                            {
+                                                <video width="" style="width:100%;height:380px" controls="controls">
+                                                    <source src="@i.Photo" type="video/mp4">
+                                                    Your browser does not support HTML5 video.
+                                                </video>
+                                            }
+
+                                            <div class="card-body" style="padding: 5px;">
+
+                                               
+                                                <div>
+                                                    @Html.Raw(i.ShortDescription)
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        <h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;">VARIOUS TOURS</h4>
+                                    </th>
+                                </tr>
+                              
+                                @foreach (var item in Model.TourSubCategories)
+                                {
+                                    <tr>
+                                        <th>
+                                            <a asp-page="/TourPage/Post" asp-route-id="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;font-size:14px;line-height:18px;margin:0 5px;"> @Html.DisplayFor(modelItem => item.Title)</h6></a>
+                                        </th>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+

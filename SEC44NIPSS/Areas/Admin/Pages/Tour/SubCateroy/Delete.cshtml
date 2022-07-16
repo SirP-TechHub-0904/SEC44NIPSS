@@ -1,0 +1,46 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Tour.SubCateroy.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TourSubCategory</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TourSubCategory.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TourSubCategory.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TourSubCategory.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TourSubCategory.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TourSubCategory.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TourSubCategory.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TourSubCategory.TourCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TourSubCategory.TourCategory.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="TourSubCategory.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

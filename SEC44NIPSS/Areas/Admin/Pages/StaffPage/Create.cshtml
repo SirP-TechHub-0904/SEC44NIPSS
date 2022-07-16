@@ -1,0 +1,79 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.StaffPage.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>NipssStaff</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email" class="control-label"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Title" class="control-label"></label>
+                <input asp-for="Profile.Title" class="form-control" />
+                <span asp-validation-for="Profile.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.FullName" class="control-label"></label>
+                <input asp-for="Profile.FullName" class="form-control" />
+                <span asp-validation-for="Profile.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.PhoneNumber" class="control-label"></label>
+                <input asp-for="Profile.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Profile.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.Position" class="control-label"></label>
+                <input asp-for="NipssStaff.Position" class="form-control" />
+                <span asp-validation-for="NipssStaff.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.SortOrder" class="control-label"></label>
+                <input asp-for="NipssStaff.SortOrder" class="form-control" />
+                <span asp-validation-for="NipssStaff.SortOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.Manifesto" class="control-label"></label>
+                <input asp-for="NipssStaff.Manifesto" class="form-control" />
+                <span asp-validation-for="NipssStaff.Manifesto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.IsExecutive" class="control-label"></label>
+                <input asp-for="NipssStaff.IsExecutive" />
+                <span asp-validation-for="NipssStaff.IsExecutive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>Picture</label>
+                        <input class="form-control" type="file" accept="image/*" name="filesPhoto" id="gallery-photo-add" />
+                        <div class="gallery"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

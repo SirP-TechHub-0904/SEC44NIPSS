@@ -1,0 +1,62 @@
+﻿@page
+@model SEC44NIPSS.Pages.TourPage.TourSectionModel
+
+@{
+    ViewData["Title"] = "TourSection";
+}
+
+
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                @Model.TourCategory.Title TOURS
+                <span class="watermark">NIPSS SEC 44</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="rs-team rs-inner-blog style1 team-style1 pt-100 pb-100 md-pt-70 md-pb-70" style="background-color:#ededed;">
+    <div class="container-fluid custom rs-iconbox-area">
+        <div class="row">
+
+            <h4>@Model.TourCategory.SubTitle</h4>
+            @foreach (var item in Model.TourSubCategory)
+            {
+                <div class="col-md-4" style="margin:10px 0">
+                    <a asp-page="/TourPage/Post" asp-route-id="@item.Id">
+                        <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0; height: 160px;">
+                            <h4 style="text-align: center; color: #000000; text-shadow: 1px 1px 1px #ff6a00; margin: 0px; font-size: 3.1vh; line-height: 4.0vh; ">@Html.DisplayFor(modelItem => item.Title)</h4>
+                            <h6 style="font-size:15px;font-weight:900;text-align:center !important;">@Html.DisplayFor(modelItem => item.StudyGroup.Title)</h6>
+                            
+                        </div>
+                    </a>
+                </div>
+
+
+                @*<div class="col-lg-4 md-pl-15">
+
+                    <div class="box-inner" style="background-color:@item.Color !important;color:#ededed;box-shadow: 5px 8px 20px 6px #808080;">
+                        <div class="box-item" style="margin-bottom: 5px; margin-top: 0px; padding-bottom: 5px; padding-top: 5px; ">
+                            <div class="icon-box" style="margin-bottom: 5px; margin-top: 5px; padding-bottom: 5px; padding-top: 5px; ">
+                                <a asp-page="/TourPage/Post" asp-route-id="@item.Id">
+                                    <h4 class="title pb-22 dance_hover" style="margin-bottom: 5px; margin-top: 5px; padding:10px;text-align:left;min-height:50px;">
+                                        @Html.DisplayFor(modelItem => item.Title)<br /> <span style="font-size:15px;"> By <i>@Html.DisplayFor(modelItem => item.StudyGroup.Title)</i></span>
+                                    </h4>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>*@
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.StaffPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>NipssStaff</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NipssStaff.Id" />
+            <input type="hidden" asp-for="NipssStaff.ProfileId" />
+            <div class="form-group">
+                <label asp-for="NipssStaff.Position" class="control-label"></label>
+                <input asp-for="NipssStaff.Position" class="form-control" />
+                <span asp-validation-for="NipssStaff.Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.SortOrder" class="control-label"></label>
+                <input asp-for="NipssStaff.SortOrder" class="form-control" />
+                <span asp-validation-for="NipssStaff.SortOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.Manifesto" class="control-label"></label>
+                <input asp-for="NipssStaff.Manifesto" class="form-control" />
+                <span asp-validation-for="NipssStaff.Manifesto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NipssStaff.IsExecutive" class="control-label"></label>
+                <input asp-for="NipssStaff.IsExecutive" />
+                <span asp-validation-for="NipssStaff.IsExecutive" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

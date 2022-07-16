@@ -1,0 +1,44 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.SyndicateModel
+@{
+}
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                Study Groups for @Model.Alumni.Title
+                <span class="watermark">Syndicate</span>
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumbs End -->
+<!-- Team Section Start -->
+<div class="rs-team style1 team-style1 pt-100 pb-100 md-pt-70 md-pb-70">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.StudyGroup)
+            {
+                <div class="col-lg-4 col-md-6 mb-30">
+                    <div class="team-wrap">
+                        <div class="image-wrap">
+                            <a asp-page="/StudyParticipants" asp-route-id="@item.Id" asp-route-xgroup="@item.Title">
+                                <img loading="lazy" src="@item.Photo" class="attachment-full size-full wp-post-image" alt="">
+                            </a>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name"><a asp-page="/StudyParticipants" asp-route-id="@item.Id" asp-route-xgroup="@item.Title">@item.Title</a></h3>
+                            <span class="team-title">[@item.AKA]</span><br />
+                            <span class="team-title">@item.StudyGroupMemebers.Count() Participants</span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

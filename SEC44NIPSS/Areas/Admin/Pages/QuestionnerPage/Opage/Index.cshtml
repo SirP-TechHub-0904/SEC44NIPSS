@@ -1,0 +1,96 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.QuestionnerPage.Opage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].ShortNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].LongNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].Yes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].No)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionList1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionList2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionList3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionList4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].OptionList5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option[0].Question)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Option) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LongNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionList1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionList2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionList3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionList4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionList5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

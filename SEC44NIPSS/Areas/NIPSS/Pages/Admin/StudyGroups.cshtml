@@ -1,0 +1,93 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.StudyGroupsModel
+
+@{
+    ViewData["Title"] = "StudyGroups";
+}
+<style>
+    .box {
+        position: relative;
+        border-radius: 3px;
+        background: #ffffff;
+        border-top: 3px solid #3c8dbc;
+        margin-bottom: 20px;
+        width: 100%;
+        box-shadow: 0 1px 1px rgb(60, 141, 188);
+    }
+</style>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            STUDY GROUPS (@Model.StudyGroup.Count() GROUPS)
+        </h3>
+
+    </div>
+</div>
+    @foreach (var item in Model.StudyGroup)
+    {
+
+
+        <div class="box">
+            <div class="box-header" style="background-color: #3c8dbc;color:#ffffff;">
+                <h3 class="box-title">
+                    @item.Title (@item.StudyGroupMemebers.Count() PARTICIPANTS)
+                </h3>
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+
+                            <th>S/N</th>
+                            <th>
+                                Fullname
+                            </th>
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                PhoneNumber
+                            </th>
+                            <th>Photo</th>
+                        </tr>
+                    </thead>
+                    @{
+                        int sno = 0;
+                    }
+
+                    <tbody>
+                        @foreach (var i in item.StudyGroupMemebers)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => i.Profile.Title)
+
+                                    @Html.DisplayFor(modelItem => i.Profile.FullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => i.Profile.User.Email)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => i.Profile.PhoneNumber)
+                                </td>
+
+                                <td>
+                                    <img src="@i.Profile.AboutProfile" height="30" />
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }

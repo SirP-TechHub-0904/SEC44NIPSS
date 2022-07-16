@@ -1,0 +1,70 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            Rapid Questions
+            <a asp-page="Create" style="float:right;">Create New</a>
+        </h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RapidQuestion[0].Question)
+                    </th>
+                    <th>Option 1</th>
+                    <th>Option 2</th>
+                    <th>Option 3</th>
+                    <th>Option 4</th>
+                    <th>Answer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+                int sno = 0;
+            }
+            <tbody>
+                @foreach (var item in Model.RapidQuestion)
+                {
+                    <tr>
+                        <td>
+                            @{ sno++; }
+                            @sno
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.Question)
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.RapidOptions.Option1)
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.RapidOptions.Option2)
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.RapidOptions.Option3)
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.RapidOptions.Option4)
+                        </td>
+                        <td style="word-break:break-all;">
+                            @Html.DisplayFor(modelItem => item.RapidOptions.Answer)
+                        </td>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            
+        </tbody>
+        </table>
+    </div>
+</div>

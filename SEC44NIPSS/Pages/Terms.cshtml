@@ -1,0 +1,66 @@
+﻿@page
+@model SEC44NIPSS.Pages.ReportAbusePageModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>THE NATIONAL INSTITUTE (SEC 44) -  FORM TERMS OF USE</title>
+    <meta property="og:site_name" content="FORM TERMS OF USE">
+    <meta property="og:title" content="FORM TERMS OF USE" />
+    <meta property="og:description" content="THE NATIONAL INSTITUTE (SEC 44)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:updated_time" content="@DateTime.UtcNow.AddHours(1)" />
+
+        <meta property="og:image" itemprop="image" content="https://sec44nipss.com/img/icon-sec44.png">
+        <link rel="shortcut icon" href="https://sec44nipss.com/img/icon-sec44.png">
+    
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/dashboard/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/skins/_all-skins.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0CM3VESSW"></script>
+
+
+
+
+</head>
+<body class="">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h3>THE NATIONAL INSTITUTE FORM (SEC 44)</h3>
+            <h6>FORM TERMS OF USE</h6>
+            
+
+        </div>
+    </div>
+    </body>
+</html>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

@@ -1,0 +1,107 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ProjectPage.IndexContributionModel
+@{
+}
+<style>
+    /*  .box {
+        margin-bottom: 1.25rem;
+        box-shadow: 0 1px 3px rgb(237 230 230), 0 1px 2px rgb(237 205 205);
+        background-color: #726a6a;
+    }*/
+    input[type=checkbox], input[type=radio] {
+        margin: 0 0;
+        margin-top: 1px\9;
+        line-height: normal;
+        font: inherit;
+        color: currentColor;
+        width: 2.15em;
+        height: 2.15em;
+        border: 0.15em solid #3a8ebe;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .custom-control-label {
+        font-size: 18px;
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div class="col-xl-12">
+
+            <!-- Traffic sources -->
+            <div class="box" style="margin:5px;">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title" style="text-align:center;">CONTRIBUTION AMOUNT VOTING </h3>
+
+                    </div>
+                    <div class="box-header">
+                        <h3 class="box-title" style="text-align:center;">
+                            Kindly vote the amount you want us to give to our colleague as will later stipulate in our constitution.       
+                            <br />
+                            Let us kindly vote for these four options
+                        </h3>
+                       
+
+                        @*<h6 style="text-align:center;">Your Voting with <i><strong><u>@Model.Email</u></strong></i>.... Kindly Sign Out if not your email.</h6>*@
+                    </div>
+                </div>
+                <div class="box" style="margin:5px;">
+                    <div class="box-body">
+                        <form method="post">
+                            <input type="hidden" asp-for="Email" hidden="hidden" />
+
+                            <div class="form-group">
+
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" required="required" class="custom-control-input" asp-for="LegacyProjectAnswer.Answer" value="C1">
+                                    <span class="custom-control-label">@Model.LegacyProject.C1</span>
+                                </label>
+
+
+                            </div>
+                            <div class="form-group">
+
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" required="required" class="custom-control-input" asp-for="LegacyProjectAnswer.Answer" value="C2">
+                                    <span class="custom-control-label">@Model.LegacyProject.C2</span>
+                                </label>
+
+
+                            </div>
+                            <div class="form-group">
+
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" required="required" class="custom-control-input" asp-for="LegacyProjectAnswer.Answer" value="C3">
+                                    <span class="custom-control-label">@Model.LegacyProject.C3</span>
+                                </label>
+
+
+                            </div>
+                            <div class="form-group">
+
+                                <label class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" required="required" class="custom-control-input" asp-for="LegacyProjectAnswer.Answer" value="C4">
+                                    <span class="custom-control-label">@Model.LegacyProject.C4</span>
+                                </label>
+
+
+                            </div>
+                        <div class="form-group">
+                                <label asp-for="LegacyProjectAnswer.Message" class="control-label">Add your comment if any.</label>
+                                <textarea id="mytextarea" asp-for="LegacyProjectAnswer.Message" class="form-control"></textarea>
+                                <span asp-validation-for="LegacyProjectAnswer.Message" class="text-danger"></span>
+                            </div>
+
+                            <div class="">
+
+                                <input type="submit" class="btn btn-primary btn-lg" style="width:100%;" value="Vote Now" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

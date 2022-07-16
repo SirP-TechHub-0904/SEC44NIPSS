@@ -1,0 +1,60 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.StudyGroupPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyGroup[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyGroup[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyGroup[0].AKA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyGroup[0].SortNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudyGroup[0].Alumni.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.StudyGroup) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AKA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alumni.Title)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
