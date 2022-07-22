@@ -709,6 +709,7 @@
     .card-title {
         margin-bottom: 0;
     }
+
     .padding-0 {
         padding: 0;
         box-shadow: 0px 2px 1px 1px #52ac78;
@@ -724,37 +725,37 @@
             <div class="heading-border-line"></div>
         </div>
         <div class="row">
-            @foreach (var x in Model.NipssStaffList)
-            {
-                <div class="col-md-4">
-                    <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
-                        @if (!String.IsNullOrEmpty(x.AboutProfile))
-                        {
+                @foreach (var x in Model.NipssStaffList)
+                {
+                    <div class="col-md-4">
+                        <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                            @if (!String.IsNullOrEmpty(x.Photo))
+                            {
 
-                            <div class="" style="height: 500px; background: url('@x.AboutProfile'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+                                <div class="" style="height: 500px; background: url('@x.Photo'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
+
+                                </div>
+                            }
+                            <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
+
+                                <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Fullname</h6>
+                                <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
+                                    @x.Position
+                                </h6>
 
                             </div>
-                        }
-                        else
-                        {
-
-                            <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
-
-                            </div>
-                        }
-                        <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
-
-                            <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Title @x.FullName</h6>
-                            <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
-                                @x.Position
-                            </h6>
-
                         </div>
                     </div>
-                </div>
 
-            }
-        </div>
+                }
+            </div>
         <div class="row y-middle">
 
             <div class="col-lg-12">
@@ -778,35 +779,35 @@
         </div>
         <div class="row">
             @foreach (var x in Model.Executive)
-            {
-                <div class="col-md-4">
-                    <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
-                        @if (!String.IsNullOrEmpty(x.Profile.AboutProfile))
-                        {
+                {
+            <div class="col-md-4">
+                <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                    @if (!String.IsNullOrEmpty(x.Profile.AboutProfile))
+                            {
 
-                            <div class="" style="height: 500px; background: url('@x.Profile.AboutProfile'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+                    <div class="" style="height: 500px; background: url('@x.Profile.AboutProfile'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
 
-                            </div>
-                        }
-                        else
-                        {
+                    </div>
+                            }
+                            else
+                            {
 
-                            <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
+                    <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
 
-                            </div>
-                        }
-                        <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
+                    </div>
+                            }
+                    <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
 
-                            <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Profile.Title @x.Profile.FullName</h6>
-                            <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
-                                @x.Position
-                            </h6>
+                        <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Profile.Title @x.Profile.FullName</h6>
+                        <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
+                            @x.Position
+                        </h6>
 
-                        </div>
                     </div>
                 </div>
+            </div>
 
-            }
+                }
         </div>
         <div class="row y-middle">
 
@@ -838,35 +839,56 @@
         <div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="true" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="3" data-md-device-nav="false" data-md-device-dots="true">
 
             @foreach (var i in Model.News)
-            {
-                <div class="blog-item" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 15px; background-color: #f3f0f0;">
-                    <div class="image-wrap text-justify">
-                        <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
-                            <img src="@i.Image" alt="@i.Title">
-                        </a>
-                    </div>
-                    <div class="blog-content">
-                        <ul class="blog-meta mb-10" style="margin-bottom:3px;">
-
-                            <li class="date"> <i class="fa fa-calendar-check-o"></i> @i.Date.ToString("dd MMM yyyy")</li>
-                        </ul>
-                        <h6 class="blog-title text-justify" style="margin-bottom:9px;">
-                            <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
-                                @i.Title
-                            </a>
-                        </h6>
-                        <p style="margin-bottom:9px;" class=" text-justify">
-                            @i.ShortDescription ... <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title" style="font-size:10px;font-style:italic;color:#ff0000;">Continue Reading</a>
-                        </p>
-                    </div>
+                {
+            <div class="blog-item" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 15px; background-color: #f3f0f0;">
+                <div class="image-wrap text-justify">
+                    <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                        <img src="@i.Image" alt="@i.Title">
+                    </a>
                 </div>
-            }
+                <div class="blog-content">
+                    <ul class="blog-meta mb-10" style="margin-bottom:3px;">
+
+                        <li class="date"> <i class="fa fa-calendar-check-o"></i> @i.Date.ToString("dd MMM yyyy")</li>
+                    </ul>
+                    <h6 class="blog-title text-justify" style="margin-bottom:9px;">
+                        <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                            @i.Title
+                        </a>
+                    </h6>
+                    <p style="margin-bottom:9px;" class=" text-justify">
+                        @i.ShortDescription ... <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title" style="font-size:10px;font-style:italic;color:#ff0000;">Continue Reading</a>
+                    </p>
+                </div>
+            </div>
+                }
 
         </div>
     </div>
 </div>
 <!-- Blog End -->
-<div class="rs-contact contact-style2 md-pt-70 md-pb-70">
+<style>
+    .bg12 {
+        background-image: url(../img/about-bg2.jpg);
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+</style>
+<div id="rs-services" class="rs-services chooseus-style about-style pt-20 pb-20 md-pt-10 md-pb-10" style="background-color:#000000;">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-12 col-md-12 md-mb-30">
+                <h4 style="font-size: 40px; font-weight: 900; color: white; padding: 20px; text-align: center;">Works and Maintainance Department</h4>
+                <div class="vertical-center" style="text-align: center !important;">
+                    <a class="readon consultant discover" style="border-radius:6px;text-align:center !important;" asp-page="/TicketPage/Requisitionform" asp-area="Participant">Report Repairs, Maintainance and Challenges</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rs-contact contact-style2 md-pt-70 md-pb-70" style="margin-top:30px;">
     <div class="container custom">
         <div class="row y-middle">
 
@@ -874,10 +896,10 @@
                 <div class="contact-wrap">
                     <div class="sec-title3 mb-35">
                         @*<span class="sub-title">Contact Us</span>*@
-                        <h2 class="title pb-25">
+                        <h2 class="title pb-25" style="text-align:center;">
                             Contact Us/Contributions
                         </h2>
-                        <h6>We will appreciate your Kind Contributions to make SEC 44 better. Thank you.</h6>
+                        <h6 style="text-align:center;">We will appreciate your Kind Contributions to make SEC 44 better. Thank you.</h6>
                         <div class="heading-border-line left-style"></div>
                     </div>
                     <div id="form-messages"></div>
@@ -986,12 +1008,12 @@
 
     @if (User.Identity.IsAuthenticated)
     {
-        <input type="hidden" id="usernamex" value="@User.Identity.Name.Replace("@", "").Replace(".", "")" />
+    <input type="hidden" id="usernamex" value="@User.Identity.Name.Replace("@", "").Replace(".", "")" />
     }
     else
     {
         string ix = new Guid().ToString();
-        <input type="hidden" id="usernamex" value="@ix" />
+    <input type="hidden" id="usernamex" value="@ix" />
     }
     <script>
 

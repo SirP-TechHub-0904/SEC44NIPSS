@@ -1,0 +1,111 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.TicketPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <a asp-page="./Requisitionform" class="btn btn-primary">New Maintainance/Repair Report</a>
+                </h3>
+            </div>
+
+            @if (TempData["result"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> @TempData["result"]
+                </div>}
+            <div class="box-header">
+                <h3 class="box-title">Pending Tickets/Maintenance</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @if (Model.Ticket.Where(x => x.Closed == false).Count() == 0)
+                {
+                    <h6>No Pending Ticket</h6>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Priority</th>
+                                    <th>Details</th>
+                                    <th>Stage</th>
+                                    <th>Open Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var x in Model.Ticket.Where(x => x.Closed == false))
+                                {
+                                    <tr>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.TicketNumber</a></td>
+                                        <td>@x.Priority</td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@x.Id"> @x.Category/@x.SubCategory</a>
+                                        </td>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.Stages</a></td>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.CreatedTime</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>}
+            </div>
+            <!-- /.box-body -->
+            <hr />
+            <div class="box-header">
+                <h3 class="box-title">Closed Tickets/Maintenance</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                @if (Model.Ticket.Where(x => x.Closed == true).Count() == 0)
+                {
+                    <h6>No Pending Ticket</h6>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Priority</th>
+                                    <th>Details</th>
+                                    <th>Stage</th>
+                                    <th>Open Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var x in Model.Ticket.Where(x => x.Closed == true))
+                                {
+                                    <tr>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.TicketNumber</a></td>
+                                        <td>@x.Priority</td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@x.Id"> @x.Category/@x.SubCategory</a>
+                                        </td>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.Stages</a></td>
+                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.ClosedTime</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>}
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+    </div>
+    <!-- /.col -->
+</div>
+

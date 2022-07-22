@@ -1,0 +1,150 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Maintainance.TicketPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Ticket</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Ticket.Id" />
+            <div class="form-group">
+                <label asp-for="Ticket.Priority" class="control-label"></label>
+                <input asp-for="Ticket.Priority" class="form-control" />
+                <span asp-validation-for="Ticket.Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Subject" class="control-label"></label>
+                <input asp-for="Ticket.Subject" class="form-control" />
+                <span asp-validation-for="Ticket.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.CreatedTime" class="control-label"></label>
+                <input asp-for="Ticket.CreatedTime" class="form-control" />
+                <span asp-validation-for="Ticket.CreatedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ClosedTime" class="control-label"></label>
+                <input asp-for="Ticket.ClosedTime" class="form-control" />
+                <span asp-validation-for="Ticket.ClosedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Email" class="control-label"></label>
+                <input asp-for="Ticket.Email" class="form-control" />
+                <span asp-validation-for="Ticket.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Fullname" class="control-label"></label>
+                <input asp-for="Ticket.Fullname" class="form-control" />
+                <span asp-validation-for="Ticket.Fullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.RequestedBy" class="control-label"></label>
+                <input asp-for="Ticket.RequestedBy" class="form-control" />
+                <span asp-validation-for="Ticket.RequestedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Category" class="control-label"></label>
+                <input asp-for="Ticket.Category" class="form-control" />
+                <span asp-validation-for="Ticket.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.SubCategory" class="control-label"></label>
+                <input asp-for="Ticket.SubCategory" class="form-control" />
+                <span asp-validation-for="Ticket.SubCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Details" class="control-label"></label>
+                <input asp-for="Ticket.Details" class="form-control" />
+                <span asp-validation-for="Ticket.Details" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.HouseOfficeNumber" class="control-label"></label>
+                <input asp-for="Ticket.HouseOfficeNumber" class="form-control" />
+                <span asp-validation-for="Ticket.HouseOfficeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.Image" class="control-label"></label>
+                <input asp-for="Ticket.Image" class="form-control" />
+                <span asp-validation-for="Ticket.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ForwardedToId" class="control-label"></label>
+                <select asp-for="Ticket.ForwardedToId" class="form-control" asp-items="ViewBag.ForwardedToId"></select>
+                <span asp-validation-for="Ticket.ForwardedToId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ForwardedToTime" class="control-label"></label>
+                <input asp-for="Ticket.ForwardedToTime" class="form-control" />
+                <span asp-validation-for="Ticket.ForwardedToTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ReceivedAndPassToId" class="control-label"></label>
+                <select asp-for="Ticket.ReceivedAndPassToId" class="form-control" asp-items="ViewBag.ReceivedAndPassToId"></select>
+                <span asp-validation-for="Ticket.ReceivedAndPassToId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.NoteByReceivedAndPassTo" class="control-label"></label>
+                <input asp-for="Ticket.NoteByReceivedAndPassTo" class="form-control" />
+                <span asp-validation-for="Ticket.NoteByReceivedAndPassTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ReceivedAndPassToTime" class="control-label"></label>
+                <input asp-for="Ticket.ReceivedAndPassToTime" class="form-control" />
+                <span asp-validation-for="Ticket.ReceivedAndPassToTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ApprovedById" class="control-label"></label>
+                <select asp-for="Ticket.ApprovedById" class="form-control" asp-items="ViewBag.ApprovedById"></select>
+                <span asp-validation-for="Ticket.ApprovedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.NoteApprovedBy" class="control-label"></label>
+                <input asp-for="Ticket.NoteApprovedBy" class="form-control" />
+                <span asp-validation-for="Ticket.NoteApprovedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.ApprovedByTime" class="control-label"></label>
+                <input asp-for="Ticket.ApprovedByTime" class="form-control" />
+                <span asp-validation-for="Ticket.ApprovedByTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.JobCompletionCertifiedById" class="control-label"></label>
+                <select asp-for="Ticket.JobCompletionCertifiedById" class="form-control" asp-items="ViewBag.JobCompletionCertifiedById"></select>
+                <span asp-validation-for="Ticket.JobCompletionCertifiedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.NoteJobCompletionCertifiedBy" class="control-label"></label>
+                <input asp-for="Ticket.NoteJobCompletionCertifiedBy" class="form-control" />
+                <span asp-validation-for="Ticket.NoteJobCompletionCertifiedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.JobCompletionCertifiedByTime" class="control-label"></label>
+                <input asp-for="Ticket.JobCompletionCertifiedByTime" class="form-control" />
+                <span asp-validation-for="Ticket.JobCompletionCertifiedByTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket.JobCompletionCertifiedBySignature" class="control-label"></label>
+                <input asp-for="Ticket.JobCompletionCertifiedBySignature" class="form-control" />
+                <span asp-validation-for="Ticket.JobCompletionCertifiedBySignature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

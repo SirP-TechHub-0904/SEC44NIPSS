@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SEC44NIPSS.Data;
 
 namespace SEC44NIPSS.Data.Migrations
 {
     [DbContext(typeof(NIPSSDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220717051556_ticket")]
+    partial class ticket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -842,24 +844,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.ToTable("LocalGoverments");
                 });
 
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.MaintainaceSetting", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FirstResponceTimeAfterSubmit")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SecondResponceTimeAfterApproval")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MaintainaceSettings");
-                });
-
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -1636,17 +1620,8 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("ApprovedById")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("ApprovedByTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Closed")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("ClosedTime")
                         .HasColumnType("datetime2");
@@ -1658,60 +1633,12 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ForwardedToId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("ForwardedToTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Fullname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HouseOfficeNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("JobCompletionCertifiedById")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("JobCompletionCertifiedBySignature")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("JobCompletionCertifiedByTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NoteApprovedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NoteByReceivedAndPassTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NoteJobCompletionCertifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Priority")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ReceivedAndPassToId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("ReceivedAndPassToTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RequestedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stages")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubCategory")
@@ -1720,23 +1647,7 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TicketNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ApprovedById");
-
-                    b.HasIndex("ForwardedToId");
-
-                    b.HasIndex("JobCompletionCertifiedById");
-
-                    b.HasIndex("ReceivedAndPassToId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
                 });
@@ -1754,41 +1665,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TicketCategories");
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketRequirement", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("QuantityIssued")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuantityRequired")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SIVno")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("TicketId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("TicketRequirements");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketResponse", b =>
@@ -1817,37 +1693,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.ToTable("TicketResponses");
                 });
 
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketStaff", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("ProfileId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Signature")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("TicketId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("WorkCarriedOut")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfileId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("TicketStaff");
-                });
-
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketSubCategory", b =>
                 {
                     b.Property<long>("Id")
@@ -1866,36 +1711,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasIndex("TicketCategoryId");
 
                     b.ToTable("TicketSubCategories");
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketSupervisor", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("SendEmail")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("SendPhone")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Set")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TicketSupervisor");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TourCategory", b =>
@@ -2391,57 +2206,10 @@ namespace SEC44NIPSS.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.Ticket", b =>
-                {
-                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "ApprovedBy")
-                        .WithMany()
-                        .HasForeignKey("ApprovedById");
-
-                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "ForwardedTo")
-                        .WithMany()
-                        .HasForeignKey("ForwardedToId");
-
-                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "JobCompletionCertifiedBy")
-                        .WithMany()
-                        .HasForeignKey("JobCompletionCertifiedById");
-
-                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "ReceivedAndPassTo")
-                        .WithMany()
-                        .HasForeignKey("ReceivedAndPassToId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketRequirement", b =>
-                {
-                    b.HasOne("SEC44NIPSS.Data.Model.Ticket", "Ticket")
-                        .WithMany("TicketRequirements")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketResponse", b =>
                 {
                     b.HasOne("SEC44NIPSS.Data.Model.Ticket", "Ticket")
                         .WithMany("TicketResponses")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketStaff", b =>
-                {
-                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SEC44NIPSS.Data.Model.Ticket", "Ticket")
-                        .WithMany("TicketStaff")
                         .HasForeignKey("TicketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

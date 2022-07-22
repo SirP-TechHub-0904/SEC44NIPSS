@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SEC44NIPSS.Data;
 
 namespace SEC44NIPSS.Data.Migrations
 {
     [DbContext(typeof(NIPSSDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220721111843_tfd")]
+    partial class tfd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1645,9 +1647,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Closed")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("ClosedTime")
                         .HasColumnType("datetime2");
 
@@ -1711,9 +1710,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("RequestedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Stages")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SubCategory")
                         .HasColumnType("nvarchar(max)");
 
@@ -1722,9 +1718,6 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<string>("TicketNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -1735,8 +1728,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasIndex("JobCompletionCertifiedById");
 
                     b.HasIndex("ReceivedAndPassToId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
                 });
@@ -2408,10 +2399,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "ReceivedAndPassTo")
                         .WithMany()
                         .HasForeignKey("ReceivedAndPassToId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketRequirement", b =>

@@ -1,0 +1,163 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Maintainance.TicketPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Priority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Priority)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.CreatedTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.CreatedTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ClosedTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ClosedTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Fullname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Fullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.RequestedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.RequestedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Category)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.SubCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.SubCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Details)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Details)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.HouseOfficeNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.HouseOfficeNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ForwardedTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ForwardedTo.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ForwardedToTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ForwardedToTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ReceivedAndPassTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ReceivedAndPassTo.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteByReceivedAndPassTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteByReceivedAndPassTo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ReceivedAndPassToTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ReceivedAndPassToTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ApprovedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ApprovedBy.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteApprovedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteApprovedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ApprovedByTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ApprovedByTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedBy.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteJobCompletionCertifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteJobCompletionCertifiedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedByTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedByTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedBySignature)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedBySignature)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Ticket.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

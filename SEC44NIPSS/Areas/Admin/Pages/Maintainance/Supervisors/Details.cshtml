@@ -1,0 +1,49 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Maintainance.Supervisors.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TicketSupervisor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketSupervisor.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketSupervisor.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketSupervisor.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketSupervisor.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketSupervisor.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketSupervisor.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketSupervisor.SendEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketSupervisor.SendEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketSupervisor.SendPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TicketSupervisor.SendPhone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TicketSupervisor.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

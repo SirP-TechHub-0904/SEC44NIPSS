@@ -1,0 +1,166 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.TicketPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h2 class="box-title">
+                    Work and Maintenance Department
+                </h2>
+                <h6>Request Details</h6>
+            </div>
+
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div>
+                    <h4>House/Office Number</h4>
+                    <p>@Model.Ticket.HouseOfficeNumber</p>
+                </div>
+                <div>
+                    <h4>Nature of Remedial Works Required</h4>
+                    <p>@Model.Ticket.Details</p>
+                </div>
+                <div>
+                    <h4>Requested By</h4>
+                    <p>@Model.Ticket.Fullname</p>
+                </div>
+                <div>
+                    <h4>Phone/Email</h4>
+                    <p>@Model.Ticket.PhoneNumber / @Model.Ticket.Email</p>
+                </div>
+                <h3 class="text-center">Action</h3>
+                <div>
+                    <h4>Received and Pass To</h4>
+                    @if (Model.Ticket.ReceivedAndPassTo != null)
+                    {
+                        <p>@Model.Ticket.ReceivedAndPassTo.FullName (@Model.Ticket.ReceivedAndPassTo.PhoneNumber) on @Model.Ticket.ReceivedAndPassToTime</p>
+                    }
+                   
+                </div>
+                <h3 class="text-center">Evaluation by Maintenance Staff/Officer, Engineer, CTO etc</h3>
+                <div>
+
+                    <table id="" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Material</th>
+                                <th colspan="4">Quantity</th>
+                                <th>S.I.V NO.</th>
+                            </tr>
+                            <tr>
+                                <th>S/N</th>
+                                <th></th>
+                                <th>Required</th>
+                                <th>Issued</th>
+                                <th>Cost</th>
+                                <th>Photo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @{ int sn = 0;}
+                    <tbody>
+                        @if (Model.Ticket.TicketRequirements != null)
+                        {
+                            foreach (var x in Model.Ticket.TicketRequirements)
+                            {
+                                <tr>
+                                    <td>
+                                        @{ sn++;}
+                                        @sn
+                                    </td>
+                                    <td>@x.Title</td>
+                                    <td>@x.QuantityRequired</td>
+                                    <td>@x.QuantityIssued</td>
+                                    <td>@x.Cost</td>
+                                    <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                    <td>@x.SIVno</td>
+                                </tr>
+                            }
+                        }
+                       
+                    </tbody>
+
+                    </table>
+                </div>
+
+
+                <h3 class="text-center">Staff Assigned</h3>
+                <div class="table-responsive">
+
+                    <table id="" class="table table-bordered table-hover">
+                        <thead>
+
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>Work Carried Out</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        @{ int sxn = 0;}
+                    <tbody>
+                        @if (Model.Ticket.TicketRequirements != null)
+                        {
+
+                            foreach (var x in Model.Ticket.TicketStaff)
+                            {
+                                <tr>
+                                    <td>
+                                        @{ sxn++;}
+                                        @sxn
+                                    </td>
+                                    <td>@x.Profile.FullName</td>
+                                    <td>@x.WorkCarriedOut</td>
+                                    <td>@x.Date</td>
+
+                                </tr>
+                                                }
+            }
+           
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <h3 class="text-center">Approval</h3>
+                <div>
+                    <h5>Controller of Works</h5>
+                    <p>
+
+                    </p>
+                </div>
+                <h3 class="text-center">Job Completion Certificate</h3>
+                <div>
+                    <h5>This is to certify that the work has been carried out satisfactory by:</h5>
+                    @if (Model.Ticket.JobCompletionCertifiedBy != null)
+                    {
+                        <p>
+                            Name: @Model.Ticket.JobCompletionCertifiedBy.FullName
+                        </p>
+                        <p>
+                            Date: @Model.Ticket.JobCompletionCertifiedByTime
+                        </p>
+                        <p>
+                            Noate: @Model.Ticket.NoteJobCompletionCertifiedBy
+                        </p>
+                    }
+                    else
+                    {
+                        <p>NILL</p>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.col -->
+</div>

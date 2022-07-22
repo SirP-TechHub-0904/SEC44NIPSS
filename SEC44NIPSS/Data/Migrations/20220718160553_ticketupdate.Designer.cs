@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SEC44NIPSS.Data;
 
 namespace SEC44NIPSS.Data.Migrations
 {
     [DbContext(typeof(NIPSSDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220718160553_ticketupdate")]
+    partial class ticketupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -842,24 +844,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.ToTable("LocalGoverments");
                 });
 
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.MaintainaceSetting", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FirstResponceTimeAfterSubmit")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SecondResponceTimeAfterApproval")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MaintainaceSettings");
-                });
-
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -1636,7 +1620,7 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("ApprovedById")
+                    b.Property<long>("ApprovedById")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("ApprovedByTime")
@@ -1644,9 +1628,6 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Closed")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("ClosedTime")
                         .HasColumnType("datetime2");
@@ -1658,17 +1639,15 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("ForwardedToId")
+                    b.Property<long>("ForwardedToId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("ForwardedToTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Fullname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HouseOfficeNumber")
@@ -1677,7 +1656,7 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("JobCompletionCertifiedById")
+                    b.Property<long>("JobCompletionCertifiedById")
                         .HasColumnType("bigint");
 
                     b.Property<string>("JobCompletionCertifiedBySignature")
@@ -1695,14 +1674,10 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("NoteJobCompletionCertifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Priority")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("ReceivedAndPassToId")
+                    b.Property<long>("ReceivedAndPassToId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("ReceivedAndPassToTime")
@@ -1711,20 +1686,11 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("RequestedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Stages")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SubCategory")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TicketNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -1735,8 +1701,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasIndex("JobCompletionCertifiedById");
 
                     b.HasIndex("ReceivedAndPassToId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
                 });
@@ -1878,9 +1842,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
@@ -1889,9 +1850,6 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<bool>("SendPhone")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Set")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -2395,23 +2353,27 @@ namespace SEC44NIPSS.Data.Migrations
                 {
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "ApprovedBy")
                         .WithMany()
-                        .HasForeignKey("ApprovedById");
+                        .HasForeignKey("ApprovedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "ForwardedTo")
                         .WithMany()
-                        .HasForeignKey("ForwardedToId");
+                        .HasForeignKey("ForwardedToId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "JobCompletionCertifiedBy")
                         .WithMany()
-                        .HasForeignKey("JobCompletionCertifiedById");
+                        .HasForeignKey("JobCompletionCertifiedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "ReceivedAndPassTo")
                         .WithMany()
-                        .HasForeignKey("ReceivedAndPassToId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("ReceivedAndPassToId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketRequirement", b =>

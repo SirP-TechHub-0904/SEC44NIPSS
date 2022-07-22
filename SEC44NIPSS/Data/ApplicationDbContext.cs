@@ -62,6 +62,14 @@ namespace SEC44NIPSS.Data
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserToNotify> UserToNotifys { get; set; }
         public DbSet<Gallery> Galleries { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<TicketResponse> TicketResponses { get; set; }
+        public DbSet<TicketCategory> TicketCategories { get; set; }
+        public DbSet<TicketSubCategory> TicketSubCategories { get; set; }
+        public DbSet<TicketRequirement> TicketRequirements { get; set; }
+        public DbSet<TicketStaff> TicketStaff { get; set; }
+        public DbSet<TicketSupervisor> TicketSupervisor { get; set; }
+        public DbSet<MaintainaceSetting> MaintainaceSettings { get; set; }
 
 
 

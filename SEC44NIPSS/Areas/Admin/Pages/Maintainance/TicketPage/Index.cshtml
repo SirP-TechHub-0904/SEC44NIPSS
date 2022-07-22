@@ -1,0 +1,174 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Maintainance.TicketPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].CreatedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ClosedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].RequestedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].SubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Details)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].HouseOfficeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ForwardedTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ForwardedToTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ReceivedAndPassTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].NoteByReceivedAndPassTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ReceivedAndPassToTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ApprovedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].NoteApprovedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].ApprovedByTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].JobCompletionCertifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].NoteJobCompletionCertifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].JobCompletionCertifiedByTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket[0].JobCompletionCertifiedBySignature)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Ticket) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClosedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseOfficeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ForwardedTo.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ForwardedToTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceivedAndPassTo.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteByReceivedAndPassTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceivedAndPassToTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedBy.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteApprovedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedByTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCompletionCertifiedBy.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteJobCompletionCertifiedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCompletionCertifiedByTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCompletionCertifiedBySignature)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

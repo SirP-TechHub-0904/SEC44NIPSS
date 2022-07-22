@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SEC44NIPSS.Data;
 
 namespace SEC44NIPSS.Data.Migrations
 {
     [DbContext(typeof(NIPSSDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220721131800_tfdd")]
+    partial class tfdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1645,9 +1647,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Closed")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("ClosedTime")
                         .HasColumnType("datetime2");
 
@@ -1709,9 +1708,6 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RequestedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stages")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubCategory")

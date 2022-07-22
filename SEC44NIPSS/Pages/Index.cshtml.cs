@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SEC44NIPSS.Data.Dtos;
 using SEC44NIPSS.Data.Model;
 using SEC44NIPSS.Services;
 using System;
@@ -26,15 +27,24 @@ namespace SEC44NIPSS.Pages
             _userManager = userManager;
         }
         public IList<Executive> Executive { get; set; }
-        public IList<Profile> NipssStaffList { get; set; }
+        public IList<NipssStaffListDto> NipssStaffList { get; set; }
         public IList<News> News { get; set; }
         public IList<CurrentAffair> CurrentAffair { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGetAsync()
         {
-            Executive = await _context.Executive.Include(x=>x.Profile).Include(x => x.Alumni).OrderBy(x => x.SortOrder).Where(x=>x.Alumni.Active == true).Take(3).ToListAsync();
-            NipssStaffList = await _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").OrderBy(x => x.SortOrder).Take(3).ToListAsync();
-            News = await _context.News.Include(x=>x.Comments).OrderBy(x => x.Date).Take(3).ToListAsync();
+            Executive =  _context.Executive.Include(x=>x.Profile).Include(x => x.Alumni).OrderBy(x => x.SortOrder).Where(x=>x.Alumni.Active == true).Take(3).ToList();
+             var nipssstaff = _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").OrderBy(x => x.SortOrder).Take(3).ToList();
+            var output = nipssstaff.Select(x => new NipssStaffListDto
+            {
+                Id = x.Id,
+               Position = x.Position,
+               Fullname = x.Title + " "+ x.FullName,
+               Photo =x.AboutProfile,
+            });
+
+            NipssStaffList = output.ToList();
+            News = _context.News.Include(x=>x.Comments).OrderBy(x => x.Date).Take(3).ToList();
 
             return Page();
             
