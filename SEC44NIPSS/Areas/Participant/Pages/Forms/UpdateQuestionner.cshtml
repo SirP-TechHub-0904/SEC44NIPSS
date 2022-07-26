@@ -79,6 +79,11 @@
                                         <textarea asp-for="Questionner.LongLink" class="form-control" disabled="disabled"></textarea>
 
                                     </p>
+                                    <h4 class="modal-title">Total Pages</h4>
+                                    <p>
+                                        <input asp-for="Questionner.TotalPage" class="form-control" disabled="disabled"/>
+
+                                    </p>
 
                                 </div>
                                 <input type="hidden" asp-for="Questionner.Id" />
@@ -107,11 +112,19 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="control-label">Institution Title</label>
+
+                                        <div class="">
+
+                                            <textarea asp-for="Questionner.SubTitle" id="" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="control-label">Question Description</label>
 
                                         <div class="">
 
-                                            <textarea asp-for="Questionner.Description" class="form-control"></textarea>
+                                            <textarea asp-for="Questionner.Description" id="summernote" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -164,6 +177,7 @@
                                             <input type="checkbox" asp-for="Questionner.AddTimeFrame" />  Add Time Frame
                                         </div>
                                     </div>
+                                   
                                     <div class="form-group">
                                         <label class="control-label">Start Date/Time</label>
 

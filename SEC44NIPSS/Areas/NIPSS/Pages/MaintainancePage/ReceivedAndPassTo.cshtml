@@ -1,0 +1,63 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.ReceivedAndPassToModel
+
+@{
+    ViewData["Title"] = "ReceivedAndPassTo";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        Received And Pass To A Staff Update
+                    </h2>
+
+                </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Messages/Chat</h3>
+                    <div>
+                        <div class="box box-success">
+
+                            
+                            <!-- /.chat -->
+                            <div class="box-footer">
+                                <form method="post" asp-page-handler="ReceivedAndPassTo">
+                                    <input type="hidden" asp-for="TicketId" value="@Model.Ticket.Id" />
+                                    <input type="hidden" />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Choose The Name of the Staff</label>
+                                                <select asp-for="ReceivedAndPassToId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <button type="submit" class="btn btn-success">Add Staff</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.col -->
+</div>

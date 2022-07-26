@@ -1,0 +1,276 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.StaffAssignModel
+
+@{
+    ViewData["Title"] = "StaffAssign";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        Assign Staff
+
+                    </h2>
+                    <a asp-page="./Details" asp-route-id="@Model.TicketId" class="btn btn-danger">Back to Ticket Details</a>
+                </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    @if (TempData["status"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> @TempData["status"]
+                        </div>}
+                    <div>
+                        <div class="box box-success">
+                            <div class="box-body">
+                                <h3 class="text-center">Assigned Staff List</h3>
+
+                                <div class="table-responsive">
+
+                                    <table id="" class="table table-bordered table-hover">
+                                        <thead>
+                                           
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Name</th>
+                                                <th>WorkCarriedOut</th>
+                                                <th>Date</th>
+                                                
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        @{ int sn = 0;}
+                                        <tbody>
+                                            @if (Model.TicketStaffs != null)
+                                            {
+                                                if (Model.TicketStaffs.Count() > 0)
+                                                {
+                                                    foreach (var x in Model.TicketStaffs)
+                                                    {
+                                                        if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Active)
+                                                        {
+                                            <tr>
+                                                <td>
+                                                    @{ sn++;}
+                                                    @sn
+                                                </td>
+                                                <td>@x.Profile.Title @x.Profile.FullName</td>
+                                                <td>@x.WorkCarriedOut</td>
+                                                <td>@x.Date</td>
+                                                <td>
+                                                    @if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Changed)
+                                                    {
+                                                        <form method="post" asp-page-handler="Active">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                        </form>
+                                                        <form method="post" asp-page-handler="Removed">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                        </form>
+
+                                                    }
+                                                    else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Active)
+                                                    {
+                                                        <form method="post" asp-page-handler="Change">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                        </form>
+                                                        <form method="post" asp-page-handler="Removed">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                        </form>
+
+                                                    }
+                                                    else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Remove)
+                                                    {
+                                                        <form method="post" asp-page-handler="Change">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                        </form>
+                                                        <form method="post" asp-page-handler="Active">
+                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                        </form>
+                                                    }
+                                                </td>
+                                            </tr>
+                                                        }
+                                                        else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Remove)
+                                                        {
+                                        <tr style="color:#a10e0e">
+                                            <td>
+                                                @{ sn++;}
+                                                @sn
+                                            </td>
+                                            <td>@x.Profile.Title @x.Profile.FullName</td>
+                                            <td>@x.WorkCarriedOut</td>
+                                            <td>@x.Date</td>
+                                            <td>
+                                                @if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Changed)
+                                                {
+                                                    <form method="post" asp-page-handler="Active">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Removed">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                    </form>
+
+                                                }
+                                                else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Active)
+                                                {
+                                                    <form method="post" asp-page-handler="Change">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Removed">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                    </form>
+
+                                                }
+                                                else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Remove)
+                                                {
+                                                    <form method="post" asp-page-handler="Change">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Active">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                    </form>
+                                                }
+                                            </td>
+                                        </tr>
+                                                        }
+                                                        else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Changed)
+                                                        {
+                                        <tr style="color:#ff6a00;">
+                                            <td>
+                                                @{ sn++;}
+                                                @sn
+                                            </td>
+                                            <td>@x.Profile.Title @x.Profile.FullName</td>
+                                            <td>@x.WorkCarriedOut</td>
+                                            <td>@x.Date</td>
+                                            <td>
+                                                @if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Changed)
+                                                {
+                                                    <form method="post" asp-page-handler="Active">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Removed">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                    </form>
+
+                                                }
+                                                else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Active)
+                                                {
+                                                    <form method="post" asp-page-handler="Change">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Removed">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-danger btn-xs">Remove Staff</button>
+                                                    </form>
+
+                                                }
+                                                else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Remove)
+                                                {
+                                                    <form method="post" asp-page-handler="Change">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-warning btn-xs">Change Staff</button>
+                                                    </form>
+                                                    <form method="post" asp-page-handler="Active">
+                                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketStaffId" value="@x.Id" />
+                                                        <button type="submit" class="btn btn-success btn-xs">Make Active Staff</button>
+                                                    </form>
+                                                }
+                                            </td>
+                                        </tr>
+                                                        }
+
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="7">
+                                                            <span>No item </span>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="7">
+                                                        <span>No item </span>
+                                                    </td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- /.chat -->
+                                <div class="box-footer">
+                                    <h3 style="font-weight:900;">Assign Staff</h3>
+                                    <form method="post" asp-page-handler="AssignStaff" enctype="multipart/form-data">
+                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" />
+                                        <input type="hidden" />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Choose The Name of the Staff</label>
+                                                    <select asp-for="TicketStaff.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Work Carried Out</label>
+                                                    <textarea asp-for="TicketStaff.WorkCarriedOut" class="form-control" ></textarea>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <button type="submit" class="btn btn-success">Assign Staff</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+</div>

@@ -39,8 +39,6 @@ namespace SEC44NIPSS.Areas.Admin.Pages.MessagingPage
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

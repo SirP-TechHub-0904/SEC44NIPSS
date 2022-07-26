@@ -9,12 +9,13 @@ namespace SEC44NIPSS.Data.Model
     {
         public long Id { get; set; }
         public string Title { get; set; }
-        public int QuantityRequired { get; set; }
-        public int QuantityIssued { get; set; }
+        public string QuantityRequired { get; set; }
+        public string QuantityIssued { get; set; }
         public decimal Cost { get; set; }
         public string SIVno { get; set; }
         public string Image { get; set; }
         public DateTime Date { get; set; }
+        public TicketItemStatus TicketItemStatus { get; set; }
 
         public long TicketId { get; set; }
         public Ticket Ticket { get; set; }

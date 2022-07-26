@@ -15,11 +15,14 @@ namespace SEC44NIPSS.Data.Model
         public string ShortLink { get; set; }
         public string LongLink { get; set; }
         public string PreviewImage { get; set; }
+        public string SubTitle { get; set; }
+        public string Logo { get; set; }
         public DateTime Date { get; set; }
 
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
         public ICollection<Question> Questions { get; set; }
+        public ICollection<QuestionnerPage> QuestionnerPages { get; set; }
 
         public EmailPhoneStatus Email { get; set; }
         public EmailPhoneStatus PhoneNumber { get; set; }
@@ -32,6 +35,7 @@ namespace SEC44NIPSS.Data.Model
         public bool Closed { get; set; }
 
         public bool ShowReSubmitBotton { get; set; }
+        public int TotalPage { get; set; }
 
     }
 }

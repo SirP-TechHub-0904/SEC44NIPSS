@@ -1,0 +1,382 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        Work and Maintenance Department
+                    </h2>
+                    <h6>Request Details</h6>
+                </div>
+            </div>
+
+            @if (TempData["status"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> @TempData["status"]
+                </div>}
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <div>
+                        <h4>>> House/Office Number</h4>
+                        <p>@Model.Ticket.HouseOfficeNumber</p>
+                    </div>
+                    <div>
+                        <h4>>> Nature of Remedial Works Required</h4>
+                        <p>@Model.Ticket.Details</p>
+                    </div>
+                    <div>
+                        <h4>>> Requested By</h4>
+                        <p>@Model.Ticket.Fullname</p>
+                    </div>
+                    <div>
+                        <h4>>> Phone/Email</h4>
+                        <p>@Model.Ticket.PhoneNumber / @Model.Ticket.Email</p>
+                    </div>
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Action</h3>
+                    <div>
+                        <h4>Received and Pass To</h4>
+                        @if (Model.Ticket.ReceivedAndPassTo != null)
+                        {
+                            <p>@Model.Ticket.ReceivedAndPassTo.FullName (@Model.Ticket.ReceivedAndPassTo.PhoneNumber) on @Model.Ticket.ReceivedAndPassToTime</p>
+                        }
+                        <a asp-page="./ReceivedAndPassTo" asp-route-id="@Model.Ticket.Id" class="btn btn-danger">Update Received And Pass To</a>
+                    </div>
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Evaluation by Maintenance Staff/Officer, Engineer, CTO etc</h3>
+
+                    <div class="table-responsive">
+
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Material</th>
+                                    <th colspan="4">Quantity</th>
+                                    <th>S.I.V NO.</th>
+                                </tr>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th></th>
+                                    <th>Required</th>
+                                    <th>Issued</th>
+                                    <th>Cost</th>
+                                    <th>Photo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @{ int sn = 0;}
+                            <tbody>
+                                @if (Model.Ticket.TicketRequirements != null)
+                                {
+                                    if (Model.Ticket.TicketRequirements.Count() > 0)
+                                    {
+                                        foreach (var x in Model.Ticket.TicketRequirements)
+                                        {
+                                            if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Active)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @{ sn++;}
+                                                        @sn
+                                                    </td>
+                                                    <td>@x.Title</td>
+                                                    <td>@x.QuantityRequired</td>
+                                                    <td>@x.QuantityIssued</td>
+                                                    <td>@x.Cost</td>
+                                                    <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                    <td>@x.SIVno</td>
+
+                                                </tr>
+                                            }
+                                            else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Remove)
+                                            {
+
+                                                <tr style="color:#a10e0e">
+                                                    <td>
+                                                        @{ sn++;}
+                                                        <del>  @sn </del>
+                                                    </td>
+                                                    <td><del>@x.Title </del></td>
+                                                    <td><del>@x.QuantityRequired </del></td>
+                                                    <td><del>@x.QuantityIssued </del></td>
+                                                    <td><del>@x.Cost </del></td>
+                                                    <td><del><a href="@x.Image" class="btn btn-success btn-xs">View</a> </del></td>
+                                                    <td><del>@x.SIVno </del></td>
+
+                                                </tr>
+
+                                            }
+                                            else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
+                                            {
+                                                <tr style="color:#ff6a00;">
+                                                    <td>
+                                                        @{ sn++;}
+                                                        @sn
+                                                    </td>
+                                                    <td>@x.Title</td>
+                                                    <td>@x.QuantityRequired</td>
+                                                    <td>@x.QuantityIssued</td>
+                                                    <td>@x.Cost</td>
+                                                    <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                    <td>@x.SIVno</td>
+
+                                                </tr>
+                                            }
+
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7">
+                                                <span>No item </span>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="7">
+                                            <span>No item </span>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <a asp-page="./MaterialItems" asp-route-id="@Model.Ticket.Id" class="btn btn-danger">Update Material</a>
+
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+
+                    <h3 class="text-center">Staff Assigned</h3>
+                    <div class="table-responsive">
+
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Name</th>
+                                    <th>Work Carried Out</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            @{ int sxn = 0;}
+                            <tbody>
+                                @if (Model.Ticket.TicketStaff != null)
+                                {
+                                    if (Model.Ticket.TicketStaff.Count() > 0)
+                                    {
+                                        foreach (var x in Model.Ticket.TicketStaff)
+                                        {
+                                            if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Active)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @{ sxn++;}
+                                                        @sxn
+                                                    </td>
+                                                    <td>@x.Profile.FullName</td>
+                                                    <td>@x.WorkCarriedOut</td>
+                                                    <td>@x.Date</td>
+
+                                                </tr>
+
+                                            }
+                                            else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Remove)
+                                            {
+                                                <tr style="color:#a10e0e">
+                                                    <td>
+                                                        @{ sxn++;}
+                                                        <del> @sxn</del>
+                                                    </td>
+                                                    <td><del>@x.Profile.FullName</del> </td>
+                                                    <td><del>@x.WorkCarriedOut</del> </td>
+                                                    <td><del>@x.Date</del> </td>
+
+                                                </tr>
+                                            }
+                                            else if (x.TicketStaffStatus == SEC44NIPSS.Data.Model.TicketStaffStatus.Changed)
+                                            {
+                                                <tr style="color:#ff6a00;">
+                                                    <td>
+                                                        @{ sxn++;}
+                                                        @sxn
+                                                    </td>
+                                                    <td>@x.Profile.FullName</td>
+                                                    <td>@x.WorkCarriedOut</td>
+                                                    <td>@x.Date</td>
+
+                                                </tr>
+                                            }
+
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="7">
+                                                <span>No Staff Assigned </span>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="7">
+                                            <span>No Staff Assigned </span>
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <a asp-page="./StaffAssign" asp-route-id="@Model.Ticket.Id" class="btn btn-danger">Update Staff</a>
+
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Approval</h3>
+                    <div>
+                        <h5>Controller of Works</h5>
+                        @if (Model.Ticket.ApprovedBy != null)
+                        {
+                            <p>
+                                Name: @Model.Ticket.ApprovedBy.FullName
+                            </p>
+                            <p>
+                                Date: @Model.Ticket.ApprovedByTime
+                            </p>
+                            <p>
+                                Noate: @Model.Ticket.NoteApprovedBy
+                            </p>
+                        }
+                        else
+                        {
+                            <p>No Approval Yet</p>
+                        }
+                    </div>
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Messages/Chat</h3>
+                    <div>
+                        <div class="box box-success">
+
+                            <div class="">
+                                <div class="box-body chat" id="chat-box" style="">
+                                    <!-- chat item -->
+                                    @foreach (var x in Model.Ticket.TicketResponses)
+                                    {
+                                        <div class="item">
+                                            <img src="@x.Profile.AboutProfile" alt="user image" class="online" style="max-height:50px;">
+
+                                            <p class="message">
+                                                <a href="#" class="name">
+                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> @x.CreatedTime</small>
+                                                    @x.Profile.FullName
+                                                </a>
+                                                @x.Reply
+                                            </p> @if (!String.IsNullOrEmpty(x.Image))
+                                            {
+                                                <div class="attachment">
+                                                    <h4>Attachments:</h4>
+
+
+
+                                                    <p class="filename">
+                                                        <a href="@x.Image">
+                                                            <img src="@x.Image" style="height:200px" />
+                                                        </a>
+                                                    </p>
+
+
+                                                </div>
+                                            }
+
+                                            <!-- /.attachment -->
+                                        </div>
+                                    }
+                                    <!-- /.item -->
+
+                                </div>
+                                @*<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 224.014px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>*@
+                            </div>
+                            <!-- /.chat -->
+                            <div class="box-footer">
+                                <h3>Ask Your QUestion, Comment, Reply</h3>
+                                <form method="post" asp-page-handler="Submit" enctype="multipart/form-data">
+                                    <input type="hidden" asp-for="TicketId" value="@Model.Ticket.Id" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="file" class="form-control" name="Imagefile" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <input class="form-control" asp-for="ChatMessage" placeholder="Type message...">
+
+                                                <div class="input-group-btn">
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    <h3 class="text-center">Job Completion Certificate</h3>
+                    <div>
+                        <h5>This is to certify that the work has been carried out satisfactory by:</h5>
+                        @if (Model.Ticket.JobCompletionCertifiedBy != null)
+                        {
+                            <p>
+                                Name: @Model.Ticket.JobCompletionCertifiedBy.FullName
+                            </p>
+                            <p>
+                                Date: @Model.Ticket.JobCompletionCertifiedByTime
+                            </p>
+                            <p>
+                                Noate: @Model.Ticket.NoteJobCompletionCertifiedBy
+                            </p>
+                        }
+                        else
+                        {
+                            <p>No Comment Yet</p>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.col -->
+</div>

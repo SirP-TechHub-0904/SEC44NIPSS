@@ -16,6 +16,7 @@ namespace SEC44NIPSS.Data
 
       
 
+        public DbSet<QuestionnerPage> QuestionnerPages { get; set; }
         public DbSet<SliderCategory> SliderCategories { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<LocalGoverment> LocalGoverments { get; set; }

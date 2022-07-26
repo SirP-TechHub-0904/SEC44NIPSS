@@ -53,94 +53,91 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
             liq = Question.Questionner.LongLink;
             return Page();
         }
-        
+
         [BindProperty]
         public string OptionsChoose { get; set; }
-        
+
         public async Task<IActionResult> OnPostAsync()
         {
-            
+            if (HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count > 0)
+            {
+                var newFileName = string.Empty;
+                var newFileNameThumbnail = string.Empty;
+                var filePath = string.Empty;
+                var LargefilePath = string.Empty;
+                var filePathThumbnail = string.Empty;
+                string pathdb = string.Empty;
 
-                if (HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count > 0)
+                var files = HttpContext.Request.Form.Files;
+                foreach (var file in files)
                 {
-                    var newFileName = string.Empty;
-                    var newFileNameThumbnail = string.Empty;
-                    var filePath = string.Empty;
-                    var LargefilePath = string.Empty;
-                    var filePathThumbnail = string.Empty;
-                    string pathdb = string.Empty;
 
-                    var files = HttpContext.Request.Form.Files;
-                    foreach (var file in files)
+                    if (file.Length > 0)
                     {
+                        filePath = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        LargefilePath = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        filePathThumbnail = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        imgCount++;
+                        var now = DateTime.Now;
+                        string nameproduct = "QuestionPhoto";
+                        var uniqueFileName = $"{now.Millisecond}{now.Minute}{now.Second}{now.Day}-".Trim() + nameproduct;
 
-                        if (file.Length > 0)
+                        var fileExtension = Path.GetExtension(filePath);
+
+                        newFileName = uniqueFileName + fileExtension;
+
+                        // if you wish to save file path to db use this filepath variable + newFileName
+                        var fileDbPathName = $"/QuestionPhoto/".Trim();
+
+                        filePath = $"{_hostingEnv.WebRootPath}{fileDbPathName}".Trim();
+
+                        var LagefileDbPathName = $"/GalleryLargeImage/".Trim();
+
+                        LargefilePath = $"{_hostingEnv.WebRootPath}{LagefileDbPathName}".Trim();
+
+                        if (!(Directory.Exists(filePath)))
+                            Directory.CreateDirectory(filePath);
+
+                        if (!(Directory.Exists(LargefilePath)))
+                            Directory.CreateDirectory(LargefilePath);
+
+                        var fileName = "";
+                        var LargefileName = "";
+                        fileName = filePath + $"{newFileName}".Trim();
+                        LargefileName = LargefilePath + $"{newFileName}".Trim();
+
+
+                        string newFileNamex = uniqueFileName + fileExtension;
+                        var xfilePath = $"{_hostingEnv.WebRootPath}".Trim();
+                        string xfullPath = xfilePath + Question.ImageUrl;
+                        if (System.IO.File.Exists(xfullPath))
                         {
-                            filePath = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            LargefilePath = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            filePathThumbnail = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                            imgCount++;
-                            var now = DateTime.Now;
-                            string nameproduct = "QuestionPhoto";
-                            var uniqueFileName = $"{now.Millisecond}{now.Minute}{now.Second}{now.Day}-".Trim() + nameproduct;
-
-                            var fileExtension = Path.GetExtension(filePath);
-
-                            newFileName = uniqueFileName + fileExtension;
-
-                            // if you wish to save file path to db use this filepath variable + newFileName
-                            var fileDbPathName = $"/QuestionPhoto/".Trim();
-
-                            filePath = $"{_hostingEnv.WebRootPath}{fileDbPathName}".Trim();
-
-                            var LagefileDbPathName = $"/GalleryLargeImage/".Trim();
-
-                            LargefilePath = $"{_hostingEnv.WebRootPath}{LagefileDbPathName}".Trim();
-
-                            if (!(Directory.Exists(filePath)))
-                                Directory.CreateDirectory(filePath);
-
-                            if (!(Directory.Exists(LargefilePath)))
-                                Directory.CreateDirectory(LargefilePath);
-
-                            var fileName = "";
-                            var LargefileName = "";
-                            fileName = filePath + $"{newFileName}".Trim();
-                            LargefileName = LargefilePath + $"{newFileName}".Trim();
-
-
-                            string newFileNamex = uniqueFileName + fileExtension;
-                            var xfilePath = $"{_hostingEnv.WebRootPath}".Trim();
-                            string xfullPath = xfilePath + Question.ImageUrl;
-                            if (System.IO.File.Exists(xfullPath))
-                            {
-                                System.IO.File.Delete(xfullPath);
-                            }
-                            using (FileStream fsa = System.IO.File.Create(LargefileName))
-                            {
-                                file.CopyTo(fsa);
-                                fsa.Flush();
-                                fsa.Close();
-                                fsa.Dispose();
-                            }
-
-                            Image myImage = Image.FromFile(LargefileName, true);
-                            myImage = ScaleByPercent(myImage, 60);
-                            myImage.Save(filePath + newFileNamex, ImageFormat.Jpeg);
-
-                            myImage.Dispose();
-
-                            Question.ImageUrl = $"{fileDbPathName}{newFileNamex}";
-
-                            if (imgCount >= 5)
-                                break;
+                            System.IO.File.Delete(xfullPath);
                         }
+                        using (FileStream fsa = System.IO.File.Create(LargefileName))
+                        {
+                            file.CopyTo(fsa);
+                            fsa.Flush();
+                            fsa.Close();
+                            fsa.Dispose();
+                        }
+
+                        Image myImage = Image.FromFile(LargefileName, true);
+                        myImage = ScaleByPercent(myImage, 60);
+                        myImage.Save(filePath + newFileNamex, ImageFormat.Jpeg);
+
+                        myImage.Dispose();
+
+                        Question.ImageUrl = $"{fileDbPathName}{newFileNamex}";
+
+                        if (imgCount >= 5)
+                            break;
                     }
                 }
-                
-                _context.Attach(Question).State = EntityState.Modified;
+            }
+            _context.Attach(Question).State = EntityState.Modified;
 
-            if(OptionsChoose == "YesNoOption")
+            if (OptionsChoose == "YesNoOption")
             {
                 Option.OptionType = OptionType.YesNo;
             }
@@ -164,21 +161,25 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
             {
                 Option.OptionType = OptionType.MultipleOption;
             }
-           
+            else if (OptionsChoose == "TableOption")
+            {
+                Option.OptionType = OptionType.TableOption;
+            }
 
-                _context.Attach(Option).State = EntityState.Modified;
 
-           // var xoption = await _context.Options.FirstOrDefaultAsync(x => x.QuestionId == Question.Id);
+            _context.Attach(Option).State = EntityState.Modified;
+
+            // var xoption = await _context.Options.FirstOrDefaultAsync(x => x.QuestionId == Question.Id);
 
 
             await _context.SaveChangesAsync();
 
-                TempData["Updated"] = "Question No." + Question.Number + " has been Updated";
-           
-                return RedirectToPage("./UpdateQuestion", new { id = Question.Id });
+            TempData["Updated"] = "Question No." + Question.Number + " has been Updated";
+
+            return RedirectToPage("./UpdateQuestion", new { id = Question.Id });
         }
 
-       
+
 
         static Image ScaleByPercent(Image imgPhoto, int Percent)
         {

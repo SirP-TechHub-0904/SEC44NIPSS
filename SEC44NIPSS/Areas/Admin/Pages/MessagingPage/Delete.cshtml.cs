@@ -55,5 +55,24 @@ namespace SEC44NIPSS.Areas.Admin.Pages.MessagingPage
 
             return RedirectToPage("./Index");
         }
+
+        [BindProperty]
+        public int Number { get; set; }
+        public async Task<IActionResult> OnPostNewdelete()
+        {
+            
+
+            var xMessage = await _context.Messages.OrderBy(x => x.Id).Take(Number).ToListAsync();
+            foreach (var x in xMessage)
+            {
+               var yMessage = await _context.Messages.FindAsync(x.Id);
+                if (yMessage != null)
+                {
+                    _context.Messages.Remove(yMessage);
+                   
+                }
+            } await _context.SaveChangesAsync();
+            return RedirectToPage("./Index");
+        }
     }
 }

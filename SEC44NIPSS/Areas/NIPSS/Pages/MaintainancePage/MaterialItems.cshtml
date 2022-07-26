@@ -1,0 +1,316 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.MaterialItemsModel
+
+@{
+    ViewData["Title"] = "ReceivedAndPassTo";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        Received And Pass To A Staff Update
+
+                    </h2>
+                    <a asp-page="./Details" asp-route-id="@Model.TicketId" class="btn btn-danger">Back to Ticket Details</a>
+                </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                    @if (TempData["status"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> @TempData["status"]
+                        </div>}
+                    <div>
+                        <div class="box box-success">
+                            <div class="box-body">
+                                <h3 class="text-center">Evaluation by Maintenance Staff/Officer, Engineer, CTO etc</h3>
+
+                                <div class="table-responsive">
+
+                                    <table id="" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Material</th>
+                                                <th colspan="4">Quantity</th>
+                                                <th>S.I.V NO.</th>
+                                                <th></th>
+                                            </tr>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th></th>
+                                                <th>Required</th>
+                                                <th>Issued</th>
+                                                <th>Cost</th>
+                                                <th>Photo</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        @{ int sn = 0;}
+                                        <tbody>
+                                            @if (Model.TicketRequirements != null)
+                                            {
+                                                if (Model.TicketRequirements.Count() > 0)
+                                                {
+                                                    foreach (var x in Model.TicketRequirements)
+                                                    {
+                                                        if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Active)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @{ sn++;}
+                                                                    @sn
+                                                                </td>
+                                                                <td>@x.Title</td>
+                                                                <td>@x.QuantityRequired</td>
+                                                                <td>@x.QuantityIssued</td>
+                                                                <td>@x.Cost</td>
+                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>@x.SIVno</td>
+                                                                <td>
+                                                                    @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Active)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Remove)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                        else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Remove)
+                                                        {
+                                                            <tr style="color:#a10e0e">
+                                                                <td>
+                                                                    @{ sn++;}
+                                                                    @sn
+                                                                </td>
+                                                                <td>@x.Title</td>
+                                                                <td>@x.QuantityRequired</td>
+                                                                <td>@x.QuantityIssued</td>
+                                                                <td>@x.Cost</td>
+                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>@x.SIVno</td>
+                                                                <td>
+                                                                    @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Active)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Remove)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                        else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
+                                                        {
+                                                            <tr style="color:#ff6a00;">
+                                                                <td>
+                                                                    @{ sn++;}
+                                                                    @sn
+                                                                </td>
+                                                                <td>@x.Title</td>
+                                                                <td>@x.QuantityRequired</td>
+                                                                <td>@x.QuantityIssued</td>
+                                                                <td>@x.Cost</td>
+                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>@x.SIVno</td>
+                                                                <td>
+                                                                    @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Active)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Removed">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-danger btn-xs">Remove Item</button>
+                                                                        </form>
+
+                                                                    }
+                                                                    else if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Remove)
+                                                                    {
+                                                                        <form method="post" asp-page-handler="Change">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-warning btn-xs">Change Item</button>
+                                                                        </form>
+                                                                        <form method="post" asp-page-handler="Active">
+                                                                            <input type="hidden" asp-for="TicketId" value="@Model.TicketId" /><input type="hidden" asp-for="TicketRequirementId" value="@x.Id" />
+                                                                            <button type="submit" class="btn btn-success btn-xs">Make Active Item</button>
+                                                                        </form>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="7">
+                                                            <span>No item </span>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="7">
+                                                        <span>No item </span>
+                                                    </td>
+                                                </tr>
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- /.chat -->
+                                <div class="box-footer">
+                                    <h3 style="font-weight:900;">Add a New Material/Item</h3>
+                                    <form method="post" asp-page-handler="Materialx" enctype="multipart/form-data">
+                                        <input type="hidden" asp-for="TicketId" value="@Model.TicketId" />
+                                        <input type="hidden" />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Title</label>
+                                                    <input asp-for="TicketRequirement.Title" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Quantity Required</label>
+                                                    <input asp-for="TicketRequirement.QuantityRequired" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Quantity Issued</label>
+                                                    <input asp-for="TicketRequirement.QuantityIssued" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Cost</label>
+                                                    <input asp-for="TicketRequirement.Cost" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">SIV NO</label>
+                                                    <input asp-for="TicketRequirement.SIVno" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Image of Item if any</label>
+                                                    <input type="file" class="form-control" name="Imagefile" />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+
+                                                    <button type="submit" class="btn btn-success">Add Item</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+</div>

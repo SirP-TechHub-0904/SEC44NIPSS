@@ -5,12 +5,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h2>Edit</h2>
 
 <h4>Message</h4>
 <hr />
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Message.Id" />
@@ -30,22 +30,37 @@
                 <span asp-validation-for="Message.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Message.SentVia" class="control-label"></label>
+                <input asp-for="Message.SentVia" class="form-control" />
+                <span asp-validation-for="Message.SentVia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.Result" class="control-label"></label>
+                <input asp-for="Message.Result" class="form-control" />
+                <span asp-validation-for="Message.Result" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message.Date" class="control-label"></label>
+                <input asp-for="Message.Date" class="form-control" />
+                <span asp-validation-for="Message.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Message.Retries" class="control-label"></label>
                 <input asp-for="Message.Retries" class="form-control" />
                 <span asp-validation-for="Message.Retries" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Message.NotificationStatus" class="control-label"></label>
-                <select asp-for="Message.NotificationStatus" class="form-control"></select>
+                @Html.DropDownListFor(model => model.Message.NotificationStatus, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.NotificationStatus))), new { @class = "form-control" })
                 <span asp-validation-for="Message.NotificationStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Message.NotificationType" class="control-label"></label>
-                <select asp-for="Message.NotificationType" class="form-control"></select>
+                @Html.DropDownListFor(model => model.Message.NotificationType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.NotificationType))), new { @class = "form-control" })
                 <span asp-validation-for="Message.NotificationType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>

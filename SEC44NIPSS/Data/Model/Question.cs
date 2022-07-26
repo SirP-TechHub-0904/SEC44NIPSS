@@ -13,6 +13,7 @@ namespace SEC44NIPSS.Data.Model
         public string ImageUrl { get; set; }
         public Option Options { get; set; }
         public int Number { get; set; }
+        public int PageNumber { get; set; }
         public int SortOrder { get; set; }
         public string Required { get; set; }
 

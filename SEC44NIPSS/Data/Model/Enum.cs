@@ -6,6 +6,33 @@ using System.Web;
 
 namespace SEC44NIPSS.Data.Model
 {
+    public enum TicketStaffStatus
+    {
+        [Description("NONE")]
+        NONE = 0,
+        [Description("Active")]
+        Active = 2,
+        [Description("Changed")]
+        Changed = 3,
+        [Description("Remove")]
+        Remove = 4
+
+    }
+
+    public enum TicketItemStatus
+    {
+        [Description("NONE")]
+        NONE = 0,
+        [Description("Active")]
+        Active = 2,
+        [Description("Changed")]
+        Changed = 3,
+        [Description("Remove")]
+        Remove = 4
+
+    }
+
+
     public enum ReminderTime
     {
         [Description("NONE")]
@@ -105,6 +132,8 @@ namespace SEC44NIPSS.Data.Model
 
         [Description("MultipleOption")]
         MultipleOption = 7,
+        [Description("TableOption")]
+        TableOption = 8,
 
     }
     public enum PostFileType

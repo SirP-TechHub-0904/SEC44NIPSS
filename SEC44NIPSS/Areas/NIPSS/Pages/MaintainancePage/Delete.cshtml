@@ -1,0 +1,202 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Priority)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Priority)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.TicketNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.TicketNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Closed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Closed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.CreatedTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.CreatedTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ClosedTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ClosedTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Fullname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Fullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.StudyGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.StudyGroup)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.RequestedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.RequestedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Category)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.SubCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.SubCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Details)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Details)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.HouseOfficeNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.HouseOfficeNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.Stages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.Stages)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.User.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ForwardedTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ForwardedTo.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ForwardedToTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ForwardedToTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ReceivedAndPassTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ReceivedAndPassTo.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteByReceivedAndPassTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteByReceivedAndPassTo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ReceivedAndPassToTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ReceivedAndPassToTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ApprovedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ApprovedBy.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteApprovedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteApprovedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.ApprovedByTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.ApprovedByTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedBy.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.NoteJobCompletionCertifiedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.NoteJobCompletionCertifiedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedByTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedByTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ticket.JobCompletionCertifiedBySignature)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ticket.JobCompletionCertifiedBySignature)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Ticket.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

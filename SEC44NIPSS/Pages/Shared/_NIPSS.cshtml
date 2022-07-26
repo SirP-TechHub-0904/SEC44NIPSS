@@ -88,7 +88,7 @@
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="/" class="logo">
                 <img class="" src="~/assets/images/logo-white-short.png" alt="" style="max-height:50px;">
 
             </a>
@@ -228,9 +228,12 @@
                     <li><a asp-page="/Admin/Index" asp-area="NIPSS"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     <li><a asp-page="/Index" asp-area=""><i class="fa fa-home"></i> Website</a></li>
 
+                    <li class="header">MAINTENANCE</li>
+                    <li><a asp-page="/MaintainancePage/Index" asp-area="NIPSS"><i class="fa fa-dashboard"></i> Tickets</a></li>
+
                     <li class="header">ACCOUNTS</li>
                     <li><a asp-page="/Admin/NIPSSExecutive" asp-area="NIPSS"><i class="fa fa-users"></i> NIPSS Management</a></li>
-                  
+
                     <li><a asp-page="/Admin/DirectingStaff" asp-area="NIPSS"><i class="fa fa-users"></i> DirectingStaff</a></li>
                     <li><a asp-page="/Admin/Staff" asp-area="NIPSS"><i class="fa fa-users"></i> All Staff</a></li>
                     <li><a asp-page="/Admin/Participants" asp-area="NIPSS"><i class="fa fa-users"></i> Participants</a></li>

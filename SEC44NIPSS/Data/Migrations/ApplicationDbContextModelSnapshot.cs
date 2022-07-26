@@ -870,6 +870,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateSent")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");
 
@@ -880,6 +883,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Recipient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Result")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Retries")
@@ -1042,6 +1048,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("OptionList1")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OptionList10")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OptionList2")
                         .HasColumnType("nvarchar(max)");
 
@@ -1052,6 +1061,18 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OptionList5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionList6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionList7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionList8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionList9")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OptionType")
@@ -1068,6 +1089,336 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<int>("ShortNoteMinimumLength")
                         .HasColumnType("int");
+
+                    b.Property<string>("Table10Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table10Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table1Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table2Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table3Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table4Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table5Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table6Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table7Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table8Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Table9Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Yes")
                         .HasColumnType("nvarchar(max)");
@@ -1217,6 +1568,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
+                    b.Property<int>("PageNumber")
+                        .HasColumnType("int");
+
                     b.Property<long>("QuestionnerId")
                         .HasColumnType("bigint");
 
@@ -1320,6 +1674,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Instruction")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LongLink")
                         .HasColumnType("nvarchar(max)");
 
@@ -1350,14 +1707,49 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SubTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TotalPage")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
 
                     b.ToTable("Questionners");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.QuestionnerPage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instruction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<long>("QuestionnerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionnerId");
+
+                    b.ToTable("QuestionnerPages");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.RapidOption", b =>
@@ -1714,6 +2106,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Stages")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StudyGroup")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SubCategory")
                         .HasColumnType("nvarchar(max)");
 
@@ -1769,17 +2164,23 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("QuantityIssued")
-                        .HasColumnType("int");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QuantityRequired")
-                        .HasColumnType("int");
+                    b.Property<string>("QuantityIssued")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuantityRequired")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SIVno")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("TicketId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("TicketItemStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -1804,6 +2205,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("ProfileId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Reply")
                         .HasColumnType("nvarchar(max)");
 
@@ -1811,6 +2215,8 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfileId");
 
                     b.HasIndex("TicketId");
 
@@ -1835,6 +2241,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<long>("TicketId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("TicketStaffStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("WorkCarriedOut")
                         .HasColumnType("nvarchar(max)");
@@ -2329,6 +2738,15 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasForeignKey("ProfileId");
                 });
 
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.QuestionnerPage", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Questionner", "Questionner")
+                        .WithMany("QuestionnerPages")
+                        .HasForeignKey("QuestionnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SEC44NIPSS.Data.Model.RapidOption", b =>
                 {
                     b.HasOne("SEC44NIPSS.Data.Model.RapidQuestion", "RapidQuestion")
@@ -2425,6 +2843,12 @@ namespace SEC44NIPSS.Data.Migrations
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TicketResponse", b =>
                 {
+                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SEC44NIPSS.Data.Model.Ticket", "Ticket")
                         .WithMany("TicketResponses")
                         .HasForeignKey("TicketId")

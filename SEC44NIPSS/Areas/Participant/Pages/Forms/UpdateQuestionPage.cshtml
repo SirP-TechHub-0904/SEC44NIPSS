@@ -1,0 +1,65 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Forms.UpdateQuestionPageModel
+
+@{
+    ViewData["Title"] = "UpdateQuestionPage";
+}
+<div class="row">
+    <div class="box-body" style="background-color: #f0ebf8;">
+
+        <div class="col-md-12">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+
+
+
+                <!-- Modal content-->
+                <div class="box">
+                    <div class="box-header">
+                        <h4 class="modal-title">Update Question Page</h4>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <div class="box">
+                            <form method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="QuestionnerPage.Id" />
+                                <input type="hidden" asp-for="QuestionnerPage.Number" />
+                                <input type="hidden" asp-for="QuestionnerPage.QuestionnerId" />
+                                <div class="form-group">
+                                    <label asp-for="QuestionnerPage.Title" class="control-label"></label>
+                                    <input asp-for="QuestionnerPage.Title" class="form-control" />
+                                    <span asp-validation-for="QuestionnerPage.Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="QuestionnerPage.Description" class="control-label"></label>
+                                    <input asp-for="QuestionnerPage.Description" class="form-control" />
+                                    <span asp-validation-for="QuestionnerPage.Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="QuestionnerPage.Instruction" class="control-label"></label>
+                                    <input asp-for="QuestionnerPage.Instruction" class="form-control" />
+                                    <span asp-validation-for="QuestionnerPage.Instruction" class="text-danger"></span>
+                                </div>
+                               
+
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <a asp-page="./FormMaker" asp-route-o="@Model.siq" asp-route-q="@Model.liq" class="btn btn-primary">Back to Question List</a>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -41,7 +41,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
             var profile = await _context.Profiles.FirstOrDefaultAsync(x => x.UserId == user.Id);
             if (o != null)
             {
-                QuestionnerList = await _context.Questionners.Include(x => x.Questions).ThenInclude(x => x.Options).FirstOrDefaultAsync(x => x.ShortLink == o);
+                QuestionnerList = await _context.Questionners.Include(x => x.QuestionnerPages).Include(x => x.Questions).ThenInclude(x => x.Options).FirstOrDefaultAsync(x => x.ShortLink == o);
             }
             else
             {
@@ -284,7 +284,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
                 return Page();
             }
             
-            var xquestion = await _context.Questions.Include(x => x.Options).FirstOrDefaultAsync(x => x.Id == xQuestionId);
+            var xquestion = await _context.Questions.AsNoTracking().Include(x => x.Options).FirstOrDefaultAsync(x => x.Id == xQuestionId);
             int n = xquestion.Number;
             if (xquestion != null)
             {
@@ -327,6 +327,32 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
             await _context.SaveChangesAsync();
             TempData["Updated"] = "New Links have been Created Successfully";
             return RedirectToPage("./FormMaker", new { o = xquestionner.ShortLink, q = xquestionner.LongLink });
+        }
+        [BindProperty]
+        public int PageNumber { get; set; }
+        public async Task<IActionResult> OnPostPageNumberX()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            var xquestion = await _context.Questions.Include(x => x.Questionner).Include(x => x.Options).FirstOrDefaultAsync(x => x.Id == xQuestionId);
+
+            if (xquestion.Questionner.TotalPage < PageNumber || PageNumber > 1)
+            {
+                xquestion.PageNumber = PageNumber;
+                TempData["Updated"] = "Question No." + xquestion.Number + " updated to page " +PageNumber;
+            }
+            else
+            {
+                TempData["Updated"] = "Question No. is greater than" + xquestion.Questionner.TotalPage + " total required pages";
+
+            }
+            _context.Attach(xquestion).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./FormMaker", new { o = siq, q = liq });
         }
 
         public async Task<IActionResult> OnPostRequired()

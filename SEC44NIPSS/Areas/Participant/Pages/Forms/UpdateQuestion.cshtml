@@ -70,6 +70,7 @@
                                 <input type="hidden" asp-for="Question.ImageUrl" />
                                 <input type="hidden" asp-for="Question.SortOrder" />
                                 <input type="hidden" asp-for="Question.Number" />
+                                <input type="hidden" asp-for="Question.PageNumber" />
                                 <input type="hidden" asp-for="Question.QuestionnerId" />
                                 <input type="hidden" asp-for="Option.QuestionId" />
                                 <input type="hidden" asp-for="Option.Id" />
@@ -155,7 +156,7 @@
                                     else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.FiveOption)
                                     {
                                         <div class="form-group">
-                                            <label for="inputEmail3" class="control-label">Five Options</label>
+                                            <label for="inputEmail3" class="control-label">Five Options and above</label>
 
                                             <div class="">
                                                 <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList1" placeholder="Option One">
@@ -183,6 +184,36 @@
 
                                             <div class="">
                                                 <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList5" placeholder="Option Five">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList6" placeholder="Option Six">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList7" placeholder="Option Seven">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList8" placeholder="Option Eight">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList9" placeholder="Option Nine">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="">
+                                                <input type="text" class="form-control" id="inputEmail3" asp-for="Option.OptionList10" placeholder="Option Ten">
                                             </div>
                                         </div>
                                     }
@@ -278,6 +309,759 @@
                                             </div>
                                         </div>
                                     }
+                                    else if (Model.Option.OptionType == SEC44NIPSS.Data.Model.OptionType.TableOption)
+                                    {
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Title" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option1" placeholder="Option 1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option2" placeholder="Option 2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option3" placeholder="Option 3">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option4" placeholder="Option 4">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option5" placeholder="Option 5">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option6" placeholder="Option 6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option7" placeholder="Option 7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option8" placeholder="Option 8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option9" placeholder="Option 9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="">
+                                                    <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option10" placeholder="Option 10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
 
                                 </div>
                                 <div>
@@ -293,6 +1077,7 @@
                                                 <option value="FiveOption">Five Option</option>
                                                 <option value="FourOption">Four Option</option>
                                                 <option value="MultipleOption">Multiple Option Selection</option>
+                                                <option value="TableOption">Table Option</option>
 
                                             </select>
                                         </div>
@@ -319,10 +1104,10 @@
                                                 <label for="inputEmail3" class="control-label">Long Note</label>
 
                                                 <div class="">
-                                                    <textarea type="text" class="form-control" id="inputEmail3"  placeholder="Your Answer"></textarea>
+                                                    <textarea type="text" class="form-control" id="inputEmail3" placeholder="Your Answer"></textarea>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                         <div id="ShortNoteOption">
                                             <div class="form-group">
@@ -332,7 +1117,759 @@
                                                     <input type="text" class="form-control" placeholder="Your Answer">
                                                 </div>
                                             </div>
-                                           
+
+                                        </div>
+                                        <div id="TableOption">
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table1Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table2Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table3Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table4Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table5Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table6Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table7Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table8Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table9Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="control-label">Table Option (First Row)</label>
+
+
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Title" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option1" placeholder="Option 1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option2" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option3" placeholder="Option 3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option4" placeholder="Option 4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option5" placeholder="Option 5">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option6" placeholder="Option 6">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option7" placeholder="Option 7">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option8" placeholder="Option 8">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option9" placeholder="Option 9">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="inputEmail3" asp-for="Option.Table10Option10" placeholder="Option 10">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div id="FiveOption">
                                             <div class="form-group">
@@ -474,54 +2011,59 @@
 
 
     </div>
-    </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
 
 
-        <script>
+    <script>
 
-            document.getElementById('YesNoOption').style.display = "none";
-            document.getElementById('LongNoteOption').style.display = "none";
-            document.getElementById('ShortNoteOption').style.display = "none";
-            document.getElementById('FiveOption').style.display = "none";
-            document.getElementById('FourOption').style.display = "none";
-            document.getElementById('MultipleOption').style.display = "none";
+        document.getElementById('YesNoOption').style.display = "none";
+        document.getElementById('LongNoteOption').style.display = "none";
+        document.getElementById('ShortNoteOption').style.display = "none";
+        document.getElementById('FiveOption').style.display = "none";
+        document.getElementById('FourOption').style.display = "none";
+        document.getElementById('MultipleOption').style.display = "none";
+        document.getElementById('TableOption').style.display = "none";
+
+        
+
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "YesNoOption" ? 'block' : 'none';
+            document.getElementById('YesNoOption').style.display = style;
+        });
+
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "LongNoteOption" ? 'block' : 'none';
+            document.getElementById('LongNoteOption').style.display = style;
+        });
+
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "ShortNoteOption" ? 'block' : 'none';
+            document.getElementById('ShortNoteOption').style.display = style;
+        });
+
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "FiveOption" ? 'block' : 'none';
+            document.getElementById('FiveOption').style.display = style;
+        });
+
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "FourOption" ? 'block' : 'none';
+            document.getElementById('FourOption').style.display = style;
+        });
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "MultipleOption" ? 'block' : 'none';
+            document.getElementById('MultipleOption').style.display = style;
+        });
+        document.getElementById('OptionChange').addEventListener('change', function () {
+            var style = this.value == "TableOption" ? 'block' : 'none';
+            document.getElementById('TableOption').style.display = style;
+        });
 
 
+    </script>
 
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "YesNoOption" ? 'block' : 'none';
-                document.getElementById('YesNoOption').style.display = style;
-            });
-
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "LongNoteOption" ? 'block' : 'none';
-                document.getElementById('LongNoteOption').style.display = style;
-            });
-
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "ShortNoteOption" ? 'block' : 'none';
-                document.getElementById('ShortNoteOption').style.display = style;
-            });
-
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "FiveOption" ? 'block' : 'none';
-                document.getElementById('FiveOption').style.display = style;
-            });
-
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "FourOption" ? 'block' : 'none';
-                document.getElementById('FourOption').style.display = style;
-            });
-            document.getElementById('OptionChange').addEventListener('change', function () {
-                var style = this.value == "MultipleOption" ? 'block' : 'none';
-                document.getElementById('MultipleOption').style.display = style;
-            });
-
-
-        </script>
-
-    }
+}
 

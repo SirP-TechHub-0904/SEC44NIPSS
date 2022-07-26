@@ -49,7 +49,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
             }
             else
             {
-                Profile = await _context.Profiles.Include(x => x.MyGallery).FirstOrDefaultAsync(x => x.UserId == user.Id);
+                Profile = await _context.Profiles.Include(x => x.MyGallery).Include(x=>x.StudyGroupMemeber).ThenInclude(x=>x.StudyGroup).FirstOrDefaultAsync(x => x.UserId == user.Id);
 
             }
             return Page();
@@ -96,6 +96,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
             public string Message { get; set; }
             [Required]
             public string Priority { get; set; }
+            public string StudyGroup { get; set; }
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -239,87 +240,31 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
                 _context.Messages.Add(sms);
                 await _context.SaveChangesAsync();
 
-
-                var i = await _context.Messages.FirstOrDefaultAsync(m => m.Id == ms.Id);
-
-                if (i == null)
-                {
-                    return NotFound();
-                }
-                if (i.NotificationType == NotificationType.Email)
-                {
-                    //
-                    bool result = await SendEmail(i.Recipient, i.Mail, i.Title);
-                    if (result == true)
-                    {
-                        i.NotificationStatus = NotificationStatus.Sent;
-
-                    }
-                    else
-                    {
-                        i.NotificationStatus = NotificationStatus.NotSent;
-                        i.Retries = i.Retries + 1;
-
-                    }
-                    _context.Attach(i).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
-                }
-
-                //sms
-                var ix = await _context.Messages.FirstOrDefaultAsync(m => m.Id == sms.Id);
-
-                if (ix == null)
-                {
-                    return NotFound();
-                }
-                if (ix.NotificationType == NotificationType.SMS)
-                {
-                    //
-                    string xresult = await SendSms(ix.Recipient, ix.Mail);
-                    bool result = false;
-                    if (xresult.Contains("Ok"))
-                    {
-                        result = true;
-                    }
-                    if (result == true)
-                    {
-                        ix.NotificationStatus = NotificationStatus.Sent;
-
-                    }
-                    else
-                    {
-                        ix.NotificationStatus = NotificationStatus.NotSent;
-                        ix.Retries = ix.Retries + 1;
-
-                    }
-                    _context.Attach(ix).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
-                }
-
-
-
-                await _context.SaveChangesAsync();
                 var ticketsupervisor = await _context.TicketSupervisor.ToListAsync();
                 try
                 {
 
-                    //MailMessage xmail = new MailMessage();
-                    //string xmailmsg = sr.ReadToEnd();
-                    //xmailmsg = xmailmsg.Replace("{NAME}", Ticket.Fullname);
-                    //xmailmsg = xmailmsg.Replace("{TITLE}", "Work and Maintenance Department");
-                    //xmailmsg = xmailmsg.Replace("{BODY}", "New Maintainance Request<br><br>"+ mi);
-                    //xmail.Body = xmailmsg;
-                    //sr.Close();
+                   
                     foreach (var mm in ticketsupervisor)
                     {
                         long emx = 0;
                         long ymx = 0;
                         if (mm.SendEmail == true)
                         {
+                            StreamReader xsr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
+                            MailMessage xmail = new MailMessage();
+                            string xm = "New Request has been booked with <br>" + mi.Replace("Your Request has been booked with", "");
+
+                            string xmailmsg = xsr.ReadToEnd();
+                            xmailmsg = xmailmsg.Replace("{NAME}", mm.Name);
+                            xmailmsg = xmailmsg.Replace("{TITLE}", "");
+                            xmailmsg = xmailmsg.Replace("{BODY}", xm);
+                            xmail.Body = xmailmsg;
+                            xsr.Close();
                             Message mms = new Message();
                             mms.Recipient = mm.Email;
                             mms.Title = "Work and Maintenance Department";
-                            mms.Mail = "New Request has been booked with <br>" + mi.Replace("Your Request has been booked with","");
+                            mms.Mail = xmailmsg;
                             mms.Retries = 0; mms.NotificationStatus = NotificationStatus.NotSent; mms.NotificationType = NotificationType.Email;
                             _context.Messages.Add(mms);
                             await _context.SaveChangesAsync();
@@ -338,61 +283,6 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
                             ymx = msms.Id;
                         }
 
-                        var im = await _context.Messages.FirstOrDefaultAsync(m => m.Id == emx);
-
-                        if (im == null)
-                        {
-                            return NotFound();
-                        }
-                        if (im.NotificationType == NotificationType.Email)
-                        {
-                            //
-                            bool result = await SendEmail(im.Recipient, im.Mail, im.Title);
-                            if (result == true)
-                            {
-                                im.NotificationStatus = NotificationStatus.Sent;
-
-                            }
-                            else
-                            {
-                                im.NotificationStatus = NotificationStatus.NotSent;
-                                im.Retries = im.Retries + 1;
-
-                            }
-                            _context.Attach(im).State = EntityState.Modified;
-                            await _context.SaveChangesAsync();
-                        }
-
-                        //sms
-                        var imx = await _context.Messages.FirstOrDefaultAsync(m => m.Id == ymx);
-
-                        if (imx == null)
-                        {
-                            return NotFound();
-                        }
-                        if (imx.NotificationType == NotificationType.SMS)
-                        {
-                            //
-                            string xresult = await SendSms(imx.Recipient, imx.Mail);
-                            bool result = false;
-                            if (xresult.Contains("Ok"))
-                            {
-                                result = true;
-                            }
-                            if (result == true)
-                            {
-                                imx.NotificationStatus = NotificationStatus.Sent;
-
-                            }
-                            else
-                            {
-                                imx.NotificationStatus = NotificationStatus.NotSent;
-                                imx.Retries = imx.Retries + 1;
-
-                            }
-                            _context.Attach(imx).State = EntityState.Modified;
-                            await _context.SaveChangesAsync();
-                        }
                     }
                 }
                 catch (Exception c)
@@ -485,83 +375,83 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
 
             return null;
         }
-        public async Task<bool> SendEmail(string recipient, string message, string title)
-        {
-            try
-            {
+        //public async Task<bool> SendEmail(string recipient, string message, string title)
+        //{
+        //    try
+        //    {
 
 
-                //create the mail message 
-                MailMessage mail = new MailMessage();
+        //        //create the mail message 
+        //        MailMessage mail = new MailMessage();
 
 
-                mail.Body = message;
-                //set the addresses 
-                mail.From = new MailAddress("noreply@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
-                mail.To.Add(recipient);
+        //        mail.Body = message;
+        //        //set the addresses 
+        //        mail.From = new MailAddress("noreply@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
+        //        mail.To.Add(recipient);
 
-                //set the content 
-                mail.Subject = title.Replace("\r\n", "");
+        //        //set the content 
+        //        mail.Subject = title.Replace("\r\n", "");
 
-                mail.IsBodyHtml = true;
-                //send the message 
-                SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
+        //        mail.IsBodyHtml = true;
+        //        //send the message 
+        //        SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
 
-                //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                NetworkCredential Credentials = new NetworkCredential("noreply@sec44nipss.com", "Admin@123");
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = Credentials;
-                smtp.Port = 25;    //alternative port number is 8889
-                smtp.EnableSsl = false;
-                smtp.Send(mail);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                TempData["err"] = ex.Message.ToString();
-                return false;
-            }
-        }
+        //        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+        //        NetworkCredential Credentials = new NetworkCredential("noreply@sec44nipss.com", "Admin@123");
+        //        smtp.UseDefaultCredentials = false;
+        //        smtp.Credentials = Credentials;
+        //        smtp.Port = 25;    //alternative port number is 8889
+        //        smtp.EnableSsl = false;
+        //        smtp.Send(mail);
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["err"] = ex.Message.ToString();
+        //        return false;
+        //    }
+        //}
 
-        public async Task<string> SendSms(string recipient, string message)
-        {
-
-
-            message = message.Replace("0", "O");
-            message = message.Replace("Services", "Servics");
-            message = message.Replace("gmail", "g -mail");
-            string response = "";
-            //Peter Ahioma
-
-            try
-            {
-                var getApi = "http://account.kudisms.net/api/?username=peterahioma2020@gmail.com&password=nation@123&message=@@message@@&sender=@@sender@@&mobiles=@@recipient@@";
-                string apiSending = getApi.Replace("@@sender@@", "SEC 44").Replace("@@recipient@@", HttpUtility.UrlEncode(recipient)).Replace("@@message@@", HttpUtility.UrlEncode(message));
-
-                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(apiSending);
-                httpWebRequest.Method = "GET";
-                httpWebRequest.ContentType = "application/json";
-
-                //getting the respounce from the request
-                HttpWebResponse httpWebResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-                Stream responseStream = httpWebResponse.GetResponseStream();
-                StreamReader streamReader = new StreamReader(responseStream);
-                response = await streamReader.ReadToEndAsync();
-                //response = "OK";
-            }
-            catch (Exception c)
-            {
-                response = c.ToString();
-            }
-
-            if (response.ToUpper().Contains("OK") || response.ToUpper().Contains("1701"))
-            {
-                return response = "Ok Sent";
-            }
-            return response;
+        //public async Task<string> SendSms(string recipient, string message)
+        //{
 
 
-        }
+        //    message = message.Replace("0", "O");
+        //    message = message.Replace("Services", "Servics");
+        //    message = message.Replace("gmail", "g -mail");
+        //    string response = "";
+        //    //Peter Ahioma
+
+        //    try
+        //    {
+        //        var getApi = "http://account.kudisms.net/api/?username=peterahioma2020@gmail.com&password=nation@123&message=@@message@@&sender=@@sender@@&mobiles=@@recipient@@";
+        //        string apiSending = getApi.Replace("@@sender@@", "SEC 44").Replace("@@recipient@@", HttpUtility.UrlEncode(recipient)).Replace("@@message@@", HttpUtility.UrlEncode(message));
+
+        //        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(apiSending);
+        //        httpWebRequest.Method = "GET";
+        //        httpWebRequest.ContentType = "application/json";
+
+        //        //getting the respounce from the request
+        //        HttpWebResponse httpWebResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+        //        Stream responseStream = httpWebResponse.GetResponseStream();
+        //        StreamReader streamReader = new StreamReader(responseStream);
+        //        response = await streamReader.ReadToEndAsync();
+        //        //response = "OK";
+        //    }
+        //    catch (Exception c)
+        //    {
+        //        response = c.ToString();
+        //    }
+
+        //    if (response.ToUpper().Contains("OK") || response.ToUpper().Contains("1701"))
+        //    {
+        //        return response = "Ok Sent";
+        //    }
+        //    return response;
+
+
+        //}
 
 
     }

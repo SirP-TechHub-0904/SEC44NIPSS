@@ -12,6 +12,10 @@ namespace SEC44NIPSS.Data.Model
         public string Image { get; set; }
         public DateTime CreatedTime { get; set; }
 
+
+        public long ProfileId { get; set; }
+        public Profile Profile { get; set; }
+
         public long TicketId { get; set; }
         public Ticket Ticket { get; set; }
     }

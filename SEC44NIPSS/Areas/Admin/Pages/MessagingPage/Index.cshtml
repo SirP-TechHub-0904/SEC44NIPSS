@@ -29,13 +29,15 @@
     <table class="table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Message[0].Date)
                 </th>
+                <th>Sent Date</th>
                 <th>
                     @Html.DisplayNameFor(model => model.Message[0].Recipient)
                 </th>
-
+                
                 <th>
                     @Html.DisplayNameFor(model => model.Message[0].Title)
                 </th>
@@ -57,7 +59,13 @@
             {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSent)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Recipient)

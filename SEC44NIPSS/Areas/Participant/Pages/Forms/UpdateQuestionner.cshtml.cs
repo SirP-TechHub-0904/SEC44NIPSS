@@ -48,7 +48,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
         
         public async Task<IActionResult> OnPostAsync()
         {
-            var xquestionner = await _context.Questionners.FirstOrDefaultAsync(x=>x.Id == Questionner.Id);
+            var xquestionner = await _context.Questionners.Include(x=>x.QuestionnerPages).FirstOrDefaultAsync(x=>x.Id == Questionner.Id);
 
                 if (HttpContext.Request.Form.Files != null && HttpContext.Request.Form.Files.Count > 0)
                 {
@@ -119,7 +119,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
 
                             myImage.Dispose();
 
-                        xquestionner.PreviewImage = $"{fileDbPathName}{newFileNamex}";
+                        xquestionner.Logo = $"{fileDbPathName}{newFileNamex}";
 
                             if (imgCount >= 5)
                                 break;
@@ -128,10 +128,12 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Forms
                 }
 
             xquestionner.Title = Questionner.Title;
+            xquestionner.SubTitle = Questionner.SubTitle;
             xquestionner.Description = Questionner.Description;
             xquestionner.Instruction = Questionner.Instruction;
             xquestionner.Response = Questionner.Response;
             xquestionner.Email = Questionner.Email;
+            xquestionner.TotalPage = Questionner.QuestionnerPages.Count();
             xquestionner.PhoneNumber = Questionner.PhoneNumber;
             xquestionner.SendRespondantEmailAfterAttempt = Questionner.SendRespondantEmailAfterAttempt;
             xquestionner.SendResponse = Questionner.SendResponse;
