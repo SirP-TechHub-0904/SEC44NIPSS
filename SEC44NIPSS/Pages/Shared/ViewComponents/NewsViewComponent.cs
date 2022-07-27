@@ -9,17 +9,18 @@ using Microsoft.EntityFrameworkCore;using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using SEC44NIPSS.Data.Model;
 using SEC44NIPSS.Data;
+using SEC44NIPSS.Data.Dtos;
 
 namespace SEC44NIPSS.Pages.Shared.ViewComponents
 {
-    public class SliderViewComponent : ViewComponent
+    public class NewsViewComponent : ViewComponent
     {
         private readonly UserManager<IdentityUser> _userManager;
 
         private readonly NIPSSDbContext _context;
 
 
-        public SliderViewComponent(
+        public NewsViewComponent(
             UserManager<IdentityUser> userManager,
             NIPSSDbContext context
            
@@ -33,17 +34,10 @@ namespace SEC44NIPSS.Pages.Shared.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
+           var News = _context.News.Include(x => x.Comments).OrderBy(x => x.Date).Take(3).ToList();
 
-            var sliderc = await _context.SliderCategories.FirstOrDefaultAsync(x => x.Active == true);
-            if(sliderc == null)
-            {
-                sliderc = await _context.SliderCategories.FirstOrDefaultAsync();
-
-            }
-
-            var xslider = await _context.Sliders.Where(x => x.SliderCategoryId == sliderc.Id && x.Show== true).ToListAsync();
-          
-            return View(xslider);
+            ViewBag.News = News.ToList();
+            return View();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SEC44NIPSS.Data
         }
 
       
-
+        public DbSet<TicketStage> TicketStages { get; set; }
         public DbSet<QuestionnerPage> QuestionnerPages { get; set; }
         public DbSet<SliderCategory> SliderCategories { get; set; }
         public DbSet<Slider> Sliders { get; set; }

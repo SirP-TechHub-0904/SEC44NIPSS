@@ -1,0 +1,28 @@
+﻿<div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="true" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="3" data-md-device-nav="false" data-md-device-dots="true">
+
+        @foreach (var i in ViewBag.News)
+            {
+        <div class="blog-item" style="border: 2px solid #ffffff; box-shadow: 0px 1.6px 3.6px rgb(0 0 0 / 13%), 0px 0px 2.9px rgb(0 0 0 / 11%); padding: 15px; background-color: #f3f0f0;">
+            <div class="image-wrap text-justify">
+                <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                    <img src="@i.Image" alt="@i.Title">
+                </a>
+            </div>
+            <div class="blog-content">
+                <ul class="blog-meta mb-10" style="margin-bottom:3px;">
+
+                    <li class="date"> <i class="fa fa-calendar-check-o"></i> @i.Date.ToString("dd MMM yyyy")</li>
+                </ul>
+                <h6 class="blog-title text-justify" style="margin-bottom:9px;">
+                    <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title">
+                        @i.Title
+                    </a>
+                </h6>
+                <p style="margin-bottom:9px;" class=" text-justify">
+                    @i.ShortDescription ... <a asp-page="/NewsPage/Read" asp-route-id="@i.Id" asp-route-title="@i.Title" style="font-size:10px;font-style:italic;color:#ff0000;">Continue Reading</a>
+                </p>
+            </div>
+        </div>
+            }
+
+    </div>

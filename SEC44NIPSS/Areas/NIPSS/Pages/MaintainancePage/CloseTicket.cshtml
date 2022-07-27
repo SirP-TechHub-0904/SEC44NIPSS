@@ -1,0 +1,80 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.CloseTicketModel
+
+@{
+    ViewData["Title"] = "CloseTicket";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+                <div class="box-header">
+                    <h2 class="box-title">
+                        Close Ticket
+                    </h2>
+
+                </div>
+            </div>
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
+
+                    <div>
+                        <div class="box box-success">
+                            <h3>Ticket History</h3>
+                            <div class="table-responsive">
+                                <table id="" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Date</th>
+                                            <th>Details</th>
+
+                                        </tr>
+                                    </thead>
+                                    @{ int sn = 0;}
+                                    <tbody>
+                                        @foreach (var x in Model.Ticket.TicketStages.OrderByDescending(x=>x.Id))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @{ sn++;}
+@sn
+                                                </td>
+                                                <td>@x.Date</td>
+                                                <td>
+                                                   @x.Title
+                                                </td>
+                                                
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <!-- /.chat -->
+                            <div class="box-footer">
+                                <form method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Ticket.Id" />
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-default" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                        @section Scripts {
+                            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                        }

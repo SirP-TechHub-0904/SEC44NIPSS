@@ -2690,6 +2690,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Areas\NIPSS\Pages\MaintainancePage\Approval - Copy.cshtml.cs">
+      <DependentUpon>Approval.cshtml.cs</DependentUpon>
+    </Compile>
     <Compile Update="Areas\NIPSS\Pages\MaintainancePage\ReceivedAndPassTo - Copy.cshtml.cs">
       <DependentUpon>ReceivedAndPassTo.cshtml.cs</DependentUpon>
     </Compile>

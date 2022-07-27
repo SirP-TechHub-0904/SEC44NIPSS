@@ -1,5 +1,5 @@
 ﻿@page
-@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.ReceivedAndPassToModel
+@model SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage.ApprovalModel
 
 @{
     ViewData["Title"] = "ReceivedAndPassTo";
@@ -11,7 +11,7 @@
             <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
                 <div class="box-header">
                     <h2 class="box-title">
-                        Received And Pass To A Staff Update
+                        Controller of Works Approval
                     </h2>
 
                 </div>
@@ -28,21 +28,27 @@
                             
                             <!-- /.chat -->
                             <div class="box-footer">
-                                <form method="post" asp-page-handler="ReceivedAndPassTo">
+                                <form method="post" asp-page-handler="Approval">
                                     <input type="hidden" asp-for="TicketId" value="@Model.Ticket.Id" />
                                     <input type="hidden" />
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label">Choose The Name of the Staff</label>
-                                                <select asp-for="ReceivedAndPassToId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                                                <label class="control-label">Approved by which Staff</label>
+                                                <select asp-for="ApprovedId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note/Comment</label>
+                                                <textarea asp-for="ApprovedNote" class="form-control" ></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
 
-                                                <button type="submit" class="btn btn-success">Add Staff</button>
+                                                <button type="submit" class="btn btn-success">Update Approval</button>
 
                                             </div>
                                         </div>

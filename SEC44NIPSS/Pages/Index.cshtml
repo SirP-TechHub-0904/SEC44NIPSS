@@ -638,38 +638,11 @@
             </h2>
             <div class="heading-border-line"></div>
         </div>
-        @*<div class="row">
-                @foreach (var x in Model.NipssStaffList)
-                {
-                    <div class="col-md-4">
-                        <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
-                            @if (!String.IsNullOrEmpty(x.Photo))
-                            {
 
-                                <div class="" style="height: 500px; background: url('@x.Photo'); background-repeat: no-repeat; background-size: cover;background-position: center; ">
+        @await Component.InvokeAsync("NipssStaff")
 
-                                </div>
-                            }
-                            else
-                            {
+       
 
-                                <div class="" style="height: 500px; background: url('../img/adamm.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; ">
-
-                                </div>
-                            }
-                            <div class="card-body" style="padding: 5px; height: 70px; background-color: #52ad79; color: white;">
-
-                                <h6 class="card-title text-center uppercase" style="font-size:15px;font-weight:900;color:#fff;">@x.Fullname</h6>
-                                <h6 class="card-title text-center uppercase" style="font-size: 12px; color: #fff;">
-                                    @x.Position
-                                </h6>
-
-                            </div>
-                        </div>
-                    </div>
-
-                }
-            </div>*@
         <div class="row y-middle">
 
             <div class="col-lg-12">
@@ -691,6 +664,8 @@
             </h2>
             <div class="heading-border-line"></div>
         </div>
+        @await Component.InvokeAsync("SecExco")
+
         @*<div class="row">
             @foreach (var x in Model.Executive)
                 {
@@ -750,6 +725,8 @@
                 </div>
             </div>
         </div>
+        @await Component.InvokeAsync("News")
+
         @*<div class="rs-carousel owl-carousel" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="true" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="true" data-ipad-device2="2" data-ipad-device-nav2="false" data-ipad-device-dots2="true" data-md-device="3" data-md-device-nav="false" data-md-device-dots="true">
 
             @foreach (var i in Model.News)

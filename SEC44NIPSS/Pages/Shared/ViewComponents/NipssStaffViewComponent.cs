@@ -9,17 +9,18 @@ using Microsoft.EntityFrameworkCore;using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using SEC44NIPSS.Data.Model;
 using SEC44NIPSS.Data;
+using SEC44NIPSS.Data.Dtos;
 
 namespace SEC44NIPSS.Pages.Shared.ViewComponents
 {
-    public class SliderViewComponent : ViewComponent
+    public class NipssStaffViewComponent : ViewComponent
     {
         private readonly UserManager<IdentityUser> _userManager;
 
         private readonly NIPSSDbContext _context;
 
 
-        public SliderViewComponent(
+        public NipssStaffViewComponent(
             UserManager<IdentityUser> userManager,
             NIPSSDbContext context
            
@@ -33,17 +34,17 @@ namespace SEC44NIPSS.Pages.Shared.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-
-            var sliderc = await _context.SliderCategories.FirstOrDefaultAsync(x => x.Active == true);
-            if(sliderc == null)
+            var nipssstaff = _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").OrderBy(x => x.SortOrder).Take(3).ToList();
+            var output = nipssstaff.Select(x => new NipssStaffListDto
             {
-                sliderc = await _context.SliderCategories.FirstOrDefaultAsync();
+                Id = x.Id,
+                Position = x.Position,
+                Fullname = x.Title + " " + x.FullName,
+                Photo = x.AboutProfile,
+            });
 
-            }
-
-            var xslider = await _context.Sliders.Where(x => x.SliderCategoryId == sliderc.Id && x.Show== true).ToListAsync();
-          
-            return View(xslider);
+           ViewBag.NipssStaffList = output.ToList();
+            return View();
         }
     }
 }

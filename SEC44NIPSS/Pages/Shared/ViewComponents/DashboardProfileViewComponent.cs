@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using SEC44NIPSS.Data.Model;
 using SEC44NIPSS.Data;
 
-namespace Pestcontrol.Pages.Shared.ViewComponents
+namespace SEC44NIPSS.Pages.Shared.ViewComponents
 {
     public class DashboardProfileViewComponent : ViewComponent
     {

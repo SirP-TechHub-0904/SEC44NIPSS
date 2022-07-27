@@ -33,19 +33,8 @@ namespace SEC44NIPSS.Pages
 
         public IActionResult OnGetAsync()
         {
-            Executive =  _context.Executive.Include(x=>x.Profile).Include(x => x.Alumni).OrderBy(x => x.SortOrder).Where(x=>x.Alumni.Active == true).Take(3).ToList();
-             var nipssstaff = _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").OrderBy(x => x.SortOrder).Take(3).ToList();
-            var output = nipssstaff.Select(x => new NipssStaffListDto
-            {
-                Id = x.Id,
-               Position = x.Position,
-               Fullname = x.Title + " "+ x.FullName,
-               Photo =x.AboutProfile,
-            });
-
-            NipssStaffList = output.ToList();
-            News = _context.News.Include(x=>x.Comments).OrderBy(x => x.Date).Take(3).ToList();
-
+            
+            
             return Page();
             
         }

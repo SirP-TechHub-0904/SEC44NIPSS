@@ -65,8 +65,18 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
             TicketStaff.TicketStaffStatus = TicketStaffStatus.Active;
             TicketStaff.Date = DateTime.UtcNow.AddHours(1);
             _context.TicketStaff.Add(TicketStaff);
+
+          
             await _context.SaveChangesAsync();
             var Profile = await _context.Profiles.Include(x=>x.User).FirstOrDefaultAsync(x => x.Id == TicketStaff.ProfileId);
+
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Staff " +Profile.Title +" "+Profile.FullName +" was added to ticket";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = TicketId;
+            _context.TicketStages.Add(tstage);
+            await _context.SaveChangesAsync();
+
             var tik = await _context.Tickets.FirstOrDefaultAsync(x => x.Id == TicketStaff.TicketId);
             StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
             MailMessage mail = new MailMessage();
@@ -163,10 +173,15 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostRemoved()
         {
-            var mx = await _context.TicketStaff.FirstOrDefaultAsync(x => x.Id == TicketStaffId);
+            var mx = await _context.TicketStaff.Include(x=>x.Profile).FirstOrDefaultAsync(x => x.Id == TicketStaffId);
             mx.TicketStaffStatus = TicketStaffStatus.Remove;
             _context.Attach(mx).State = EntityState.Modified;
 
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Staff " + mx.Profile.Title + " " + mx.Profile.FullName + " was removed to ticket";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";
@@ -175,10 +190,15 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostActive()
         {
-            var mx = await _context.TicketStaff.FirstOrDefaultAsync(x => x.Id == TicketStaffId);
-            mx.TicketStaffStatus = TicketStaffStatus.Remove;
+            var mx = await _context.TicketStaff.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Id == TicketStaffId);
+            mx.TicketStaffStatus = TicketStaffStatus.Active;
             _context.Attach(mx).State = EntityState.Modified;
 
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Staff " + mx.Profile.Title + " " + mx.Profile.FullName + " was active to ticket";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";
@@ -187,10 +207,15 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostChange()
         {
-            var mx = await _context.TicketStaff.FirstOrDefaultAsync(x => x.Id == TicketStaffId);
+            var mx = await _context.TicketStaff.Include(x => x.Profile).FirstOrDefaultAsync(x => x.Id == TicketStaffId);
             mx.TicketStaffStatus = TicketStaffStatus.Changed;
             _context.Attach(mx).State = EntityState.Modified;
 
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Staff " + mx.Profile.Title + " " + mx.Profile.FullName + " was changed to ticket";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";

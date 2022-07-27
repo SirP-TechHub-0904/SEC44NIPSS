@@ -57,7 +57,8 @@ namespace SEC44NIPSS.Data.Model
         public string JobCompletionCertifiedBySignature { get; set; }
         
 
-        public ICollection<TicketResponse> TicketResponses { get;set;}
+        public ICollection<TicketStage> TicketStages { get;set;}
+        public ICollection<TicketResponse> TicketResponses { get;set; }
         public ICollection<TicketRequirement> TicketRequirements { get;set; }
         public ICollection<TicketStaff> TicketStaff { get;set; }
 

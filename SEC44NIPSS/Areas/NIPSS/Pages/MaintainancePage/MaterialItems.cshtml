@@ -73,7 +73,11 @@
                                                                 <td>@x.QuantityRequired</td>
                                                                 <td>@x.QuantityIssued</td>
                                                                 <td>@x.Cost</td>
-                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>  
+                                                                @if (!String.IsNullOrEmpty(x.Image))
+                                                                {
+                                                                <a href="@x.Image" class="btn btn-success btn-xs">View</a>
+                                                                }</td>
                                                                 <td>@x.SIVno</td>
                                                                 <td>
                                                                     @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
@@ -125,7 +129,12 @@
                                                                 <td>@x.QuantityRequired</td>
                                                                 <td>@x.QuantityIssued</td>
                                                                 <td>@x.Cost</td>
-                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>
+                                                                    @if (!String.IsNullOrEmpty(x.Image))
+                                                                    {
+                                                                        <a href="@x.Image" class="btn btn-success btn-xs">View</a>
+                                                                    }
+                                                                </td>
                                                                 <td>@x.SIVno</td>
                                                                 <td>
                                                                     @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)
@@ -177,7 +186,12 @@
                                                                 <td>@x.QuantityRequired</td>
                                                                 <td>@x.QuantityIssued</td>
                                                                 <td>@x.Cost</td>
-                                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                                <td>
+                                                                    @if (!String.IsNullOrEmpty(x.Image))
+                                                                    {
+                                                                        <a href="@x.Image" class="btn btn-success btn-xs">View</a>
+                                                                    }
+                                                                </td>
                                                                 <td>@x.SIVno</td>
                                                                 <td>
                                                                     @if (x.TicketItemStatus == SEC44NIPSS.Data.Model.TicketItemStatus.Changed)

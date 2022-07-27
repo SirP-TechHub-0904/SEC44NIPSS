@@ -18,12 +18,12 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 {
     [Authorize(Roles = "Admin")]
 
-    public class ReceivedAndPassToModel : PageModel
+    public class UpdateCertificationModel : PageModel
     {
         private readonly SEC44NIPSS.Data.NIPSSDbContext _context;
         private readonly IHostingEnvironment _hostingEnv;
 
-        public ReceivedAndPassToModel(SEC44NIPSS.Data.NIPSSDbContext context, IHostingEnvironment hostingEnv)
+        public UpdateCertificationModel(SEC44NIPSS.Data.NIPSSDbContext context, IHostingEnvironment hostingEnv)
         {
             _context = context;
             _hostingEnv = hostingEnv;
@@ -61,26 +61,30 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
         public long TicketId { get; set; }
 
         [BindProperty]
-        public long ReceivedAndPassToId { get; set; }
-        public async Task<IActionResult> OnPostReceivedAndPassTo()
+        public long CertificationId { get; set; }
+
+        [BindProperty]
+        public string CertificationNote { get; set; }
+        public async Task<IActionResult> OnPostApproval()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             var tik = await _context.Tickets.FirstOrDefaultAsync(x => x.Id == TicketId);
-            tik.ReceivedAndPassToId = ReceivedAndPassToId;
-            tik.ReceivedAndPassToTime = DateTime.UtcNow.AddHours(1);
+            tik.JobCompletionCertifiedById = CertificationId;
+            tik.NoteJobCompletionCertifiedBy = CertificationNote;
+            tik.JobCompletionCertifiedByTime = DateTime.UtcNow.AddHours(1);
             _context.Attach(tik).State = EntityState.Modified;
 
             
                 await _context.SaveChangesAsync();
 
 
-            var Profile = await _context.Profiles.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == ReceivedAndPassToId);
+            var Profile = await _context.Profiles.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == CertificationId);
            
             TicketStage tstage = new TicketStage();
-            tstage.Title = "Received And Pass To " + Profile.Title + "" + Profile.FullName;
+            tstage.Title = "Job Completion Certification by " + Profile.Title + "" + Profile.FullName;
             tstage.Date = DateTime.UtcNow.AddHours(1);
             tstage.TicketId = TicketId;
             _context.TicketStages.Add(tstage);
@@ -92,7 +96,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
                       protocol: Request.Scheme);
             StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
             MailMessage mail = new MailMessage();
-            string mi = $"Request with Number (" + tik.TicketNumber + ") on Maintenance Received and Passed to <br>================================<br>Name: " + Profile.Title + " " + Profile.FullName + "<br>===================<br>" +
+            string mi = $"Request with Number (" + tik.TicketNumber + ") on Maintenance was Certified by <br>================================<br>Name: " + Profile.Title + " " + Profile.FullName + "<br>===================<br>" +
                  
                 "<br>";
 
@@ -106,7 +110,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
             Message ms = new Message();
             ms.Recipient = Profile.User.Email;
-            ms.Title = "Ticket {" + tik.TicketNumber + "} Received and Pass to you";
+            ms.Title = "Ticket {" + tik.TicketNumber + "} Certified by you";
             ms.Mail = mailmsg;
             ms.Retries = 0; ms.NotificationStatus = NotificationStatus.NotSent; ms.NotificationType = NotificationType.Email;
             _context.Messages.Add(ms);
@@ -115,8 +119,8 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
             //sms
             Message sms = new Message();
             sms.Recipient = Profile.PhoneNumber;
-            sms.Title = "Ticket {" + tik.TicketNumber + "} Received and Pass to you";
-            sms.Mail = "Ticket {" + tik.TicketNumber + "} Received and Pass to you. Kindly check your dashboard";
+            sms.Title = "Ticket {" + tik.TicketNumber + "} Certified by you";
+            sms.Mail = "Ticket {" + tik.TicketNumber + "} Certified by you. Kindly check your dashboard";
             sms.Retries = 0; sms.NotificationStatus = NotificationStatus.NotSent; sms.NotificationType = NotificationType.SMS;
             _context.Messages.Add(sms);
             await _context.SaveChangesAsync();
@@ -133,7 +137,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
                     {
                         StreamReader xsr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
                         MailMessage xmail = new MailMessage();
-                        string xm = "Maintenance Departmnt has Received and Pass to "+ Profile.Title + " " + Profile.FullName + " <br>================================<br>" +
+                        string xm = "Maintenance Departmnt: "+ Profile.Title + " " + Profile.FullName + " has Certified Ticket <br>================================<br>" +
                             $"<a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here to comfirm</a>.<br><br>================================<br>" + mi;
 
                         string xmailmsg = xsr.ReadToEnd();
@@ -145,7 +149,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
                         Message mms = new Message();
                         mms.Recipient = mm.Email;
-                        mms.Title = "Ticket {" + tik.TicketNumber + "} Received and Pass to "+ Profile.Title +" "+Profile.FullName;
+                        mms.Title = "Ticket {" + tik.TicketNumber + "} was Certified by " + Profile.Title +" "+Profile.FullName;
                         mms.Mail = xmailmsg;
                         mms.Retries = 0; mms.NotificationStatus = NotificationStatus.NotSent; mms.NotificationType = NotificationType.Email;
                         _context.Messages.Add(mms);
@@ -157,8 +161,8 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
                     {
                         Message msms = new Message();
                         msms.Recipient = mm.Phone;
-                        msms.Title = "Ticket {" + tik.TicketNumber + "} Received and Pass to you " + Profile.Title + " " + Profile.FullName;
-                        msms.Mail = "Ticket {" + tik.TicketNumber + "} Received and Pass to you " + Profile.Title + " " + Profile.FullName;
+                        msms.Title = "Ticket {" + tik.TicketNumber + "} was Certified by " + Profile.Title + " " + Profile.FullName;
+                        msms.Mail = "Ticket {" + tik.TicketNumber + "} was Certified by " + Profile.Title + " " + Profile.FullName;
                         msms.Retries = 0; msms.NotificationStatus = NotificationStatus.NotSent; msms.NotificationType = NotificationType.SMS;
                         _context.Messages.Add(msms);
                         await _context.SaveChangesAsync();

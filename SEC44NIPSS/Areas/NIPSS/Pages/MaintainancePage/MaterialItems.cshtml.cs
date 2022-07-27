@@ -137,7 +137,12 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
             TicketRequirement.Date = DateTime.UtcNow.AddHours(1);
             _context.TicketRequirements.Add(TicketRequirement);
             await _context.SaveChangesAsync();
-
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Material " + TicketRequirement.Title + " added";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = TicketId;
+            _context.TicketStages.Add(tstage);
+            await _context.SaveChangesAsync();
             TempData["status"] = "Added Successfully";
             return RedirectToPage("./MaterialItems", new { id = TicketId });
         }
@@ -147,10 +152,15 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostRemoved()
         {
-            var mx = await _context.TicketRequirements.FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
+            var mx = await _context.TicketRequirements.Include(x=>x.Ticket).FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
             mx.TicketItemStatus = TicketItemStatus.Remove;
             _context.Attach(mx).State = EntityState.Modified;
 
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Material " + mx.Title + " removed";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = mx.TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";
@@ -159,10 +169,15 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostActive()
         {
-            var mx = await _context.TicketRequirements.FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
-            mx.TicketItemStatus = TicketItemStatus.Remove;
+            var mx = await _context.TicketRequirements.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
+            mx.TicketItemStatus = TicketItemStatus.Active;
             _context.Attach(mx).State = EntityState.Modified;
 
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Material " + mx.Title + " is active";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = mx.TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";
@@ -171,10 +186,14 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
 
         public async Task<IActionResult> OnPostChange()
         {
-            var mx = await _context.TicketRequirements.FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
+            var mx = await _context.TicketRequirements.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == TicketRequirementId);
             mx.TicketItemStatus = TicketItemStatus.Changed;
             _context.Attach(mx).State = EntityState.Modified;
-
+            TicketStage tstage = new TicketStage();
+            tstage.Title = "Material " + mx.Title + " changed";
+            tstage.Date = DateTime.UtcNow.AddHours(1);
+            tstage.TicketId = mx.TicketId;
+            _context.TicketStages.Add(tstage);
             await _context.SaveChangesAsync();
 
             TempData["status"] = "Added Successfully";

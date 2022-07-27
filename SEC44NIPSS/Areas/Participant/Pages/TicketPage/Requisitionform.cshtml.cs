@@ -194,7 +194,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
                 Ticket.Email = Input.Email;
                 Ticket.PhoneNumber = Input.PhoneNumber;
                 Ticket.Priority = Input.Priority;
-                Ticket.Stages = "Submitted";
+               
                 Ticket.HouseOfficeNumber = Input.Office;
                 Ticket.Details = Input.Message;
                 Ticket.UserId = user.Id;
@@ -202,6 +202,14 @@ namespace SEC44NIPSS.Areas.Participant.Pages.TicketPage
                 Ticket.SubCategory = Input.SubCategory;
                 _context.Tickets.Add(Ticket);
                 await _context.SaveChangesAsync();
+
+                TicketStage tstage = new TicketStage();
+                tstage.Title = "Submitted";
+                tstage.Date = DateTime.UtcNow.AddHours(1);
+                tstage.TicketId = Ticket.Id;
+                _context.TicketStages.Add(tstage);
+                await _context.SaveChangesAsync();
+
                 var cx = await _context.Tickets.FirstOrDefaultAsync(x=>x.Id == Ticket.Id);
                 cx.TicketNumber = "A" + Ticket.Id.ToString("0000");
                 _context.Attach(cx).State = EntityState.Modified;

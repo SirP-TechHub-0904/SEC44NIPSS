@@ -51,7 +51,14 @@
                                         <td>
                                             <a asp-page="./Details" asp-route-id="@x.Id"> @x.Category/@x.SubCategory</a>
                                         </td>
-                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.Stages</a></td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@x.Id">
+                                                @if (x.TicketStages.Count() > 0)
+                                                {
+                                                    @x.TicketStages.OrderByDescending(x => x.Id).FirstOrDefault().Title
+                                                }
+                                            </a>
+                                        </td>
                                         <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.CreatedTime</a></td>
                                     </tr>
                                 }
@@ -93,7 +100,15 @@
                                         <td>
                                             <a asp-page="./Details" asp-route-id="@x.Id"> @x.Category/@x.SubCategory</a>
                                         </td>
-                                        <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.Stages</a></td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@x.Id">
+
+                                                @if (x.TicketStages.Count() > 0)
+                                                {
+                                                    @x.TicketStages.OrderByDescending(x => x.Id).FirstOrDefault().Title
+                                                }
+                                            </a>
+                                        </td>
                                         <td><a asp-page="./Details" asp-route-id="@x.Id"> @x.ClosedTime</a></td>
                                     </tr>
                                 }

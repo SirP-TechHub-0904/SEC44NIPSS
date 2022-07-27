@@ -35,6 +35,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.MaintainancePage
                 .Include(t => t.ApprovedBy)
                 .Include(t => t.ForwardedTo)
                 .Include(t => t.JobCompletionCertifiedBy)
+                .Include(t => t.TicketStages)
                 .Include(t => t.ReceivedAndPassTo).OrderByDescending(x => x.CreatedTime).ToListAsync();
         }
     }

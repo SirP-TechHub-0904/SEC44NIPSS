@@ -20,22 +20,47 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
-                    <div>
-                        <h4>>> House/Office Number</h4>
-                        <p>@Model.Ticket.HouseOfficeNumber</p>
+                    <div class="table-responsive">
+                        <table id="" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        House/Office Number
+                                    </th>
+                                    <th>
+                                        @Model.Ticket.HouseOfficeNumber
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Nature of Remedial Works Required
+                                    </th>
+                                    <th>
+                                        @Model.Ticket.Details
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Requested By
+                                    </th>
+                                    <th>
+                                        @Model.Ticket.Fullname
+
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Phone/Email
+                                    </th>
+                                    <th>
+                                        @Model.Ticket.PhoneNumber / @Model.Ticket.Email
+                                    </th>
+                                </tr>
+                            </thead>
+
+                        </table>
                     </div>
-                    <div>
-                        <h4>>> Nature of Remedial Works Required</h4>
-                        <p>@Model.Ticket.Details</p>
-                    </div>
-                    <div>
-                        <h4>>> Requested By</h4>
-                        <p>@Model.Ticket.Fullname</p>
-                    </div>
-                    <div>
-                        <h4>>> Phone/Email</h4>
-                        <p>@Model.Ticket.PhoneNumber / @Model.Ticket.Email</p>
-                    </div>
+
                 </div>
                 <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
                     <h3 class="text-center">Action</h3>
@@ -55,7 +80,7 @@
                         <table id="" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>S/N</th>
+                                    <th></th>
                                     <th>Material</th>
                                     <th colspan="4">Quantity</th>
                                     <th>S.I.V NO.</th>
@@ -87,7 +112,12 @@
                                                 <td>@x.QuantityRequired</td>
                                                 <td>@x.QuantityIssued</td>
                                                 <td>@x.Cost</td>
-                                                <td><a href="@x.Image" class="btn btn-success btn-xs">View</a></td>
+                                                <td>
+                                                    @if (!String.IsNullOrEmpty(x.Image))
+                                                    {
+                                                        <a href="@x.Image" class="btn btn-success btn-xs">View</a>
+                                                    }
+                                                </td>
                                                 <td>@x.SIVno</td>
                                             </tr>
                                         }
@@ -202,41 +232,49 @@
                 <div style="padding: 10px; box-shadow: 1px 1px 1px 1px #3c8dbca6;">
                     <h3 class="text-center">Messages/Chat</h3>
                     <div>
-                        <div class="box box-success">
+                        <div class="box box-primary">
 
                             <div class="">
                                 <div class="box-body chat" id="chat-box" style="">
                                     <!-- chat item -->
                                     @foreach (var x in Model.Ticket.TicketResponses)
                                     {
-                                        <div class="item">
+
+
+                                    <div class="item" style="border-bottom:1px solid #3c8dbca6;">
+                                        @if (!String.IsNullOrEmpty(x.Profile.AboutProfile))
+                                        {
                                             <img src="@x.Profile.AboutProfile" alt="user image" class="online" style="max-height:50px;">
-
-                                            <p class="message">
-                                                <a href="#" class="name">
-                                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> @x.CreatedTime</small>
-                                                    @x.Profile.FullName
-                                                </a>
-                                                @x.Reply
-                                            </p> @if (!String.IsNullOrEmpty(x.Image))
-                                            {
-                                                <div class="attachment">
-                                                    <h4>Attachments:</h4>
-
-
-
-                                                    <p class="filename">
-                                                        <a href="@x.Image">
-                                                            <img src="@x.Image" style="height:200px" />
-                                                        </a>
-                                                    </p>
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/NIPSS1.jpg" alt="user image" class="online" style="max-height:50px;">
+                                        }
+                                        <p class="message">
+                                            <a href="#" class="name">
+                                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> @x.CreatedTime</small>
+                                                @x.Profile.FullName
+                                            </a>
+                                            @x.Reply
+                                        </p> @if (!String.IsNullOrEmpty(x.Image))
+                                        {
+                                            <div class="attachment">
+                                                <h4>Attachments:</h4>
 
 
-                                                </div>
-                                            }
 
-                                            <!-- /.attachment -->
-                                        </div>
+                                                <p class="filename">
+                                                    <a href="@x.Image">
+                                                        <img src="@x.Image" style="height:200px" />
+                                                    </a>
+                                                </p>
+
+
+                                            </div>
+                                        }
+
+                                        <!-- /.attachment -->
+                                    </div>
                                     }
                                     <!-- /.item -->
 
