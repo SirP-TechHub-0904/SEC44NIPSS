@@ -66,15 +66,7 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             var result = await _userManager.CreateAsync(user, Profile.PXI);
             if (result.Succeeded)
             {
-                if (Profile.AccountRole == "DirectingStaff")
-                {
-                    await _userManager.AddToRoleAsync(user, "Staff");
-                }
-                if (Profile.AccountRole == "ManagingStaff")
-                {
-                    await _userManager.AddToRoleAsync(user, "Staff");
-                }
-                await _userManager.AddToRoleAsync(user, Profile.AccountRole);
+                
                 Profile.DateRegistered = DateTime.UtcNow.AddHours(1);
 
                 var dx = Profile.DateRegistered.ToString("ddMMMdddmmtt");

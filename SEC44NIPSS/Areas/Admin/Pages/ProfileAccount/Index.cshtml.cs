@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -16,54 +17,68 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
     public class IndexModel : PageModel
     {
         private readonly SEC44NIPSS.Data.NIPSSDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public IndexModel(SEC44NIPSS.Data.NIPSSDbContext context)
+        public IndexModel(SEC44NIPSS.Data.NIPSSDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public IList<Profile> Profile { get;set; }
-        public int Participant { get;set; }
-        public int Staff { get;set; }
+        public IList<Profile> Profile { get; set; }
+        public int Participant { get; set; }
+        public int Staff { get; set; }
+        public int DS { get; set; }
+        public int MS { get; set; }
 
         public async Task OnGetAsync()
         {
 
             IQueryable<Profile> profilex = from s in _context.Profiles
-                                           .Include(x=>x.User)
-                                           .Include(x=>x.StudyGroupMemeber)
-                                           .ThenInclude(x=>x.StudyGroup)
+                                           .Include(x => x.User)
+                                           .Include(x => x.StudyGroupMemeber)
+                                           .ThenInclude(x => x.StudyGroup)
                                            .Where(x => x.User.Email != "jinmcever@gmail.com").OrderByDescending(x => x.FullName)
-                                     select s;
+                                           select s;
             Profile = await profilex.ToListAsync();
-            //var xProfile = await profilex.ToListAsync();
+            //var Executive = await _context.Executive.Include(x => x.Profile).ThenInclude(x => x.StudyGroupMemeber).ThenInclude(x => x.StudyGroup).Include(x => x.Alumni).OrderBy(x => x.SortOrder).Where(x => x.Alumni.Active == true).ToListAsync();
 
-            //int xd = 1;
+            // foreach (var x in Executive)
+            // {
+            //     var pro = await _context.Profiles.FindAsync(x.ProfileId);
+            //     pro.IsExecutive = true;
+            //     pro.Position = x.Position;
+            //     pro.SortOrder = Convert.ToInt32(x.SortOrder);
+            //     _context.Attach(pro).State = EntityState.Modified;
+
+            // }
+            // await _context.SaveChangesAsync();
+
+            //var xProfile = await profilex.Include(x => x.User).Where(x => x.OfficialRoleStatus == OfficialRoleStatus.Participant).ToListAsync();
+
             //foreach (var x in xProfile)
             //{
-            //    xd++;
-            //    x.DateRegistered = DateTime.UtcNow.AddHours(1).AddDays(-50);
-            //    x.DateRegistered = x.DateRegistered.AddDays(xd);
-            //   var dx = x.DateRegistered.ToString("ddMMMdddmmtt");
-            //                    Random num = new Random();
 
-            //    // Create new string from the reordered char array
-            //    string rand = new string(dx.ToCharArray().
-            //                    OrderBy(s => (num.Next(2) % 2) == 0).ToArray());
+            //    Document d = new Document();
+            //    d.DocumentCategoryId = 3;
+            //    d.ProfileId = x.Id;
+            //    d.Description = "INDIVIDUAL RESEARCH PROJECT";
+            //    d.Title = "PROJECT";
 
-            //    var chx = rand;
-
-            //    x.ProfileHandler = chx;
-               
-            //    _context.Attach(x).State = EntityState.Modified;
+            //    _context.Documents.Add(d);
 
             //}
             //await _context.SaveChangesAsync();
 
-            Participant = await profilex.Where(x => x.AccountRole == "Participant").CountAsync();
-            Staff = await profilex.Where(x => x.AccountRole == "Staff").CountAsync();
+
+
+
+            Participant = await profilex.Where(x => x.OfficialRoleStatus == OfficialRoleStatus.Participant).CountAsync();
+            Staff = await profilex.Where(x => x.OfficialRoleStatus == OfficialRoleStatus.Staff).CountAsync();
+            DS = await profilex.Where(x => x.OfficialRoleStatus == OfficialRoleStatus.DirectingStaff).CountAsync();
+            MS = await profilex.Where(x => x.OfficialRoleStatus == OfficialRoleStatus.ManagingStaff).CountAsync();
         }
-       
+
 
 
     }

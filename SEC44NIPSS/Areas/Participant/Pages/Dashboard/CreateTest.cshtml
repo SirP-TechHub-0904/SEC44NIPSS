@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "CreateTest";
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 }
 
 <div class="row">
@@ -35,6 +39,6 @@
     </div>
 </div>
 
-                @section Scripts {
-                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

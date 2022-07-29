@@ -1468,10 +1468,16 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsExecutive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsParticipant")
                         .HasColumnType("bit");
 
                     b.Property<string>("LGA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LoginRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OfficeAddress")
@@ -1479,6 +1485,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<string>("OfficialRole")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OfficialRoleStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("PXI")
                         .HasColumnType("nvarchar(max)");

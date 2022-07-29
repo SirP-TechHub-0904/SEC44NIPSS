@@ -55,10 +55,15 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             UserInfo = await _userManager.FindByIdAsync(uid);
             UserRoles = await _userManager.GetRolesAsync(UserInfo);
             var profile = await _context.Profiles.FirstOrDefaultAsync(x => x.UserId == uid);
-            //profile.Roles = await _account.FetchUserRoles(UserInfo.Id);
-            //await _account.Update(profile);
-            
-            var RemainingRoles = Roles.Except(UserRoles);
+            string xmo = string.Join(",", UserRoles.Select(x => x.ToString()).ToArray());
+            try
+            {
+                profile.Roles = xmo;
+                _context.Attach(profile).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+            }catch(Exception m) { }
+                var RemainingRoles = Roles.Except(UserRoles);
             RemainingUserRoles = RemainingRoles.ToList();
 
             if (UserInfo == null)
@@ -90,6 +95,8 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
                 }
                 catch (Exception d) { }
             }
+
+
             return RedirectToPage("./UpdateUserPermission", new { uid = user.Id, fullname = Fullname });
         }
            

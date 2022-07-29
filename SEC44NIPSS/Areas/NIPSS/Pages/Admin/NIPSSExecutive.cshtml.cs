@@ -23,7 +23,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            Executive = await _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").ToListAsync();
+            Executive = await _context.Profiles.Include(x => x.User).Where(x => x.OfficialRoleStatus == OfficialRoleStatus.ManagingStaff).OrderBy(x=>x.SortOrder).ToListAsync();
         }
     }
 }

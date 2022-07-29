@@ -5,68 +5,65 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            ALUMNI
+        </h3>
+        
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].DateRange)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].GeneralTopic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].Active)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Alumni[0].SortOrder)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Alumni) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateRange)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GeneralTopic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SortOrder)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Alumni[0].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Alumni[0].DateRange)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Alumni[0].Year)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Alumni[0].GeneralTopic)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Alumni[0].Active)
+                        </th>
+
+                    </tr>
+                </thead>
+                @{ int sn = 0;}
+                <tbody>
+                    @foreach (var item in Model.Alumni)
+                    {
+                        <tr>
+                            <td>
+                                @{ sn++;
+                                    @sn}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateRange)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Year)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GeneralTopic)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>        </div>            </div>

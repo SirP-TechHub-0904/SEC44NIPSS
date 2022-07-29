@@ -1,0 +1,190 @@
+﻿@page
+@model SEC44NIPSS.Areas.NIPSS.Pages.Admin.UserInfoModel
+
+@{
+    ViewData["Title"] = "UserInfo";
+}
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title text-uppercase">
+            @Html.DisplayFor(model => model.Profile.Title) @Html.DisplayFor(model => model.Profile.FullName) PROFILE
+        </h3>
+        <div style="text-align:center;margin:auto auto !important;">
+            <img src="@Model.Profile.AboutProfile" style="max-height:200px;" class="img-responsive" />
+        </div>
+        </div>
+
+        <div class="box-body">
+
+            <div class="table-responsive">
+
+                <table id="" class="table table-bordered table-striped" style="max-width:600px;">
+                    <thead>
+                        <tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.User.Email)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.User.Email)
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.Gender)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.Gender)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.DOB)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.DOB)
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.OfficialRole)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.OfficialRole)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.Sponsor)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.Sponsor)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.Position)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.Position)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Phone Number
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.PhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Alt Phone Number
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.AltPhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Ps Number
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.PsNumber)
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.SortOrder)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.SortOrder)
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.DateRegistered)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.DateRegistered)
+                            </td>
+                        </tr>
+                     
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.OfficialRoleStatus)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.OfficialRoleStatus)
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.StateOfOrigin)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.StateOfOrigin)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.LGA)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.LGA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.OfficeAddress)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.OfficeAddress)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.ShortProfile)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.ShortProfile)
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.IsExecutive)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.IsExecutive)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.Roles)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.Roles)
+                            </td>
+                        </tr>
+                     
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Profile.Alumni)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(model => model.Profile.Alumni.Title)
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+

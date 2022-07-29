@@ -10,233 +10,138 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">
-           All Users (@Model.Profile.Count())
+            All Users (@Model.Profile.Count())
         </h3>
-
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>S/N</th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].FullName)
-                    </th>
-                    <th>Image</th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Gender)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].DOB)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].AccountRole)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].OfficialRole)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Sponsor)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Position)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].PhoneNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].AltPhoneNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].PsNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].PsChange)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ChangeDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].DateRegistered)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].PXI)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ParticipanPicture)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ProfilePhoto)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ProfileUpdateLevel)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ParticipantPhoto)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].StudyGroupRole)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ResidenceAddress)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].StateOfOrigin)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].LGA)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].OfficeAddress)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ShortProfile)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ProfileUpdateFirstTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].ProfileUpdatePictureFirstTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].DontShow)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].AboutProfile)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Sent)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Roles)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Profile[0].Alumni)
-                    </th>
-
-                </tr>
-            </thead>
-            @{ int sn = 0;}
-            <tbody>
-                @foreach (var item in Model.Profile)
-                {
+        <div class="table-responsive">
+            <table id="" class="table table-bordered table-striped" style="font-weight: 800; max-width: 400px; background-color: rgba(60, 141, 188, 0.48);">
+                <thead>
                     <tr>
-                        <td>
-                            <a asp-page="./EditProfile" asp-route-id="@item.Id">Edit</a>
-                        </td>
-                        <td>
-                            @{ sn++; }
-                            @sn
-                        </td>
+                        <th colspan="2">STATISTICS</th>
+                    </tr>
+                    <tr>
+                        <th>All</th>
+                        <th>@Model.Profile.Count()</th>
+                    </tr>
+                    <tr>
+                        <th>Management Staff</th>
+                        <th>@Model.MS</th>
+                    </tr>
+                    <tr>
+                        <th>Directing Staff</th>
+                        <th>@Model.DS</th>
+                    </tr>
+                    <tr>
+                        <th>Staff</th>
+                        <th>@Model.Staff</th>
+                    </tr>
+                    <tr>
+                        <th>Participant</th>
+                        <th>@Model.Participant</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td>
-                            <img src="@item.AboutProfile" height="50"/>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DOB)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AccountRole)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OfficialRole)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Sponsor)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Position)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AltPhoneNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PsNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PsChange)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ChangeDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateRegistered)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PXI)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParticipanPicture)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProfilePhoto)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProfileUpdateLevel)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParticipantPhoto)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StudyGroupRole)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ResidenceAddress)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StateOfOrigin)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LGA)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OfficeAddress)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShortProfile)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProfileUpdateFirstTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProfileUpdatePictureFirstTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DontShow)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AboutProfile)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Sent)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Roles)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Alumni.Id)
-                        </td>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>
+
+                            @Html.DisplayNameFor(model => model.Profile[0].FullName)
+                        </th>
+                        <th>Phone Number</th>
+                        <th>Image</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Profile[0].Gender)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Profile[0].DOB)
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Role
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Profile[0].Position)
+                        </th>
+                        <th>
+                            PS Number
+                        </th>
+                        <th>
+                            Date Registered
+                        </th>
+                        <th>
+                            Study Group
+                        </th>
+                        <th>
+                            State Of Origin
+                        </th>
 
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>        </div>
+                </thead>
+                @{ int sn = 0;}
+                <tbody>
+                    @foreach (var item in Model.Profile)
+                    {
+                        <tr>
+
+                            <td>
+                                @{ sn++; }
+                                @sn
+                            </td>
+
+                            <td>
+                                <a asp-page="./UserInfo" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.Title)
+
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                <a href="@item.AboutProfile" target="_blank"> <img src="@item.AboutProfile" height="40" /></a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Roles)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OfficialRoleStatus)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PsNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateRegistered)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudyGroupMemeber.StudyGroup.Title)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StateOfOrigin)
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

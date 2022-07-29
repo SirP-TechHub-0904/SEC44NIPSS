@@ -23,7 +23,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.AlumniPage
 
         public async Task OnGetAsync()
         {
-            Alumni = await _context.Alumnis.ToListAsync();
+            Alumni = await _context.Alumnis.OrderBy(x=>x.SortOrder).ToListAsync();
         }
     }
 }

@@ -156,7 +156,23 @@ namespace SEC44NIPSS.Data.Model
         PowerPoint = 3,
 
     }
+    
+        public enum OfficialRoleStatus
+    {
+        [Description("None")]
+        None = 0,
+        [Description("ManagingStaff")]
+        ManagingStaff = 1,
+        [Description("Staff")]
+        Staff = 3,
+        [Description("DirectingStaff")]
+        DirectingStaff = 4,
+        [Description("NonStaff")]
+        NonStaff = 5,
+        [Description("Participant")]
+        Participant = 6,
 
+    }
     public enum ProfileUpdateLevel
     {
 

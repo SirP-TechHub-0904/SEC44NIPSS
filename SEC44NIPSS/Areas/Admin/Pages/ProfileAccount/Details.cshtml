@@ -5,86 +5,241 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h2>Details</h2>
 
 @if (Model.Profile.User.EmailConfirmed == false)
 {
-    <a asp-page="./VerifyEmail" asp-route-uid="@Model.Profile.UserId">
-        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Email</button>
-    </a>}
+<a asp-page="./VerifyEmail" asp-route-uid="@Model.Profile.UserId">
+    <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Email</button>
+</a>}
 @if (Model.Profile.User.PhoneNumberConfirmed == false)
 {
-    <a asp-page="./VerifyPhone" asp-route-uid="@Model.Profile.UserId">
-        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Phone</button>
-    </a>}
+<a asp-page="./VerifyPhone" asp-route-uid="@Model.Profile.UserId">
+    <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Phone</button>
+</a>}
 
 <a asp-page="./UpdateUserPermission" asp-route-uid="@Model.Profile.UserId" asp-route-fullname="@Model.Profile.FullName">
     <button type="button" class="btn btn-secondary btn-rounded waves-effect waves-light">Update User Permission</button>
 </a>
-
 <div>
     <h4>Profile</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.User)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.User.Id)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.Title)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.Title)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.FullName)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.FullName)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Gender)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.DOB)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.DOB)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.AccountRole)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.AccountRole)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.OfficialRole)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.OfficialRole)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.Sponsor)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.Sponsor)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Position)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Position)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.PhoneNumber)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.PhoneNumber)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.AltPhoneNumber)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.AltPhoneNumber)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Profile.PsNumber)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Profile.PsNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.PsChange)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.PsChange)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.SortOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.SortOrder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ChangeDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ChangeDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.DateRegistered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.DateRegistered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.PXI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.PXI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ParticipanPicture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ParticipanPicture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ProfilePhoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ProfilePhoto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ProfileUpdateLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ProfileUpdateLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ParticipantPhoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ParticipantPhoto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.StudyGroupRole)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.StudyGroupRole)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ResidenceAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ResidenceAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.StateOfOrigin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.StateOfOrigin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.LGA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.LGA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.OfficeAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.OfficeAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ShortProfile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ShortProfile)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ProfileUpdateFirstTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ProfileUpdateFirstTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ProfileUpdatePictureFirstTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ProfileUpdatePictureFirstTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.DontShow)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.DontShow)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.AboutProfile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.AboutProfile)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Sent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Sent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.IsParticipant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.IsParticipant)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Roles)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Roles)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.ProfileHandler)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.ProfileHandler)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Alumni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Alumni.Id)
         </dd>
     </dl>
 </div>

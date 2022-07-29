@@ -34,7 +34,7 @@ namespace SEC44NIPSS.Pages.Shared.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var nipssstaff = _context.Profiles.Include(x => x.User).Where(x => x.AccountRole == "ManagingStaff").OrderBy(x => x.SortOrder).Take(3).ToList();
+            var nipssstaff = _context.Profiles.Include(x => x.User).Where(x => x.OfficialRoleStatus == OfficialRoleStatus.ManagingStaff).OrderBy(x => x.SortOrder).Take(3).ToList();
             var output = nipssstaff.Select(x => new NipssStaffListDto
             {
                 Id = x.Id,

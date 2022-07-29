@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "TestDetails";
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 }
 
 
@@ -13,7 +17,7 @@
             RAPID TEST
 
         </h3>
-       
+
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -30,7 +34,7 @@
                     <th>
                         CORRECT ANSWER
                     </th>
-                   <th></th>
+                    <th></th>
                 </tr>
             </thead>
             @{
@@ -41,7 +45,7 @@
                 {
                     <tr>
                         <td>
-                           @item.SN
+                            @item.SN
                         </td>
                         <td>
                             @item.RapidQuestion.Question

@@ -23,7 +23,7 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            DS = await _context.Profiles.Where(x => x.AccountRole == "DirectingStaff").ToListAsync();
+            DS = await _context.Profiles.Include(x=>x.StudyGroupMemeber).ThenInclude(x=>x.StudyGroup).Where(x => x.OfficialRoleStatus == OfficialRoleStatus.DirectingStaff).ToListAsync();
         }
     }
 }

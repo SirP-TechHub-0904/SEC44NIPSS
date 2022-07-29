@@ -16,6 +16,7 @@ namespace SEC44NIPSS.Data.Model
         public string Gender { get; set; }
         public string DOB { get; set; }
         public string AccountRole { get; set; }
+        public string LoginRole { get; set; }
         public string OfficialRole { get; set; }
         public string Sponsor { get; set; }
         public string Position { get; set; }
@@ -29,6 +30,7 @@ namespace SEC44NIPSS.Data.Model
         public string PXI { get; set; }
         public string ParticipanPicture { get; set; }
         public string ProfilePhoto { get; set; }
+        public OfficialRoleStatus OfficialRoleStatus { get; set; }
         public ProfileUpdateLevel ProfileUpdateLevel { get; set; }
         public string ParticipantPhoto { get; set; }
         public string StudyGroupRole { get; set; }
@@ -43,6 +45,7 @@ namespace SEC44NIPSS.Data.Model
         public string AboutProfile { get; set; }
         public bool Sent { get; set; }
         public bool IsParticipant { get; set; }
+        public bool IsExecutive { get; set; }
         public string Roles { get; set; }
 
         public string ProfileHandler { get; set; }

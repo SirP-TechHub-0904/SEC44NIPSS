@@ -90,7 +90,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
                             filePathThumbnail = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                             imgCount++;
                             var now = DateTime.Now;
-                            string nameproduct = "ProfileImage-";
+                            string nameproduct = "ProfileImage";
                             var uniqueFileName = $"{now.Millisecond}{now.Minute}{now.Second}{now.Day}-".Trim() + nameproduct;
 
                             var fileExtension = Path.GetExtension(filePath);

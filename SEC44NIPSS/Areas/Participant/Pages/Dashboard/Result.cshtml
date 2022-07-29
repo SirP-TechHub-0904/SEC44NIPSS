@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "Result";
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 }
 
 <div class="box">
@@ -53,7 +57,7 @@
 
                 </tr>
             </thead>
-         
+
         </table>
     </div>
 </div>

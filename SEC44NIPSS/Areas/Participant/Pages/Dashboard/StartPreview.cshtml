@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "StartPreview";
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 }
 
 <div class="row">

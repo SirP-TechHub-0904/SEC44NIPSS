@@ -67,135 +67,135 @@ namespace SEC44NIPSS.Background
                                                    .Take(2)
                                                  select s;
 
-                //foreach (var nm in notif)
-                //{
-                //    NotificationModel notificationModel = new NotificationModel();
-                //    notificationModel.Body = nm.Message;
-                //    notificationModel.Title = nm.Title;
-                //    notificationModel.IsAndroiodDevice = true;
-                //    notificationModel.DeviceId = nm.UserToNotify.TokenId;
-                //    await _notificationService.SendNotification(notificationModel);
-                //    var xiod = await _context.Notifications.AsNoTracking().FirstOrDefaultAsync(x => x.Id == nm.Id);
-                //    string ixd = xiod.Id.ToString();
+                foreach (var nm in notif)
+                {
+                    NotificationModel notificationModel = new NotificationModel();
+                    notificationModel.Body = nm.Message;
+                    notificationModel.Title = nm.Title;
+                    notificationModel.IsAndroiodDevice = true;
+                    notificationModel.DeviceId = nm.UserToNotify.TokenId;
+                    await _notificationService.SendNotification(notificationModel);
+                    var xiod = await _context.Notifications.AsNoTracking().FirstOrDefaultAsync(x => x.Id == nm.Id);
+                    string ixd = xiod.Id.ToString();
 
-                //    try
-                //    {
+                    try
+                    {
 
-                //        var entry = await _context.Notifications.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(ixd));
+                        var entry = await _context.Notifications.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(ixd));
 
-                //        entry.Sent = true;
-                //        _context.Attach(entry).State = EntityState.Modified;
+                        entry.Sent = true;
+                        _context.Attach(entry).State = EntityState.Modified;
 
 
-                //    }
-                //    catch (Exception e)
-                //    {
-                //        var x = "";
-                //    }
+                    }
+                    catch (Exception e)
+                    {
+                        var x = "";
+                    }
 
-                //}
+                }
                 _context.SaveChanges();
                 //Do your stuff with your Dbcontext
                 #region main
-                //#region send and receive
-                //var messageitem = await _context.Messages.OrderByDescending(x => x.Id).FirstOrDefaultAsync(x => x.NotificationStatus == NotificationStatus.NotSent & x.Retries < 5);
-                //var xemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
+                #region send and receive
+                var messageitem = await _context.Messages.OrderByDescending(x => x.Id).FirstOrDefaultAsync(x => x.NotificationStatus == NotificationStatus.NotSent & x.Retries < 5);
+                var xemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
 
-                //if (xemail.Count >= 48)
-                //{
-                //    var choseemail = await _context.EmailSettings.AsNoTracking().Where(x => x.Active == false && x.DateStart.AddHours(-1) > xemail.DateStart).FirstOrDefaultAsync();
-                //    if (choseemail == null)
-                //    {
-                //        return;
-                //    }
-                //    choseemail.Active = true;
-                //    _context.Attach(choseemail).State = EntityState.Modified;
-                //    // await _context.SaveChangesAsync();
-                //    var resetactiveemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
-                //    resetactiveemail.Count = 0;
-                //    resetactiveemail.Active = false;
-                //    resetactiveemail.DateStart = resetactiveemail.DateStart.AddHours(1);
-                //    _context.Attach(resetactiveemail).State = EntityState.Modified;
-                //    await _context.SaveChangesAsync();
+                if (xemail.Count >= 48)
+                {
+                    var choseemail = await _context.EmailSettings.AsNoTracking().Where(x => x.Active == false && x.DateStart.AddHours(-1) > xemail.DateStart).FirstOrDefaultAsync();
+                    if (choseemail == null)
+                    {
+                        return;
+                    }
+                    choseemail.Active = true;
+                    _context.Attach(choseemail).State = EntityState.Modified;
+                    // await _context.SaveChangesAsync();
+                    var resetactiveemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
+                    resetactiveemail.Count = 0;
+                    resetactiveemail.Active = false;
+                    resetactiveemail.DateStart = resetactiveemail.DateStart.AddHours(1);
+                    _context.Attach(resetactiveemail).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
 
-                //    // var checkemail1 = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
+                    // var checkemail1 = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
 
-                //}
-                //if (messageitem != null)
-                //{
-                //    if (messageitem.NotificationType == NotificationType.Email)
-                //    {
+                }
+                if (messageitem != null)
+                {
+                    if (messageitem.NotificationType == NotificationType.Email)
+                    {
 
-                //        try
-                //        {
-                //            //var checkemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
-                //            var email = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
-                //            if (email != null)
-                //            {
-                //                string sendresult = await SendEmail(messageitem.Recipient, messageitem.Mail, messageitem.Title);
-                //                if (sendresult == "true")
-                //                {
-                //                    messageitem.NotificationStatus = NotificationStatus.Sent;
-                //                    messageitem.Result = sendresult;
-                //                    messageitem.SentVia = email.SenderEmail;
-                //                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                //                    _context.Attach(messageitem).State = EntityState.Modified;
-                //                    //
-                //                    email.Count = email.Count + 1;
-                //                    _context.Attach(email).State = EntityState.Modified;
+                        try
+                        {
+                            //var checkemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
+                            var email = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
+                            if (email != null)
+                            {
+                                string sendresult = await SendEmail(messageitem.Recipient, messageitem.Mail, messageitem.Title);
+                                if (sendresult == "true")
+                                {
+                                    messageitem.NotificationStatus = NotificationStatus.Sent;
+                                    messageitem.Result = sendresult;
+                                    messageitem.SentVia = email.SenderEmail;
+                                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                                    _context.Attach(messageitem).State = EntityState.Modified;
+                                    //
+                                    email.Count = email.Count + 1;
+                                    _context.Attach(email).State = EntityState.Modified;
 
 
 
-                //                }
-                //                else if (sendresult == "memory")
-                //                {
+                                }
+                                else if (sendresult == "memory")
+                                {
 
-                //                }
-                //                else
-                //                {
-                //                    messageitem.NotificationStatus = NotificationStatus.NotSent;
-                //                    messageitem.Retries = messageitem.Retries + 1;
-                //                    messageitem.Result = sendresult;
-                //                    messageitem.SentVia = email.SenderEmail;
+                                }
+                                else
+                                {
+                                    messageitem.NotificationStatus = NotificationStatus.NotSent;
+                                    messageitem.Retries = messageitem.Retries + 1;
+                                    messageitem.Result = sendresult;
+                                    messageitem.SentVia = email.SenderEmail;
 
-                //                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                //                    _context.Attach(messageitem).State = EntityState.Modified;
+                                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                                    _context.Attach(messageitem).State = EntityState.Modified;
 
-                //                }
-                //            }
-                //            await _context.SaveChangesAsync();
+                                }
+                            }
+                            await _context.SaveChangesAsync();
 
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //        }
-                //    }
-                //    else if (messageitem.NotificationType == NotificationType.SMS)
-                //    {
-                //        //
-                //        string result = await SendSms(messageitem.Recipient, messageitem.Mail);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    else if (messageitem.NotificationType == NotificationType.SMS)
+                    {
+                        //
+                        string result = await SendSms(messageitem.Recipient, messageitem.Mail);
 
-                //        if (result.Contains("OK"))
-                //        {
-                //            messageitem.NotificationStatus = NotificationStatus.Sent;
-                //            messageitem.Result = result;
+                        if (result.Contains("OK"))
+                        {
+                            messageitem.NotificationStatus = NotificationStatus.Sent;
+                            messageitem.Result = result;
 
-                //            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                //        }
-                //        else
-                //        {
-                //            messageitem.NotificationStatus = NotificationStatus.NotSent;
-                //            messageitem.Retries = messageitem.Retries + 1;
-                //            messageitem.Result = result;
+                            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                        }
+                        else
+                        {
+                            messageitem.NotificationStatus = NotificationStatus.NotSent;
+                            messageitem.Retries = messageitem.Retries + 1;
+                            messageitem.Result = result;
 
-                //            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                //        }
-                //        _context.Attach(messageitem).State = EntityState.Modified;
-                //        await _context.SaveChangesAsync();
+                            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                        }
+                        _context.Attach(messageitem).State = EntityState.Modified;
+                        await _context.SaveChangesAsync();
 
-                //    }
-                //}
-                //#endregion
+                    }
+                }
+                #endregion
                 #endregion
             }
 

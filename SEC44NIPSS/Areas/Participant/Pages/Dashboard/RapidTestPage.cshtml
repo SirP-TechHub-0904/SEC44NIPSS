@@ -1,6 +1,10 @@
 ﻿@page
 @model SEC44NIPSS.Areas.Participant.Pages.Dashboard.RapidTestPageModel
 @{
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 }
 <div class="box">
     <div class="box-header">
@@ -35,45 +39,45 @@
                     </tr>
                 </thead>
                 @{
-                int sno = 0;
+                    int sno = 0;
                 }
                 <tbody>
                     @foreach (var item in Model.UserAnswer)
-                {
-                    <tr>
-                        <td>
-                            @{ sno++; }
-                            @sno
-                        </td>
-                        <td>
-                            @item.Date.ToString("dd/MM/yyyy hh:mm")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.QuestionNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Score)
-                        </td>
+                    {
+                        <tr>
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td>
+                                @item.Date.ToString("dd/MM/yyyy hh:mm")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QuestionNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Score)
+                            </td>
 
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-danger">Action</button>
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a asp-page="./TestDetails" asp-route-id="@item.Id">Details</a></li>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger">Action</button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-page="./TestDetails" asp-route-id="@item.Id">Details</a></li>
 
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
 
-                        </td>
-                    </tr>
-                }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

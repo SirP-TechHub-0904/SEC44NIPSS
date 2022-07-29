@@ -3,7 +3,10 @@
 
 @{
     ViewData["Title"] = "StartTest";
-    
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
 
 }
 
@@ -45,13 +48,13 @@
         <div class="row">
             <div class="col-md-12" style="">
                 @*<div class="callout" style="min-height: 80px; width:; display: flex; text-transform: uppercase; color: #000000; box-shadow: 2px 2px 2px 2px #2b2828; font-weight: 900; font-size: 20px; margin: 15px; word-break: break-all; word-wrap: break-word;">
-                    <span style="word-wrap:break-word;word-break:break-all"> (@Model.AnswerList.SN) @Model.AnswerList.RapidQuestion.Question</span>
-                </div>*@
+                        <span style="word-wrap:break-word;word-break:break-all"> (@Model.AnswerList.SN) @Model.AnswerList.RapidQuestion.Question</span>
+                    </div>*@
 
                 <div class="callout bg-primary" style="min-height: 80px; width:; display: flex; text-transform: uppercase; color: #000000; box-shadow: 2px 2px 2px 2px #2b2828; font-weight: 900; font-size: 20px; margin: 15px; word-break: break-all; word-wrap: break-word;">
                     <h4> (@Model.AnswerList.SN) @Model.AnswerList.RapidQuestion.Question</h4>
 
-                    
+
                 </div>
             </div>
 
@@ -494,11 +497,11 @@
     </script>
 
 
-  
-    <script type="text/javascript" >
-        function preventBack() { window.history.forward();  }
-            setTimeout("preventBack()", 0);
-            window.onunload = function () {null};
+
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
     </script>
 
 }

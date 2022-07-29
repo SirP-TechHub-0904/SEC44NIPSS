@@ -19,11 +19,13 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.Menu
             _context = context;
         }
 
-        public IList<Alumni> Alumni { get;set; }
+        public IList<DocumentCategory> DocumentCategory { get; set; }
 
         public async Task OnGetAsync()
         {
-            Alumni = await _context.Alumnis.ToListAsync();
+            DocumentCategory = await _context.DocumentCategories.Include(x => x.Documents).ToListAsync();
+
+
         }
     }
 }

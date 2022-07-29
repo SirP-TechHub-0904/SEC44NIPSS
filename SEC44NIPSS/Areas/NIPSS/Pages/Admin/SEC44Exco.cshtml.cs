@@ -19,11 +19,16 @@ namespace SEC44NIPSS.Areas.NIPSS.Pages.Admin
             _context = context;
         }
 
-        public IList<Executive> Executive { get;set; }
+        public IList<Profile> Profile { get;set; }
 
         public async Task OnGetAsync()
         {
-            Executive = await _context.Executive.Include(x => x.Profile).ThenInclude(x => x.StudyGroupMemeber).ThenInclude(x=>x.StudyGroup).Include(x => x.Alumni).OrderBy(x => x.SortOrder).Where(x => x.Alumni.Active == true).ToListAsync();
+            Profile = await _context.Profiles
+                                        .Include(p => p.Alumni)
+                                        .Include(p => p.StudyGroupMemeber)
+                                        .ThenInclude(x => x.StudyGroup)
+                                        .Include(p => p.User).Where(x => x.Alumni.Active == true).Where(x => x.OfficialRoleStatus == OfficialRoleStatus.Participant && x.IsExecutive == true)
+                                        .OrderBy(x=>x.SortOrder).ToListAsync();
         }
     }
 }

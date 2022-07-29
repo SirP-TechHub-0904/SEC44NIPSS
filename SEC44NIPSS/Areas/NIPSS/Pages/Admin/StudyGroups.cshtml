@@ -59,34 +59,73 @@
                         int sno = 0;
                     }
 
-                    <tbody>
-                        @foreach (var i in item.StudyGroupMemebers)
-                        {
-                            <tr>
-                                <td>
-                                    @{ sno++; }
-                                    @sno
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => i.Profile.Title)
+                <tbody>
+                    <tr style="background-color: ;">
+                        <td colspan="5">
+                            <h3 class="text-center" style="font-weight:900;">DIRECTING STAFF</h3>
+                        </td>
 
-                                    @Html.DisplayFor(modelItem => i.Profile.FullName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => i.Profile.User.Email)
-                                </td>
+                    </tr>
+                    @foreach (var i in item.StudyGroupMemebers.Where(x => x.Profile.OfficialRoleStatus == SEC44NIPSS.Data.Model.OfficialRoleStatus.DirectingStaff))
+                    {
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => i.Profile.PhoneNumber)
-                                </td>
+                        <tr style="background-color: #3c8dbc6e;">
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.Title)
 
-                                <td>
-                                    <img src="@i.Profile.AboutProfile" height="30" />
-                                </td>
+                                @Html.DisplayFor(modelItem => i.Profile.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.User.Email)
+                            </td>
 
-                            </tr>
-                        }
-                    </tbody>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.PhoneNumber)
+                            </td>
+
+                            <td>
+                                <img src="@i.Profile.AboutProfile" height="30" />
+                            </td>
+
+                        </tr>
+                    }
+                    <tr style="background-color: ;">
+                        <td colspan="5">
+                            <h3 class="text-center" style="font-weight:900;">PARTICIPANTS</h3>
+                        </td>
+
+                    </tr>
+                    @foreach (var i in item.StudyGroupMemebers.Where(x => x.Profile.OfficialRoleStatus == SEC44NIPSS.Data.Model.OfficialRoleStatus.Participant))
+                    {
+                        <tr>
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.Title)
+
+                                @Html.DisplayFor(modelItem => i.Profile.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.User.Email)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => i.Profile.PhoneNumber)
+                            </td>
+
+                            <td>
+                                <img src="@i.Profile.AboutProfile" height="30" />
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
                 </table>
             </div>
         </div>
