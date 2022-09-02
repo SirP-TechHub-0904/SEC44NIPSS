@@ -32,9 +32,11 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            var Profile = await _context.Profiles.FirstOrDefaultAsync(x => x.UserId == user.Id);
+            var Profile = await _context.Profiles.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == user.Id);
 
-            UserAnswer = await _context.UserAnswers.Include(x => x.Profile).Where(c=>c.ProfileId == Profile.Id).OrderByDescending(x=>x.Date).ToListAsync();
+            UserAnswer = await _context.UserAnswers.Include(x => x.Profile).Where(c => c.ProfileId == Profile.Id).OrderByDescending(x => x.Date).ToListAsync();
+
+
             return Page();
         }
     }

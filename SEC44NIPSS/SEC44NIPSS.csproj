@@ -2702,6 +2702,18 @@
     <Compile Update="Areas\NIPSS\Pages\MaintainancePage\ReceivedAndPassTo - Copy.cshtml.cs">
       <DependentUpon>ReceivedAndPassTo.cshtml.cs</DependentUpon>
     </Compile>
+    <Compile Update="Areas\ResolvedAdmin\Pages\DSPage\Create - Copy.cshtml.cs">
+      <DependentUpon>Create.cshtml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Areas\ResolvedAdmin\Pages\ExecutivePage\Create - Copy.cshtml.cs">
+      <DependentUpon>Create.cshtml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Areas\ResolvedAdmin\Pages\ManagementStaff\Create - Copy.cshtml.cs">
+      <DependentUpon>Create.cshtml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Areas\ResolvedAdmin\Pages\ParticipantPage\Create - Copy.cshtml.cs">
+      <DependentUpon>Create.cshtml.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

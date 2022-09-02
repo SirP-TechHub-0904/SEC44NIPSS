@@ -49,7 +49,7 @@ namespace SEC44NIPSS.Background
             _logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(20));
+                TimeSpan.FromSeconds(10));
 
             return Task.CompletedTask;
         }
@@ -60,6 +60,45 @@ namespace SEC44NIPSS.Background
             using (var scope = _scopeFactory.CreateScope())
             {
                 var _context = scope.ServiceProvider.GetRequiredService<NIPSSDbContext>();
+                ////comment page
+                #region Seelction comment page
+
+                try
+                {
+                    var smsmessageitem = await _context.Messages.AsNoTracking().OrderBy(x => x.Id).Where(x => x.NotificationStatus == NotificationStatus.NotSent & x.Retries < 5 && x.NotificationType == NotificationType.SMS).Take(10).ToListAsync();
+                    foreach (var xm in smsmessageitem)
+                    {
+                        if (xm.NotificationType == NotificationType.SMS)
+                        {
+                            //
+                            string result = await SendSms(xm.Recipient, xm.Mail);
+
+                            if (result.Contains("OK"))
+                            {
+                                xm.NotificationStatus = NotificationStatus.Sent;
+                                xm.Result = result;
+
+                                xm.DateSent = DateTime.UtcNow.AddHours(1);
+                            }
+                            else
+                            {
+                                xm.NotificationStatus = NotificationStatus.NotSent;
+                                xm.Retries = xm.Retries + 1;
+                                xm.Result = result;
+
+                                xm.DateSent = DateTime.UtcNow.AddHours(1);
+                            }
+                            _context.Attach(xm).State = EntityState.Modified;
+
+
+                        }
+                    }
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception s) { }
+
+                #region comment page
+
                 IQueryable<Notification> notif = from s in _context.Notifications
                                                  .Include(x => x.UserToNotify)
                                                    .Where(x => x.Sent == false).AsNoTracking()
@@ -98,103 +137,160 @@ namespace SEC44NIPSS.Background
                 //Do your stuff with your Dbcontext
                 #region main
                 #region send and receive
-                var messageitem = await _context.Messages.OrderByDescending(x => x.Id).FirstOrDefaultAsync(x => x.NotificationStatus == NotificationStatus.NotSent & x.Retries < 5);
-                var xemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
-
-                if (xemail.Count >= 48)
+                try
                 {
-                    var choseemail = await _context.EmailSettings.AsNoTracking().Where(x => x.Active == false && x.DateStart.AddHours(-1) > xemail.DateStart).FirstOrDefaultAsync();
-                    if (choseemail == null)
-                    {
-                        return;
-                    }
-                    choseemail.Active = true;
-                    _context.Attach(choseemail).State = EntityState.Modified;
-                    // await _context.SaveChangesAsync();
-                    var resetactiveemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
-                    resetactiveemail.Count = 0;
-                    resetactiveemail.Active = false;
-                    resetactiveemail.DateStart = resetactiveemail.DateStart.AddHours(1);
-                    _context.Attach(resetactiveemail).State = EntityState.Modified;
-                    await _context.SaveChangesAsync();
+                    var messageitem = await _context.Messages.OrderBy(x => x.Id).FirstOrDefaultAsync(x => x.NotificationStatus == NotificationStatus.NotSent & x.Retries < 5 && x.NotificationType == NotificationType.Email);
+                    var xemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
 
-                    // var checkemail1 = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
-
-                }
-                if (messageitem != null)
-                {
-                    if (messageitem.NotificationType == NotificationType.Email)
-                    {
-
-                        try
-                        {
-                            //var checkemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
-                            var email = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
-                            if (email != null)
-                            {
-                                string sendresult = await SendEmail(messageitem.Recipient, messageitem.Mail, messageitem.Title);
-                                if (sendresult == "true")
-                                {
-                                    messageitem.NotificationStatus = NotificationStatus.Sent;
-                                    messageitem.Result = sendresult;
-                                    messageitem.SentVia = email.SenderEmail;
-                                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                                    _context.Attach(messageitem).State = EntityState.Modified;
-                                    //
-                                    email.Count = email.Count + 1;
-                                    _context.Attach(email).State = EntityState.Modified;
-
-
-
-                                }
-                                else if (sendresult == "memory")
-                                {
-
-                                }
-                                else
-                                {
-                                    messageitem.NotificationStatus = NotificationStatus.NotSent;
-                                    messageitem.Retries = messageitem.Retries + 1;
-                                    messageitem.Result = sendresult;
-                                    messageitem.SentVia = email.SenderEmail;
-
-                                    messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                                    _context.Attach(messageitem).State = EntityState.Modified;
-
-                                }
-                            }
-                            await _context.SaveChangesAsync();
-
-                        }
-                        catch (Exception ex)
-                        {
-                        }
-                    }
-                    else if (messageitem.NotificationType == NotificationType.SMS)
+                    if (xemail.Count >= 48)
                     {
                         //
-                        string result = await SendSms(messageitem.Recipient, messageitem.Mail);
-
-                        if (result.Contains("OK"))
-                        {
-                            messageitem.NotificationStatus = NotificationStatus.Sent;
-                            messageitem.Result = result;
-
-                            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                        }
-                        else
-                        {
-                            messageitem.NotificationStatus = NotificationStatus.NotSent;
-                            messageitem.Retries = messageitem.Retries + 1;
-                            messageitem.Result = result;
-
-                            messageitem.DateSent = DateTime.UtcNow.AddHours(1);
-                        }
-                        _context.Attach(messageitem).State = EntityState.Modified;
+                        var resetactiveemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Id == xemail.Id);
+                        resetactiveemail.Count = 0;
+                        resetactiveemail.Active = false;
+                        resetactiveemail.DateStart = resetactiveemail.DateStart.AddHours(1);
+                        _context.Attach(resetactiveemail).State = EntityState.Modified;
                         await _context.SaveChangesAsync();
 
+                        //
+                        var xchoseemail = await _context.EmailSettings.AsNoTracking().Where(x => x.Active == false).ToListAsync();
+                        var choseemail = xchoseemail.Where(x => x.DateStart.AddHours(-1) < xemail.DateStart).FirstOrDefault();
+                        if (choseemail == null)
+                        {
+                            return;
+                        }
+                        choseemail.Active = true;
+                        _context.Attach(choseemail).State = EntityState.Modified;
+                        await _context.SaveChangesAsync();
+
+
+                        // var checkemail1 = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
+
+                    }
+                    if (messageitem != null)
+                    {
+                        if (messageitem.NotificationType == NotificationType.Email)
+                        {
+
+                            try
+                            {
+                                //var checkemail = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Count >= 48 && x.DateStart < DateTime.Now.AddHours(1) & x.Active == true);
+                                var email = await _context.EmailSettings.AsNoTracking().FirstOrDefaultAsync(x => x.Active == true);
+                                if (email != null)
+                                {
+                                    string sendresult = "";
+
+                                    try
+                                    {
+
+
+                                        //create the mail message 
+                                        MailMessage mail = new MailMessage();
+
+
+                                        mail.Body = messageitem.Mail;
+                                        //set the addresses 
+                                        mail.From = new MailAddress(email.SenderEmail, "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
+                                        mail.To.Add(messageitem.Recipient);
+
+                                        //set the content 
+                                        mail.Subject = messageitem.Title.Replace("\r\n", "");
+
+                                        mail.IsBodyHtml = true;
+                                        //send the message 
+                                        SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
+
+                                        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+                                        NetworkCredential Credentials = new NetworkCredential(email.SenderEmail, email.PX);
+                                        smtp.UseDefaultCredentials = false;
+                                        smtp.Credentials = Credentials;
+                                        smtp.Port = 25;    //alternative port number is 8889
+                                        smtp.EnableSsl = false;
+                                        smtp.Send(mail);
+                                        sendresult = "true";
+                                    }
+                                    catch (Exception exc)
+                                    {
+                                        try
+                                        {
+
+                                            MailMessage mail = new MailMessage();
+                                            //set the addresses 
+                                            mail.From = new MailAddress("espErrorMail@exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
+                                            mail.To.Add("espErrorMail@exwhyzee.ng");
+                                            mail.To.Add("iskoolsportal@gmail.com");
+                                            mail.Subject = "Error sec44nipss ";
+                                            mail.Body = exc.ToString();
+                                            //send the message 
+                                            SmtpClient smtp = new SmtpClient("mail.exwhyzee.ng");
+
+                                            //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+                                            NetworkCredential Credentials = new NetworkCredential("espErrorMail@exwhyzee.ng", "Exwhyzee@123");
+                                            smtp.Credentials = Credentials;
+                                            smtp.Send(mail);
+
+                                        }
+                                        catch (Exception ex)
+                                        {
+
+
+                                        }
+                                        if (exc.ToString().Contains("memory"))
+                                        {
+                                            sendresult = "memory";
+                                        }
+                                        sendresult = exc.ToString();
+                                    }
+
+
+
+                                    if (sendresult == "true")
+                                    {
+                                        messageitem.NotificationStatus = NotificationStatus.Sent;
+                                        messageitem.Result = sendresult;
+                                        messageitem.SentVia = email.SenderEmail;
+                                        messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                                        _context.Attach(messageitem).State = EntityState.Modified;
+                                        //
+                                        email.Count = email.Count + 1;
+                                        email.DateStart = DateTime.UtcNow.AddHours(1);
+                                        _context.Attach(email).State = EntityState.Modified;
+
+
+
+                                    }
+                                    else if (sendresult == "memory")
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        messageitem.NotificationStatus = NotificationStatus.NotSent;
+                                        messageitem.Retries = messageitem.Retries + 1;
+                                        messageitem.Result = sendresult;
+                                        messageitem.SentVia = email.SenderEmail;
+
+                                        messageitem.DateSent = DateTime.UtcNow.AddHours(1);
+                                        _context.Attach(messageitem).State = EntityState.Modified;
+
+                                    }
+                                }
+                                await _context.SaveChangesAsync();
+
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
                     }
                 }
+                catch (Exception c) { }
+
+                ////
+               
+                #endregion
+                #endregion
+
                 #endregion
                 #endregion
             }
@@ -223,7 +319,7 @@ namespace SEC44NIPSS.Background
 
             try
             {
-                var getApi = "http://account.kudisms.net/api/?username=peterahioma2020@gmail.com&password=nation@123&message=@@message@@&sender=@@sender@@&mobiles=@@recipient@@";
+                var getApi = "http://account.kudisms.net/api/?username=ponwuka123@gmail.com&password=sms@123&message=@@message@@&sender=@@sender@@&mobiles=@@recipient@@";
                 string apiSending = getApi.Replace("@@sender@@", "SEC 44").Replace("@@recipient@@", HttpUtility.UrlEncode(recipient)).Replace("@@message@@", HttpUtility.UrlEncode(message));
 
                 HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(apiSending);
@@ -252,71 +348,71 @@ namespace SEC44NIPSS.Background
         }
 
 
-        public async Task<string> SendEmail(string recipient, string message, string title)
-        {
-            //  return "true";
-            try
-            {
+        //public async Task<string> SendEmail(string recipient, string message, string title)
+        //{
+        //    //  return "true";
+        //    //try
+        //    //{
 
 
-                //create the mail message 
-                MailMessage mail = new MailMessage();
+        //    //    //create the mail message 
+        //    //    MailMessage mail = new MailMessage();
 
 
-                mail.Body = message;
-                //set the addresses 
-                mail.From = new MailAddress("noreply@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
-                mail.To.Add(recipient);
+        //    //    mail.Body = message;
+        //    //    //set the addresses 
+        //    //    mail.From = new MailAddress("noreply@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
+        //    //    mail.To.Add(recipient);
 
-                //set the content 
-                mail.Subject = title.Replace("\r\n", "");
+        //    //    //set the content 
+        //    //    mail.Subject = title.Replace("\r\n", "");
 
-                mail.IsBodyHtml = true;
-                //send the message 
-                SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
+        //    //    mail.IsBodyHtml = true;
+        //    //    //send the message 
+        //    //    SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
 
-                //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                NetworkCredential Credentials = new NetworkCredential("noreply@sec44nipss.com", "Admin@123");
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = Credentials;
-                smtp.Port = 25;    //alternative port number is 8889
-                smtp.EnableSsl = false;
-                smtp.Send(mail);
-                return "true";
-            }
-            catch (Exception exc)
-            {
-                try
-                {
+        //    //    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+        //    //    NetworkCredential Credentials = new NetworkCredential("noreply@sec44nipss.com", "Admin@123");
+        //    //    smtp.UseDefaultCredentials = false;
+        //    //    smtp.Credentials = Credentials;
+        //    //    smtp.Port = 25;    //alternative port number is 8889
+        //    //    smtp.EnableSsl = false;
+        //    //    smtp.Send(mail);
+        //    //    return "true";
+        //    //}
+        //    //catch (Exception exc)
+        //    //{
+        //    //    try
+        //    //    {
 
-                    MailMessage mail = new MailMessage();
-                    //set the addresses 
-                    mail.From = new MailAddress("espErrorMail@exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
-                    mail.To.Add("espErrorMail@exwhyzee.ng");
-                    mail.To.Add("iskoolsportal@gmail.com");
-                    mail.Subject = "Error sec44nipss ";
-                    mail.Body = exc.ToString();
-                    //send the message 
-                    SmtpClient smtp = new SmtpClient("mail.exwhyzee.ng");
+        //    //        MailMessage mail = new MailMessage();
+        //    //        //set the addresses 
+        //    //        mail.From = new MailAddress("espErrorMail@exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
+        //    //        mail.To.Add("espErrorMail@exwhyzee.ng");
+        //    //        mail.To.Add("iskoolsportal@gmail.com");
+        //    //        mail.Subject = "Error sec44nipss ";
+        //    //        mail.Body = exc.ToString();
+        //    //        //send the message 
+        //    //        SmtpClient smtp = new SmtpClient("mail.exwhyzee.ng");
 
-                    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                    NetworkCredential Credentials = new NetworkCredential("espErrorMail@exwhyzee.ng", "Exwhyzee@123");
-                    smtp.Credentials = Credentials;
-                    smtp.Send(mail);
+        //    //        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+        //    //        NetworkCredential Credentials = new NetworkCredential("espErrorMail@exwhyzee.ng", "Exwhyzee@123");
+        //    //        smtp.Credentials = Credentials;
+        //    //        smtp.Send(mail);
 
-                }
-                catch (Exception ex)
-                {
+        //    //    }
+        //    //    catch (Exception ex)
+        //    //    {
 
 
-                }
-                if (exc.ToString().Contains("memory"))
-                {
-                    return "memory";
-                }
-                return exc.ToString();
-            }
-        }
+        //    //    }
+        //    //    if (exc.ToString().Contains("memory"))
+        //    //    {
+        //    //        return "memory";
+        //    //    }
+        //    //    return exc.ToString();
+        //    //}
+        //}
 
 
 

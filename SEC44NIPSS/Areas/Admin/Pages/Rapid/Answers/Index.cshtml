@@ -1,0 +1,88 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.Answers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Rapid List</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<div class="table-responsive">
+
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].Score)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].QuestionNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].Profile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAnswer[0].QuestionsLoaded)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @{ int onp = 0;}
+        <tbody>
+            @foreach (var item in Model.UserAnswer)
+            {
+                <tr>
+                    <td>
+                        @{ onp++;}
+                        @onp
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Score)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profile.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionsLoaded)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./ResultDetails" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<form method="post" asp-page-handler="Reset">
+    <input type="submit" value="Reset" class="btn btn-default" /> |
+    <a asp-page="./Index">Back to List</a>
+</form>

@@ -296,6 +296,11 @@
                                                     {<a asp-page="/Dashboard/Index" asp-area="Participant">VLE DASHBOARD</a>
 
                                                     }
+                                                    else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                                    {
+                                                        <a asp-page="/Admin/Index" asp-area="NIPSS">VLE DASHBOARD</a>
+
+                                                    }
                                                     else
                                                     {
                                                         <a asp-page="/Account/Login" asp-area="Identity">VLE</a>

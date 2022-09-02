@@ -17,5 +17,8 @@ namespace SEC44NIPSS.Data.Model
 
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
+
+        public long? ParticipantId { get; set; }
+        public SecParticipant Participant { get; set; }
     }
 }

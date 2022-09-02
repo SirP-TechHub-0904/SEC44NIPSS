@@ -36,9 +36,12 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 
             UserAnswer = await _context.UserAnswers
                 .Include(u => u.Profile).FirstOrDefaultAsync(m => m.Id == id);
-            if (UserAnswer.StartTime.AddMinutes(4) < DateTime.UtcNow.AddHours(1))
+            if (UserAnswer.StartTime != null)
             {
-                return RedirectToPage("Result", new { id = UserAnswer.Id });
+                if (UserAnswer.StartTime.Value.AddMinutes(4) < DateTime.UtcNow.AddHours(1))
+                {
+                    return RedirectToPage("Result", new { id = UserAnswer.Id });
+                }
             }
             Qid = id;
             if (UserAnswer.QuestionsLoaded == false)
@@ -56,6 +59,13 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
                 UserAnswer.QuestionsLoaded = true;
                 UserAnswer.QuestionNumber = sn-1;
                
+                UserAnswer.StartTime = DateTime.UtcNow.AddHours(1);
+                _context.Attach(UserAnswer).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
                 UserAnswer.StartTime = DateTime.UtcNow.AddHours(1);
                 _context.Attach(UserAnswer).State = EntityState.Modified;
 
@@ -79,7 +89,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
             try
             {
                 var qx = await _context.AnswerLists.Include(x => x.RapidQuestion).Include(x => x.UserAnswer).Include(x=>x.RapidQuestion.RapidOptions).FirstOrDefaultAsync(x => x.SN == iidx && x.UserAnswerId == uiidx);
-                if (qx.UserAnswer.StartTime.AddMinutes(4) < DateTime.UtcNow.AddHours(1))
+                if (qx.UserAnswer.StartTime.Value.AddMinutes(4) < DateTime.UtcNow.AddHours(1))
                 {
                     return new JsonResult("Result"+ qx.UserAnswerId);
                 }

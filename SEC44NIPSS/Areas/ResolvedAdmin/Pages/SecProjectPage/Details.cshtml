@@ -1,0 +1,37 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.SecProjectPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SecProject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SecProject.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecProject.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecProject.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecProject.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecProject.Alumni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecProject.Alumni.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SecProject.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

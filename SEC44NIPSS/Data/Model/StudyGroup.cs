@@ -19,5 +19,7 @@ namespace SEC44NIPSS.Data.Model
         public Alumni Alumni { get; set; }
         public ICollection<StudyGroupMemeber> StudyGroupMemebers { get; set; }
         public ICollection<TourSubCategory> TourSubCategory { get; set; }
+        public ICollection<Tour> Tours { get; set; }
+        public ICollection<SecParticipant> SecParticipants { get; set; }
     }
 }

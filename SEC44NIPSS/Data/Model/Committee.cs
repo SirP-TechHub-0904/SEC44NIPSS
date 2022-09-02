@@ -15,5 +15,8 @@ namespace SEC44NIPSS.Data.Model
         public CommitteeCategory CommitteeCategory { get; set; }
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
+
+        public long? AlumniId { get; set; }
+        public Alumni Alumni { get; set; }
     }
 }

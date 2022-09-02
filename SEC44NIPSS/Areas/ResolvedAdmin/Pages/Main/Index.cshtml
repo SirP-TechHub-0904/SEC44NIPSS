@@ -1,0 +1,102 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.Main.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card-body">
+
+
+    <h2>Alumni</h2>
+
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <div class="table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni[0].SortOrder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni[0].Title)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni[0].Year)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni[0].GeneralTopic)
+                    </th>
+
+
+                    <th>Participants</th>
+                    <th>SEC Executive</th>
+                    <th>Management Staff</th>
+                    <th>Project</th>
+                    <th>Study Group</th>
+                    <th>SEC Papers</th>
+                    <th>Tour Pictures</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Alumni)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GeneralTopic)
+                        </td>
+
+                        <td>
+                            @item.Participants.Count()
+                        </td>
+                        <td>
+                            @item.Executives.Count()
+                        </td>
+                        <td>
+                            @item.ManagingStaffs.Count()
+                        </td>
+                        <td>
+                            @if (item.SecProject != null)
+                            {
+                                @item.SecProject.Title
+                            }
+                            else
+                            {
+                                <span>NILL</span>
+                            }
+                        </td>
+                        <td>
+                            @item.StudyGroup.Count()
+                        </td>
+                        <td>
+                            @item.SecPapers.Count()
+                        </td>
+                        <td>
+                            @item.Tours.Count()
+                        </td>
+
+
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    </div>

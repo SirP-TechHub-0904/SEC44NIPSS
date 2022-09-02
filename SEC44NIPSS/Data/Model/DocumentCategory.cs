@@ -16,5 +16,6 @@ namespace SEC44NIPSS.Data.Model
         public long? AlumniId { get; set; }
         public Alumni Alumni { get; set; }
         public ICollection<Document> Documents { get; set; }
+        public ICollection<SecPaper> SecPapers { get; set; }
     }
 }

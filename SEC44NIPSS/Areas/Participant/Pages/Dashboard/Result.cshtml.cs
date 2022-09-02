@@ -30,19 +30,31 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
                 return NotFound();
             }
 
+            
+
+         
             UserAnswer = await _context.UserAnswers
                 .Include(u => u.Profile).FirstOrDefaultAsync(m => m.Id == id);
 
-            var userlist = await _context.AnswerLists.Where(x => x.UserAnswerId == id).ToListAsync();
-            int good = userlist.Where(x => x.Choose == x.Answer).Count();
 
-            UserAnswer.Score = (good * 5).ToString()+"%";
+
+            var userlist = await _context.AnswerLists.AsNoTracking().Include(x => x.RapidQuestion).ThenInclude(x => x.RapidOptions).Include(x => x.UserAnswer).Where(x => x.UserAnswerId == id).OrderBy(x => x.SN).ToListAsync();
+            
+
+
+            var xgood = userlist.Where(x => x.Choose == x.Answer && x.Choose != null).ToList();
+            var xbad = userlist.Where(x => x.Choose != x.Answer && x.Choose != null).ToList();
+
+            int good = userlist.Where(x => x.Choose == x.Answer && x.Choose != null).Count();
+            int bad = userlist.Where(x => x.Choose != x.Answer && x.Choose != null).Count();
+
+            UserAnswer.Score = (good * 5).ToString() + "%";
             _context.Attach(UserAnswer).State = EntityState.Modified;
 
-            
-                await _context.SaveChangesAsync();
 
-                if (UserAnswer == null)
+            await _context.SaveChangesAsync();
+
+            if (UserAnswer == null)
             {
                 return NotFound();
             }

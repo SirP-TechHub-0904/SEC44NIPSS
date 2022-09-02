@@ -1,0 +1,61 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.Answers.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserAnswer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.Score)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.Score)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.QuestionNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.QuestionNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.Profile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.Profile.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAnswer.QuestionsLoaded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAnswer.QuestionsLoaded)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.UserAnswer.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

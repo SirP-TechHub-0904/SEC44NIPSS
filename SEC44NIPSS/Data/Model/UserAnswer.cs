@@ -12,7 +12,8 @@ namespace SEC44NIPSS.Data.Model
         public DateTime Date { get; set; }
         public string Score { get; set; }
         public int QuestionNumber { get; set; }
-        public DateTime StartTime { get; set; }
+        public string CombineCode { get; set; }
+        public DateTime? StartTime { get; set; }
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
 

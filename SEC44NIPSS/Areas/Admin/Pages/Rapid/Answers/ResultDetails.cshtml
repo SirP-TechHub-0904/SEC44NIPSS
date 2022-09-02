@@ -1,0 +1,74 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.Rapid.Answers.ResultDetailsModel
+@{
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        Layout = "_NIPSS";
+    }
+}
+
+
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            RAPID TEST
+
+        </h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>
+                        QUESTION
+                    </th>
+                    <th>
+                        SELECTED ANSWER
+                    </th>
+                    <th>
+                        CORRECT ANSWER
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+                int sno = 0;
+            }
+            <tbody>
+                @foreach (var item in Model.AnswerList)
+                {
+                    <tr>
+                        <td>
+                            @item.SN
+                        </td>
+                        <td>
+                            @item.RapidQuestion.Question
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Choose)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Answer)
+                        </td>
+                        <td>
+                            @if (item.Choose == item.RapidQuestion.RapidOptions.Answer)
+                            {
+                                <span><i class="fa fa-check" style="font-size:30px;font-weight:900;color:green;"></i></span>
+                            }
+                            else
+                            {
+                                <span><i class="fa fa-times" style="font-size:30px;font-weight:900;color:darkred;"></i></span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

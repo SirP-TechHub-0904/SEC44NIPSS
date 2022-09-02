@@ -53,6 +53,8 @@ namespace SEC44NIPSS.Data.Model
         public ICollection<Gallery> MyGallery { get; set; }
         public virtual StudyGroupMemeber StudyGroupMemeber { get; set; }
 
+        public virtual SecParticipant Participant { get; set; }
+
         public long? AlumniId { get; set; }
         public Alumni Alumni { get; set; }
     }

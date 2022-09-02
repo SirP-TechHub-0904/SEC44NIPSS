@@ -5,8 +5,10 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +42,9 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 
         [BindProperty]
         public string Email { get; set; }
+
+        [BindProperty]
+        public string PasswordKey { get; set; }
 
         [BindProperty]
         public long StudyGroupId { get; set; }
@@ -206,6 +211,65 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             {
 
             }
+
+            try
+            {
+                if (!String.IsNullOrEmpty(PasswordKey))
+                {
+                    var user = await _userManager.FindByIdAsync(Profile.UserId);
+                    var xuser = await _userManager.RemovePasswordAsync(user);
+                    if (xuser.Succeeded)
+                    {
+                        var chemail = await _userManager.AddPasswordAsync(user, PasswordKey);
+                        if (chemail.Succeeded)
+                        {
+                            TempData["er"] = "password Changed";
+                            string message = "Your password has been updated. Kindly login with these password " + PasswordKey;
+                            message = message.Replace("0", "O");
+                            message = message.Replace("Services", "Servics");
+                            message = message.Replace("gmail", "g -mail");
+                            string response = "";
+                            //Peter Ahioma
+
+                            try
+                            {
+                                var getApi = "http://account.kudisms.net/api/?username=ponwuka123@gmail.com&password=sms@123&message=@@message@@&sender=@@sender@@&mobiles=@@recipient@@";
+                                string apiSending = getApi.Replace("@@sender@@", "SEC 44").Replace("@@recipient@@", HttpUtility.UrlEncode(Profile.PhoneNumber)).Replace("@@message@@", HttpUtility.UrlEncode(message));
+
+                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(apiSending);
+                                httpWebRequest.Method = "GET";
+                                httpWebRequest.ContentType = "application/json";
+
+                                //getting the respounce from the request
+                                HttpWebResponse httpWebResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                                Stream responseStream = httpWebResponse.GetResponseStream();
+                                StreamReader streamReader = new StreamReader(responseStream);
+                                response = await streamReader.ReadToEndAsync();
+                                //response = "OK";
+                            }
+                            catch (Exception c)
+                            {
+                                response = c.ToString();
+                            }
+
+                            if (response.ToUpper().Contains("OK") || response.ToUpper().Contains("1701"))
+                            {
+                                response = "OK Sent";
+                            }
+
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                }
+            }
+            catch (Exception c)
+            {
+
+            }
+
 
             try
             {

@@ -383,6 +383,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("CommitteeCategoryId")
                         .HasColumnType("bigint");
 
@@ -396,6 +399,8 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
 
                     b.HasIndex("CommitteeCategoryId");
 
@@ -491,6 +496,36 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CurrentAffairs");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.DirectingStaff", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SortOrder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("StudyGroupId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.HasIndex("StudyGroupId");
+
+                    b.ToTable("DirectingStaffs");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Document", b =>
@@ -673,6 +708,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Manifesto")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("ParticipantId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
@@ -685,6 +723,8 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AlumniId");
+
+                    b.HasIndex("ParticipantId");
 
                     b.HasIndex("ProfileId");
 
@@ -858,6 +898,34 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MaintainaceSettings");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ManagingStaff", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SortOrder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("ManagingStaffs");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Message", b =>
@@ -1431,6 +1499,55 @@ namespace SEC44NIPSS.Data.Migrations
                     b.ToTable("Options");
                 });
 
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ParticipantDocumentCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ParticipantId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ParticipantId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Powerpoint")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Report")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Script")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParticipantDocumentCategoryId");
+
+                    b.HasIndex("ParticipantId1");
+
+                    b.ToTable("ParticipantDocuments");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocumentCategory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ParticipantDocumentCategories");
+                });
+
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Profile", b =>
                 {
                     b.Property<long>("Id")
@@ -1840,6 +1957,72 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ReportAbuses");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.SecPaper", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("DocumentCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Powerpoint")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Report")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Script")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("DocumentCategoryId");
+
+                    b.ToTable("SecPapers");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.SecParticipant", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ProfileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("StudyGroupId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique()
+                        .HasFilter("[ProfileId] IS NOT NULL");
+
+                    b.HasIndex("StudyGroupId");
+
+                    b.ToTable("Participants");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.SecProject", b =>
@@ -2339,6 +2522,37 @@ namespace SEC44NIPSS.Data.Migrations
                     b.ToTable("TicketSupervisor");
                 });
 
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.Tour", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("StudyGroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("StudyGroupId");
+
+                    b.ToTable("Tours");
+                });
+
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TourCategory", b =>
                 {
                     b.Property<long>("Id")
@@ -2473,6 +2687,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CombineCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -2488,7 +2705,7 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Score")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime?>("StartTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
@@ -2625,6 +2842,10 @@ namespace SEC44NIPSS.Data.Migrations
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Committee", b =>
                 {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("Committees")
+                        .HasForeignKey("AlumniId");
+
                     b.HasOne("SEC44NIPSS.Data.Model.CommitteeCategory", "CommitteeCategory")
                         .WithMany("Committees")
                         .HasForeignKey("CommitteeCategoryId")
@@ -2641,6 +2862,21 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
                         .WithMany()
                         .HasForeignKey("AlumniId");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.DirectingStaff", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("DirectingStaffs")
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.StudyGroup", "StudyGroup")
+                        .WithMany()
+                        .HasForeignKey("StudyGroupId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Document", b =>
@@ -2675,6 +2911,10 @@ namespace SEC44NIPSS.Data.Migrations
                         .WithMany("Executives")
                         .HasForeignKey("AlumniId");
 
+                    b.HasOne("SEC44NIPSS.Data.Model.SecParticipant", "Participant")
+                        .WithMany()
+                        .HasForeignKey("ParticipantId");
+
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
@@ -2694,6 +2934,17 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasForeignKey("StatesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ManagingStaff", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("ManagingStaffs")
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.NipssStaff", b =>
@@ -2719,6 +2970,19 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasForeignKey("SEC44NIPSS.Data.Model.Option", "QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.ParticipantDocumentCategory", "ParticipantDocumentCategory")
+                        .WithMany("ParticipantDocuments")
+                        .HasForeignKey("ParticipantDocumentCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SEC44NIPSS.Data.Model.SecParticipant", "Participant")
+                        .WithMany("ParticipantDocuments")
+                        .HasForeignKey("ParticipantId1");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Profile", b =>
@@ -2786,6 +3050,34 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasForeignKey("SEC44NIPSS.Data.Model.RapidOption", "RapidQuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.SecPaper", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("SecPapers")
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.DocumentCategory", "DocumentCategory")
+                        .WithMany("SecPapers")
+                        .HasForeignKey("DocumentCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.SecParticipant", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("Participants")
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
+                        .WithOne("Participant")
+                        .HasForeignKey("SEC44NIPSS.Data.Model.SecParticipant", "ProfileId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.StudyGroup", "StudyGroup")
+                        .WithMany("SecParticipants")
+                        .HasForeignKey("StudyGroupId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.SecProject", b =>
@@ -2919,6 +3211,17 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasForeignKey("TicketCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.Tour", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany("Tours")
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.StudyGroup", "StudyGroup")
+                        .WithMany("Tours")
+                        .HasForeignKey("StudyGroupId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.TourCategory", b =>

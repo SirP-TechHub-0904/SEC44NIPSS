@@ -74,5 +74,21 @@ namespace SEC44NIPSS.Areas.Admin.Pages.MessagingPage
             } await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
+
+        public async Task<IActionResult> OnPostResettozero()
+        {
+
+
+            var xMessage = await _context.Messages.Where(x=>x.NotificationStatus == NotificationStatus.NotSent).OrderBy(x => x.Id).ToListAsync();
+            foreach (var x in xMessage)
+            {
+                x.Retries = 0;
+                _context.Attach(x).State = EntityState.Modified;
+
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./Index");
+        }
     }
 }

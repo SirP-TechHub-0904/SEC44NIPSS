@@ -15,6 +15,13 @@ namespace SEC44NIPSS.Data
         }
 
       
+        public DbSet<DirectingStaff> DirectingStaffs { get; set; }
+        public DbSet<Tour> Tours { get; set; }
+        public DbSet<SecParticipant> Participants { get; set; }
+        public DbSet<ParticipantDocument> ParticipantDocuments { get; set; }
+        public DbSet<ParticipantDocumentCategory> ParticipantDocumentCategories { get; set; }
+        public DbSet<ManagingStaff> ManagingStaffs { get; set; }
+        public DbSet<SecPaper> SecPapers { get; set; }
         public DbSet<TicketStage> TicketStages { get; set; }
         public DbSet<QuestionnerPage> QuestionnerPages { get; set; }
         public DbSet<SliderCategory> SliderCategories { get; set; }

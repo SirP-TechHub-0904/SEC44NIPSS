@@ -8,6 +8,8 @@
 
 <div class="container">
     <h3>Message (@Model.xMessage)</h3>
+    <h5>  not sent @Model.notxMessage</h5>
+    <h5>  not sent > 5 @Model.notxMessage5</h5>
     <form method="get">
         <div class="row">
             <div class="col-md-4">
@@ -26,75 +28,76 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].Date)
-                </th>
-                <th>Sent Date</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].Recipient)
-                </th>
-                
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].Retries)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].NotificationStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Message[0].NotificationType)
-                </th>
-                <th>Sender</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Message)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateSent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Recipient)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Retries)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NotificationStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NotificationType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SentVia)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].Date)
+                    </th>
+                    <th>Sent Date</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].Recipient)
+                    </th>
 
-                    <a asp-page="./Delete" asp-route-id="@item.Id" target="_blank">Delete</a>
-                    <a asp-page="./Resend" asp-route-id="@item.Id" target="_blank">Resend</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].Retries)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].NotificationStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Message[0].NotificationType)
+                    </th>
+                    <th>Sender</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Message)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateSent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Recipient)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Retries)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NotificationStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NotificationType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SentVia)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+
+                            <a asp-page="./Delete" asp-route-id="@item.Id" target="_blank">Delete</a>
+                            <a asp-page="./Resend" asp-route-id="@item.Id" target="_blank">Resend</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
