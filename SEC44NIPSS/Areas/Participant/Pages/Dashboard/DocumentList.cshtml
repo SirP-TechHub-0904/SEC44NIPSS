@@ -9,9 +9,11 @@
     }
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">
-            @Model.Document.Count() DOCUMENTS
+        <h3 class="box-title uppercase">
+            @Model.Document.Count() DOCUMENTS on @Model.DocumentCategory.Title
         </h3>
+        <br />
+        <a asp-page="./UploadDoc" class="btn btn-primary" asp-route-id="@Model.CID">Upload New</a>
 
     </div>
     <!-- /.box-header -->

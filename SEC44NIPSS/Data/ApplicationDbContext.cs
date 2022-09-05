@@ -15,6 +15,8 @@ namespace SEC44NIPSS.Data
         }
 
       
+        public DbSet<ParlyReportCategory> ParlyReportCategories { get; set; }
+        public DbSet<ParlyReportDocument> ParlyReportDocuments { get; set; }
         public DbSet<DirectingStaff> DirectingStaffs { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<SecParticipant> Participants { get; set; }

@@ -1,0 +1,57 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.UploadDocModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title uppercase">
+           Upload on @Model.DocumentCategory.Title
+        </h3>
+       
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Document.Title" class="control-label"></label>
+                        <input asp-for="Document.Title" class="form-control" />
+                        <span asp-validation-for="Document.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Document.ShortDescription" class="control-label"></label>
+                        <textarea asp-for="Document.ShortDescription" class="form-control"></textarea>
+                        <span asp-validation-for="Document.ShortDescription" class="text-danger"></span>
+                    </div>
+
+                     <input asp-for="Document.DocumentCategoryId" value="@Model.CID" type="hidden" />
+                    
+
+                    <div class="form-group">
+                        <label asp-for="Document.FileName" class="control-label">Document</label>
+                        <input class="form-control" type="file" name="filesPhoto" id="gallery-photo-add" />
+                        <span asp-validation-for="Document.FileName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Document.DocType" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.Document.DocType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.DocType))), new { @class = "form-control" })
+                        <span asp-validation-for="Document.DocType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

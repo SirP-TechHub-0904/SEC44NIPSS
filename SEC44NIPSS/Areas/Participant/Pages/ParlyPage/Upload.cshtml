@@ -1,0 +1,57 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ParlyPage.UploadModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">
+            Upload Your Contribution on @Model.ParlyReportCategories.Title
+        </h3>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input asp-for="ParlyReportDocument.ParlyReportCategoryId" value="@Model.ParlyReportCategories.Id" type="hidden" />
+                    <input asp-for="Redirt" type="hidden" />
+
+                    <div class="form-group">
+                        <label asp-for="ParlyReportDocument.ShortDescription" class="control-label">Brief summary of document</label>
+                        <textarea asp-for="ParlyReportDocument.ShortDescription" class="form-control" placeholder="Brief summary of document"></textarea>
+                        <span asp-validation-for="ParlyReportDocument.ShortDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParlyReportDocument.Note" class="control-label">Write your Contribution Directly</label>
+                        <textarea id="mytextarea" asp-for="ParlyReportDocument.Note" class="form-control"></textarea>
+                        <span asp-validation-for="ParlyReportDocument.Note" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParlyReportDocument.Document" class="control-label">Upload Document</label>
+                        <input class="form-control" type="file" name="iFile" />
+                        <span asp-validation-for="ParlyReportDocument.Document" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Upload" class="btn btn-default" />
+                        <a asp-page="./Index" class="btn btn-danger">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            
+        </div>
+    </div>
+</div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

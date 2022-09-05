@@ -1,0 +1,60 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ParlyPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                    PRESIDENTIAL PARLEY REPORT RESOURCE MATERIALS
+                </h3>
+            </div>
+
+            @if (TempData["result"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> @TempData["result"]
+                </div>}
+
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="table-responsive">
+                    <table id="" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ParlyReportCategory[0].Description)
+                                </th>
+                               
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ParlyReportCategory)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    
+                                    <td>
+                                        <a asp-page="./Documents" asp-route-id="@item.Id">View @item.ParlyReportDocuments.Count() Documents</a> 
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -272,9 +272,9 @@
                                                 <li>
                                                     <a asp-page="/TourPage/NipssTour">Tours</a>
                                                 </li>
-                                                <li>
+                                                @*<li>
                                                     <a asp-page="/Web/NipssGalleryPage">Gallery</a>
-                                                </li>
+                                                </li>*@
                                                 <li>
                                                     <a asp-page="/Web/LibraryPage">Library</a>
                                                 </li>
@@ -293,17 +293,17 @@
                                                 </li>
                                                 <li>
                                                     @if (User.Identity.IsAuthenticated)
-                                                    {<a asp-page="/Dashboard/Index" asp-area="Participant">VLE DASHBOARD</a>
+                                                    {<a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
 
                                                     }
                                                     else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                                     {
-                                                        <a asp-page="/Admin/Index" asp-area="NIPSS">VLE DASHBOARD</a>
+                                                        <a asp-page="/Admin/Index" asp-area="NIPSS"> DASHBOARD</a>
 
                                                     }
                                                     else
                                                     {
-                                                        <a asp-page="/Account/Login" asp-area="Identity">VLE</a>
+                                                        <a asp-page="/Account/Login" asp-area="Identity">Login</a>
                                                     }
 
                                                 </li>
@@ -357,9 +357,9 @@
                         <li>
                             <a asp-page="/TourPage/NipssTour">Tours</a>
                         </li>
-                        <li>
+                        @*<li>
                             <a asp-page="/Web/NipssGalleryPage">Gallery</a>
-                        </li>
+                        </li>*@
                         <li>
                             <a asp-page="/Web/LibraryPage">Library</a>
                         </li>
@@ -376,7 +376,19 @@
                             </ul>
                         </li>
                         <li>
-                            <a asp-page="/Account/Login" asp-area="Identity">VLE</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {<a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
+
+                            }
+                            else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <a asp-page="/Admin/Index" asp-area="NIPSS"> DASHBOARD</a>
+
+                            }
+                            else
+                            {
+                                <a asp-page="/Account/Login" asp-area="Identity">Login</a>
+                            }
                         </li>
                     </ul> <!-- //.nav-menu -->
 

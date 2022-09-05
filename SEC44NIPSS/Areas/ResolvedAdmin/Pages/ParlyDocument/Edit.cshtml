@@ -1,0 +1,60 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>ParlyReportDocument</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ParlyReportDocument.Id" />
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.Document" class="control-label"></label>
+                <input asp-for="ParlyReportDocument.Document" class="form-control" />
+                <span asp-validation-for="ParlyReportDocument.Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.ShortDescription" class="control-label"></label>
+                <input asp-for="ParlyReportDocument.ShortDescription" class="form-control" />
+                <span asp-validation-for="ParlyReportDocument.ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.Note" class="control-label"></label>
+                <input asp-for="ParlyReportDocument.Note" class="form-control" />
+                <span asp-validation-for="ParlyReportDocument.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.Date" class="control-label"></label>
+                <input asp-for="ParlyReportDocument.Date" class="form-control" />
+                <span asp-validation-for="ParlyReportDocument.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.ProfileId" class="control-label"></label>
+                <select asp-for="ParlyReportDocument.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                <span asp-validation-for="ParlyReportDocument.ProfileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.ParlyReportCategoryId" class="control-label"></label>
+                <select asp-for="ParlyReportDocument.ParlyReportCategoryId" class="form-control" asp-items="ViewBag.ParlyReportCategoryId"></select>
+                <span asp-validation-for="ParlyReportDocument.ParlyReportCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

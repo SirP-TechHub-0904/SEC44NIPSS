@@ -1,0 +1,55 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.Dashboard.CreateFolderModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    Layout = "_NIPSS";
+}
+
+<!-- Display the countdown timer in an element -->
+<div class="col-md-12">
+    <div class="box box-solid">
+        <div class="box-header with-border">
+
+            <h3 class="box-title">Create FOlder/Document Category</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="DocumentCategory.Title" class="control-label"></label>
+                            <input asp-for="DocumentCategory.Title" class="form-control" />
+                            <span asp-validation-for="DocumentCategory.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DocumentCategory.ShortDescription" class="control-label"></label>
+                            <input asp-for="DocumentCategory.ShortDescription" class="form-control" />
+                            <span asp-validation-for="DocumentCategory.ShortDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DocumentCategory.Description" class="control-label"></label>
+                            <input asp-for="DocumentCategory.Description" class="form-control" />
+                            <span asp-validation-for="DocumentCategory.Description" class="text-danger"></span>
+                        </div>
+                      
+                        <div class="form-group">
+                            <input type="submit" value="Create Folder" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }
