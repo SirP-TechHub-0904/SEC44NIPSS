@@ -38,7 +38,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
             {
                 return NotFound();
             }
-            DocumentCategoryList = await _context.DocumentCategories.Include(x => x.Documents).ToListAsync();
+            DocumentCategoryList = await _context.DocumentCategories.Include(x => x.Documents).Where(x=>x.Show == true).ToListAsync();
 
             return Page();
         }

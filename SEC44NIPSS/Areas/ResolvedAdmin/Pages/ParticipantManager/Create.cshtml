@@ -1,0 +1,99 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParticipantManager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<div class="card-body">
+
+    <h4>Create or Update Participant</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div style="border:1px solid green;margin-bottom:10px;">
+                    <h4>If Account Already Exsist. Just Add Account to SEC</h4>
+
+                    <div class="form-group">
+                        <label asp-for="ProfileId" class="control-label"></label>
+                        <select asp-for="ProfileId" class="form-control" asp-items="ViewBag.ProfileId">
+                            <option>NILL</option>
+                        </select>
+                    </div>
+                </div>
+                    <div style="border:1px solid red;">
+                        <h4>If Account does not Exsist. Create and add Account to SEC</h4>
+
+
+                        <div class="form-group">
+                            <label asp-for="Profile.Title" class="control-label"></label>
+                            <input asp-for="Profile.Title" class="form-control" />
+                            <span asp-validation-for="Profile.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.FullName" class="control-label"></label>
+                            <input asp-for="Profile.FullName" class="form-control" />
+                            <span asp-validation-for="Profile.FullName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.DOB" class="control-label"></label>
+                            <input asp-for="Profile.DOB" class="form-control" />
+                            <span asp-validation-for="Profile.DOB" class="text-danger"></span>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label asp-for="Profile.OfficialRole" class="control-label"></label>
+                            <input asp-for="Profile.OfficialRole" class="form-control" />
+                            <span asp-validation-for="Profile.OfficialRole" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.Sponsor" class="control-label"></label>
+                            <input asp-for="Profile.Sponsor" class="form-control" />
+                            <span asp-validation-for="Profile.Sponsor" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Email" class="control-label"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.PhoneNumber" class="control-label"></label>
+                            <input asp-for="Profile.PhoneNumber" class="form-control" />
+                            <span asp-validation-for="Profile.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.AltPhoneNumber" class="control-label"></label>
+                            <input asp-for="Profile.AltPhoneNumber" class="form-control" />
+                            <span asp-validation-for="Profile.AltPhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Profile.PsNumber" class="control-label"></label>
+                            <input asp-for="Profile.PsNumber" class="form-control" />
+
+                            <span asp-validation-for="Profile.PsNumber" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudyGroupId" class="control-label">Study Group</label>
+                        <select asp-for="StudyGroupId" class="form-control" asp-items="ViewBag.StudyGroupId"></select>
+                    </div>
+
+                    <input asp-for="Profile.AlumniId" type="hidden" value="@Model.AlumniId" />
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

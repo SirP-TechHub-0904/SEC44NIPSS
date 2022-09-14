@@ -22,7 +22,7 @@ namespace SEC44NIPSS.Pages.Web
 
         public async Task OnGetAsync()
         {
-            DocumentCategory = await _context.DocumentCategories.Include(x => x.Documents).ToListAsync();
+            DocumentCategory = await _context.DocumentCategories.Include(x => x.Documents).Where(x => x.Show == true).ToListAsync();
 
 
         }

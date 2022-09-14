@@ -1,0 +1,116 @@
+﻿@page
+@model SEC44NIPSS.Pages.Web.LectureNoteModel
+@{
+}
+
+
+
+<div class="rs-breadcrumbs img10">
+    <div class="container">
+        <div class="breadcrumbs-inner">
+            <h1 class="page-title">
+                LECTURE NOTE
+            </h1>
+            <span class="sub-text">
+
+            </span>
+        </div>
+    </div>
+</div>
+<div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0;">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="table-responsive">
+                                <table class="table-bordered table table-striped" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">DATE</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">TIME</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">TITLE</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">MODERATOR</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">LECTURER</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">MODULE</h4></th>
+                                            <th><h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;text-transform:uppercase;">DOCUMENT</h4></th>
+
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    <tbody>
+
+
+                                        @foreach (var item in Model.Event)
+                                        {
+                                        <tr>
+                                            <td><a><p style="font-weight:800;">@item.EventDate</p></a></td>
+                                            <td><a><p style="font-weight:800;">@item.EventTime</p></a></td>
+
+                                            <td>
+                                                <h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;line-height:24px;margin:0 5px;">@Html.Raw(item.Content)</h6>
+
+                                            </td>
+                                            <td><a><p style="font-weight:800;font-size:12px;">@item.Moderator</p></a></td>
+                                            <td><a><p style="font-weight: 800; font-size: 12px;">@item.Lecturer</p></a></td>
+                                            <td><a><p style="font-weight: 800; font-size: 12px;">@item.Module</p></a></td>
+                                            <td>
+                                                @if (item.Document != null)
+                                                    {
+                                                        if (!String.IsNullOrEmpty(item.Document.FileName))
+                                                        {
+
+
+                                                <span style="font-size:12px;">Available</span>
+                                                <a href="@item.Document.FileName" class="btn btn-danger btn-xs" style="color: white; padding: 0.175rem 0.75rem;font-size:10px;" download="@Html.Raw(item.Content)">download</a>
+                                                        }
+                                                        else
+                                                        {
+                                                <span>-------</span>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                <span>-------</span>
+                                                    }
+                                            </td>
+
+
+                                        </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>
+                                        <h4 style="font-size:20px;font-weight:900;color:#000000;margin:0;">NAVIGATION</h4>
+                                    </th>
+                                </tr>
+                                @foreach (var item in Model.DocumentCategoryList)
+                                {
+                                    <tr>
+                                        <th>
+                                            <a asp-page="/Web/DocList" asp-route-id="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;font-size:14px;line-height:18px;margin:0 5px;"> @Html.DisplayFor(modelItem => item.Title)</h6></a>
+                                        </th>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

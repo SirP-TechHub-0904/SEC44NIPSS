@@ -32,7 +32,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 
             DocumentCategory = await _context.DocumentCategories.FirstOrDefaultAsync(x => x.Id == id);
 
-            DocumentCategoryList = await _context.DocumentCategories.Include(x => x.Documents).ToListAsync();
+            DocumentCategoryList = await _context.DocumentCategories.Include(x => x.Documents).Where(x => x.Show == true).ToListAsync();
             CID = id;
         }
     }

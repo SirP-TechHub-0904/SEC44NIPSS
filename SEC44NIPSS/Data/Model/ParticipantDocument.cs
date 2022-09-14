@@ -8,10 +8,10 @@ namespace SEC44NIPSS.Data.Model
     public class ParticipantDocument
     {
         public long Id { get; set; }
-        public string ParticipantId { get; set; }
+        public long? ParticipantId { get; set; }
         public SecParticipant Participant { get; set; }
 
-        public long ParticipantDocumentCategoryId { get; set; }
+        public long? ParticipantDocumentCategoryId { get; set; }
         public ParticipantDocumentCategory ParticipantDocumentCategory { get; set; }
 
         public string Powerpoint { get; set; }

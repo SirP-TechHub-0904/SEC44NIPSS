@@ -1,0 +1,125 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.LectureNote.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="card-body">
+    <h4>UPDATE EVENT</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Event.Id" />
+                <div class="form-group">
+                    <label asp-for="Event.Date" class="control-label"></label>
+                    <input asp-for="Event.Date" class="form-control" />
+                    <span asp-validation-for="Event.Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.EventDate" class="control-label"></label>
+                    <input asp-for="Event.EventDate" class="form-control" />
+                    <span asp-validation-for="Event.EventDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.EventTime" class="control-label"></label>
+                    <input asp-for="Event.EventTime" class="form-control" />
+                    <span asp-validation-for="Event.EventTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.SortOrder" class="control-label"></label>
+                    <input asp-for="Event.SortOrder" class="form-control" />
+                    <span asp-validation-for="Event.SortOrder" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.Title" class="control-label"></label>
+                    <input asp-for="Event.Title" class="form-control" />
+                    <span asp-validation-for="Event.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.Content" class="control-label"></label>
+                    <textarea asp-for="Event.Content" class="form-control"></textarea>
+                    <span asp-validation-for="Event.Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.Moderator" class="control-label"></label>
+                    <input asp-for="Event.Moderator" class="form-control" />
+                    <span asp-validation-for="Event.Moderator" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.Lecturer" class="control-label"></label>
+                    <input asp-for="Event.Lecturer" class="form-control" />
+                    <span asp-validation-for="Event.Lecturer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.Module" class="control-label"></label>
+                    <input asp-for="Event.Module" class="form-control" />
+                    <span asp-validation-for="Event.Module" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.EventType" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.Event.EventType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.EventType))), new { @class = "form-control" })
+                    <span asp-validation-for="Event.EventType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.ContentStatus" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.Event.ContentStatus, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.ContentStatus))), new { @class = "form-control" })
+
+                    <span asp-validation-for="Event.ContentStatus" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Event.ContentType" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.Event.ContentType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.ContentType))), new { @class = "form-control" })
+
+                    <span asp-validation-for="Event.ContentType" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Event.Note" class="control-label"></label>
+                    <input asp-for="Event.Note" class="form-control" />
+                    <span asp-validation-for="Event.Note" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Event.IsLecture" /> @Html.DisplayNameFor(model => model.Event.IsLecture)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Document.ProfileId" class="control-label">
+                        Resource Person     <a asp-page="/ProfileAccount/Create" target="_blank">Create New Sponsor</a>
+                    </label>
+                    <select asp-for="Document.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Document.CoverImage" class="control-label"></label>
+                    <input class="form-control" type="file" name="CoverImage" id="gallery-photo-add" />
+                    <span asp-validation-for="Document.CoverImage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Document.FileName" class="control-label"></label>
+                    <input class="form-control" type="file" name="filesPhoto" id="gallery-photo-add" />
+                    <span asp-validation-for="Document.FileName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Document.DocType" class="control-label"></label>
+                    @Html.DropDownListFor(model => model.Document.DocType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.DocType))), new { @class = "form-control" })
+                    <span asp-validation-for="Document.DocType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+  </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

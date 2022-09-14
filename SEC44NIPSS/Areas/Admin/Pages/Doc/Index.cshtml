@@ -25,6 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DocumentCategory[0].Color)
             </th>
+            <th>Show</th>
             <th>
                 @Html.DisplayNameFor(model => model.DocumentCategory[0].Alumni)
             </th>
@@ -45,6 +46,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Show)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Alumni.Id)

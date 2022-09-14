@@ -575,7 +575,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.HasIndex("DocumentCategoryId");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("EventId")
+                        .IsUnique()
+                        .HasFilter("[EventId] IS NOT NULL");
 
                     b.HasIndex("ProfileId");
 
@@ -600,6 +602,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -676,6 +681,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Moderator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Module")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
@@ -1561,13 +1569,10 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("ParticipantDocumentCategoryId")
+                    b.Property<long?>("ParticipantDocumentCategoryId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("ParticipantId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ParticipantId1")
+                    b.Property<long?>("ParticipantId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Powerpoint")
@@ -1583,7 +1588,7 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.HasIndex("ParticipantDocumentCategoryId");
 
-                    b.HasIndex("ParticipantId1");
+                    b.HasIndex("ParticipantId");
 
                     b.ToTable("ParticipantDocuments");
                 });
@@ -2943,8 +2948,8 @@ namespace SEC44NIPSS.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("SEC44NIPSS.Data.Model.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
+                        .WithOne("Document")
+                        .HasForeignKey("SEC44NIPSS.Data.Model.Document", "EventId");
 
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
                         .WithMany()
@@ -3042,13 +3047,11 @@ namespace SEC44NIPSS.Data.Migrations
                 {
                     b.HasOne("SEC44NIPSS.Data.Model.ParticipantDocumentCategory", "ParticipantDocumentCategory")
                         .WithMany("ParticipantDocuments")
-                        .HasForeignKey("ParticipantDocumentCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParticipantDocumentCategoryId");
 
                     b.HasOne("SEC44NIPSS.Data.Model.SecParticipant", "Participant")
                         .WithMany("ParticipantDocuments")
-                        .HasForeignKey("ParticipantId1");
+                        .HasForeignKey("ParticipantId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.Profile", b =>

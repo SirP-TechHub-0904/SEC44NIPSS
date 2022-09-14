@@ -30,7 +30,7 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Roles
         {
             returnUrl = returnUrl ?? Url.Content("~/");
 
-            var user = new IdentityUser { UserName = "jinmcever@gmail.com", Email = "jinmcever@gmail.com", PhoneNumber = "070000000000000", LockoutEnabled = false };
+            var user = new IdentityUser { UserName = "jinmcever@xyz.com", Email = "jinmcever@xyz.com", PhoneNumber = "070000000000000", LockoutEnabled = false };
             var result = await _userManager.CreateAsync(user, "jinmcever@123");
             if (result.Succeeded)
             {

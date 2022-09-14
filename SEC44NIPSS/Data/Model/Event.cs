@@ -21,5 +21,8 @@ namespace SEC44NIPSS.Data.Model
         public ContentType ContentType { get;set;}
         public string Note { get; set; }
         public bool IsLecture { get; set; }
+        public string Module { get; set; }
+
+        public virtual Document Document { get; set; }
     }
 }
