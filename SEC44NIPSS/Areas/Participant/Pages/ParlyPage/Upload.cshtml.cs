@@ -32,7 +32,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
             _hostingEnv = hostingEnv;
         }
 
-        public async Task<IActionResult> OnGetAsync(long? id, string redir)
+        public async Task<IActionResult> OnGetAsync(long? id, long? sid, string redir, string source)
         {
             if (id == null)
             {
@@ -43,19 +43,46 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
            
             if(ParlyReportCategories == null)
             {
-                return RedirectToPage("/Index", new { area = "" });
+                TempData["result"] = "Unable to fetch folder.";
+                return RedirectToPage("./Index", new { area = "" });
             }
             Redirt = redir;
+            
+            //MAIN FOLDER
+            if(source == "mainfolder")
+            {
+                MainSource = true;
+            }
+            else
+            {
+                MainSource = false;
+                ParlyReportSubCategories = await _context.ParlyReportSubCategories.FirstOrDefaultAsync(x => x.Id == sid);
+
+                if (ParlyReportSubCategories == null)
+                {
+                    TempData["result"] = "Unable to fetch sub folder.";
+                    return RedirectToPage("./Index", new { area = "" });
+                }
+            }
+
+            //SUB FOLDER
             return Page();
         }
         [BindProperty]
         public string Redirt { get; set; }
 
         [BindProperty]
+        public bool MainSource { get; set; }
+
+
+        [BindProperty]
         public ParlyReportDocument ParlyReportDocument { get; set; }
 
         [BindProperty]
         public ParlyReportCategory ParlyReportCategories { get; set; }
+
+        [BindProperty]
+        public ParlyReportSubCategory ParlyReportSubCategories { get; set; }
 
         [BindProperty]
         public Profile Profile { get; set; }
@@ -143,6 +170,19 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
             await _context.SaveChangesAsync();
 
             TempData["result"] = "Uploaded Successfully";
+
+            if (MainSource == true)
+            {
+                return RedirectToPage("./Documents", new { id = ParlyReportDocument.ParlyReportCategoryId });
+
+            }
+            else
+            {
+                return RedirectToPage("./Documents", new { typefolder = "subfolder", id = ParlyReportDocument.ParlyReportSubCategoryId });
+
+            }
+
+
             if (!String.IsNullOrEmpty(Redirt))
             {
                 return RedirectToPage("./Documents", new { id = ParlyReportDocument.ParlyReportCategoryId });

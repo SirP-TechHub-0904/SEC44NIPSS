@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SEC44NIPSS.Data;
 
 namespace SEC44NIPSS.Data.Migrations
 {
     [DbContext(typeof(NIPSSDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220920081801_df")]
+    partial class df
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1547,9 +1549,6 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<long?>("ParlyReportCategoryId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ParlyReportSubCategoryId")
-                        .HasColumnType("bigint");
-
                     b.Property<long?>("ProfileId")
                         .HasColumnType("bigint");
 
@@ -1563,37 +1562,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.HasIndex("ParlyReportCategoryId");
 
-                    b.HasIndex("ParlyReportSubCategoryId");
-
                     b.HasIndex("ProfileId");
 
                     b.ToTable("ParlyReportDocuments");
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlyReportSubCategory", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("ParlyReportCategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParlyReportCategoryId");
-
-                    b.ToTable("ParlyReportSubCategories");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>
@@ -3072,20 +3043,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .WithMany("ParlyReportDocuments")
                         .HasForeignKey("ParlyReportCategoryId");
 
-                    b.HasOne("SEC44NIPSS.Data.Model.ParlyReportSubCategory", "ParlyReportSubCategory")
-                        .WithMany("ParlyReportDocuments")
-                        .HasForeignKey("ParlyReportSubCategoryId");
-
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
-                });
-
-            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlyReportSubCategory", b =>
-                {
-                    b.HasOne("SEC44NIPSS.Data.Model.ParlyReportCategory", "ParlyReportCategory")
-                        .WithMany("ParlyReportSubCategories")
-                        .HasForeignKey("ParlyReportCategoryId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>

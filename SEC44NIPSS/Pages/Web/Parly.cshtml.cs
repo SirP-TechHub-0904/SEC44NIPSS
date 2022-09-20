@@ -23,7 +23,7 @@ namespace SEC44NIPSS.Pages.Web
 
         public async Task OnGetAsync()
         {
-            ParlyReportCategory = await _context.ParlyReportCategories.Include(x => x.ParlyReportDocuments).ToListAsync();
+            ParlyReportCategory = await _context.ParlyReportCategories.Include(x => x.ParlyReportDocuments).Include(x => x.ParlyReportSubCategories).ToListAsync();
         }
     }
 }

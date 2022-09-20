@@ -1,0 +1,62 @@
+﻿@page
+@model SEC44NIPSS.Areas.Participant.Pages.ParlyPage.CreateSubFolderModel
+
+@{
+    ViewData["Title"] = "CreateSubFolder";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title uppercase">
+                  Create Sub Folder for @Model.ParlyReportCategory.Title
+                </h3>
+               
+            </div>
+
+            @if (TempData["result"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong> @TempData["result"]
+                </div>}
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ParlyReportSubCategory.ParlyReportCategoryId" value="@Model.ParlyReportCategory.Id" />
+
+                            <div class="form-group">
+                                <label asp-for="ParlyReportSubCategory.Title" class="control-label"></label>
+                                <input asp-for="ParlyReportSubCategory.Title" class="form-control" />
+                                <span asp-validation-for="ParlyReportSubCategory.Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ParlyReportSubCategory.Description" class="control-label"></label>
+                                <input asp-for="ParlyReportSubCategory.Description" class="form-control" />
+                                <span asp-validation-for="ParlyReportSubCategory.Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ParlyReportSubCategory.Date" class="control-label"></label>
+                                <input asp-for="ParlyReportSubCategory.Date" class="form-control" />
+                                <span asp-validation-for="ParlyReportSubCategory.Date" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Create Sub Folder" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }

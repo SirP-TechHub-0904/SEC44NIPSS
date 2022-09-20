@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 
 namespace SEC44NIPSS.Data.Model
 {
-    public class ParlyReportCategory
+    public class ParlyReportSubCategory
     {
         public long Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
 
-        public ICollection<ParlyReportSubCategory> ParlyReportSubCategories { get; set; }
+        public long? ParlyReportCategoryId { get; set; }
+        public ParlyReportCategory ParlyReportCategory {get;set;}
         public ICollection<ParlyReportDocument> ParlyReportDocuments { get; set; }
     }
 }

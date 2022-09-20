@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ParlyReportDocument[0].Document)
+                @Html.DisplayNameFor(model => model.ParlyReportDocument[0].Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ParlyReportDocument[0].ShortDescription)
@@ -38,7 +38,7 @@
 @foreach (var item in Model.ParlyReportDocument) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Document)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShortDescription)

@@ -20,6 +20,11 @@
                 <span asp-validation-for="ParlyReportDocument.Document" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ParlyReportDocument.Title" class="control-label"></label>
+                <input asp-for="ParlyReportDocument.Title" class="form-control" />
+                <span asp-validation-for="ParlyReportDocument.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ParlyReportDocument.ShortDescription" class="control-label"></label>
                 <input asp-for="ParlyReportDocument.ShortDescription" class="form-control" />
                 <span asp-validation-for="ParlyReportDocument.ShortDescription" class="text-danger"></span>
@@ -43,6 +48,14 @@
                 <label asp-for="ParlyReportDocument.ParlyReportCategoryId" class="control-label"></label>
                 <select asp-for="ParlyReportDocument.ParlyReportCategoryId" class="form-control" asp-items="ViewBag.ParlyReportCategoryId"></select>
                 <span asp-validation-for="ParlyReportDocument.ParlyReportCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportDocument.ParlyReportSubCategoryId" class="control-label"></label>
+                <select asp-for="ParlyReportDocument.ParlyReportSubCategoryId" class="form-control" asp-items="ViewBag.ParlyReportCategoryId">
+                    <option></option>
+
+                </select>
+                <span asp-validation-for="ParlyReportDocument.ParlyReportSubCategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

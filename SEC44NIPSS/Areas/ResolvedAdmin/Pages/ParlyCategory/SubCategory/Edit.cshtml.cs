@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SEC44NIPSS.Data;
 using SEC44NIPSS.Data.Model;
 
-namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
+namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
         }
 
         [BindProperty]
-        public ParlyReportDocument ParlyReportDocument { get; set; }
+        public ParlyReportSubCategory ParlyReportSubCategory { get; set; }
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
@@ -30,17 +30,14 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
                 return NotFound();
             }
 
-            ParlyReportDocument = await _context.ParlyReportDocuments
-                .Include(p => p.ParlyReportCategory)
-                .Include(p => p.Profile).FirstOrDefaultAsync(m => m.Id == id);
+            ParlyReportSubCategory = await _context.ParlyReportSubCategories
+                .Include(p => p.ParlyReportCategory).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (ParlyReportDocument == null)
+            if (ParlyReportSubCategory == null)
             {
                 return NotFound();
             }
-           ViewData["ParlyReportSubCategoryId"] = new SelectList(_context.ParlyReportSubCategories, "Id", "Title");
            ViewData["ParlyReportCategoryId"] = new SelectList(_context.ParlyReportCategories, "Id", "Title");
-           ViewData["ProfileId"] = new SelectList(_context.Profiles, "Id", "FulName");
             return Page();
         }
 
@@ -48,13 +45,10 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
         {
             if (!ModelState.IsValid)
             {
-                ViewData["ParlyReportSubCategoryId"] = new SelectList(_context.ParlyReportSubCategories, "Id", "Title");
-                ViewData["ParlyReportCategoryId"] = new SelectList(_context.ParlyReportCategories, "Id", "Title");
-                ViewData["ProfileId"] = new SelectList(_context.Profiles, "Id", "FulName");
                 return Page();
             }
 
-            _context.Attach(ParlyReportDocument).State = EntityState.Modified;
+            _context.Attach(ParlyReportSubCategory).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +56,7 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ParlyReportDocumentExists(ParlyReportDocument.Id))
+                if (!ParlyReportSubCategoryExists(ParlyReportSubCategory.Id))
                 {
                     return NotFound();
                 }
@@ -75,9 +69,9 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
             return RedirectToPage("./Index");
         }
 
-        private bool ParlyReportDocumentExists(long id)
+        private bool ParlyReportSubCategoryExists(long id)
         {
-            return _context.ParlyReportDocuments.Any(e => e.Id == id);
+            return _context.ParlyReportSubCategories.Any(e => e.Id == id);
         }
     }
 }

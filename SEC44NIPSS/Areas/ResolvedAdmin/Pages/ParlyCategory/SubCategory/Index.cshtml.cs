@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SEC44NIPSS.Data;
 using SEC44NIPSS.Data.Model;
 
-namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
+namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,12 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
             _context = context;
         }
 
-        public IList<ParlyReportCategory> ParlyReportCategory { get;set; }
+        public IList<ParlyReportSubCategory> ParlyReportSubCategory { get;set; }
 
         public async Task OnGetAsync()
         {
-            ParlyReportCategory = await _context.ParlyReportCategories.Include(x => x.ParlyReportSubCategories).Include(x => x.ParlyReportDocuments).ToListAsync();
+            ParlyReportSubCategory = await _context.ParlyReportSubCategories
+                .Include(p => p.ParlyReportCategory).ToListAsync();
         }
     }
 }

@@ -10,11 +10,19 @@
     <div class="container">
         <div class="breadcrumbs-inner">
             <h1 class="page-title">
+                @if (Model.SubFolder == false)
+                {
+                    <span> @Model.ParlyReportSubCategory.Title</span><span style="font-size:14px;">( @Model.ParlyReportCategory.Title )</span>
+                }
+                else
+                {
                 @Model.ParlyReportCategory.Title
+                }
             </h1>
+            <br />
             <span class="sub-text">
-
-            </span>
+               
+                </span>
         </div>
     </div>
 </div>
@@ -26,11 +34,42 @@
                     <div class="row">
                         <div class="col-md-9">
                             <h4>
-                                <a class="btn btn-danger" style="color:#ffffff;width:100%;font-weight:900;" asp-page="/ParlyPage/Upload" asp-route-id="@Model.ParlyReportCategory.Id" asp-area="Participant">Click to Upload Related Document to Aid Research</a>
+                                @if (Model.SubFolder == true)
+                                {
+                                    <a class="btn btn-primary" asp-page="/ParlyPage/CreateSubFolder" style="color:#ffffff;" asp-route-id="@Model.ParlyReportCategory.Id" asp-area="Participant">Create Sub Folder</a>
+                                    <a class="btn btn-danger" asp-page="/ParlyPage/Upload" asp-route-id="@Model.ParlyReportCategory.Id" asp-route-sid="@Model.SubId" asp-route-source="mainfolder" style="color:#ffffff;" asp-area="Participant">Upload Related Document</a>
 
+                                }
+                                else
+                                {
+                                <a class="btn btn-danger" asp-page="/ParlyPage/Upload" asp-route-sid="@Model.SubId" asp-route-id="@Model.ParlyReportCategory.Id" style="color:#ffffff;" asp-area="Participant">Upload Related Document</a>
+                                }
                             </h4>
+                            <hr />
+                            @if (Model.SubFolder == true)
+                            {
+                                <h3>Folders</h3>
+                                @if (Model.ParlyReportCategory.ParlyReportSubCategories.Count() > 0)
+                                {
+                        <div class="btn-group">
+                            @foreach (var item in Model.ParlyReportCategory.ParlyReportSubCategories)
+                            {
+                                <a asp-page="./ParlyDocList" asp-route-id="@item.Id" style="color:#ffffff;margin:2px;" asp-route-typefolder="subfolder" class="btn btn-primary">@item.Title</a>
+                            }
 
-                            <div class="row">
+
+
+                            </div>
+                                }
+                                else {
+                                <h5>No Folder</h5>}
+                       
+                                }
+                            <hr />
+                            <h3>Documents</h3>
+                        <div class="row">
+                            @if (Model.ParlyReportDocuments.Count() > 0)
+                            {
                                 @foreach (var item in Model.ParlyReportDocuments)
                                 {
                                     <div class="col-md-5">
@@ -39,20 +78,20 @@
                                             <div class="card-body" style="padding: 5px;" id="Document-@item.Id">
 
                                                 <h6 class="card-title text-center uppercase" style="font-weight:900;margin:0;min-height:50px;">From @item.Profile.Title @item.Profile.FullName on @item.Date.ToString("dd MMM,yyyy hh:mm")</h6>
-                                                <h6 class="card-title text-center uppercase" style="margin:0;min-height:100px;">
-                                                    @item.ShortDescription
+                                                <h6 class="card-title text-center uppercase" style="margin:0;min-height:60px;">
+                                                    @item.Title
                                                 </h6>
-                                               @* <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Read Contribution</button>*@
+                                                @* <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Read Contribution</button>*@
 
                                                 @if (User.Identity.IsAuthenticated)
                                                 {
                                                     <div class="row">
                                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                                            <a href="@item.Document" class="btn btn-primary" target="_blank" style="color:#ffffff;width:100%;font-weight:900;" download>DOWNLOAD</a>
+                                                            <a href="@item.Document" class="btn btn-primary" target="_blank" style="color:#ffffff;width:100%;font-weight:900;" download="@item.Title">DOWNLOAD</a>
 
                                                         </div>
                                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                                            <a href="@item.Document" target="_blank" class="btn btn-primary" style="color:#ffffff;width:100%;font-weight:900;">VIEW DOCUMENT</a>
+                                                            <a href="@item.Document" target="_blank" class="btn btn-primary" style="color:#ffffff;width:100%;font-weight:900;" download="@item.Title">VIEW DOCUMENT</a>
 
                                                         </div>
                                                     </div>
@@ -71,7 +110,11 @@
 
                                     </div>
 
-                                }
+                                }}
+            else
+            {
+                <h5>No Document</h5>
+            }
                             </div>
                         </div>
 
