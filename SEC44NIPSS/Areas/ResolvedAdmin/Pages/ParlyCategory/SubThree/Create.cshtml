@@ -1,0 +1,50 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubThree.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>
+
+    <a asp-page="/ParlyCategory/SubTwo/Folders" asp-route-id="@Model.ParlySubTwoCategory.ParlyReportSubCategoryId"> @Model.ParlySubTwoCategory.ParlyReportSubCategory.Title</a> > @Model.ParlySubTwoCategory.Title</h2>
+<h4>Create New Folder</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ParlySubThreeCategory.ParlySubTwoCategoryId" value="@Model.ParlySubTwoCategory.Id" />
+
+            <div class="form-group">
+                <label asp-for="ParlySubThreeCategory.Title" class="control-label"></label>
+                <input asp-for="ParlySubThreeCategory.Title" class="form-control" />
+                <span asp-validation-for="ParlySubThreeCategory.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlySubThreeCategory.Description" class="control-label"></label>
+                <input asp-for="ParlySubThreeCategory.Description" class="form-control" />
+                <span asp-validation-for="ParlySubThreeCategory.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ParlySubThreeCategory.SortOrder" class="control-label"></label>
+                <input asp-for="ParlySubThreeCategory.SortOrder" class="form-control" />
+                <span asp-validation-for="ParlySubThreeCategory.SortOrder" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

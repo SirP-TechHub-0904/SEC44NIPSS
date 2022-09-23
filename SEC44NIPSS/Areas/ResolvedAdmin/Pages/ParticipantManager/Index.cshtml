@@ -22,6 +22,8 @@
                     <th>
                         Fullname
                     </th>
+                    <th>Image</th>
+                    <th>Status</th>
                     <th>
                         Sponsor
                     </th>
@@ -38,7 +40,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="7"></td>
+                    <td colspan="9"></td>
                     @foreach (var x in Model.ParticipantDocumentCategory)
                     {
                         <td>Report</td>
@@ -59,6 +61,23 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Profile.Title)
                     @Html.DisplayFor(modelItem => item.Profile.FullName)
+                </td>
+                <td>
+                    <img src="https://sec44nipss.com/@item.Profile.AboutProfile" height="70" />
+                </td>
+                <td>
+                    @if (item.IsTrue == true)
+                    {
+
+
+                        <span>true001</span>
+                        <a asp-page="./Istrue" asp-route-id="@item.Id" class="btn btn-success"><i class="fa fa-check"></i></a>
+                    }
+                    else
+                    { <span>false020</span>
+                        <a asp-page="./Istrue" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                    }
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Profile.Sponsor)

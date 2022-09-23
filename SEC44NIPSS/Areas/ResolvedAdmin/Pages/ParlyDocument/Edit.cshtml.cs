@@ -40,7 +40,9 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
             }
            ViewData["ParlyReportSubCategoryId"] = new SelectList(_context.ParlyReportSubCategories, "Id", "Title");
            ViewData["ParlyReportCategoryId"] = new SelectList(_context.ParlyReportCategories, "Id", "Title");
-           ViewData["ProfileId"] = new SelectList(_context.Profiles, "Id", "Id");
+            ViewData["ParlySubTwoCategoryId"] = new SelectList(_context.ParlySubTwoCategories, "Id", "Title");
+            ViewData["ParlySubThreeCategoryId"] = new SelectList(_context.ParlySubThreeCategories, "Id", "Title");
+            ViewData["ProfileId"] = new SelectList(_context.Profiles, "Id", "Id");
             return Page();
         }
 

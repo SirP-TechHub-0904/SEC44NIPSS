@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SEC44NIPSS.Data;
 using SEC44NIPSS.Data.Model;
 
@@ -18,10 +19,17 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
         {
             _context = context;
         }
+        public long Id { get; set; }
+        public ParlyReportCategory ParlyReportCategory { get; set; }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGet(long id)
         {
-        ViewData["ParlyReportCategoryId"] = new SelectList(_context.ParlyReportCategories, "Id", "Title");
+            ParlyReportCategory = await _context.ParlyReportCategories.FirstOrDefaultAsync(x => x.Id == id);
+            if(ParlyReportCategory == null)
+            {
+                return RedirectToPage("/ParlyCategory/Index");
+            }
+
             return Page();
         }
 
@@ -40,7 +48,7 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
             _context.ParlyReportSubCategories.Add(ParlyReportSubCategory);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Folders", new { id = ParlyReportSubCategory.ParlyReportCategoryId });
         }
     }
 }

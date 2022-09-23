@@ -17,7 +17,7 @@ using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
 {
-    [Authorize(Roles = "Participant")]
+    [Authorize]
 
     public class UploadModel : PageModel
     {
@@ -31,39 +31,38 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
             _userManager = userManager;
             _hostingEnv = hostingEnv;
         }
+        [BindProperty]
+        public ParlyReportCategory ParlyReportCategory { get; set; }
+        [BindProperty]
+        public ParlyReportSubCategory ParlyReportSubCategory { get; set; }
+        [BindProperty]
+        public ParlySubTwoCategory ParlySubTwoCategory { get; set; }
+        [BindProperty]
+        public ParlySubThreeCategory ParlySubThreeCategory { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(long? id, long? sid, string redir, string source)
+        public async Task<IActionResult> OnGetAsync(long? f1, long? f2, long? f3, long? f4, string redir, string source)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            ParlyReportCategories = await _context.ParlyReportCategories.Include(x=>x.ParlyReportDocuments).FirstOrDefaultAsync(x=>x.Id == id);
            
-            if(ParlyReportCategories == null)
+            if(f1 != null)
             {
-                TempData["result"] = "Unable to fetch folder.";
-                return RedirectToPage("./Index", new { area = "" });
-            }
-            Redirt = redir;
-            
-            //MAIN FOLDER
-            if(source == "mainfolder")
-            {
-                MainSource = true;
-            }
-            else
-            {
-                MainSource = false;
-                ParlyReportSubCategories = await _context.ParlyReportSubCategories.FirstOrDefaultAsync(x => x.Id == sid);
+                ParlyReportCategory = await _context.ParlyReportCategories.FirstOrDefaultAsync(x => x.Id == f1);
 
-                if (ParlyReportSubCategories == null)
-                {
-                    TempData["result"] = "Unable to fetch sub folder.";
-                    return RedirectToPage("./Index", new { area = "" });
-                }
             }
+
+            if (f2 != null)
+            {
+                ParlyReportSubCategory = await _context.ParlyReportSubCategories.FirstOrDefaultAsync(x => x.Id == f2);
+
+            }
+            if (f3 != null)
+            {
+                ParlySubTwoCategory = await _context.ParlySubTwoCategories.FirstOrDefaultAsync(x => x.Id == f3);
+            }
+            if (f4 != null)
+            {
+                ParlySubThreeCategory = await _context.ParlySubThreeCategories.FirstOrDefaultAsync(x => x.Id == f4);
+            }
+
 
             //SUB FOLDER
             return Page();
@@ -78,11 +77,11 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
         [BindProperty]
         public ParlyReportDocument ParlyReportDocument { get; set; }
 
-        [BindProperty]
-        public ParlyReportCategory ParlyReportCategories { get; set; }
+        //[BindProperty]
+        //public ParlyReportCategory ParlyReportCategories { get; set; }
 
-        [BindProperty]
-        public ParlyReportSubCategory ParlyReportSubCategories { get; set; }
+        //[BindProperty]
+        //public ParlyReportSubCategory ParlyReportSubCategories { get; set; }
 
         [BindProperty]
         public Profile Profile { get; set; }
@@ -171,22 +170,27 @@ namespace SEC44NIPSS.Areas.Participant.Pages.ParlyPage
 
             TempData["result"] = "Uploaded Successfully";
 
-            if (MainSource == true)
+            if (ParlyReportDocument.ParlyReportCategoryId != null)
             {
-                return RedirectToPage("./Documents", new { id = ParlyReportDocument.ParlyReportCategoryId });
+                return RedirectToPage("./Documents", new { f1 = ParlyReportDocument.ParlyReportCategoryId });
 
             }
-            else
+            if (ParlyReportDocument.ParlyReportSubCategoryId != null)
             {
-                return RedirectToPage("./Documents", new { typefolder = "subfolder", id = ParlyReportDocument.ParlyReportSubCategoryId });
+                return RedirectToPage("./Documents", new { f2 = ParlyReportDocument.ParlyReportSubCategoryId });
+
+            }
+            if (ParlyReportDocument.ParlySubTwoCategoryId != null)
+            {
+                return RedirectToPage("./Documents", new { f3 = ParlyReportDocument.ParlySubTwoCategoryId });
+
+            }
+            if (ParlyReportDocument.ParlySubThreeCategoryId != null)
+            {
+                return RedirectToPage("./Documents", new { f4 = ParlyReportDocument.ParlySubThreeCategoryId });
 
             }
 
-
-            if (!String.IsNullOrEmpty(Redirt))
-            {
-                return RedirectToPage("./Documents", new { id = ParlyReportDocument.ParlyReportCategoryId });
-            }
             return RedirectToPage("./Index");
         }
     }

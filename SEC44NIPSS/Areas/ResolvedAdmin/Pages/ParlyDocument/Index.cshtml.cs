@@ -25,6 +25,9 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
         {
             ParlyReportDocument = await _context.ParlyReportDocuments
                 .Include(p => p.ParlyReportCategory)
+                .Include(p => p.ParlyReportSubCategory)
+                .Include(p => p.ParlySubTwoCategory)
+                .Include(p => p.ParlySubThreeCategory)
                 .Include(p => p.Profile).ToListAsync();
         }
     }

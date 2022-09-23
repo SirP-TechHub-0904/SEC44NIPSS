@@ -302,142 +302,35 @@
         <div class="site">
             <div class="row">
                 
-                    @foreach (var item in Model.Profile)
+                    @foreach (var item in Model.Participant)
                     {
                 <div class="col-md-4" style="margin-bottom:12px;">
 
                     <div class="profile-card">
-                        @if (item.MyGallery.Where(x => x.UseAsActivity == true).Count() > 0)
-                        {
-                            <div class="pc-project pc-project-1">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@item.MyGallery.FirstOrDefault().FilePath'); "></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="pc-project pc-project-1">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/900134111-Gallery.jpeg'); "></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-
-                        @if (item.MyGallery.Where(x => x.UseAsActivity == true).Count() > 1)
-                        {
-                            <div class="pc-project pc-project-2">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@item.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(1).Take(1).FirstOrDefault().FilePath');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="pc-project pc-project-2">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/71193014-Gallery.jpeg');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-
-
-                        @if (item.MyGallery.Where(x => x.UseAsActivity == true).Count() > 2)
-                        {
-                            <div class="pc-project pc-project-3">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@item.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(2).Take(1).FirstOrDefault().FilePath');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="pc-project pc-project-3">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/1796423-Gallery.jpeg');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-
-                        @if (item.MyGallery.Where(x => x.UseAsActivity == true).Count() > 3)
-                        {
-                            <div class="pc-project pc-project-4">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com/@item.MyGallery.Where(x=>x.UseAsActivity ==true).Skip(3).Take(1).FirstOrDefault().FilePath');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="pc-project pc-project-4">
-                                <div class="pc-project-link" style="background-image: url('https://sec44nipss.com//Gallery/772191114-Gallery.jpeg');"></div>
-                                <div class="pc-project-overlay">
-                                    <a href="#" class="pc-project-overlay-link">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.409 6.94">
-                                            <path id="eye" d="M5.205,68.048a1.157,1.157,0,1,0,0-2.313c-.018,0-.034,0-.052.005a.858.858,0,0,1-1.1,1.1c0,.018-.005.034-.005.052A1.157,1.157,0,0,0,5.205,68.048Zm5.142-.842A5.8,5.8,0,0,0,5.205,64,5.8,5.8,0,0,0,.063,67.206a.585.585,0,0,0,0,.528A5.8,5.8,0,0,0,5.205,70.94a5.8,5.8,0,0,0,5.142-3.206.585.585,0,0,0,0-.528ZM5.205,64.578a2.313,2.313,0,1,1-2.313,2.313A2.313,2.313,0,0,1,5.205,64.578Zm0,5.783A5.209,5.209,0,0,1,.579,67.47a5.327,5.327,0,0,1,2.345-2.337A2.887,2.887,0,1,0,8.1,66.891a2.865,2.865,0,0,0-.61-1.759A5.327,5.327,0,0,1,9.832,67.47,5.209,5.209,0,0,1,5.205,70.361Z" transform="translate(-0.001 -64)" fill="#231a3b" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        }
+                       
 
                         @{
                             var profilelink = Url.Page(
                    "/sec/index",
                    pageHandler: null,
-                   values: new { area = "participant", id = item.ProfileHandler },
+                   values: new { area = "participant", id = item.Profile.ProfileHandler },
                    protocol: Request.Scheme);
                         }
                         <div class="pc-user">
                             <div class="pc-user-image">
                                 <a href="@profilelink" target="_blank">
-                                    <img src="https://sec44nipss.com/@item.AboutProfile" class="img-fluid" height="100" style="max-width:100px;" />
+                                    <img src="https://sec44nipss.com/@item.Profile.AboutProfile" class="img-fluid" height="100" style="max-width:100px;" />
                                 </a>
                             </div>
                             <div class="pc-user-info">
-                                <h4 style="margin-top:0;"><a href="@profilelink" target="_blank">@item.Title @item.FullName</a></h4>
+                                <h4 style="margin-top:0;"><a href="@profilelink" target="_blank">@item.Profile.Title @item.Profile.FullName</a></h4>
                                
                                 <div class="pc-user-location" style="margin-bottom:0;">
                                     <p style="margin-bottom:0;">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.932 23.909">
                                             <path id="map-marker-alt" d="M8.044,23.427C1.259,13.59,0,12.581,0,8.966a8.966,8.966,0,0,1,17.932,0c0,3.615-1.259,4.624-8.044,14.461a1.121,1.121,0,0,1-1.843,0ZM8.966,12.7A3.736,3.736,0,1,0,5.23,8.966,3.736,3.736,0,0,0,8.966,12.7Z" fill="#6c6577" />
                                         </svg>
-                                        @item.OfficeAddress
+                                        @item.Profile.OfficeAddress
                                     </p>
                                 </div>
 

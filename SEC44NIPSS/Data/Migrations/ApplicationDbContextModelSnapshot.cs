@@ -1520,6 +1520,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -1550,11 +1553,20 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<long?>("ParlyReportSubCategoryId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("ParlySubThreeCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ParlySubTwoCategoryId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ProfileId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -1564,6 +1576,10 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasIndex("ParlyReportCategoryId");
 
                     b.HasIndex("ParlyReportSubCategoryId");
+
+                    b.HasIndex("ParlySubThreeCategoryId");
+
+                    b.HasIndex("ParlySubTwoCategoryId");
 
                     b.HasIndex("ProfileId");
 
@@ -1586,6 +1602,9 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<long?>("ParlyReportCategoryId")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -1594,6 +1613,64 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasIndex("ParlyReportCategoryId");
 
                     b.ToTable("ParlyReportSubCategories");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlySubThreeCategory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ParlySubTwoCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParlySubTwoCategoryId");
+
+                    b.ToTable("ParlySubThreeCategories");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlySubTwoCategory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("ParlyReportSubCategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParlyReportSubCategoryId");
+
+                    b.ToTable("ParlySubTwoCategories");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>
@@ -2099,6 +2176,9 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.Property<long?>("AlumniId")
                         .HasColumnType("bigint");
+
+                    b.Property<bool>("IsTrue")
+                        .HasColumnType("bit");
 
                     b.Property<long?>("ProfileId")
                         .HasColumnType("bigint");
@@ -3076,6 +3156,14 @@ namespace SEC44NIPSS.Data.Migrations
                         .WithMany("ParlyReportDocuments")
                         .HasForeignKey("ParlyReportSubCategoryId");
 
+                    b.HasOne("SEC44NIPSS.Data.Model.ParlySubThreeCategory", "ParlySubThreeCategory")
+                        .WithMany("ParlyReportDocuments")
+                        .HasForeignKey("ParlySubThreeCategoryId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.ParlySubTwoCategory", "ParlySubTwoCategory")
+                        .WithMany("ParlyReportDocuments")
+                        .HasForeignKey("ParlySubTwoCategoryId");
+
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
@@ -3086,6 +3174,20 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasOne("SEC44NIPSS.Data.Model.ParlyReportCategory", "ParlyReportCategory")
                         .WithMany("ParlyReportSubCategories")
                         .HasForeignKey("ParlyReportCategoryId");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlySubThreeCategory", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.ParlySubTwoCategory", "ParlySubTwoCategory")
+                        .WithMany("ParlySubThreeCategories")
+                        .HasForeignKey("ParlySubTwoCategoryId");
+                });
+
+            modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlySubTwoCategory", b =>
+                {
+                    b.HasOne("SEC44NIPSS.Data.Model.ParlyReportSubCategory", "ParlyReportSubCategory")
+                        .WithMany("ParlySubTwoCategories")
+                        .HasForeignKey("ParlyReportSubCategoryId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParticipantDocument", b =>

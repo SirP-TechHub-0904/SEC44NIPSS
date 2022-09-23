@@ -12,9 +12,7 @@
                 <h3 class="box-title">
                     PRESIDENTIAL PARLEY REPORT RESOURCE MATERIALS
                 </h3>
-                <h4>
-                    <a class="btn btn-primary" asp-page="/ParlyPage/CreateFolder" asp-area="Participant">Create New Folder</a>
-                </h4>
+               
             </div>
 
             @if (TempData["result"] != null)
@@ -26,36 +24,31 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-                <div class="table-responsive">
-                    <table id="" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ParlyReportCategory[0].Description)
-                                </th>
-                               
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.ParlyReportCategory)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Description)
-                                    </td>
-                                    
-                                    <td>
-                                        <a asp-page="./Documents" asp-route-id="@item.Id">View @item.ParlyReportDocuments.Count() Doc/@item.ParlyReportSubCategories.Count() Folders</a> 
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div class="container">
+                    <div class="card card-folders">
+
+                        <!-- Folders Container -->
+                        <div class="card-body" id="foldersGroup">
+
+                            <div id="main-folders" class="d-flex align-items-stretch flex-wrap">
+                                @foreach (var item in Model.ParlyReportCategory)
+                                {
+                                <a asp-page="/ParlyPage/Documents" asp-route-f1="@item.Id">
+                                    <div class="d-inline-flex">
+                                        <button class="folder-container">
+                                            <div class="folder-icon">
+                                                <i class="fa fa-folder folder-icon-color"></i>
+                                            </div>
+                                            <div class="folder-name" style="font-size:11px;">@Html.DisplayFor(modelItem => item.Title) </div>
+                                        </button>
+                                    </div>
+                                </a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>

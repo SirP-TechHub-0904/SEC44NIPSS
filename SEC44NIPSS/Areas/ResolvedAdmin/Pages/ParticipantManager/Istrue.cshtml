@@ -1,0 +1,52 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParticipantManager.IstrueModel
+
+@{
+    ViewData["Title"] = "Istrue";
+}
+
+<h2>Istrue</h2>
+
+<h4>SecParticipant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SecParticipant.Id" />
+            <div class="form-group">
+                <label asp-for="SecParticipant.ProfileId" class="control-label"></label>
+                <select asp-for="SecParticipant.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                <span asp-validation-for="SecParticipant.ProfileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecParticipant.AlumniId" class="control-label"></label>
+                <select asp-for="SecParticipant.AlumniId" class="form-control" asp-items="ViewBag.AlumniId"></select>
+                <span asp-validation-for="SecParticipant.AlumniId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecParticipant.StudyGroupId" class="control-label"></label>
+                <select asp-for="SecParticipant.StudyGroupId" class="form-control" asp-items="ViewBag.StudyGroupId"></select>
+                <span asp-validation-for="SecParticipant.StudyGroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="SecParticipant.IsTrue" /> @Html.DisplayNameFor(model => model.SecParticipant.IsTrue)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

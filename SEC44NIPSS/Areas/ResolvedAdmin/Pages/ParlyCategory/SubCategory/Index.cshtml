@@ -13,6 +13,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Sort Order</th>
             <th>
                 @Html.DisplayNameFor(model => model.ParlyReportSubCategory[0].Title)
             </th>
@@ -31,6 +32,9 @@
     <tbody>
 @foreach (var item in Model.ParlyReportSubCategory) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

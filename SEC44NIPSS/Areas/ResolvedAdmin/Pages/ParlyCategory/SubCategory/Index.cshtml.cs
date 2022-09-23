@@ -24,7 +24,7 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
         public async Task OnGetAsync()
         {
             ParlyReportSubCategory = await _context.ParlyReportSubCategories
-                .Include(p => p.ParlyReportCategory).ToListAsync();
+                .Include(p => p.ParlyReportCategory).OrderBy(x => x.SortOrder).ToListAsync();
         }
     }
 }

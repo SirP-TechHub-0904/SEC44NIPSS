@@ -7,15 +7,22 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">
-            Upload Document  @if (Model.MainSource == false)
+        <h3 class="box-title uppercase">
+            @if (Model.ParlyReportCategory != null)
             {
-                @Model.ParlyReportSubCategories.Title<span style="font-size:14px;"> @Model.ParlyReportCategories.Title</span>
+                <span>Upload Document to @Model.ParlyReportCategory.Title</span>
             }
-            else
+            @if (Model.ParlyReportSubCategory != null)
             {
-
-                @Model.ParlyReportCategories.Title
+                <span>Upload Document to @Model.ParlyReportSubCategory.Title</span>
+            }
+            @if (Model.ParlySubTwoCategory != null)
+            {
+                <span>Upload Document to @Model.ParlySubTwoCategory.Title</span>
+            }
+            @if (Model.ParlySubThreeCategory != null)
+            {
+                <span>Upload Document to @Model.ParlySubThreeCategory.Title</span>
             }
         </h3>
 
@@ -26,12 +33,21 @@
             <div class="col-md-12">
                 <form id="" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input asp-for="ParlyReportDocument.ParlyReportCategoryId" value="@Model.ParlyReportCategories.Id" type="hidden" />
 
-                    @if (Model.MainSource == false)
+                    @if (Model.ParlyReportCategory != null)
                     {
-                        <input asp-for="ParlyReportDocument.ParlyReportSubCategoryId" value="@Model.ParlyReportSubCategories.Id" type="hidden" />
+                    <input asp-for="ParlyReportDocument.ParlyReportCategoryId" type="hidden" value="@Model.ParlyReportCategory.Id" />
+                    }else if (Model.ParlyReportSubCategory != null)
+                    {
+                    <input asp-for="ParlyReportDocument.ParlyReportSubCategoryId" type="hidden" value="@Model.ParlyReportSubCategory.Id" />
+                    }else if (Model.ParlySubTwoCategory != null)
+                    {
+                    <input asp-for="ParlyReportDocument.ParlySubTwoCategoryId" type="hidden" value="@Model.ParlySubTwoCategory.Id" />
+                    }else if (Model.ParlySubThreeCategory != null)
+                    {
+                    <input asp-for="ParlyReportDocument.ParlySubThreeCategoryId" type="hidden" value="@Model.ParlySubThreeCategory.Id" />
                     }
+
 
                     <input asp-for="Redirt" type="hidden" />
                     <input asp-for="MainSource" type="hidden" />
@@ -45,21 +61,22 @@
                         <textarea asp-for="ParlyReportDocument.ShortDescription" class="form-control" placeholder="Brief summary of document"></textarea>
                         <span asp-validation-for="ParlyReportDocument.ShortDescription" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="ParlyReportDocument.Note" class="control-label">Write your Contribution Directly</label>
-                        <textarea id="mytextarea" asp-for="ParlyReportDocument.Note" class="form-control"></textarea>
-                        <span asp-validation-for="ParlyReportDocument.Note" class="text-danger"></span>
-                    </div>
+
+
                     <div class="form-group">
                         <label asp-for="ParlyReportDocument.Document" class="control-label">Upload Document</label>
                         <input class="form-control" type="file" name="iFile" />
                         <span asp-validation-for="ParlyReportDocument.Document" class="text-danger"></span>
                     </div>
+                    
 
-
+                    <div id="placehere">
+                       
+                    </div>
                     <div class="form-group">
-                        <input type="submit" value="Upload" class="btn btn-default" />
-                        <a asp-page="./Index" class="btn btn-danger">Back</a>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button onclick="history.back()" id="brkk" class="btn btn-danger">Go Back</button>
+                        <img src="" />
                     </div>
                 </form>
             </div>
@@ -73,4 +90,18 @@
 
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+    $('form').submit(function () {
+        $(this).find("button[type='submit']").prop('disabled', true);
+        $(this).find("button[id='brkk']").prop('disabled', true);
+        var elem = document.createElement("img");
+        elem.setAttribute("src", "https://sec44nipss.com/200w.gif");
+        elem.setAttribute("height", "100");
+        elem.setAttribute("width", "100");
+        elem.setAttribute("alt", "loading");
+        document.getElementById("placehere").appendChild(elem);
+    
+    });
+</script>
         }

@@ -13,6 +13,10 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="ParlyReportSubCategory.ParlyReportCategoryId" value="@Model.ParlyReportCategory.Id" />
+
+
             <div class="form-group">
                 <label asp-for="ParlyReportSubCategory.Title" class="control-label"></label>
                 <input asp-for="ParlyReportSubCategory.Title" class="form-control" />
@@ -23,14 +27,11 @@
                 <input asp-for="ParlyReportSubCategory.Description" class="form-control" />
                 <span asp-validation-for="ParlyReportSubCategory.Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="ParlyReportSubCategory.Date" class="control-label"></label>
-                <input asp-for="ParlyReportSubCategory.Date" class="form-control" />
-                <span asp-validation-for="ParlyReportSubCategory.Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ParlyReportSubCategory.ParlyReportCategoryId" class="control-label"></label>
-                <select asp-for="ParlyReportSubCategory.ParlyReportCategoryId" class ="form-control" asp-items="ViewBag.ParlyReportCategoryId"></select>
+                <label asp-for="ParlyReportSubCategory.SortOrder" class="control-label"></label>
+                <input asp-for="ParlyReportSubCategory.SortOrder" class="form-control" />
+                <span asp-validation-for="ParlyReportSubCategory.SortOrder" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

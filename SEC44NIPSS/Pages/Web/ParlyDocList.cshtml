@@ -10,112 +10,288 @@
     <div class="container">
         <div class="breadcrumbs-inner">
             <h1 class="page-title">
-                @if (Model.SubFolder == false)
+
+                @if (Model.ParlyReportCategory != null)
                 {
-                    <span> @Model.ParlyReportSubCategory.Title</span><span style="font-size:14px;">( @Model.ParlyReportCategory.Title )</span>
+                    @Model.ParlyReportCategory.Title
                 }
-                else
+
+                @if (Model.ParlyReportSubCategory != null)
                 {
-                @Model.ParlyReportCategory.Title
+                    @Model.ParlyReportSubCategory.Title
                 }
+
+                @if (Model.ParlySubTwoCategory != null)
+                {
+                    @Model.ParlySubTwoCategory.Title
+                }
+
+
+                @if (Model.ParlySubThreeCategory != null)
+                {
+                    @Model.ParlySubThreeCategory.Title
+                }
+
+
+
             </h1>
             <br />
             <span class="sub-text">
-               
-                </span>
+
+            </span>
         </div>
     </div>
 </div>
+<style>
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: none;
+        background-clip: border-box;
+        border: none;
+        border-radius: 0.25rem;
+    }
+
+    .card-folders .card-body > .breadcrumb {
+        margin-left: -1.25em;
+        margin-right: -1.25em;
+        margin-top: -1.25em;
+        border-radius: 0;
+    }
+
+    .folder-container {
+        text-align: center;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1.5rem;
+        width: 100px;
+        padding: 0;
+        align-self: start;
+        background: none;
+        border: none;
+        outline-color: transparent !important;
+        cursor: pointer;
+    }
+
+    .folder-icon {
+        font-size: 3em;
+        line-height: 1.25em;
+    }
+
+    .folder-icon-color {
+        color: #FFC107;
+        text-shadow: 1px 1px 0px #e0a800;
+    }
+
+    .folder-name {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .flex-column .folder-container {
+        display: flex;
+        width: auto;
+        min-width: 100px;
+        text-align: left;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    .flex-column .folder-icon, .flex-column .folder-name {
+        display: inline-flex;
+    }
+
+    .flex-column .folder-icon {
+        font-size: 1.4em;
+        margin-right: 1rem;
+    }
+
+    .file-icon-color {
+        color: #999;
+    }
+
+    .folder-icon-color-doc {
+        color: #979386;
+        text-shadow: 1px 1px 0px #0a0a09;
+    }
+</style>
 <div class="rs-about style2 md-pt-70 md-pb-70" style="padding:30px 0 10px 0;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="sec-title" style="border: 2px solid #ffffff; box-shadow: 1px 1.6px 3.6px rgb(30 64 44), 2px 0px 2.9px rgb(65 112 86); padding: 16px; background-color: #f3f0f0;">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h4>
-                                @if (Model.SubFolder == true)
-                                {
-                                    <a class="btn btn-primary" asp-page="/ParlyPage/CreateSubFolder" style="color:#ffffff;" asp-route-id="@Model.ParlyReportCategory.Id" asp-area="Participant">Create Sub Folder</a>
-                                    <a class="btn btn-danger" asp-page="/ParlyPage/Upload" asp-route-id="@Model.ParlyReportCategory.Id" asp-route-sid="@Model.SubId" asp-route-source="mainfolder" style="color:#ffffff;" asp-area="Participant">Upload Related Document</a>
+                        <div class="col-md-12">
+                            <button onclick="history.back()" style="font-size:12px;" class="btn btn-primary">Go Back</button>
+                            @if (Model.ParlyReportCategory != null)
+                            {
+                                <a asp-page="/ParlyPage/Upload" asp-area="Participant" asp-route-f1="@Model.ParlyReportCategory.Id" style="text-transform:uppercase;color:#ffffff;font-size:12px;font-weight:800;" class="btn btn-danger">Upload Document to  @Model.ParlyReportCategory.Title</a>
+                            }
 
-                                }
-                                else
-                                {
-                                <a class="btn btn-danger" asp-page="/ParlyPage/Upload" asp-route-sid="@Model.SubId" asp-route-id="@Model.ParlyReportCategory.Id" style="color:#ffffff;" asp-area="Participant">Upload Related Document</a>
-                                }
-                            </h4>
-                            <hr />
-                            @if (Model.SubFolder == true)
+                            @if (Model.ParlyReportSubCategory != null)
                             {
-                                <h3>Folders</h3>
-                                @if (Model.ParlyReportCategory.ParlyReportSubCategories.Count() > 0)
-                                {
-                        <div class="btn-group">
-                            @foreach (var item in Model.ParlyReportCategory.ParlyReportSubCategories)
+                                <a asp-page="/ParlyPage/Upload" asp-area="Participant" asp-route-f2="@Model.ParlyReportSubCategory.Id" style="text-transform:uppercase;color:#ffffff;font-size:12px;font-weight:800;" class="btn btn-danger">Upload Document to @Model.ParlyReportSubCategory.Title</a>
+                            }
+
+                            @if (Model.ParlySubTwoCategory != null)
                             {
-                                <a asp-page="./ParlyDocList" asp-route-id="@item.Id" style="color:#ffffff;margin:2px;" asp-route-typefolder="subfolder" class="btn btn-primary">@item.Title</a>
+                                <a asp-page="/ParlyPage/Upload" asp-area="Participant" asp-route-f3="@Model.ParlySubTwoCategory.Id" style="text-transform:uppercase;color:#ffffff;font-size:12px;font-weight:800;" class="btn btn-danger">Upload Document to  @Model.ParlySubTwoCategory.Title</a>
                             }
 
 
-
-                            </div>
-                                }
-                                else {
-                                <h5>No Folder</h5>}
-                       
-                                }
-                            <hr />
-                            <h3>Documents</h3>
-                        <div class="row">
-                            @if (Model.ParlyReportDocuments.Count() > 0)
+                            @if (Model.ParlySubThreeCategory != null)
                             {
-                                @foreach (var item in Model.ParlyReportDocuments)
+                                <a asp-page="/ParlyPage/Upload" asp-area="Participant" asp-route-f4="@Model.ParlySubThreeCategory.Id" style="text-transform:uppercase;color:#ffffff;font-size:12px;font-weight:800;" class="btn btn-danger">Upload Document to @Model.ParlySubThreeCategory.Title</a>
+                            }
+
+                        </div>
+                        <div class="col-md-9">
+                            
+
+
+                            @if (Model.SubCategoryCheck == true)
+                            {
+                                if (Model.SubCategory.Count() != 0)
                                 {
-                                    <div class="col-md-5">
-                                        <div style="margin: 4px; box-shadow: 2px 1.6px 3.6px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120), 2px 0px 2.9px rgb(81 172 120) ">
+                                    <div class="container">
+                                        <h4 style="text-align:center;">FOLDERS</h4>
+                                        <div class="card card-folders">
 
-                                            <div class="card-body" style="padding: 5px;" id="Document-@item.Id">
+                                            <!-- Folders Container -->
+                                            <div class="card-body" id="foldersGroup">
 
-                                                <h6 class="card-title text-center uppercase" style="font-weight:900;margin:0;min-height:50px;">From @item.Profile.Title @item.Profile.FullName on @item.Date.ToString("dd MMM,yyyy hh:mm")</h6>
-                                                <h6 class="card-title text-center uppercase" style="margin:0;min-height:60px;">
-                                                    @item.Title
-                                                </h6>
-                                                @* <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Read Contribution</button>*@
+                                                <div id="main-folders" class="d-flex align-items-stretch flex-wrap">
+                                                    @foreach (var item in Model.SubCategory)
+                                                    {
+                                                        <a asp-page="/Web/ParlyDocList" asp-route-f2="@item.Id">
+                                                            <div class="d-inline-flex">
+                                                                <button class="folder-container">
+                                                                    <div class="folder-icon">
+                                                                        <i class="fa fa-folder folder-icon-color"></i>
+                                                                    </div>
+                                                                    <div class="folder-name" style="font-size:11px;">@Html.DisplayFor(modelItem => item.Title) </div>
+                                                                </button>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
 
-                                                @if (User.Identity.IsAuthenticated)
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                            @if (Model.SubTwoCategoryCheck == true)
+                            {
+                                if (Model.SubTwoCategory.Count() != 0)
+                                {
+                                    <div class="container">
+                                        <h4 style="text-align:center;">FOLDERS</h4>
+                                        <div class="card card-folders">
+
+                                            <!-- Folders Container -->
+                                            <div class="card-body" id="foldersGroup">
+
+                                                <div id="main-folders" class="d-flex align-items-stretch flex-wrap">
+                                                    @foreach (var item in Model.SubTwoCategory)
+                                                    {
+                                                        <a asp-page="/Web/ParlyDocList" asp-route-f3="@item.Id">
+                                                            <div class="d-inline-flex">
+                                                                <button class="folder-container">
+                                                                    <div class="folder-icon">
+                                                                        <i class="fa fa-folder folder-icon-color"></i>
+                                                                    </div>
+                                                                    <div class="folder-name" style="font-size:11px;">@Html.DisplayFor(modelItem => item.Title) </div>
+                                                                </button>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+
+                            @if (Model.SubThreeCategoryCheck == true)
+                            {
+                                if (Model.SubThreeCategory.Count() != 0)
+                                {
+                                    <div class="container">
+                                        <h4 style="text-align:center;">FOLDERS</h4>
+                                        <div class="card card-folders">
+
+                                            <!-- Folders Container -->
+                                            <div class="card-body" id="foldersGroup">
+
+                                                <div id="main-folders" class="d-flex align-items-stretch flex-wrap">
+                                                    @foreach (var item in Model.SubThreeCategory)
+                                                    {
+                                                        <a asp-page="/Web/ParlyDocList" asp-route-f4="@item.Id">
+                                                            <div class="d-inline-flex">
+                                                                <button class="folder-container">
+                                                                    <div class="folder-icon">
+                                                                        <i class="fa fa-folder folder-icon-color"></i>
+                                                                    </div>
+                                                                    <div class="folder-name" style="font-size:11px;">@Html.DisplayFor(modelItem => item.Title) </div>
+                                                                </button>
+                                                            </div>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+
+
+                            @if (Model.ParlyReportDocuments.Count() != 0)
+                            {
+
+                                <div class="container" style="margin-top:5px;">
+                                    <h4 style="text-align:center;">DOCUMENTS</h4>
+                                    <div class="card card-folders">
+
+                                        <!-- Folders Container -->
+                                        <div class="card-body" id="foldersGroup">
+
+                                            <div id="main-folders" class="d-flex align-items-stretch flex-wrap">
+                                                @foreach (var item in Model.ParlyReportDocuments)
                                                 {
-                                                    <div class="row">
-                                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                                            <a href="@item.Document" class="btn btn-primary" target="_blank" style="color:#ffffff;width:100%;font-weight:900;" download="@item.Title">DOWNLOAD</a>
-
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                                            <a href="@item.Document" target="_blank" class="btn btn-primary" style="color:#ffffff;width:100%;font-weight:900;" download="@item.Title">VIEW DOCUMENT</a>
-
-                                                        </div>
+                                                <a href="@item.Document" download="@item.Title">
+                                                    <div class="d-inline-flex">
+                                                        <button class="folder-container">
+                                                            <div class="folder-icon">
+                                                                <i class="fa fa-file folder-icon-color-doc"></i>
+                                                            </div>
+                                                            <div class="folder-name" style="font-size: 11px; color: #4160c6;">@Html.DisplayFor(modelItem => item.Title) </div>
+                                                        </button>
                                                     </div>
-
-                                                }
-                                                else
-                                                {
-                                                    <a class="btn btn-primary" style="color:#ffffff;width:100%;font-weight:900;" asp-page="/Account/Login" asp-area="Identity" asp-route-returnurl="/Web/ParlyDocList?id=@Model.ParlyReportCategory.Id">LOGIN TO DOWNLOAD OR VIEW</a>
-
-
-                                                }
-                                                <a href="whatsapp://send?text=https://sec44nipss.com/Web/ParlyDocList?id=@item.Id#Document-@item.Id" data-action="share/whatsapp/share"
-                                                   target="_blank" class="btn btn-success btn-xs" style="color:white;font-weight:700;width:100%;margin-top:5px;"> Share to WhatsApp </a>
+                                                    </a>
+                                                    }
                                             </div>
                                         </div>
 
                                     </div>
 
-                                }}
-            else
-            {
-                <h5>No Document</h5>
-            }
-                            </div>
+                                </div>
+                            }
+
+                            @if (TempData["msg"] != null)
+                            {
+                                <h2> @TempData["msg"]</h2>
+                            }
+
                         </div>
 
                         <div class="col-md-3">
@@ -130,7 +306,7 @@
                                 {
                                     <tr>
                                         <th>
-                                            <a asp-page="/Web/ParlyDocList" asp-route-id="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;font-size:14px;line-height:18px;margin:0 5px;"> @Html.DisplayFor(modelItem => item.Title)</h6></a>
+                                            <a asp-page="/Web/ParlyDocList" asp-route-f1="@item.Id"><h6 style="text-align: left; color: #000000;text-shadow: 1px 1px 1px #ff6a00;text-transform:uppercase;font-size:14px;line-height:18px;margin:0 5px;"> @Html.DisplayFor(modelItem => item.Title)</h6></a>
                                         </th>
                                     </tr>
 
@@ -145,25 +321,3 @@
 
     </div>
 </div>
-@foreach (var item in Model.ParlyReportDocuments)
-{
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                   
-                </div>
-                <div class="modal-body">
-                    @Html.Raw(item.Note)
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-}

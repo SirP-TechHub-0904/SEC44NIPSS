@@ -16,11 +16,19 @@ namespace SEC44NIPSS.Data.Model
 
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
+        public int SortOrder { get; set; }
 
         public long? ParlyReportCategoryId { get; set; }
         public ParlyReportCategory ParlyReportCategory { get; set; }
 
         public long? ParlyReportSubCategoryId { get; set; }
         public ParlyReportSubCategory ParlyReportSubCategory { get; set; }
+
+        public long? ParlySubTwoCategoryId { get; set; }
+        public ParlySubTwoCategory ParlySubTwoCategory { get; set; }
+
+        public long? ParlySubThreeCategoryId { get; set; }
+        public ParlySubThreeCategory ParlySubThreeCategory { get; set; }
     }
 }
+

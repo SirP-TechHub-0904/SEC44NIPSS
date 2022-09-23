@@ -22,17 +22,22 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
         }
         public string Gender { get; set; }
         public IList<Profile> Profile { get;set; }
+        public IList<SecParticipant> Participant { get; set; }
 
         public async Task OnGetAsync(string gender = null)
         {
-            Profile = await _context.Profiles
-                .Include(p => p.Alumni)
-                .Include(p => p.User).Where(x => x.IsParticipant == true).ToListAsync();
-            if(gender != null)
-            {
-                Gender = gender;
-                Profile = Profile.Where(x => x.Gender != null && x.Gender.ToLower() == gender).ToList();
-            }
+            //Profile = await _context.Profiles
+            //    .Include(p => p.Alumni)
+            //    .Include(p => p.User).Where(x => x.IsParticipant == true).ToListAsync();
+            //if(gender != null)
+            //{
+            //    Gender = gender;
+            //    Profile = Profile.Where(x => x.Gender != null && x.Gender.ToLower() == gender).ToList();
+            //}
+
+            Participant = await _context.Participants
+               .Include(p => p.Alumni)
+               .Include(p => p.Profile).ThenInclude(x=>x.MyGallery).Where(x=>x.Alumni.Active == true).ToListAsync();
         }
     }
 }

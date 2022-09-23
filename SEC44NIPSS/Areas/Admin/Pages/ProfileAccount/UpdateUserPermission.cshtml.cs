@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 {
-    [Authorize(Roles = "mSuperAdmin")]
+    //[Authorize(Roles = "mSuperAdmin")]
 
     public class UpdateUserPermissionModel : PageModel
     {

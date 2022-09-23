@@ -66,7 +66,7 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubCategory
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Folders", new { id = ParlyReportSubCategory.ParlyReportCategoryId });
         }
 
         private bool ParlyReportSubCategoryExists(long id)

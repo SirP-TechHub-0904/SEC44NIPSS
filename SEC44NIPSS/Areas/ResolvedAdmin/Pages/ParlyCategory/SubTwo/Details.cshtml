@@ -1,0 +1,43 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubTwo.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ParlySubTwoCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.ParlyReportSubCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.ParlyReportSubCategory.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ParlySubTwoCategory.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

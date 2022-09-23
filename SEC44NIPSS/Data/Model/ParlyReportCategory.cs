@@ -11,6 +11,7 @@ namespace SEC44NIPSS.Data.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public int SortOrder { get; set; }
 
         public ICollection<ParlyReportSubCategory> ParlyReportSubCategories { get; set; }
         public ICollection<ParlyReportDocument> ParlyReportDocuments { get; set; }

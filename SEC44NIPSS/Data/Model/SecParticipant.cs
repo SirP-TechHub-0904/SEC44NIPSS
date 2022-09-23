@@ -19,5 +19,7 @@ namespace SEC44NIPSS.Data.Model
         public long? StudyGroupId { get; set; }
         public StudyGroup StudyGroup { get; set; }
 
+        public bool IsTrue { get; set; }
+
     }
 }

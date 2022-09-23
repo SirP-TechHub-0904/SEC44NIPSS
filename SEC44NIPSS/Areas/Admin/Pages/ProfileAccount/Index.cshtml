@@ -100,6 +100,7 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-page="./ResetPassword" asp-route-id="@item.UserId">Reset Password</a></li>
                                     <li><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></li>
                                     <li><a asp-page="./Details" asp-route-id="@item.Id">Details</a></li>
                                     <li><a asp-page="./Upload" asp-route-id="@item.Id">Upload</a></li>

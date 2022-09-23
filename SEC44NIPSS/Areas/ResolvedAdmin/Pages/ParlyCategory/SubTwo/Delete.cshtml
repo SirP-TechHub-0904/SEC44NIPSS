@@ -1,0 +1,46 @@
+﻿@page
+@model SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyCategory.SubTwo.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ParlySubTwoCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParlySubTwoCategory.ParlyReportSubCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParlySubTwoCategory.ParlyReportSubCategory.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ParlySubTwoCategory.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

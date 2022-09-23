@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,13 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
     public class DeleteModel : PageModel
     {
         private readonly SEC44NIPSS.Data.NIPSSDbContext _context;
+        private readonly IHostingEnvironment _hostingEnv;
 
-        public DeleteModel(SEC44NIPSS.Data.NIPSSDbContext context)
+
+        public DeleteModel(SEC44NIPSS.Data.NIPSSDbContext context, IHostingEnvironment hostingEnv)
         {
             _context = context;
+            _hostingEnv = hostingEnv;
         }
 
         [BindProperty]
@@ -51,6 +56,17 @@ namespace SEC44NIPSS.Areas.ResolvedAdmin.Pages.ParlyDocument
 
             if (ParlyReportDocument != null)
             {
+
+                //var LagefileDbPathName = $"/GalleryLargeImage/".Trim();
+
+                var LargefilePath = $"{_hostingEnv.WebRootPath}{ParlyReportDocument.Document}".Trim();
+                var fullPath = LargefilePath;
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+
                 _context.ParlyReportDocuments.Remove(ParlyReportDocument);
                 await _context.SaveChangesAsync();
             }
