@@ -648,7 +648,10 @@
                     @i.Title.ToUpper() @i.Year
                 </h4>
                 <h4>
-                    TOPIC: @i.GeneralTopic.ToUpper()
+                    TOPIC: @if (i.GeneralTopic != null)
+                    {
+                        @i.GeneralTopic.ToUpper()
+                    }
                 </h4>
             </div>
             <hr />

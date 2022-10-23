@@ -1,0 +1,187 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParlyCategory.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Main Folders</h2>
+
+<p>
+    <a asp-page="Create" class="btn btn-danger">Create New Folder</a>
+</p>
+<h3>Mail Folders</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sort</th>
+            <th>Title</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ParlyReportCategory[0].Date)
+            </th>
+            <th>Folder</th>
+            <th>Show</th>
+            <th>Type</th>
+            <th>BG</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ParlyReportCategory.Where(x => x.FolderType == SEC44NIPSS.Data.Model.FolderType.Main))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortOrder)
+                </td>
+
+                <td>
+                    <a asp-page="/ParlyCategory/SubCategory/Folders" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @item.ParlyReportSubCategories.Count()
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Show)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolderType)
+                </td>
+                <td>
+                    <div class="@item.BgColor" style="height:5px;width:20px;">.</div>
+
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Parly Folder</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sort</th>
+            <th>Title</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ParlyReportCategory[0].Date)
+            </th>
+            <th>Folder</th>
+            <th>Show</th>
+            <th>Type</th>
+            <th>BG</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ParlyReportCategory.Where(x=>x.FolderType == SEC44NIPSS.Data.Model.FolderType.Parly))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortOrder)
+                </td>
+
+                <td>
+                    <a asp-page="/ParlyCategory/SubCategory/Folders" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @item.ParlyReportSubCategories.Count()
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Show)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolderType)
+                </td>
+                <td>
+                    <div class="@item.BgColor" style="height:5px;width:20px;">.</div>
+
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Unrecognised Folder</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sort</th>
+            <th>Title</th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ParlyReportCategory[0].Date)
+            </th>
+            <th>Folder</th>
+            <th>Show</th>
+            <th>Type</th>
+            <th>DG</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ParlyReportCategory.Where(x => x.FolderType == SEC44NIPSS.Data.Model.FolderType.NONE))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortOrder)
+                </td>
+
+                <td>
+                    <a asp-page="/ParlyCategory/SubCategory/Folders" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </a>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @item.ParlyReportSubCategories.Count()
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Show)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolderType)
+                </td>
+                   <td>
+                    <div class="@item.BgColor" style="height:5px;width:20px;">.</div>
+
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,7 +14,7 @@ using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 {
-      [Authorize(Roles = "Participant")]
+      [Authorize]
 
     public partial class ChangeImageModel : PageModel
     {

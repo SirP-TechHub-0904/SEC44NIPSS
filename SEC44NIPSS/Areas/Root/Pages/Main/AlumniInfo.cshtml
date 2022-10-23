@@ -1,0 +1,331 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.Main.AlumniInfoModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+    <h4>SENIOR EXECUTIVE COURSE</h4>
+    <hr />
+    <div class="table-responsive">
+
+        <table id="" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.Title)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.DateRange)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.DateRange)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.Year)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.Year)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.GeneralTopic)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.GeneralTopic)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.Active)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.Active)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Alumni.SortOrder)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Alumni.SortOrder)
+                    </td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <a asp-page="/Main/Alumni" class="btn btn-danger">Other SECs</a>
+
+</div>
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+    <h3>LEGACY PROJECT</h3>
+    @if (Model.Alumni.SecProject != null)
+    {
+        <h2>@Model.Alumni.SecProject.Title</h2>
+
+    }
+    else
+    {
+        <span>NILL</span>
+    }
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <h6>
+            <a asp-page="/SecProjectPage/UpdateProject" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Update Legacy Project for SEC</a>
+        </h6>
+    }
+
+</div>
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+
+    <h3>SEC EXECUTIVE (@Model.Alumni.Executives.Count())</h3>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <h6>
+            <a asp-page="/ExecutivePage/UpdateParticipant" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Update Executive for SEC</a>
+        </h6>
+    }
+    <div class="table-responsive">
+
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        Sort order
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Alumni.Executives)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Profile.Title)
+                            @Html.DisplayFor(modelItem => item.Profile.FullName)
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                        {
+                            <td>
+                                <a asp-page="/ExecutivePage/Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+
+    <h3>STUDY GROUPS (SYNDICATE) (@Model.Alumni.StudyGroup.Count())</h3>
+
+    <div class="table-responsive">
+
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        S/N
+                    </th>
+                    <th>
+                        Study Group
+                    </th>
+                    <th>
+                        Participant
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+                int sn = 0;
+            }
+            <tbody>
+                @foreach (var item in Model.Alumni.StudyGroup)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                sn++;
+                            }
+                            @sn
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+
+
+                        <td>
+                            @item.SecParticipants.Count()
+                        </td>
+                        <td>
+                            <a asp-page="/ParticipantManager/Index" asp-route-id="@Model.Alumni.Id" class="btn btn-danger">View Syndicate Members</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+    <h3>Participants (@Model.Alumni.Participants.Where(x=>x.IsTrue == true).Count())</h3>
+    <h6>
+        <a asp-page="/ParticipantManager/Index" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">participant Page</a>
+    </h6>
+
+</div>
+
+
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+
+    <h3>MANAGEMENT STAFF (@Model.Alumni.ManagingStaffs.Count())</h3>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <h6>
+            <a asp-page="/ManagementStaff/UpdateManagement" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Update Management for SEC</a>
+        </h6>
+    }
+    <div class="table-responsive">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        Sort order
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Alumni.ManagingStaffs)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Profile.Title)
+                            @Html.DisplayFor(modelItem => item.Profile.FullName)
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                        {
+                            <td>
+                                <a asp-page="/ManagementStaff/Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+
+    <h3>DIRECTING STAFF (@Model.Alumni.DirectingStaffs.Count())</h3>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <h6>
+            <a asp-page="/DSPage/UpdateDS" asp-route-id="@Model.Alumni.Id" class="btn btn-primary">Update DS for SEC</a>
+        </h6>
+    }
+    <div class="table-responsive">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>
+                        Sort order
+                    </th>
+
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Study Group
+                    </th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Alumni.DirectingStaffs)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortOrder)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Profile.Title)
+                            @Html.DisplayFor(modelItem => item.Profile.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudyGroup.Title)
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                        {
+                            <td>
+                                <a asp-page="/DSPage/Delete" asp-route-id="@item.Id">Delete</a>
+                                <a asp-page="/DSPage/Edit" asp-route-id="@item.Id">Edit</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

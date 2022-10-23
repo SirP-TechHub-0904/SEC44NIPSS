@@ -12,7 +12,7 @@ using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 {
-    [Authorize(Roles = "Participant")]
+    [Authorize]
 
     public partial class ProfileModel : PageModel
     {
@@ -113,18 +113,18 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
                 pro.ProfileUpdateFirstTime = true;
                 _context.Attach(pro).State = EntityState.Modified;
 
-                try
-                {
-                    var group = await _context.StudyGroupMemebers.FirstOrDefaultAsync(x => x.Id == GroupMemberId);
-                    group.Position = GroupPosition;
-                    _context.Attach(group).State = EntityState.Modified;
-                }catch(Exception f)
-                {
-                    TempData["alert"] = "Your not yet assigned to a Group.";
-                }
+                //try
+                //{
+                //    var group = await _context.StudyGroupMemebers.FirstOrDefaultAsync(x => x.Id == GroupMemberId);
+                //    group.Position = GroupPosition;
+                //    _context.Attach(group).State = EntityState.Modified;
+                //}catch(Exception f)
+                //{
+                //    TempData["alert"] = "Your not yet assigned to a Group.";
+                //}
                 await _context.SaveChangesAsync();
                 TempData["alert"] = "Profile Updated Successfull";
-                return RedirectToPage("./Index");
+                return RedirectToPage("./Profile");
             }
             catch(Exception c)
             {

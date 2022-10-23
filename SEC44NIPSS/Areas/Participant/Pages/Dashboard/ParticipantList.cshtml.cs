@@ -37,7 +37,7 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 
             Participant = await _context.Participants
                .Include(p => p.Alumni)
-               .Include(p => p.Profile).ThenInclude(x=>x.MyGallery).Where(x=>x.Alumni.Active == true).ToListAsync();
+               .Include(p => p.Profile).Where(x=>x.Alumni.Active == true && x.IsTrue == true).ToListAsync();
         }
     }
 }

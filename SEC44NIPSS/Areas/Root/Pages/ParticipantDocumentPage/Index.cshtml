@@ -1,0 +1,60 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParticipantDocumentPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantDocument[0].ParticipantId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantDocument[0].ParticipantDocumentCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantDocument[0].Powerpoint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantDocument[0].Report)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParticipantDocument[0].Script)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ParticipantDocument) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParticipantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParticipantDocumentCategory.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Powerpoint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Report)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Script)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

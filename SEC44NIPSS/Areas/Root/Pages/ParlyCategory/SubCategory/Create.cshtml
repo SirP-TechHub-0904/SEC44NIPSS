@@ -1,0 +1,76 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParlyCategory.SubCategory.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>ParlyReportSubCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="ParlyReportSubCategory.ParlyReportCategoryId" value="@Model.ParlyReportCategory.Id" />
+
+
+            <div class="form-group">
+                <label asp-for="ParlyReportSubCategory.Title" class="control-label"></label>
+                <input asp-for="ParlyReportSubCategory.Title" class="form-control" />
+                <span asp-validation-for="ParlyReportSubCategory.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportSubCategory.Description" class="control-label"></label>
+                <input asp-for="ParlyReportSubCategory.Description" class="form-control" />
+                <span asp-validation-for="ParlyReportSubCategory.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ParlyReportSubCategory.SortOrder" class="control-label"></label>
+                <input asp-for="ParlyReportSubCategory.SortOrder" class="form-control" />
+                <span asp-validation-for="ParlyReportSubCategory.SortOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParlyReportSubCategory.BgColor" class="control-label"></label>
+                <select asp-for="ParlyReportSubCategory.BgColor" class="form-control">
+                    <option value="bg-red"> bg-red</option>
+                    <option value="bg-yellow">bg-yellow</option>
+                    <option value="bg-aqua">bg-aqua</option>
+                    <option value="bg-blue">bg-blue</option>
+                    <option value="bg-light-blue">bg-light-blue</option>
+                    <option value="bg-green">bg-green</option>
+                    <option value="bg-navy">bg-navy</option>
+                    <option value="bg-teal">bg-teal</option>
+                    <option value="bg-olive">bg-olive</option>
+                    <option value="bg-lime">bg-lime</option>
+                    <option value="bg-orange">bg-orange</option>
+                    <option value="bg-fuchsia">bg-fuchsia</option>
+                    <option value="bg-purple">bg-purple</option>
+                    <option value="bg-maroon">bg-maroon</option>
+                    <option value="bg-black">bg-black</option>
+                    <option value="bg-red-active">bg-red-active</option>
+                    <option value="bg-yellow-active">bg-yellow-active</option>
+                    <option value="bg-aqua-active">bg-aqua-active</option>
+                    <option value="bg-blue-active">bg-blue-active</option>
+                </select>
+                <span asp-validation-for="ParlyReportSubCategory.BgColor" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

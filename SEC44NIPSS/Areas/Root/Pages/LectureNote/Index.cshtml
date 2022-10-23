@@ -1,0 +1,121 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.LectureNote.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card-body">
+    <h4>LECTURE NOTE</h4>
+    <div class="table-responsive">
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Time
+                    </th>
+                    <th>
+                        Is Lecture
+                    </th>
+                    <th>
+
+                        Lecture
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event[0].Moderator)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event[0].Lecturer)
+                    </th>
+                    <th>
+                        Module
+                    </th>
+                    <th>
+                        Document
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{ int sn = 0; }
+            <tbody>
+                @foreach (var item in Model.Event)
+                {
+                <tr>
+                    <td>
+                        @{ sn++;}
+                        @sn
+                    </td>
+
+                    <td>
+                        <span style="font-size: 12px;">
+                            @Html.DisplayFor(modelItem => item.EventDate)
+                        </span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsLecture)
+                    </td>
+                    <td>
+
+                        @Html.Raw(item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Moderator)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lecturer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Module)
+                    </td>
+
+                    <td>
+                        @if (item.Document != null)
+                            {
+                                if (!String.IsNullOrEmpty(item.Document.FileName))
+                                {
+
+
+                        <span>Uploaded</span>
+                        <a href="@item.Document.FileName" class="btn btn-danger btn-xs" download="@Html.Raw(item.Content)">download</a>
+                                }
+                                else
+                                {
+                        <span>-------</span>
+                                }
+                            }
+                            else
+                            {
+                        <span>-------</span>
+                            }
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                Action
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></li>
+                                <li><a asp-page="./Details" asp-route-id="@item.Id">Details</a></li>
+                                <li><a asp-page="./Delete" asp-route-id="@item.Id">Delete</a></li>
+
+
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

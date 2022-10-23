@@ -1,0 +1,64 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.Main.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="card-body">
+<h2>Edit</h2>
+
+<h4>Alumni</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Alumni.Id" />
+            <div class="form-group">
+                <label asp-for="Alumni.Title" class="control-label"></label>
+                <input asp-for="Alumni.Title" class="form-control" />
+                <span asp-validation-for="Alumni.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alumni.DateRange" class="control-label"></label>
+                <input asp-for="Alumni.DateRange" class="form-control" />
+                <span asp-validation-for="Alumni.DateRange" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alumni.Year" class="control-label"></label>
+                <input asp-for="Alumni.Year" class="form-control" />
+                <span asp-validation-for="Alumni.Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alumni.GeneralTopic" class="control-label"></label>
+                <input asp-for="Alumni.GeneralTopic" class="form-control" />
+                <span asp-validation-for="Alumni.GeneralTopic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Alumni.Active" /> @Html.DisplayNameFor(model => model.Alumni.Active)
+                    </label>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Alumni.SortOrder" class="control-label"></label>
+                <input asp-for="Alumni.SortOrder" class="form-control" />
+                <span asp-validation-for="Alumni.SortOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

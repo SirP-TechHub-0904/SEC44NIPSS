@@ -1,0 +1,66 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.Main.DocumentsModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="box">
+  
+<div class="card-body" >
+
+
+        <div class="row" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+            <div class="box-header">
+
+                <h3 class="box-title">DOCUMENTS</h3>
+                </div>
+            <div class="clearfix"></div>
+            @foreach(var item in Model.ParlyReportCategories){
+            <div class="col-md-4">
+
+                   <!-- small box -->
+                <div class="small-box @item.BgColor">
+                        <div class="inner">
+                            <a asp-page="./InnerFolderTwo" asp-route-id="@item.Id">
+                                <h3>@item.Title.ToUpper()</h3>
+                            </a>
+
+                            <p>@item.ParlyReportSubCategories.Count() Folders / @item.ParlyReportDocuments.Count() Docs</p>
+                        </div>
+
+                        <a asp-page="./InnerFolderTwo" asp-route-id="@item.Id" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        
+            }
+        </div>
+
+        <div class="row" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+            <h3>PARLY FOLDERS</h3>
+            <div class="clearfix"></div>
+            @foreach (var item in Model.ParlyFolder)
+            {
+                <div class="col-md-4">
+                    <!-- small box -->
+                    <div class="small-box @item.BgColor">
+                        <div class="inner">
+                            <a asp-page="./InnerFolderTwo" asp-route-id="@item.Id">
+                                <h3>@item.Title.ToUpper()</h3>
+                            </a>
+
+                            <p>@item.ParlyReportSubCategories.Count() Folders / @item.ParlyReportDocuments.Count() Docs</p>
+                        </div>
+
+
+                        <a asp-page="./InnerFolderTwo" asp-route-id="@item.Id" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+</div>
+
+

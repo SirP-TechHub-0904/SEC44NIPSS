@@ -1,0 +1,87 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.Main.InnerFolderThreeModel
+@{
+}
+<div class="box">
+    <div class="box-header">
+        <h2 class="box-title" style="text-align:center;font-weight:900;text-transform:uppercase;">
+            @Model.ParlyReportSubCategory.Title.ToUpper() FOLDER
+        </h2>
+    </div>
+    <div class="box-body">
+
+
+        <div class="row" style="box-shadow:2px 2px 2px 2px #a6acb3;">
+            <h3 style="font-size: 19px;    margin-left: 15px;    font-weight: 900;">
+                FOLDERS
+            </h3>
+            <div class="clearfix"></div>
+            @if (Model.ParlySubTwoCategory.Count() > 0)
+            {
+                foreach (var item in Model.ParlySubTwoCategory)
+                {
+                    <div class="col-md-4">
+
+                        <!-- small box -->
+                        <div class="small-box @item.BgColor">
+                            <div class="inner">
+                                <a asp-page="./InnerFolderFour" asp-route-id="@item.Id">
+                                    <h3>@item.Title.ToUpper()</h3>
+                                </a>
+
+                                <p>@item.ParlySubThreeCategories.Count() Folders / @item.ParlyReportDocuments.Count() Docs</p>
+                            </div>
+
+                            <a asp-page="./InnerFolderFour" asp-route-id="@item.Id" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <h6 style="font-size: 19px;    margin-left: 15px;    font-weight: 900;text-align:center;">
+                    <i>empty</i>
+                </h6>
+            }
+        </div>
+
+        <div class="row" style="box-shadow:2px 2px 2px 2px #a6acb3;">
+            <h3 style="font-size: 19px;    margin-left: 15px;    font-weight: 900;">
+                DOCUMENTS
+                <a asp-page="/Main/Upload" asp-area="Root" asp-route-f2="@Model.ParlyReportSubCategory.Id" style="text-transform:uppercase;color:#ffffff;font-size:12px;font-weight:800;margin:4px;word-break:break-word;" class="btn btn-danger">Upload Document to  @Model.ParlyReportSubCategory.Title</a>
+
+            </h3>
+            <div class="clearfix"></div>
+            @if (Model.ParlyReportDocuments.Count() > 0)
+            {
+                foreach (var item in Model.ParlyReportDocuments)
+                {
+                    <div class="col-md-4">
+                        <!-- small box -->
+                        <div class="small-box" style="background-color:#222d32;">
+                            <div class="inner">
+                                <i class="fa fa-file" style="font-size:30px;color:white;"></i>
+
+                                <p style="color:white;overflow:hidden;font-size:19px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><a href="@item.Document" download="@item.Title" style="color:white;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">@item.Title.ToUpper()</a></p>
+                            </div>
+
+                            <a href="@item.Document" download="@item.Title" class="small-box-footer">Download <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <h6 style="font-size: 19px;    margin-left: 15px;    font-weight: 900;text-align:center;">
+                    empty
+                </h6>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+

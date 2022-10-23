@@ -18,6 +18,27 @@ namespace SEC44NIPSS.Data.Model
         Remove = 4
 
     }
+    public enum DocumentOwner
+    {
+        [Description("NONE")]
+        NONE = 0,
+        [Description("Group")]
+        Group = 2,
+        [Description("Participant")]
+        Participant = 3,
+        [Description("Alumni")]
+        Alumni = 4,
+    }
+
+    public enum FolderType
+    {
+        [Description("NONE")]
+        NONE = 0,
+        [Description("Main")]
+        Main = 2,
+        [Description("Parly")]
+        Parly = 3
+    }
 
     public enum TicketItemStatus
     {

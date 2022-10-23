@@ -272,7 +272,7 @@
                                                 <button type="submit" class="btn btn-default" style="margin-left:4px;"><i class="fa fa-globe"> Private</i></button>
                                             </form>
                                         }
-                                        @if (item.UseAsActivity == false)
+                                        @*@if (item.UseAsActivity == false)
                                         {
                                             <form method="post" asp-page-handler="Activity" style="display:inline;">
                                                 <input type="hidden" name="id" value="@item.Id" />
@@ -285,7 +285,7 @@
                                                 <button type="submit" class="btn btn-danger" style="margin-left:4px;">Remove from Profile Activity</button>
                                             </form>
 
-                                        }
+                                        }*@
                                         <form method="post" asp-page-handler="Make" style="display:inline;">
                                             <input type="hidden" name="id" value="@item.Id" />
                                             <button type="submit" class="btn btn-success" style="margin-left:4px;">Make Profile Photo</button>

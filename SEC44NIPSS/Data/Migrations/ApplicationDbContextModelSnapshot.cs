@@ -1514,11 +1514,20 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BgColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FolderType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Show")
+                        .HasColumnType("bit");
 
                     b.Property<int>("SortOrder")
                         .HasColumnType("int");
@@ -1538,11 +1547,20 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long?>("AlumniId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Document")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DocumentOwner")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("EventId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
@@ -1568,10 +1586,17 @@ namespace SEC44NIPSS.Data.Migrations
                     b.Property<int>("SortOrder")
                         .HasColumnType("int");
 
+                    b.Property<long?>("StudyGroupId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AlumniId");
+
+                    b.HasIndex("EventId");
 
                     b.HasIndex("ParlyReportCategoryId");
 
@@ -1583,6 +1608,8 @@ namespace SEC44NIPSS.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
+                    b.HasIndex("StudyGroupId");
+
                     b.ToTable("ParlyReportDocuments");
                 });
 
@@ -1592,6 +1619,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BgColor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -1622,6 +1652,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BgColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -1650,6 +1683,9 @@ namespace SEC44NIPSS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BgColor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -3148,6 +3184,14 @@ namespace SEC44NIPSS.Data.Migrations
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlyReportDocument", b =>
                 {
+                    b.HasOne("SEC44NIPSS.Data.Model.Alumni", "Alumni")
+                        .WithMany()
+                        .HasForeignKey("AlumniId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
                     b.HasOne("SEC44NIPSS.Data.Model.ParlyReportCategory", "ParlyReportCategory")
                         .WithMany("ParlyReportDocuments")
                         .HasForeignKey("ParlyReportCategoryId");
@@ -3167,6 +3211,10 @@ namespace SEC44NIPSS.Data.Migrations
                     b.HasOne("SEC44NIPSS.Data.Model.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
+
+                    b.HasOne("SEC44NIPSS.Data.Model.StudyGroup", "StudyGroup")
+                        .WithMany()
+                        .HasForeignKey("StudyGroupId");
                 });
 
             modelBuilder.Entity("SEC44NIPSS.Data.Model.ParlyReportSubCategory", b =>

@@ -16,6 +16,7 @@ namespace SEC44NIPSS.Data.Model
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public int SortOrder { get; set; }
+        public string BgColor { get; set; }
 
 
         public long? ParlySubTwoCategoryId { get; set; }

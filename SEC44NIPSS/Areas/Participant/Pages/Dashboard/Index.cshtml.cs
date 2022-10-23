@@ -11,7 +11,7 @@ using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
 {
-    [Authorize(Roles = "Participant")]
+    [Authorize]
 
     public class IndexModel : PageModel
     {
@@ -48,6 +48,8 @@ namespace SEC44NIPSS.Areas.Participant.Pages.Dashboard
         public int OTHERRESOURCEMATERIALS { get; set; }
         public async Task<IActionResult> OnGetAsync(string date = null)
         {
+            return RedirectToPage("/Main/Index", new { area = "Root" });
+
 
             var participant = await _context.Profiles.Where(x => x.AccountRole == "Participant").ToListAsync();
             TotalParticipant = participant.Count();

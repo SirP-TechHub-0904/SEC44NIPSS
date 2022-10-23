@@ -1,0 +1,63 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParlyCategory.SubTwo.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sort Order</th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParlySubTwoCategory[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParlySubTwoCategory[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParlySubTwoCategory[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParlySubTwoCategory[0].ParlyReportSubCategory)
+            </th>
+            <th>BG</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ParlySubTwoCategory) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParlyReportSubCategory.Id)
+            </td>
+                <td>
+                    <div class="@item.BgColor" style="height:5px;width:20px;">.</div>
+
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

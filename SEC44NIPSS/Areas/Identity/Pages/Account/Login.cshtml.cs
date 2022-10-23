@@ -21,7 +21,7 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager)
         {
@@ -61,7 +61,7 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-           // returnUrl = returnUrl ?? Url.Content("~/");
+            // returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -73,7 +73,7 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-          //  returnUrl = returnUrl ?? Url.Content("~/");
+            //  returnUrl = returnUrl ?? Url.Content("~/");
 
             if (ModelState.IsValid)
             {
@@ -89,36 +89,29 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
 
                         if (result.Succeeded)
                         {
-                          
+
                             _logger.LogInformation("User logged in.");
                             var xAdmin = await _userManager.IsInRoleAsync(user, "Admin");
                             var xSuper = await _userManager.IsInRoleAsync(user, "mSuperAdmin");
-                            var xContent = await _userManager.IsInRoleAsync(user, "Content");
+                            var xDS = await _userManager.IsInRoleAsync(user, "DS");
                             var Participant = await _userManager.IsInRoleAsync(user, "Participant");
-                            if(returnUrl != null)
+                            if (returnUrl != null)
                             {
                                 return Redirect(returnUrl);
                             }
-                           else if (xAdmin.Equals(true))
-                            {
-                                return RedirectToPage("/Admin/Index", new { area = "NIPSS" });
-                            }
+                            //else if (xAdmin.Equals(true) || xSuper.Equals(true) || xDS.Equals(true))
+                            // {
+                            //     return RedirectToPage("/Main/Index", new { area = "Root" });
+                            // }
 
-                            else if (xSuper.Equals(true))
-                            {
-                                return RedirectToPage("/Dashboard/Index", new { area = "Admin" });
-                            }
-                            else if (xContent.Equals(true))
-                            {
-                                return RedirectToPage("/Dashboard/Index", new { area = "Admin" });
-                            }
-                            else if (Participant.Equals(true))
-                            {
-                                return RedirectToPage("/Dashboard/Index", new { area = "Participant" });
-                            }
+
+                            // else if (Participant.Equals(true))
+                            // {
+                            //     return RedirectToPage("/Dashboard/Index", new { area = "Participant" });
+                            // }
                             else
                             {
-                                 returnUrl = returnUrl ?? Url.Content("~/");
+                                return RedirectToPage("/Main/Index", new { area = "Root" });
 
                                 return Redirect(returnUrl);
                             }
@@ -141,38 +134,31 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
                     else if (passcheck == true)
                     {
 
-                        
+
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
                         var xAdmin = await _userManager.IsInRoleAsync(user, "Admin");
                         var xSuper = await _userManager.IsInRoleAsync(user, "mSuperAdmin");
-                        var xContent = await _userManager.IsInRoleAsync(user, "Content");
+                        var xDS = await _userManager.IsInRoleAsync(user, "DS");
                         var Participant = await _userManager.IsInRoleAsync(user, "Participant");
 
                         if (returnUrl != null)
                         {
                             return Redirect(returnUrl);
                         }
-                        else if (xAdmin.Equals(true))
-                        {
-                            return RedirectToPage("/Admin/Index", new { area = "NIPSS" });
-                        }
+                        //else if (xAdmin.Equals(true) || xSuper.Equals(true) || xDS.Equals(true))
+                        //{
+                        //    return RedirectToPage("/Main/Index", new { area = "Root" });
+                        //}
 
-                        else if (xSuper.Equals(true))
-                        {
-                            return RedirectToPage("/Dashboard/Index", new { area = "Admin" });
-                        }
-                        else if (xContent.Equals(true))
-                        {
-                            return RedirectToPage("/Dashboard/Index", new { area = "Admin" });
-                        }
-                        else if (Participant.Equals(true))
-                        {
-                            return RedirectToPage("/Dashboard/Index", new { area = "Participant" });
-                        }
+
+                        //else if (Participant.Equals(true))
+                        //{
+                        //    return RedirectToPage("/Dashboard/Index", new { area = "Participant" });
+                        //}
                         else
                         {
-                            returnUrl = returnUrl ?? Url.Content("~/");
+                            return RedirectToPage("/Main/Index", new { area = "Root" });
 
                             return Redirect(returnUrl);
                         }

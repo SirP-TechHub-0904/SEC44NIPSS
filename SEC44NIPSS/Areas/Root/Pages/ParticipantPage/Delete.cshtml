@@ -1,0 +1,34 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParticipantPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Participant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Profile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Profile.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant.Alumni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Participant.Alumni.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Participant.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

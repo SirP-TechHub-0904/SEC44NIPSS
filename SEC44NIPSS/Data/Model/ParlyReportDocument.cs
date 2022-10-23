@@ -13,9 +13,21 @@ namespace SEC44NIPSS.Data.Model
         public string ShortDescription { get; set; }
         public string Note { get; set; }
         public DateTime Date { get; set; }
+        
 
+        public DocumentOwner DocumentOwner { get; set; }
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
+
+        public long? StudyGroupId { get; set; }
+        public StudyGroup StudyGroup { get; set; }
+
+        public long? AlumniId { get; set; } 
+        public Alumni Alumni { get; set; }
+
+        public long? EventId { get; set; }
+        public Event Event { get; set; }
+
         public int SortOrder { get; set; }
 
         public long? ParlyReportCategoryId { get; set; }

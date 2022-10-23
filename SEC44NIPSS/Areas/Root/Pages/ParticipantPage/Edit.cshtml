@@ -1,0 +1,46 @@
+﻿@page
+@model SEC44NIPSS.Areas.Root.Pages.ParticipantPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Participant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Participant.Id" />
+            <div class="form-group">
+                <label asp-for="Participant.ProfileId" class="control-label"></label>
+                <select asp-for="Participant.ProfileId" class="form-control" asp-items="ViewBag.ProfileId"></select>
+                <span asp-validation-for="Participant.ProfileId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Participant.StudyGroupId" class="control-label"></label>
+               
+                <select asp-for="Participant.StudyGroupId" class="form-control" asp-items="ViewBag.StudyGroupId"></select>
+                <span asp-validation-for="Participant.StudyGroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Participant.AlumniId" class="control-label"></label>
+                <select asp-for="Participant.AlumniId" class="form-control" asp-items="ViewBag.AlumniId"></select>
+                <span asp-validation-for="Participant.AlumniId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

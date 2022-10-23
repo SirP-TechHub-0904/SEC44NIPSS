@@ -292,7 +292,7 @@
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    @if (User.Identity.IsAuthenticated)
+                                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("mSuperAdmin") || User.IsInRole("DS"))
                                                     {<a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
 
                                                     }
