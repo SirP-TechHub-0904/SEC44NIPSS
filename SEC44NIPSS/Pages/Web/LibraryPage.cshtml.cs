@@ -18,11 +18,11 @@ namespace SEC44NIPSS.Pages.Web
             _context = context;
         }
 
-        public IList<DocumentCategory> DocumentCategory { get; set; }
+        public IList<ParlyReportCategory> ParlyReportCategory { get; set; }
 
         public async Task OnGetAsync()
         {
-            DocumentCategory = await _context.DocumentCategories.Include(x => x.Documents).Where(x => x.Show == true).ToListAsync();
+            ParlyReportCategory = await _context.ParlyReportCategories.Where(x => x.Show == true && x.FolderType == FolderType.Main).ToListAsync();
 
 
         }

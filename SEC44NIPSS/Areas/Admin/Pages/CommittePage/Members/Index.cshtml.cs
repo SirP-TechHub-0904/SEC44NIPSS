@@ -26,6 +26,8 @@ namespace SEC44NIPSS.Areas.Admin.Pages.CommittePage.Members
             Committee = await _context.Committees
                 .Include(c => c.CommitteeCategory)
                 .Include(c => c.Profile).ToListAsync();
+
+            
         }
     }
 }

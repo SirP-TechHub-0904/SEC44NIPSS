@@ -1,0 +1,39 @@
+﻿@page
+@using Amazon
+@using Amazon.Runtime
+@using Amazon.S3
+@using Amazon.S3.Model
+@using System.Threading
+@model SEC44NIPSS.Areas.Root.Pages.Main.DownloadModel
+@{
+}
+
+<div class="card-body" style="box-shadow: 2px 2px 2px 2px #e0e0e0;">
+
+    <h3> @Model.FileNameD is Downloaded. check Downloads</h3>
+
+</div>
+
+
+
+@{
+    //eu-west-3
+    RegionEndpoint bucketRegion = RegionEndpoint.EUWest3;
+    ////IAmazonS3 client = new AmazonS3Client(bucketRegion);
+
+    string accessKey = "AKIA4Y267QYKVUNR3IBW";
+    string secretKey = "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";
+    AmazonS3Client s3Client = new AmazonS3Client(new BasicAWSCredentials(accessKey, secretKey), Amazon.RegionEndpoint.EUWest3);
+    // string objectKey = "EMR" + "/" + filename;
+    string objectKey = Model.FileNameD;
+    //EMR is folder name of the image inside the bucket
+    GetObjectRequest request = new GetObjectRequest();
+    request.BucketName = "nipss-bucket";
+    request.Key = objectKey;
+
+    var response = s3Client.GetObjectAsync(request);
+    response.Wait();
+    string pathx = System.Environment.ExpandEnvironmentVariables("%userprofile%/Downloads/" + Model.FileNameD);
+    //string pathx = @"C:\Users\Jinmcever\Downloads";
+    await response.Result.WriteResponseStreamToFileAsync(pathx, true, CancellationToken.None);
+}

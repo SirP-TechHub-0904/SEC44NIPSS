@@ -54,11 +54,16 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null, string usp = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
+            }
+            if(usp != "usepass")
+            {
+                return RedirectToPage("./LoginWithEmail");
+
             }
 
             // returnUrl = returnUrl ?? Url.Content("~/");
@@ -69,6 +74,7 @@ namespace SEC44NIPSS.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

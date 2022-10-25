@@ -214,7 +214,6 @@
             box-sizing: border-box;
         }
 
-        
     </style>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -269,12 +268,12 @@
                                                     <a asp-page="/Index">Home</a>
                                                 </li>
 
-                                                <li>
-                                                    <a asp-page="/TourPage/NipssTour">Tours</a>
-                                                </li>
-                                                @*<li>
-                                                    <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                                                @* <li>
+                                                <a asp-page="/Web/NipssTour">Tours</a>
                                                 </li>*@
+                                                <li>
+                                                    <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                                                </li>
                                                 <li>
                                                     <a asp-page="/Web/LibraryPage">Library</a>
                                                 </li>
@@ -293,7 +292,8 @@
                                                 </li>
                                                 <li>
                                                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("mSuperAdmin") || User.IsInRole("DS"))
-                                                    {<a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
+                                                    {
+                                                        <a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
 
                                                     }
                                                     else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
@@ -354,12 +354,12 @@
                             <a asp-page="/Index">Home</a>
                         </li>
 
-                        <li>
-                            <a asp-page="/TourPage/NipssTour">Tours</a>
-                        </li>
                         @*<li>
-                            <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                        <a asp-page="/TourPage/NipssTour">Tours</a>
                         </li>*@
+                        <li>
+                            <a asp-page="/Web/NipssGalleryPage">Gallery</a>
+                        </li>
                         <li>
                             <a asp-page="/Web/LibraryPage">Library</a>
                         </li>
@@ -376,15 +376,17 @@
                             </ul>
                         </li>
                         <li>
-                            @if (User.Identity.IsAuthenticated)
-                            {<a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
-
-                            }
-                            else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                             {
                                 <a asp-page="/Admin/Index" asp-area="NIPSS"> DASHBOARD</a>
 
                             }
+                            else if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-page="/Dashboard/Index" asp-area="Participant">DASHBOARD</a>
+
+                            }
+
                             else
                             {
                                 <a asp-page="/Account/Login" asp-area="Identity">Login</a>
@@ -459,7 +461,7 @@
 
 
     @*<script src="~/nivoslider/jquery.nivo.slider.js"></script>
-        <script src="~/nivoslider/jquery.scrollbox.js"></script>*@
+    <script src="~/nivoslider/jquery.scrollbox.js"></script>*@
 
 
 
@@ -483,19 +485,19 @@
         });
     </script>
     @*<script type="text/javascript">
-            $(window).load(function () {
-                //$('#slider').nivoSlider({
-                //    effect: 'random',
-                //    slices: 15,
-                //    boxCols: 8,
-                //    boxRows: 4,
-                //    animSpeed: 30000,
-                //    pauseTime: 50000000
+    $(window).load(function () {
+    //$('#slider').nivoSlider({
+    //    effect: 'random',
+    //    slices: 15,
+    //    boxCols: 8,
+    //    boxRows: 4,
+    //    animSpeed: 30000,
+    //    pauseTime: 50000000
 
-                //});
+    //});
 
-            });
-        </script>*@
+    });
+    </script>*@
 
     @*<script type="text/javascript" src="scripts/jquery-1.9.0.min.js"></script>*@
     <script type="text/javascript" src="~/nivo/jquery.nivo.slider.js"></script>

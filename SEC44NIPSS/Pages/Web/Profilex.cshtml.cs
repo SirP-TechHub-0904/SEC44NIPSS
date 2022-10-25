@@ -10,7 +10,7 @@ using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Pages.Web
 {
-    [Authorize]
+    //[Authorize]
     public class ProfilexModel : PageModel
     {
         private readonly SEC44NIPSS.Data.NIPSSDbContext _context;
@@ -29,11 +29,12 @@ namespace SEC44NIPSS.Pages.Web
                 return NotFound();
             }
             
-            Profile = await _context.Profiles
-                .Include(p => p.User).Where(x => x.DontShow == false).Where(x => x.AlumniId == id).ToListAsync();
+            //Profile = await _context.Profiles
+            //    .Include(p => p.User).Where(x => x.DontShow == false).Where(x => x.AlumniId == id).ToListAsync();
 
             Alumni = await _context.Alumnis
-                .Include(x => x.SecProject)
+                .Include(x => x.Participants)
+                .ThenInclude(x => x.Profile)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (Alumni == null)

@@ -10,7 +10,9 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+   <div class="table-responsive">
+
+        <table id="example1" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>
@@ -41,7 +43,8 @@
                 @Html.DisplayFor(modelItem => item.CommitteeCategory.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Profile.Title)
+                        @Html.DisplayFor(modelItem => item.Profile.Title) 
+                        @Html.DisplayFor(modelItem => item.Profile.FullName) 
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
@@ -52,3 +55,4 @@
 }
     </tbody>
 </table>
+</div>

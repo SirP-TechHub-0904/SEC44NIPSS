@@ -1,0 +1,51 @@
+﻿@page
+@model SEC44NIPSS.Areas.Admin.Pages.CommittePage.MembersListModel
+@{
+}
+<div class="table-responsive">
+
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Committee[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Committee[0].SortOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Committee[0].CommitteeCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Committee[0].Profile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Committee)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommitteeCategory.Title)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Profile.Title) 
+                        @Html.DisplayFor(modelItem => item.Profile.FullName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

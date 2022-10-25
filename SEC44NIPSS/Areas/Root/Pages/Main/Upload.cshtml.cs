@@ -51,16 +51,16 @@ namespace SEC44NIPSS.Areas.Root.Pages.Main
 
             if (f2 != null)
             {
-                ParlyReportSubCategory = await _context.ParlyReportSubCategories.FirstOrDefaultAsync(x => x.Id == f2);
+                ParlyReportSubCategory = await _context.ParlyReportSubCategories.Include(x=>x.ParlyReportCategory).FirstOrDefaultAsync(x => x.Id == f2);
 
             }
             if (f3 != null)
             {
-                ParlySubTwoCategory = await _context.ParlySubTwoCategories.FirstOrDefaultAsync(x => x.Id == f3);
+                ParlySubTwoCategory = await _context.ParlySubTwoCategories.Include(x=>x.ParlyReportSubCategory).ThenInclude(x=>x.ParlyReportCategory).FirstOrDefaultAsync(x => x.Id == f3);
             }
             if (f4 != null)
             {
-                ParlySubThreeCategory = await _context.ParlySubThreeCategories.FirstOrDefaultAsync(x => x.Id == f4);
+                ParlySubThreeCategory = await _context.ParlySubThreeCategories.Include(x=>x.ParlySubTwoCategory).ThenInclude(x => x.ParlyReportSubCategory).ThenInclude(x => x.ParlyReportCategory).FirstOrDefaultAsync(x => x.Id == f4);
             }
 
 

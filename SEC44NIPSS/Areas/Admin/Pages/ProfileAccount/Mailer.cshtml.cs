@@ -40,11 +40,10 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
         [BindProperty]
         public string Name { get; set; }
 
-        [BindProperty]
-        public long EmailId { get; set; }
+        
         public async Task<IActionResult> OnGetAsync()
         {
-            ViewData["EmailId"] = new SelectList(_context.EmailSettings, "Id", "SenderEmail");
+            //ViewData["EmailId"] = new SelectList(_context.EmailSettings, "Id", "SenderEmail");
 
             return Page();
         }
@@ -70,8 +69,7 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             _context.Messages.Add(ms);
             await _context.SaveChangesAsync();
 
-            var xmail = await _context.EmailSettings.FirstOrDefaultAsync(x => x.Id == EmailId);
-
+      
 
             i = await _context.Messages.FirstOrDefaultAsync(m => m.Id == ms.Id);
 
@@ -82,7 +80,7 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             if (i.NotificationType != NotificationType.SMS)
             {
                 //
-                bool result = await SendEmail(i.Recipient, i.Mail, i.Title, xmail.SenderEmail, xmail.PX);
+                bool result = await SendEmail(i.Recipient, i.Mail, i.Title);
                 if (result == true)
                 {
                     i.NotificationStatus = NotificationStatus.Sent;
@@ -120,7 +118,7 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             return Page();
         }
 
-        public async Task<bool> SendEmail(string recipient, string message, string title, string xmail, string xp)
+        public async Task<bool> SendEmail(string recipient, string message, string title)
         {
             try
             {
@@ -132,7 +130,7 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 
                 mail.Body = message;
                 //set the addresses 
-                mail.From = new MailAddress(xmail, "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
+                mail.From = new MailAddress("admin@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
                 mail.To.Add(recipient);
 
                 //set the content 
@@ -140,15 +138,19 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 
                 mail.IsBodyHtml = true;
                 //send the message 
-                SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
 
                 //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                NetworkCredential Credentials = new NetworkCredential(xmail, xp);
+                NetworkCredential Credentials = new NetworkCredential("admin@sec44nipss.com", "ChinedumThrough@2023");
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = Credentials;
-                smtp.Port = 25;    //alternative port number is 8889
+                smtp.Timeout = 20000;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.EnableSsl = false;
                 smtp.Send(mail);
+                ///
+
+                
                 return true;
             }
             catch (Exception ex)

@@ -18,6 +18,21 @@ namespace SEC44NIPSS.Data.Model
         Remove = 4
 
     }
+    public enum DocumentType
+    {
+        [Description("NONE")]
+        NONE = 0,
+        [Description("POWERPOINT")]
+        POWERPOINT = 2,
+        [Description("PDF")]
+        PDF = 3,
+        [Description("DOCUMENT")]
+        DOCUMENT = 4,
+        [Description("EXCEL")]
+        EXCEL = 5,
+        [Description("OTHERS")]
+        OTHERS = 5,
+    }
     public enum DocumentOwner
     {
         [Description("NONE")]

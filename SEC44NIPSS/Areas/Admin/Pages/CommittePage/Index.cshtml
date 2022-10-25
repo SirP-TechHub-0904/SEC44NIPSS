@@ -10,9 +10,12 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+   <div class="table-responsive">
+
+        <table id="example1" class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th>S/N</th>
             <th>
                 @Html.DisplayNameFor(model => model.CommitteeCategory[0].Title)
             </th>
@@ -28,12 +31,19 @@
             <th>
                 @Html.DisplayNameFor(model => model.CommitteeCategory[0].Alumni)
             </th>
-            <th></th>
+                <th>Members</th>
+                <th></th>
         </tr>
     </thead>
-    <tbody>
+        @{
+            int sn = 0;
+        }
+        <tbody>
 @foreach (var item in Model.CommitteeCategory) {
-        <tr>
+                <tr>
+                    <td>@{sn++;}
+                        @sn
+                    </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -49,12 +59,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Alumni.Id)
             </td>
+                    <td>
+                        @item.Committees.Count()
+                    </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>|
+                    <a asp-page="./MemberList" asp-route-id="@item.Id">Members</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

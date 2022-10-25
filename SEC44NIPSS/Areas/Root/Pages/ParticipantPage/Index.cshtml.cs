@@ -25,6 +25,7 @@ namespace SEC44NIPSS.Areas.Root.Pages.ParticipantPage
         {
             Participant = await _context.Participants
                 .Include(p => p.Alumni)
+                .Include(p => p.StudyGroup)
                 .Include(p => p.Profile).ToListAsync();
         }
     }

@@ -29,7 +29,7 @@ namespace SEC44NIPSS.Areas.Root.Pages.Main
             ParlySubThreeCategory = await _context.ParlySubThreeCategories
                 .Include(p => p.ParlySubTwoCategory).Include(p => p.ParlyReportDocuments).Where(x => x.ParlySubTwoCategoryId == id).OrderBy(x => x.SortOrder).ToListAsync();
 
-            ParlySubTwoCategory = await _context.ParlySubTwoCategories.FirstOrDefaultAsync(x => x.Id == id);
+            ParlySubTwoCategory = await _context.ParlySubTwoCategories.Include(x=>x.ParlyReportSubCategory).ThenInclude(x=>x.ParlyReportCategory).FirstOrDefaultAsync(x => x.Id == id);
 
             ParlyReportDocuments = await _context.ParlyReportDocuments.Where(x=>x.ParlyReportCategoryId==null && x.ParlyReportSubCategoryId == null && x.ParlySubTwoCategoryId == id && x.ParlySubThreeCategoryId == null).OrderBy(x => x.SortOrder).ToListAsync();
         }

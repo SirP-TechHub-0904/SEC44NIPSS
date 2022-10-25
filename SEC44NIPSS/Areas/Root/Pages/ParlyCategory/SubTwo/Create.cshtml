@@ -32,7 +32,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="ParlySubTwoCategory.BgColor" class="control-label"></label>
-                <input asp-for="ParlySubTwoCategory.BgColor" class="form-control" />
+                <select asp-for="ParlySubTwoCategory.BgColor" class="form-control">
+                    <option value="bg-red"> bg-red</option>
+                    <option value="bg-yellow">bg-yellow</option>
+                    <option value="bg-aqua">bg-aqua</option>
+                    <option value="bg-blue">bg-blue</option>
+                    <option value="bg-light-blue">bg-light-blue</option>
+                    <option value="bg-green">bg-green</option>
+                    <option value="bg-navy">bg-navy</option>
+                    <option value="bg-teal">bg-teal</option>
+                    <option value="bg-olive">bg-olive</option>
+                    <option value="bg-lime">bg-lime</option>
+                    <option value="bg-orange">bg-orange</option>
+                    <option value="bg-fuchsia">bg-fuchsia</option>
+                    <option value="bg-purple">bg-purple</option>
+                    <option value="bg-maroon">bg-maroon</option>
+                    
+                    <option value="bg-red-active">bg-red-active</option>
+                    <option value="bg-yellow-active">bg-yellow-active</option>
+                    <option value="bg-aqua-active">bg-aqua-active</option>
+                    <option value="bg-blue-active">bg-blue-active</option>
+                </select>
                 <span asp-validation-for="ParlySubTwoCategory.BgColor" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -97,6 +97,11 @@
                 <span asp-validation-for="ParlyReportDocument.DocumentOwner" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ParlyReportDocument.DocumentType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.ParlyReportDocument.DocumentType, new SelectList(Enum.GetValues(typeof(SEC44NIPSS.Data.Model.DocumentType))), new { @class = "form-control" })
+                <span asp-validation-for="ParlyReportDocument.DocumentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

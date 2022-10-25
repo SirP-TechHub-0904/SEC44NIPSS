@@ -10,11 +10,13 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<div class="table-responsive">
 
 
-    <table class="table">
-        <thead>
+    <div class="table-responsive">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.ParlyReportDocument[0].Title)

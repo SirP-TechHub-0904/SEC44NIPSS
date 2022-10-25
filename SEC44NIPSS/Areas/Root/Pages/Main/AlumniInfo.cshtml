@@ -163,7 +163,7 @@
                     <th>
                         Participant
                     </th>
-                    <th></th>
+                    @*<th></th>*@
                 </tr>
             </thead>
             @{
@@ -185,11 +185,11 @@
 
 
                         <td>
-                            @item.SecParticipants.Count()
+                            @item.SecParticipants.Where(x=>x.IsTrue == true).Count()
                         </td>
-                        <td>
+                    @*    <td>
                             <a asp-page="/ParticipantManager/Index" asp-route-id="@Model.Alumni.Id" class="btn btn-danger">View Syndicate Members</a>
-                        </td>
+                        </td>*@
                     </tr>
                 }
             </tbody>

@@ -24,7 +24,9 @@ namespace SEC44NIPSS.Areas.Admin.Pages.CommittePage
         public async Task OnGetAsync()
         {
             CommitteeCategory = await _context.CommitteeCategories
-                .Include(c => c.Alumni).ToListAsync();
+                .Include(c => c.Alumni)
+                .Include(c => c.Committees)
+                .ToListAsync();
         }
     }
 }

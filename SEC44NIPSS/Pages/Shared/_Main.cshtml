@@ -195,6 +195,9 @@
             z-        index: 5;
             overflow: hidden;
         }
+        .bg-black {
+  background-color: #3c8dbc !important;
+}
     </style>
 
 
@@ -346,19 +349,17 @@
                     <li><a asp-page="/Dashboard/Profile" asp-area="Participant"><i class="fa fa-user"></i> <span>Profile</span></a></li>
 
                     <li><a asp-page="/Main/AlumniInfo" asp-area="Root"><i class="fa fa-home"></i> <span>Active SEC</span></a></li>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
-                    {
-                        <li><a asp-page="/ParlyCategory/Index" asp-area="Root"><i class="fa fa-file"></i> <span>Admin Folder</span></a></li>
-                        <li><a asp-page="/ParlyDocument/Index" asp-area="Root"><i class="fa fa-file"></i> <span>Admin Documents</span></a></li>
-                    }
+                  
                     <li><a asp-page="/Main/Documents" asp-area="Root"><i class="fa fa-file"></i> <span>Documents</span></a></li>
+                    <li><a asp-page="/LectureNote/Index" asp-area="Root"><i class="fa fa-file"></i> <span>Lecture Note</span></a></li>
+                    
+                    <li><a asp-page="/Dashboard/Timetable" asp-area="Participant"><i class="fa fa-calendar"></i> <span>TimeTable</span></a></li>
                     <li><a asp-page="/Dashboard/Voting" asp-area="Participant"><i class="fa fa-thumbs-up"></i> <span>Voting</span></a></li>
                     <li><a asp-page="//ResearchTool" asp-area="Participant"><i class="fa fa-book"></i> <span>Research Tool</span></a></li>
 
 
                     <li><a asp-page="/Dashboard/Init" asp-area="Participant"><i class="fa fa-bookmark"></i> <span>Rapid Test</span></a></li>
                     <li><a asp-page="/Dashboard/MyGallery" asp-area="Participant"><i class="fa fa-photo"></i> <span>My Gallery</span></a></li>
-                    <li><a asp-page="/Dashboard/Timetable" asp-area="Participant"><i class="fa fa-calendar"></i> <span>TimeTable</span></a></li>
 
                     <li><a asp-page="/Dashboard/ParticipantList" asp-area="Participant"><i class="fa fa-bookmark"></i> <span>Participants</span></a></li>
 
@@ -369,7 +370,25 @@
 
                     <li class="header">COMPLIAN/INQUIRY/GUIDE</li>
                     <li><a asp-page="./Livechat"><i class="fa fa-mobile-phone"></i> <span>Live Chat </span></a></li>
+                      @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <li class="header">ADMIN MENU</li>
+                        <li><a asp-page="/ParlyCategory/Index" asp-area="Root"><i class="fa fa-file"></i> <span>Admin Folder</span></a></li>
+                        <li><a asp-page="/ParlyDocument/Index" asp-area="Root"><i class="fa fa-file"></i> <span>Admin Documents</span></a></li>
 
+                        <li><a asp-page="/LectureNote/TimetableEvent" asp-area="Root"><i class="fa fa-file"></i> <span>TimeTable</span></a></li>
+                        <li><a asp-page="/BlogNews/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>News</span></a></li>
+                        <li><a asp-page="/EventManagement/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Events</span></a></li>
+                        <li><a asp-page="/GalleryPage/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Gallery</span></a></li>
+                        <li><a asp-page="/MessagingPage/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Message Pages</span></a></li>
+                        <li><a asp-page="/ProfileAccount/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Profile Account</span></a></li>
+                        <li><a asp-page="/CommittePage/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Committe Page</span></a></li>
+                        <li><a asp-page="/CommittePage/Members/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>All Committe Members</span></a></li>
+                        <li><a asp-page="/Rapid/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Rapid Test</span></a></li>
+                        <li><a asp-page="/SliderPage/Index" asp-area="Admin"><i class="fa fa-file"></i> <span>Slider</span></a></li>
+                        <li><a asp-page="/ProfileAccount/Mailer" asp-area="Admin"><i class="fa fa-envelope"></i> <span>Mailer</span></a></li>
+
+                    }
 
                 </ul>
             </section>

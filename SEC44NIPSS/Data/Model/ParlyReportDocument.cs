@@ -16,6 +16,7 @@ namespace SEC44NIPSS.Data.Model
         
 
         public DocumentOwner DocumentOwner { get; set; }
+        public DocumentType DocumentType { get; set; }
         public long? ProfileId { get; set; }
         public Profile Profile { get; set; }
 

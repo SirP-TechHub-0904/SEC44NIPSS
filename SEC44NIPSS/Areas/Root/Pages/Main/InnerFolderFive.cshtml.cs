@@ -26,7 +26,7 @@ namespace SEC44NIPSS.Areas.Root.Pages.Main
         public async Task OnGetAsync(long id)
         {
            
-            ParlySubThreeCategory = await _context.ParlySubThreeCategories.FirstOrDefaultAsync(x => x.Id == id);
+            ParlySubThreeCategory = await _context.ParlySubThreeCategories.Include(x=>x.ParlySubTwoCategory).ThenInclude(x => x.ParlyReportSubCategory).ThenInclude(x => x.ParlyReportCategory).FirstOrDefaultAsync(x => x.Id == id);
 
             ParlyReportDocuments = await _context.ParlyReportDocuments.Where(x=>x.ParlyReportCategoryId==null && x.ParlyReportSubCategoryId == null && x.ParlySubTwoCategoryId == null && x.ParlySubThreeCategoryId == id).OrderBy(x => x.SortOrder).ToListAsync();
         }

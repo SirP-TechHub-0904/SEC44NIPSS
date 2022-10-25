@@ -20,9 +20,12 @@
                     <th>
                         Time
                     </th>
-                    <th>
-                        Is Lecture
-                    </th>
+                       @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <th>
+                            Is Lecture
+                        </th>
+                    }
                     <th>
 
                         Lecture
@@ -39,7 +42,10 @@
                     <th>
                         Document
                     </th>
-                    <th></th>
+                       @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+                        <th></th>
+                    }
                 </tr>
             </thead>
             @{ int sn = 0; }
@@ -60,10 +66,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.EventTime)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsLecture)
-                    </td>
-                    <td>
+                       @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsLecture)
+                            </td>
+                        }
+                        <td>
 
                         @Html.Raw(item.Content)
                     </td>
@@ -97,23 +106,26 @@
                         <span>-------</span>
                             }
                     </td>
-                    <td>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                                Action
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></li>
-                                <li><a asp-page="./Details" asp-route-id="@item.Id">Details</a></li>
-                                <li><a asp-page="./Delete" asp-route-id="@item.Id">Delete</a></li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                        {
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                        Action
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a></li>
+                                        <li><a asp-page="./Details" asp-route-id="@item.Id">Details</a></li>
+                                        <li><a asp-page="./Delete" asp-route-id="@item.Id">Delete</a></li>
 
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                                    </ul>
+                                </div>
+                            </td>
+                        }
+                    </tr>
                 }
             </tbody>
         </table>
