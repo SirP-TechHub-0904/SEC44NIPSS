@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="web.config" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="wwwroot\dashboard\bower_components\bootstrap\.bower.json" />
     <Content Include="wwwroot\dashboard\bower_components\bootstrap\bower.json" />
     <Content Include="wwwroot\dashboard\bower_components\bootstrap\dist\css\bootstrap-theme.css" />
@@ -1177,7 +1173,6 @@
     <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Pages\_ViewImports.cshtml" />
     <None Include="Pages\_ViewStart.cshtml" />
-    <None Include="web.config" />
     <None Include="wwwroot\dashboard\bower_components\bootstrap\CHANGELOG.md" />
     <None Include="wwwroot\dashboard\bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
     <None Include="wwwroot\dashboard\bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />

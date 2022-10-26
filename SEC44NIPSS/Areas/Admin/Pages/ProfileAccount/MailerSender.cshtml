@@ -1,5 +1,5 @@
 ﻿@page
-@model SEC44NIPSS.Areas.Admin.Pages.ProfileAccount.MailerModel
+@model SEC44NIPSS.Areas.Admin.Pages.ProfileAccount.MailerSenderModel
 @{
 }
 
@@ -13,9 +13,6 @@
         <div class="container">
             <h4>Compose and send mail</h4>
             <hr />
-
-            <a asp-page="./MailerSender" class="btn btn-primary">Send Bulk Emails</a>
-            <a asp-page="./SMSSender" class="btn btn-primary">Send Bulk SMS</a>
             <div class="row">
                 @TempData["lo"]
                 @TempData["success"]
@@ -28,9 +25,15 @@
                             <input asp-for="ms.Recipient" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Name</label>
-                            <input asp-for="Name" class="form-control" />
+
+
+                            <label class="control-label" for="Participant">Send to Participant</label>
+                            <input type="radio" asp-for="SendTo" id="Participant" value="Participant" checked>
+                        </div> <div class="form-group">
+                            <label class="control-label" for="All">Send to All</label>
+                            <input type="radio" asp-for="SendTo" id="All" value="All">
                         </div>
+
                         <div class="form-group">
                             <label class="control-label">Title/Subject</label>
                             <input asp-for="ms.Title" class="form-control" />
@@ -40,7 +43,7 @@
                             @* <textarea name="message" class="form-control"></textarea>*@
                             <textarea id="mytextarea" asp-for="Messagex" class="form-control"></textarea>
                         </div>
-                     
+
 
                         <div class="form-group">
                             <input type="submit" value="Send" class="btn btn-primary" />
@@ -54,7 +57,9 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script src="~/summernote/summernote-bs4.min.js"></script>
     <script>
         $(function () {

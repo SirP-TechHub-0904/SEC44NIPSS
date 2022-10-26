@@ -118,6 +118,8 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
             return Page();
         }
 
+
+
         public async Task<bool> SendEmail(string recipient, string message, string title)
         {
             try
@@ -141,12 +143,12 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
 
                 //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-                NetworkCredential Credentials = new NetworkCredential("admin@sec44nipss.com", "ChinedumThrough@2023");
+                NetworkCredential Credentials = new NetworkCredential("admin@sec44nipss.com", "yvjholmmateuysye");
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = Credentials;
                 smtp.Timeout = 20000;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.EnableSsl = false;
+                smtp.EnableSsl = true;
                 smtp.Send(mail);
                 ///
 

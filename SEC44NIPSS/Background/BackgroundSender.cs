@@ -1,4 +1,5 @@
 ﻿
+using Google;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -49,7 +50,7 @@ namespace SEC44NIPSS.Background
             _logger.LogInformation("Timed Background Service is starting.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(10));
+                TimeSpan.FromMinutes(1));
 
             return Task.CompletedTask;
         }
@@ -59,6 +60,91 @@ namespace SEC44NIPSS.Background
 
             using (var scope = _scopeFactory.CreateScope())
             {
+                var _context = scope.ServiceProvider.GetRequiredService<NIPSSDbContext>();
+                ////Do your stuff with your Dbcontext
+                IQueryable<Message> msgk = from s in _context.Messages
+                                                    .Where(x => x.NotificationStatus == NotificationStatus.NotSent && x.Retries < 4)
+
+                                                    .Take(15)
+                                           select s;
+
+                var msg = msgk;
+
+                var c = msg.Count();
+                var cf = msg.ToList();
+
+                foreach (var i in msg)
+                {
+                    if (i.NotificationType == NotificationType.Email)
+                    {
+
+                        string result = await SendEmail(i.Recipient, i.Mail, i.Title);
+                        if (result == "true")
+                        {
+                            i.NotificationStatus = NotificationStatus.Sent;
+                            i.Result = "sent";
+                        }
+                        else
+                        {
+                            i.NotificationStatus = NotificationStatus.NotSent;
+                            i.Retries = i.Retries + 1;
+                            i.Result = result;
+                        }
+                    }
+                    else if (i.NotificationType == NotificationType.SMS)
+                    {
+
+                        string result = await SendSms(i.Recipient, i.Mail);
+                        if (result.Contains("OK"))
+                        {
+                            i.NotificationStatus = NotificationStatus.Sent;
+                            i.Result = "sent";
+                        }
+                        else
+                        {
+                            i.NotificationStatus = NotificationStatus.NotSent;
+                            i.Retries = i.Retries + 1;
+                            i.Result = result;
+                        }
+                    }
+
+                    try
+                    {
+
+                        var iod = await _context.Messages.AsNoTracking().FirstOrDefaultAsync(x => x.Id == i.Id);
+                        iod.NotificationStatus = i.NotificationStatus;
+                        iod.Retries = i.Retries;
+                        iod.DateSent = DateTime.UtcNow.AddHours(1);
+                        //_context.Entry(iod).State = EntityState.Detached;
+                        _context.Attach(iod).State = EntityState.Modified;
+
+
+                    }
+
+                    catch (Exception webex)
+                    {
+
+                    }
+
+
+                }
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception h) { }
+
+
+
+
+
+
+
+
+
+
+
+
                 //var _context = scope.ServiceProvider.GetRequiredService<NIPSSDbContext>();
                 //////comment page
                 //#region Seelction comment page
@@ -287,7 +373,7 @@ namespace SEC44NIPSS.Background
                 //catch (Exception c) { }
 
                 //////
-               
+
                 //#endregion
                 //#endregion
 
@@ -348,71 +434,72 @@ namespace SEC44NIPSS.Background
         }
 
 
-        //public async Task<string> SendEmail(string recipient, string message, string title)
-        //{
-        //    //  return "true";
-        //    //try
-        //    //{
+        public async Task<string> SendEmail(string recipient, string message, string title)
+        {
+            //  return "true";
+            try
+            {
 
 
-        //    //    //create the mail message 
-        //    //    MailMessage mail = new MailMessage();
+                //create the mail message 
+                MailMessage mail = new MailMessage();
 
 
-        //    //    mail.Body = message;
-        //    //    //set the addresses 
-        //    //    mail.From = new MailAddress("noreply@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
-        //    //    mail.To.Add(recipient);
+                mail.Body = message;
+                //set the addresses 
+                mail.From = new MailAddress("admin@sec44nipss.com", "SEC44 NIPSS"); //IMPORTANT: This must be same as your smtp authentication address.
+                mail.To.Add(recipient);
 
-        //    //    //set the content 
-        //    //    mail.Subject = title.Replace("\r\n", "");
+                //set the content 
+                mail.Subject = title.Replace("\r\n", "");
 
-        //    //    mail.IsBodyHtml = true;
-        //    //    //send the message 
-        //    //    SmtpClient smtp = new SmtpClient("mail.sec44nipss.com");
+                mail.IsBodyHtml = true;
+                //send the message 
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
 
-        //    //    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-        //    //    NetworkCredential Credentials = new NetworkCredential("noreply@sec44nipss.com", "Admin@123");
-        //    //    smtp.UseDefaultCredentials = false;
-        //    //    smtp.Credentials = Credentials;
-        //    //    smtp.Port = 25;    //alternative port number is 8889
-        //    //    smtp.EnableSsl = false;
-        //    //    smtp.Send(mail);
-        //    //    return "true";
-        //    //}
-        //    //catch (Exception exc)
-        //    //{
-        //    //    try
-        //    //    {
+                //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+                NetworkCredential Credentials = new NetworkCredential("admin@sec44nipss.com", "yvjholmmateuysye");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = Credentials;
+                smtp.Timeout = 20000;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+                return "true";
+            }
+            catch (Exception exc)
+            {
+                try
+                {
 
-        //    //        MailMessage mail = new MailMessage();
-        //    //        //set the addresses 
-        //    //        mail.From = new MailAddress("espErrorMail@exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
-        //    //        mail.To.Add("espErrorMail@exwhyzee.ng");
-        //    //        mail.To.Add("iskoolsportal@gmail.com");
-        //    //        mail.Subject = "Error sec44nipss ";
-        //    //        mail.Body = exc.ToString();
-        //    //        //send the message 
-        //    //        SmtpClient smtp = new SmtpClient("mail.exwhyzee.ng");
+                    MailMessage mail = new MailMessage();
+                    //set the addresses 
+                    mail.From = new MailAddress("espErrorMail@exwhyzee.ng"); //IMPORTANT: This must be same as your smtp authentication address.
+                    mail.To.Add("espErrorMail@exwhyzee.ng");
+                    mail.To.Add("iskoolsportal@gmail.com");
+                    mail.Subject = "Error sec44nipss ";
+                    mail.Body = exc.ToString();
+                    //send the message 
+                    SmtpClient smtp = new SmtpClient("mail.exwhyzee.ng");
 
-        //    //        //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
-        //    //        NetworkCredential Credentials = new NetworkCredential("espErrorMail@exwhyzee.ng", "Exwhyzee@123");
-        //    //        smtp.Credentials = Credentials;
-        //    //        smtp.Send(mail);
+                    //IMPORANT:  Your smtp login email MUST be same as your FROM address. 
+                    NetworkCredential Credentials = new NetworkCredential("espErrorMail@exwhyzee.ng", "Exwhyzee@123");
+                    smtp.Credentials = Credentials;
+                    smtp.Send(mail);
 
-        //    //    }
-        //    //    catch (Exception ex)
-        //    //    {
+                }
+                catch (Exception ex)
+                {
 
 
-        //    //    }
-        //    //    if (exc.ToString().Contains("memory"))
-        //    //    {
-        //    //        return "memory";
-        //    //    }
-        //    //    return exc.ToString();
-        //    //}
-        //}
+                }
+                if (exc.ToString().Contains("memory"))
+                {
+                    return "memory";
+                }
+                return exc.ToString();
+            }
+        }
 
 
 
