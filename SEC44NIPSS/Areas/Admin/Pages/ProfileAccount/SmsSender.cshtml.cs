@@ -65,12 +65,20 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
                 int cs = parti.Count();
                 foreach(var x in parti)
                 {
-                    
-                    ms.Mail = Messagex;
-                    ms.Recipient = x.Profile.User.PhoneNumber;
-                    ms.Retries = 0; ms.NotificationStatus = NotificationStatus.NotSent; ms.NotificationType = NotificationType.SMS;
-                    _context.Messages.Add(ms);
-                    countitem++;
+                    if (x.Profile.User != null)
+                    {
+                        if (!String.IsNullOrEmpty(x.Profile.PhoneNumber))
+                        {
+                            Message xm = new Message();
+                            xm.Title = ms.Title;
+                            xm.Mail = Messagex;
+                            xm.Recipient = x.Profile.PhoneNumber;
+                            xm.Retries = 0; xm.NotificationStatus = NotificationStatus.NotSent; xm.NotificationType = NotificationType.SMS;
+                            _context.Messages.Add(xm);
+
+                            countitem++;
+                        }
+                    }
                 }
                 await _context.SaveChangesAsync();
             }else if (SendTo == "All")
@@ -81,12 +89,20 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 
                 foreach (var x in parti)
                 {
-                  
-                    ms.Mail = Messagex;
-                    ms.Recipient = x.User.PhoneNumber;
-                    ms.Retries = 0; ms.NotificationStatus = NotificationStatus.NotSent; ms.NotificationType = NotificationType.SMS;
-                    _context.Messages.Add(ms);
-                    countitem++;
+                    if (x.User != null)
+                    {
+                        if (!String.IsNullOrEmpty(x.PhoneNumber))
+                        {
+                            Message xm = new Message();
+                            xm.Title = ms.Title;
+                            xm.Mail = Messagex;
+                            xm.Recipient = x.PhoneNumber;
+                            xm.Retries = 0; xm.NotificationStatus = NotificationStatus.NotSent; xm.NotificationType = NotificationType.SMS;
+                            _context.Messages.Add(xm);
+
+                            countitem++;
+                        }
+                    }
                 }
                 await _context.SaveChangesAsync();
             }

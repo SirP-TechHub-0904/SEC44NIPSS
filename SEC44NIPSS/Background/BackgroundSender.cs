@@ -83,12 +83,13 @@ namespace SEC44NIPSS.Background
                         {
                             i.NotificationStatus = NotificationStatus.Sent;
                             i.Result = "sent";
+                            i.DateSent = DateTime.UtcNow.AddHours(1);
                         }
                         else
                         {
                             i.NotificationStatus = NotificationStatus.NotSent;
                             i.Retries = i.Retries + 1;
-                            i.Result = result;
+                            i.Result = result; i.DateSent = DateTime.UtcNow.AddHours(1);
                         }
                     }
                     else if (i.NotificationType == NotificationType.SMS)
@@ -98,13 +99,13 @@ namespace SEC44NIPSS.Background
                         if (result.Contains("OK"))
                         {
                             i.NotificationStatus = NotificationStatus.Sent;
-                            i.Result = "sent";
+                            i.Result = "sent"; i.DateSent = DateTime.UtcNow.AddHours(1);
                         }
                         else
                         {
                             i.NotificationStatus = NotificationStatus.NotSent;
                             i.Retries = i.Retries + 1;
-                            i.Result = result;
+                            i.Result = result; i.DateSent = DateTime.UtcNow.AddHours(1);
                         }
                     }
 

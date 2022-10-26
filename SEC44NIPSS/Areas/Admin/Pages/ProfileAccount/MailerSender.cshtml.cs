@@ -66,21 +66,30 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
                 int cs = parti.Count();
                 foreach(var x in parti)
                 {
-                    StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
-                    MailMessage mail = new MailMessage();
-                    string mailmsg = sr.ReadToEnd();
-                    mailmsg = mailmsg.Replace("{NAME}", x.Profile.Title +" "+x.Profile.FullName);
-                    mailmsg = mailmsg.Replace("{TITLE}", ms.Title);
-                    mailmsg = mailmsg.Replace("{BODY}", Messagex);
-                    mail.Body = mailmsg;
-                    sr.Close();
+                    if (x.Profile.User != null)
+                    {
+                        if (!String.IsNullOrEmpty(x.Profile.User.Email))
+                        {
+                            StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
+                            MailMessage mail = new MailMessage();
+                            string mailmsg = sr.ReadToEnd();
+                            mailmsg = mailmsg.Replace("{NAME}", x.Profile.Title + " " + x.Profile.FullName);
+                            mailmsg = mailmsg.Replace("{TITLE}", ms.Title);
+                            mailmsg = mailmsg.Replace("{BODY}", Messagex);
+                            mail.Body = mailmsg;
+                            sr.Close();
 
 
-                    ms.Mail = mailmsg;
-                    ms.Recipient = x.Profile.User.Email;
-                    ms.Retries = 0; ms.NotificationStatus = NotificationStatus.NotSent; ms.NotificationType = NotificationType.Email;
-                    _context.Messages.Add(ms);
-                    countitem++;
+                            Message xm = new Message();
+                            xm.Title = ms.Title;
+                            xm.Mail = mailmsg;
+                            xm.Recipient = x.Profile.User.Email;
+                            xm.Retries = 0; xm.NotificationStatus = NotificationStatus.NotSent; xm.NotificationType = NotificationType.Email;
+                            _context.Messages.Add(xm);
+
+                            countitem++;
+                        }
+                    }
                 }
                 await _context.SaveChangesAsync();
             }else if (SendTo == "All")
@@ -91,23 +100,31 @@ namespace SEC44NIPSS.Areas.Admin.Pages.ProfileAccount
 
                 foreach (var x in parti)
                 {
-                    StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
-                    MailMessage mail = new MailMessage();
-                    string mailmsg = sr.ReadToEnd();
-                    mailmsg = mailmsg.Replace("{NAME}", x.Title + " " + x.FullName);
-                    mailmsg = mailmsg.Replace("{TITLE}", ms.Title);
-                    mailmsg = mailmsg.Replace("{BODY}", Messagex);
-                    mail.Body = mailmsg;
-                    sr.Close();
-
-
-                    ms.Mail = mailmsg;
-                    ms.Recipient = x.User.Email;
-                    ms.Retries = 0; ms.NotificationStatus = NotificationStatus.NotSent; ms.NotificationType = NotificationType.Email;
-                    _context.Messages.Add(ms);
-                    countitem++;
+                    if (x.User != null)
+                    {
+                        if (!String.IsNullOrEmpty(x.User.Email))
+                        {
+                            StreamReader sr = new StreamReader(System.IO.Path.Combine(_hostingEnv.WebRootPath, "emailsec.html"));
+                            MailMessage mail = new MailMessage();
+                            string mailmsg = sr.ReadToEnd();
+                            mailmsg = mailmsg.Replace("{NAME}", x.Title + " " + x.FullName);
+                            mailmsg = mailmsg.Replace("{TITLE}", ms.Title);
+                            mailmsg = mailmsg.Replace("{BODY}", Messagex);
+                            mail.Body = mailmsg;
+                            sr.Close();
+                            Message xm = new Message();
+                            xm.Title = ms.Title;
+                            xm.Mail = mailmsg;
+                            xm.Recipient = x.User.Email;
+                            xm.Retries = 0; xm.NotificationStatus = NotificationStatus.NotSent; xm.NotificationType = NotificationType.Email;
+                            _context.Messages.Add(xm);
+                           
+                            countitem++;
+                        }
+                    }
                 }
                 await _context.SaveChangesAsync();
+
             }
 
 
