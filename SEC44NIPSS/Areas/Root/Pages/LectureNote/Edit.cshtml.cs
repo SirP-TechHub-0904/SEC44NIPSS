@@ -4,25 +4,30 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SEC44NIPSS.Data;
 using SEC44NIPSS.Data.Model;
 
 namespace SEC44NIPSS.Areas.Root.Pages.LectureNote
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly SEC44NIPSS.Data.NIPSSDbContext _context;
         private readonly IHostingEnvironment _hostingEnv;
+        private readonly ILogger<EditModel> _logger;
 
-        public EditModel(SEC44NIPSS.Data.NIPSSDbContext context, IHostingEnvironment hostingEnv)
+        public EditModel(SEC44NIPSS.Data.NIPSSDbContext context, IHostingEnvironment hostingEnv, ILogger<EditModel> logger)
         {
             _context = context;
             _hostingEnv = hostingEnv;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -37,7 +42,7 @@ namespace SEC44NIPSS.Areas.Root.Pages.LectureNote
                 return NotFound();
             }
 
-            Event = await _context.Events.Include(x => x.Document).FirstOrDefaultAsync(m => m.Id == id);
+            Event = await _context.Events.Include(x => x.Document).AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
 
             if (Event == null)
             {
@@ -141,22 +146,36 @@ namespace SEC44NIPSS.Areas.Root.Pages.LectureNote
 
             if (!String.IsNullOrEmpty(filedoc))
             {
-                filedoc = Document.FileName;
+                 Document.FileName = filedoc;
             }
             if (!String.IsNullOrEmpty(filedocCover))
             {
-                filedocCover = Document.CoverImage;
+                  Document.CoverImage = filedocCover;
 
             }
             //
-            if (Event.Document.EventId != null)
+            var xEvent = await _context.Events.Include(x => x.Document).AsNoTracking().FirstOrDefaultAsync(m => m.Id == Event.Id);
+            if (xEvent.Document != null)
             {
-                _context.Attach(Document).State = EntityState.Modified;
+                if (xEvent.Document.EventId != null)
+                {
+                    var hdoc = await _context.Documents.AsNoTracking().FirstOrDefaultAsync(x => x.EventId == Event.Id);
+                    hdoc.DocumentCategoryId = Document.DocumentCategoryId;
+                    hdoc.ProfileId = Document.ProfileId;
+                    hdoc.Title = Event.Title;
+                    hdoc.CoverImage = Document.CoverImage;
+                    hdoc.FileName = Document.FileName;
+                    hdoc.DocType = Document.DocType;
+                    _context.Attach(hdoc).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
             }
             else
             {
+                Document.EventId = Event.Id;
                 _context.Documents.Add(Document);
-            }
+                //await _context.SaveChangesAsync();
+            } 
             _context.Attach(Event).State = EntityState.Modified;
 
             try

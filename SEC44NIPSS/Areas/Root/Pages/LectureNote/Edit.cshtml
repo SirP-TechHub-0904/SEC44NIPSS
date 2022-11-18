@@ -102,6 +102,10 @@
                     <span asp-validation-for="Document.CoverImage" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Document.DocumentCategoryId" class="control-label"></label>
+                    <select asp-for="Document.DocumentCategoryId" class="form-control" asp-items="ViewBag.DocumentCategoryId"></select>
+                </div>
+                <div class="form-group">
                     <label asp-for="Document.FileName" class="control-label"></label>
                     <input class="form-control" type="file" name="filesPhoto" id="gallery-photo-add" />
                     <span asp-validation-for="Document.FileName" class="text-danger"></span>
